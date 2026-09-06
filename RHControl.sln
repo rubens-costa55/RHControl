@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37502.11 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RHControl", "RHControl\RHControl.csproj", "{BEEF9DE3-B380-4030-80F6-E5D8508D151B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEEF9DE3-B380-4030-80F6-E5D8508D151B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEF9DE3-B380-4030-80F6-E5D8508D151B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEF9DE3-B380-4030-80F6-E5D8508D151B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEF9DE3-B380-4030-80F6-E5D8508D151B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DC6A073-B3AC-4B4E-BE79-82F30565D501}
+	EndGlobalSection
+EndGlobal
