@@ -942,7 +942,7 @@
                 "pnlSituacao";
 
             this.pnlSituacao.Size =
-                new System.Drawing.Size(410, 250);
+                new System.Drawing.Size(410, 265);
 
             this.lblSituacaoTitulo.AutoSize = true;
 
@@ -1057,7 +1057,7 @@
                 "pnlEventos";
 
             this.pnlEventos.Size =
-                new System.Drawing.Size(410, 250);
+                new System.Drawing.Size(410, 265);
 
             this.lblEventosTitulo.AutoSize = true;
 
@@ -1136,13 +1136,13 @@
                 System.Windows.Forms.BorderStyle.FixedSingle;
 
             this.pnlAlertas.Location =
-                new System.Drawing.Point(235, 520);
+                new System.Drawing.Point(235, 535);
 
             this.pnlAlertas.Name =
                 "pnlAlertas";
 
             this.pnlAlertas.Size =
-                new System.Drawing.Size(840, 130);
+                new System.Drawing.Size(840, 115);
 
             this.lblAlertasTitulo.AutoSize = true;
 

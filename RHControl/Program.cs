@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using RHControl.Data;
 
 namespace RHControl
 {
@@ -9,6 +10,8 @@ namespace RHControl
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+
+            Database.Inicializar();
 
             Application.Run(new FrmLoading());
         }
