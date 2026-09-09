@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using RHControl.Forms;
 
 namespace RHControl
 {
@@ -11,6 +12,7 @@ namespace RHControl
 
             btnFuncionarios.Click += BtnFuncionarios_Click;
             btnJornada.Click += BtnJornada_Click;
+            btnFolha.Click += BtnFolha_Click;
         }
 
         private void BtnFuncionarios_Click(object sender, EventArgs e)
@@ -37,6 +39,19 @@ namespace RHControl
 
             this.Hide();
             jornada.Show();
+        }
+
+        private void BtnFolha_Click(object sender, EventArgs e)
+        {
+            FrmFolhaPagamento folha = new FrmFolhaPagamento();
+
+            folha.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+
+            this.Hide();
+            folha.Show();
         }
     }
 }

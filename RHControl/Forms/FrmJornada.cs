@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using RHControl.Data;
+using RHControl.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,6 +19,10 @@ namespace RHControl
         private DateTime dataBaseEscala = DateTime.Today;
         private DateTime dataAdmissao = DateTime.Today;
 
+        // Férias programadas do funcionário selecionado.
+        private readonly List<(DateTime Inicio, DateTime Fim)> feriasProgramadas = new();
+        private readonly List<DateTime> datasDireitoFerias = new();
+
         private readonly Dictionary<long, string> funcionarios = new();
 
         private readonly Color corTrabalho = Color.FromArgb(227, 242, 253);
@@ -26,12 +31,18 @@ namespace RHControl
         private readonly Color corAdiantamento = Color.FromArgb(243, 229, 245);
         private readonly Color corFeriado = Color.FromArgb(255, 235, 238);
         private readonly Color corHoje = Color.FromArgb(21, 101, 192);
+        private readonly Color corFerias = Color.FromArgb(255, 243, 224);
 
         public FrmJornada()
         {
             InitializeComponent();
 
             ConfigurarEventos();
+
+            // Garante que os períodos de férias sejam criados/atualizados
+            // automaticamente a partir da data de admissão.
+            FeriasService.SincronizarFerias();
+
             CarregarMeses();
             CarregarAnos();
             CarregarFuncionarios();
@@ -183,6 +194,8 @@ namespace RHControl
             diaFolga2 = "";
             dataBaseEscala = DateTime.Today;
             dataAdmissao = DateTime.Today;
+            feriasProgramadas.Clear();
+            datasDireitoFerias.Clear();
 
             if (cmbFuncionario.SelectedIndex <= 0)
             {
@@ -253,6 +266,8 @@ namespace RHControl
             if (dataBaseEscala == DateTime.MinValue)
                 dataBaseEscala = dataAdmissao;
 
+            CarregarFeriasFuncionario();
+
             lblMesAno.Text =
                 $"{ObterNomeMes()} {ObterAno()}";
 
@@ -281,6 +296,110 @@ namespace RHControl
 
             return DateTime.Today.ToString("MMMM",
                 new CultureInfo("pt-BR"));
+        }
+
+        private static bool TentarConverterData(object valor, out DateTime data)
+        {
+            string texto = valor?.ToString() ?? "";
+
+            if (DateTime.TryParseExact(
+                texto,
+                "yyyy-MM-dd",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out data))
+            {
+                return true;
+            }
+
+            if (DateTime.TryParse(
+                texto,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out data))
+            {
+                return true;
+            }
+
+            return DateTime.TryParse(
+                texto,
+                new CultureInfo("pt-BR"),
+                DateTimeStyles.None,
+                out data);
+        }
+
+        private void CarregarFeriasFuncionario()
+        {
+            feriasProgramadas.Clear();
+            datasDireitoFerias.Clear();
+
+            if (!funcionarioSelecionadoId.HasValue)
+                return;
+
+            using SqliteConnection connection = Database.GetConnection();
+            connection.Open();
+
+            string sql = @"
+                SELECT
+                    DataDireito,
+                    InicioFerias,
+                    FimFerias
+                FROM Ferias
+                WHERE FuncionarioId = $FuncionarioId
+                ORDER BY DataDireito;";
+
+            using SqliteCommand command = connection.CreateCommand();
+            command.CommandText = sql;
+            command.Parameters.AddWithValue(
+                "$FuncionarioId",
+                funcionarioSelecionadoId.Value);
+
+            using SqliteDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (TentarConverterData(reader["DataDireito"], out DateTime direito))
+                    datasDireitoFerias.Add(direito.Date);
+
+                if (TentarConverterData(reader["InicioFerias"], out DateTime inicio) &&
+                    TentarConverterData(reader["FimFerias"], out DateTime fim) &&
+                    fim.Date >= inicio.Date)
+                {
+                    feriasProgramadas.Add((inicio.Date, fim.Date));
+                }
+            }
+        }
+
+        private bool EhFerias(DateTime data)
+        {
+            data = data.Date;
+
+            foreach ((DateTime Inicio, DateTime Fim) periodo in feriasProgramadas)
+            {
+                if (data >= periodo.Inicio && data <= periodo.Fim)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private bool EhDataDireitoFerias(DateTime data)
+        {
+            return datasDireitoFerias.Contains(data.Date);
+        }
+
+        private string ObterInfoFerias(DateTime data)
+        {
+            foreach ((DateTime Inicio, DateTime Fim) periodo in feriasProgramadas)
+            {
+                if (data.Date >= periodo.Inicio && data.Date <= periodo.Fim)
+                    return $"Férias programadas: {periodo.Inicio:dd/MM/yyyy} a {periodo.Fim:dd/MM/yyyy}";
+            }
+
+            if (EhDataDireitoFerias(data))
+                return "Direito a férias adquirido nesta data";
+
+            return "";
         }
 
         private void AtualizarCalendario()
@@ -427,18 +546,19 @@ namespace RHControl
 
         private Button CriarBotaoDia(DateTime data)
         {
+            bool ferias = EhFerias(data);
             bool feriado = EhFeriado(data);
             bool folga = EhFolga(data);
-            bool trabalho = !folga && !feriado;
+            bool trabalho = !folga && !feriado && !ferias;
             bool hoje = data.Date == DateTime.Today;
 
             Button botao = new Button
             {
-                Text = data.Day.ToString(),
+                Text = ferias ? $"{data.Day}\nFÉRIAS" : data.Day.ToString(),
                 Dock = DockStyle.Fill,
                 Margin = new Padding(2),
                 FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                Font = new Font("Segoe UI", ferias ? 8.5F : 10F, FontStyle.Bold),
                 TextAlign = ContentAlignment.TopLeft,
                 Padding = new Padding(8, 6, 3, 3),
                 Cursor = Cursors.Hand,
@@ -448,7 +568,14 @@ namespace RHControl
 
             botao.FlatAppearance.BorderSize = hoje ? 2 : 1;
 
-            if (feriado)
+            if (ferias)
+            {
+                botao.BackColor = corFerias;
+                botao.ForeColor = Color.FromArgb(230, 126, 34);
+                botao.FlatAppearance.BorderColor =
+                    Color.FromArgb(255, 204, 128);
+            }
+            else if (feriado)
             {
                 botao.BackColor = corFeriado;
                 botao.ForeColor = Color.FromArgb(183, 28, 28);
@@ -470,13 +597,13 @@ namespace RHControl
                     Color.FromArgb(187, 222, 251);
             }
 
-            if (EhAdiantamento(data))
+            if (!ferias && EhAdiantamento(data))
             {
                 botao.BackColor = corAdiantamento;
                 botao.ForeColor = Color.FromArgb(106, 27, 154);
             }
 
-            if (EhPagamento(data))
+            if (!ferias && EhPagamento(data))
             {
                 botao.BackColor = corPagamento;
                 botao.ForeColor = Color.FromArgb(46, 125, 50);
@@ -646,7 +773,11 @@ namespace RHControl
 
                 if (calendarioIndividual)
                 {
-                    if (EhFolga(data))
+                    if (EhFerias(data))
+                    {
+                        ferias++;
+                    }
+                    else if (EhFolga(data))
                     {
                         folgas++;
                     }
@@ -810,6 +941,31 @@ namespace RHControl
                 }
             }
 
+            if (funcionarioSelecionadoId.HasValue)
+            {
+                foreach (DateTime direito in datasDireitoFerias)
+                {
+                    if (direito.Year == ano && direito.Month == mes)
+                    {
+                        eventos.Add((
+                            direito,
+                            "Direito a férias",
+                            "Período aquisitivo concluído — férias disponíveis"));
+                    }
+                }
+
+                foreach ((DateTime Inicio, DateTime Fim) periodo in feriasProgramadas)
+                {
+                    if (periodo.Inicio.Year == ano && periodo.Inicio.Month == mes)
+                    {
+                        eventos.Add((
+                            periodo.Inicio,
+                            "Início das férias",
+                            $"Férias programadas até {periodo.Fim:dd/MM/yyyy}"));
+                    }
+                }
+            }
+
             eventos.Sort((a, b) =>
                 a.Data.CompareTo(b.Data));
 
@@ -834,7 +990,9 @@ namespace RHControl
 
             string situacao;
 
-            if (EhFeriado(data))
+            if (EhFerias(data))
+                situacao = "FÉRIAS";
+            else if (EhFeriado(data))
                 situacao = "FERIADO";
             else if (EhFolga(data))
                 situacao = "FOLGA";
@@ -843,10 +1001,14 @@ namespace RHControl
 
             string eventos = "";
 
-            if (EhPagamento(data))
+            string infoFerias = ObterInfoFerias(data);
+            if (!string.IsNullOrWhiteSpace(infoFerias))
+                eventos += $"\n• {infoFerias}";
+
+            if (EhPagamento(data) && !EhFerias(data))
                 eventos += "\n• Pagamento — 5º dia útil";
 
-            if (EhAdiantamento(data))
+            if (EhAdiantamento(data) && !EhFerias(data))
                 eventos += "\n• Adiantamento — dia 20";
 
             if (funcionarioSelecionadoId.HasValue &&

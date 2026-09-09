@@ -42,6 +42,16 @@ namespace RHControl
         {
             InitializeComponent();
 
+            // Título e textos do modo NOVO
+            Text = "RH Control — Novo Funcionário";
+
+            lblTitulo.Text = "Novo Funcionário";
+
+            lblSubtitulo.Text =
+                "Cadastre as informações pessoais e profissionais do colaborador";
+
+            btnSalvar.Text = "Salvar funcionário";
+
             cmbTipoJornada.SelectedIndex = 0;
             dtpDataBaseEscala.Value = dtpDataAdmissao.Value;
 
@@ -60,6 +70,16 @@ namespace RHControl
         public FrmCadastroFuncionario(long funcionarioId)
         {
             InitializeComponent();
+
+            // Título e textos do modo EDITAR
+            Text = "RH Control — Editar Funcionário";
+
+            lblTitulo.Text = "Editar dados do funcionário";
+
+            lblSubtitulo.Text =
+                "Atualize as informações pessoais e profissionais do colaborador";
+
+            btnSalvar.Text = "Salvar alterações";
 
             cmbTipoJornada.SelectedIndex = 0;
             dtpDataBaseEscala.Value = dtpDataAdmissao.Value;
@@ -164,18 +184,25 @@ namespace RHControl
             bool usarSegundaFolga =
                 escala.Equals("5x2", StringComparison.OrdinalIgnoreCase);
 
-            cmbDiaFolga.Enabled = porEscala || !string.IsNullOrWhiteSpace(escala);
-            cmbDiaFolga2.Enabled = usarSegundaFolga;
+            cmbDiaFolga.Enabled =
+                porEscala ||
+                !string.IsNullOrWhiteSpace(escala);
 
-            lblDiaFolga2.ForeColor = cmbDiaFolga2.Enabled
-                ? System.Drawing.Color.FromArgb(35, 45, 55)
-                : System.Drawing.Color.FromArgb(160, 165, 170);
+            cmbDiaFolga2.Enabled =
+                usarSegundaFolga;
+
+            lblDiaFolga2.ForeColor =
+                cmbDiaFolga2.Enabled
+                    ? System.Drawing.Color.FromArgb(35, 45, 55)
+                    : System.Drawing.Color.FromArgb(160, 165, 170);
 
             // Escalas rotativas precisam da data-base.
             dtpDataBaseEscala.Enabled = porEscala;
-            lblDataBaseEscala.ForeColor = porEscala
-                ? System.Drawing.Color.FromArgb(35, 45, 55)
-                : System.Drawing.Color.FromArgb(160, 165, 170);
+
+            lblDataBaseEscala.ForeColor =
+                porEscala
+                    ? System.Drawing.Color.FromArgb(35, 45, 55)
+                    : System.Drawing.Color.FromArgb(160, 165, 170);
 
             if (!cmbDiaFolga2.Enabled)
                 cmbDiaFolga2.SelectedIndex = -1;
@@ -585,15 +612,19 @@ namespace RHControl
                             }
 
                             string tipoJornada =
-                                reader["TipoJornada"]?.ToString() ?? "Jornada fixa";
+                                reader["TipoJornada"]?.ToString()
+                                ?? "Jornada fixa";
 
                             int indiceTipoJornada =
-                                cmbTipoJornada.Items.IndexOf(tipoJornada);
+                                cmbTipoJornada.Items.IndexOf(
+                                    tipoJornada);
 
                             if (indiceTipoJornada >= 0)
-                                cmbTipoJornada.SelectedIndex = indiceTipoJornada;
+                                cmbTipoJornada.SelectedIndex =
+                                    indiceTipoJornada;
                             else
-                                cmbTipoJornada.Text = tipoJornada;
+                                cmbTipoJornada.Text =
+                                    tipoJornada;
 
                             string escala =
                                 reader["Escala"]?.ToString() ?? "";
@@ -601,7 +632,8 @@ namespace RHControl
                             if (!string.IsNullOrWhiteSpace(escala))
                             {
                                 int indice =
-                                    cmbEscala.Items.IndexOf(escala);
+                                    cmbEscala.Items.IndexOf(
+                                        escala);
 
                                 if (indice >= 0)
                                     cmbEscala.SelectedIndex =
@@ -671,10 +703,12 @@ namespace RHControl
                                 reader["FimIntervalo"]);
 
                             statusAtual =
-                                reader["Status"]?.ToString() ?? "Ativo";
+                                reader["Status"]?.ToString()
+                                ?? "Ativo";
 
                             txtObservacoes.Text =
-                                reader["Observacoes"]?.ToString() ?? "";
+                                reader["Observacoes"]?.ToString()
+                                ?? "";
                         }
                     }
 
@@ -684,7 +718,7 @@ namespace RHControl
                 }
 
                 btnSalvar.Text =
-                    "Salvar Alterações";
+                    "Salvar alterações";
 
                 AtualizarTabelaBeneficios();
             }
@@ -701,6 +735,10 @@ namespace RHControl
             }
         }
 
+        // ============================================================
+        // SELECIONAR COMBO
+        // ============================================================
+
         private void SelecionarComboTexto(
             ComboBox combo,
             string texto)
@@ -711,7 +749,8 @@ namespace RHControl
                 return;
             }
 
-            int indice = combo.Items.IndexOf(texto);
+            int indice =
+                combo.Items.IndexOf(texto);
 
             if (indice >= 0)
                 combo.SelectedIndex = indice;
@@ -1066,6 +1105,7 @@ namespace RHControl
 
                             // Remove os benefícios antigos
                             // para gravar a versão atualizada.
+
                             string sqlExcluirBeneficios = @"
                                 DELETE FROM BeneficiosFuncionario
                                 WHERE FuncionarioId = $FuncionarioId;

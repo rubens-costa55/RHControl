@@ -3,7 +3,6 @@
     partial class FrmLoading
     {
         private System.ComponentModel.IContainer components = null;
-
         private System.Windows.Forms.Panel pnlTopo;
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblTitulo;
@@ -18,16 +17,12 @@
         {
             if (disposing && (components != null))
                 components.Dispose();
-
             base.Dispose(disposing);
         }
-
-        #region Windows Form Designer generated code
 
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-
             this.pnlTopo = new System.Windows.Forms.Panel();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblTitulo = new System.Windows.Forms.Label();
@@ -37,157 +32,101 @@
             this.lblPorcentagem = new System.Windows.Forms.Label();
             this.lblRodape = new System.Windows.Forms.Label();
             this.timerLoading = new System.Windows.Forms.Timer(this.components);
-
-            this.pnlTopo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
 
-            // 
-            // pnlTopo
-            // 
-            this.pnlTopo.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.pnlTopo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTopo.Location = new System.Drawing.Point(0, 0);
-            this.pnlTopo.Name = "pnlTopo";
-            this.pnlTopo.Size = new System.Drawing.Size(700, 8);
-            this.pnlTopo.TabIndex = 0;
+            this.BackColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            this.ClientSize = new System.Drawing.Size(760, 440);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "FrmLoading";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "RH Control";
+            this.TopMost = true;
 
-            // 
-            // picLogo
-            // 
+            this.pnlTopo.BackColor = System.Drawing.Color.FromArgb(37, 99, 235);
+            this.pnlTopo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTopo.Size = new System.Drawing.Size(760, 6);
+
+            this.picLogo.BackColor = System.Drawing.Color.Transparent;
             this.picLogo.Image = global::RHControl.Properties.Resources.logorh;
-            this.picLogo.Location = new System.Drawing.Point(275, 55);
+            this.picLogo.Location = new System.Drawing.Point(280, 42);
             this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(150, 150);
+            this.picLogo.Size = new System.Drawing.Size(200, 175);
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogo.TabIndex = 1;
             this.picLogo.TabStop = false;
 
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font(
-                "Segoe UI",
-                24F,
-                System.Drawing.FontStyle.Bold
-            );
-            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblTitulo.Location = new System.Drawing.Point(258, 210);
+            this.lblTitulo.AutoSize = false;
+            this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Bold);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(80, 220);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(184, 45);
-            this.lblTitulo.TabIndex = 2;
+            this.lblTitulo.Size = new System.Drawing.Size(600, 46);
             this.lblTitulo.Text = "RH Control";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            // 
-            // lblSubtitulo
-            // 
-            this.lblSubtitulo.AutoSize = true;
-            this.lblSubtitulo.Font = new System.Drawing.Font(
-                "Segoe UI",
-                11F
-            );
-            this.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(90, 90, 90);
-            this.lblSubtitulo.Location = new System.Drawing.Point(272, 258);
+            this.lblSubtitulo.AutoSize = false;
+            this.lblSubtitulo.BackColor = System.Drawing.Color.Transparent;
+            this.lblSubtitulo.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(148, 163, 184);
+            this.lblSubtitulo.Location = new System.Drawing.Point(80, 264);
             this.lblSubtitulo.Name = "lblSubtitulo";
-            this.lblSubtitulo.Size = new System.Drawing.Size(156, 20);
-            this.lblSubtitulo.TabIndex = 3;
+            this.lblSubtitulo.Size = new System.Drawing.Size(600, 26);
             this.lblSubtitulo.Text = "Gestão de Pessoas";
+            this.lblSubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font(
-                "Segoe UI",
-                9.5F
-            );
-            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(80, 80, 80);
-            this.lblStatus.Location = new System.Drawing.Point(180, 305);
+            this.lblStatus.AutoSize = false;
+            this.lblStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.lblStatus.Location = new System.Drawing.Point(110, 305);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(156, 17);
-            this.lblStatus.TabIndex = 4;
+            this.lblStatus.Size = new System.Drawing.Size(540, 24);
             this.lblStatus.Text = "Inicializando o sistema...";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            // 
-            // progressBar
-            // 
-            this.progressBar.Location = new System.Drawing.Point(180, 330);
+            this.progressBar.Location = new System.Drawing.Point(145, 340);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(340, 12);
-            this.progressBar.Style =
-                System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar.TabIndex = 5;
+            this.progressBar.Size = new System.Drawing.Size(470, 8);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar.Maximum = 100;
+            this.progressBar.Minimum = 0;
 
-            // 
-            // lblPorcentagem
-            // 
-            this.lblPorcentagem.Font = new System.Drawing.Font(
-                "Segoe UI",
-                9F,
-                System.Drawing.FontStyle.Bold
-            );
-            this.lblPorcentagem.ForeColor =
-                System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblPorcentagem.Location = new System.Drawing.Point(530, 326);
+            this.lblPorcentagem.AutoSize = false;
+            this.lblPorcentagem.BackColor = System.Drawing.Color.Transparent;
+            this.lblPorcentagem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblPorcentagem.ForeColor = System.Drawing.Color.FromArgb(96, 165, 250);
+            this.lblPorcentagem.Location = new System.Drawing.Point(625, 332);
             this.lblPorcentagem.Name = "lblPorcentagem";
-            this.lblPorcentagem.Size = new System.Drawing.Size(45, 20);
-            this.lblPorcentagem.TabIndex = 6;
+            this.lblPorcentagem.Size = new System.Drawing.Size(45, 24);
             this.lblPorcentagem.Text = "0%";
-            this.lblPorcentagem.TextAlign =
-                System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPorcentagem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
-            // 
-            // lblRodape
-            // 
-            this.lblRodape.AutoSize = true;
-            this.lblRodape.Font = new System.Drawing.Font(
-                "Segoe UI",
-                8.5F
-            );
-            this.lblRodape.ForeColor = System.Drawing.Color.Gray;
-            this.lblRodape.Location = new System.Drawing.Point(258, 370);
+            this.lblRodape.AutoSize = false;
+            this.lblRodape.BackColor = System.Drawing.Color.Transparent;
+            this.lblRodape.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.lblRodape.ForeColor = System.Drawing.Color.FromArgb(100, 116, 139);
+            this.lblRodape.Location = new System.Drawing.Point(80, 382);
             this.lblRodape.Name = "lblRodape";
-            this.lblRodape.Size = new System.Drawing.Size(184, 15);
-            this.lblRodape.TabIndex = 7;
+            this.lblRodape.Size = new System.Drawing.Size(600, 24);
             this.lblRodape.Text = "Organização de hoje, um futuro melhor.";
+            this.lblRodape.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            // 
-            // timerLoading
-            // 
             this.timerLoading.Interval = 40;
 
-            // 
-            // FrmLoading
-            // 
-            this.AutoScaleDimensions =
-                new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode =
-                System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(700, 410);
-            this.Controls.Add(this.pnlTopo);
-            this.Controls.Add(this.picLogo);
-            this.Controls.Add(this.lblTitulo);
-            this.Controls.Add(this.lblSubtitulo);
-            this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.lblPorcentagem);
             this.Controls.Add(this.lblRodape);
-            this.FormBorderStyle =
-                System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmLoading";
-            this.StartPosition =
-                System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RH Control";
-            this.ShowInTaskbar = false;
+            this.Controls.Add(this.lblPorcentagem);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.lblSubtitulo);
+            this.Controls.Add(this.lblTitulo);
+            this.Controls.Add(this.picLogo);
+            this.Controls.Add(this.pnlTopo);
 
-            this.pnlTopo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
         }
-
-        #endregion
     }
 }

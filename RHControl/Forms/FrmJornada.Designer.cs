@@ -54,6 +54,11 @@
         private System.Windows.Forms.Label lblFaltas;
         private System.Windows.Forms.Label lblHoras;
         private System.Windows.Forms.Label lblDataSelecionada;
+        private System.Windows.Forms.Label lblIconDiasUteis;
+        private System.Windows.Forms.Label lblIconDiasTrabalhados;
+        private System.Windows.Forms.Label lblIconFolgas;
+        private System.Windows.Forms.Label lblIconFerias;
+        private System.Windows.Forms.Label lblIconFaltas;
 
         private System.Windows.Forms.Panel pnlEventos;
         private System.Windows.Forms.Label lblTituloEventos;
@@ -79,6 +84,13 @@
         private System.Windows.Forms.Label lblEvento5Titulo;
         private System.Windows.Forms.Label lblEvento5Info;
 
+        // Ícones visuais dos próximos eventos
+        private System.Windows.Forms.Label lblIconEvento1;
+        private System.Windows.Forms.Label lblIconEvento2;
+        private System.Windows.Forms.Label lblIconEvento3;
+        private System.Windows.Forms.Label lblIconEvento4;
+        private System.Windows.Forms.Label lblIconEvento5;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -87,731 +99,1047 @@
             base.Dispose(disposing);
         }
 
+        private void ConfigurarIconeResumo(System.Windows.Forms.Label label, string texto, System.Drawing.Point local, System.Drawing.Color cor)
+        {
+            label.AutoSize = false;
+            label.Font = new System.Drawing.Font("Segoe UI Symbol", 13F, System.Drawing.FontStyle.Bold);
+            label.ForeColor = cor;
+            label.Location = local;
+            label.Size = new System.Drawing.Size(22, 25);
+            label.Text = texto;
+            label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        }
+
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-
-            this.pnlMenu = new System.Windows.Forms.Panel();
-            this.picLogo = new System.Windows.Forms.PictureBox();
-            this.lblLogo = new System.Windows.Forms.Label();
-            this.lblLogoSub = new System.Windows.Forms.Label();
-            this.btnDashboard = new System.Windows.Forms.Button();
-            this.btnFuncionarios = new System.Windows.Forms.Button();
-            this.btnJornada = new System.Windows.Forms.Button();
-            this.btnFolha = new System.Windows.Forms.Button();
-            this.btnConfiguracoes = new System.Windows.Forms.Button();
-            this.lblVersao = new System.Windows.Forms.Label();
-
-            this.pnlTopo = new System.Windows.Forms.Panel();
-            this.lblTitulo = new System.Windows.Forms.Label();
-            this.lblSubtitulo = new System.Windows.Forms.Label();
-            this.lblAdministrador = new System.Windows.Forms.Label();
-
-            this.pnlFiltros = new System.Windows.Forms.Panel();
-            this.lblFuncionario = new System.Windows.Forms.Label();
-            this.lblMes = new System.Windows.Forms.Label();
-            this.lblAno = new System.Windows.Forms.Label();
-            this.cmbFuncionario = new System.Windows.Forms.ComboBox();
-            this.cmbMes = new System.Windows.Forms.ComboBox();
-            this.cmbAno = new System.Windows.Forms.ComboBox();
-            this.btnAtualizar = new System.Windows.Forms.Button();
-
-            this.pnlCalendario = new System.Windows.Forms.Panel();
-            this.lblTituloCalendario = new System.Windows.Forms.Label();
-            this.btnMesAnterior = new System.Windows.Forms.Button();
-            this.btnProximoMes = new System.Windows.Forms.Button();
-            this.lblMesAno = new System.Windows.Forms.Label();
-            this.tblCalendario = new System.Windows.Forms.TableLayoutPanel();
-
-            this.pnlLegenda = new System.Windows.Forms.Panel();
-            this.lblLegendaTitulo = new System.Windows.Forms.Label();
-            this.lblLegendaTrabalho = new System.Windows.Forms.Label();
-            this.lblLegendaFolga = new System.Windows.Forms.Label();
-            this.lblLegendaFeriado = new System.Windows.Forms.Label();
-            this.lblLegendaPagamento = new System.Windows.Forms.Label();
-            this.lblLegendaAdiantamento = new System.Windows.Forms.Label();
-            this.lblLegendaHoje = new System.Windows.Forms.Label();
-
-            this.pnlResumo = new System.Windows.Forms.Panel();
-            this.lblTituloResumo = new System.Windows.Forms.Label();
-            this.lblDiasUteis = new System.Windows.Forms.Label();
-            this.lblDiasTrabalhados = new System.Windows.Forms.Label();
-            this.lblFolgas = new System.Windows.Forms.Label();
-            this.lblFerias = new System.Windows.Forms.Label();
-            this.lblFaltas = new System.Windows.Forms.Label();
-            this.lblHoras = new System.Windows.Forms.Label();
-            this.lblDataSelecionada = new System.Windows.Forms.Label();
-
-            this.pnlEventos = new System.Windows.Forms.Panel();
-            this.lblTituloEventos = new System.Windows.Forms.Label();
-
-            this.pnlEvento1 = new System.Windows.Forms.Panel();
-            this.pnlEvento2 = new System.Windows.Forms.Panel();
-            this.pnlEvento3 = new System.Windows.Forms.Panel();
-            this.pnlEvento4 = new System.Windows.Forms.Panel();
-            this.pnlEvento5 = new System.Windows.Forms.Panel();
-
-            this.lblEvento1Data = new System.Windows.Forms.Label();
-            this.lblEvento1Titulo = new System.Windows.Forms.Label();
-            this.lblEvento1Info = new System.Windows.Forms.Label();
-            this.lblEvento2Data = new System.Windows.Forms.Label();
-            this.lblEvento2Titulo = new System.Windows.Forms.Label();
-            this.lblEvento2Info = new System.Windows.Forms.Label();
-            this.lblEvento3Data = new System.Windows.Forms.Label();
-            this.lblEvento3Titulo = new System.Windows.Forms.Label();
-            this.lblEvento3Info = new System.Windows.Forms.Label();
-            this.lblEvento4Data = new System.Windows.Forms.Label();
-            this.lblEvento4Titulo = new System.Windows.Forms.Label();
-            this.lblEvento4Info = new System.Windows.Forms.Label();
-            this.lblEvento5Data = new System.Windows.Forms.Label();
-            this.lblEvento5Titulo = new System.Windows.Forms.Label();
-            this.lblEvento5Info = new System.Windows.Forms.Label();
-
-            this.SuspendLayout();
-            this.pnlMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
-            this.pnlTopo.SuspendLayout();
-            this.pnlFiltros.SuspendLayout();
-            this.pnlCalendario.SuspendLayout();
-            this.pnlLegenda.SuspendLayout();
-            this.pnlResumo.SuspendLayout();
-            this.pnlEventos.SuspendLayout();
-
-            // FORM
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(245, 248, 252);
-            this.ClientSize = new System.Drawing.Size(1180, 780);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RH Control — Jornada / Calendário";
-
-            // MENU
-            this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(247, 249, 252);
-            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
-            this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(220, 780);
-
-            this.picLogo.BackColor = System.Drawing.Color.Transparent;
-            this.picLogo.Location = new System.Drawing.Point(66, 54);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(90, 90);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogo.TabStop = false;
-            this.picLogo.Image = global::RHControl.Properties.Resources.logorh;
-
-            this.lblLogo.AutoSize = true;
-            this.lblLogo.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
-            this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblLogo.Location = new System.Drawing.Point(57, 151);
-            this.lblLogo.Name = "lblLogo";
-            this.lblLogo.Text = "RH Control";
-
-            this.lblLogoSub.AutoSize = true;
-            this.lblLogoSub.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblLogoSub.ForeColor = System.Drawing.Color.FromArgb(100, 110, 125);
-            this.lblLogoSub.Location = new System.Drawing.Point(59, 176);
-            this.lblLogoSub.Name = "lblLogoSub";
-            this.lblLogoSub.Text = "Gestão de Pessoas";
-
-            this.btnDashboard.BackColor = System.Drawing.Color.White;
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(220, 226, 235);
-            this.btnDashboard.FlatAppearance.BorderSize = 1;
-            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(45, 55, 70);
-            this.btnDashboard.Location = new System.Drawing.Point(15, 218);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(190, 44);
-            this.btnDashboard.Text = "Dashboard";
-            this.btnDashboard.UseVisualStyleBackColor = false;
-            this.btnDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            this.btnFuncionarios.BackColor = System.Drawing.Color.White;
-            this.btnFuncionarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFuncionarios.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(220, 226, 235);
-            this.btnFuncionarios.FlatAppearance.BorderSize = 1;
-            this.btnFuncionarios.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.btnFuncionarios.ForeColor = System.Drawing.Color.FromArgb(45, 55, 70);
-            this.btnFuncionarios.Location = new System.Drawing.Point(15, 270);
-            this.btnFuncionarios.Name = "btnFuncionarios";
-            this.btnFuncionarios.Size = new System.Drawing.Size(190, 44);
-            this.btnFuncionarios.Text = "Funcionários";
-            this.btnFuncionarios.UseVisualStyleBackColor = false;
-            this.btnFuncionarios.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            this.btnJornada.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.btnJornada.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJornada.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.btnJornada.FlatAppearance.BorderSize = 1;
-            this.btnJornada.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-            this.btnJornada.ForeColor = System.Drawing.Color.White;
-            this.btnJornada.Location = new System.Drawing.Point(15, 322);
-            this.btnJornada.Name = "btnJornada";
-            this.btnJornada.Size = new System.Drawing.Size(190, 44);
-            this.btnJornada.Text = "Jornada / Calendário";
-            this.btnJornada.UseVisualStyleBackColor = false;
-            this.btnJornada.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            this.btnFolha.BackColor = System.Drawing.Color.White;
-            this.btnFolha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFolha.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(220, 226, 235);
-            this.btnFolha.FlatAppearance.BorderSize = 1;
-            this.btnFolha.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.btnFolha.ForeColor = System.Drawing.Color.FromArgb(45, 55, 70);
-            this.btnFolha.Location = new System.Drawing.Point(15, 374);
-            this.btnFolha.Name = "btnFolha";
-            this.btnFolha.Size = new System.Drawing.Size(190, 44);
-            this.btnFolha.Text = "Folha / Relatórios";
-            this.btnFolha.UseVisualStyleBackColor = false;
-            this.btnFolha.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            this.btnConfiguracoes.BackColor = System.Drawing.Color.White;
-            this.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfiguracoes.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(220, 226, 235);
-            this.btnConfiguracoes.FlatAppearance.BorderSize = 1;
-            this.btnConfiguracoes.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.btnConfiguracoes.ForeColor = System.Drawing.Color.FromArgb(45, 55, 70);
-            this.btnConfiguracoes.Location = new System.Drawing.Point(15, 426);
-            this.btnConfiguracoes.Name = "btnConfiguracoes";
-            this.btnConfiguracoes.Size = new System.Drawing.Size(190, 44);
-            this.btnConfiguracoes.Text = "Configurações";
-            this.btnConfiguracoes.UseVisualStyleBackColor = false;
-            this.btnConfiguracoes.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            this.lblVersao.AutoSize = true;
-            this.lblVersao.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.lblVersao.ForeColor = System.Drawing.Color.FromArgb(105, 115, 130);
-            this.lblVersao.Location = new System.Drawing.Point(30, 735);
-            this.lblVersao.Name = "lblVersao";
-            this.lblVersao.Text = "RH Control • v1.0";
-
-            this.pnlMenu.Controls.Add(this.picLogo);
-            this.pnlMenu.Controls.Add(this.lblLogo);
-            this.pnlMenu.Controls.Add(this.lblLogoSub);
-            this.pnlMenu.Controls.Add(this.btnDashboard);
-            this.pnlMenu.Controls.Add(this.btnFuncionarios);
-            this.pnlMenu.Controls.Add(this.btnJornada);
-            this.pnlMenu.Controls.Add(this.btnFolha);
-            this.pnlMenu.Controls.Add(this.btnConfiguracoes);
-            this.pnlMenu.Controls.Add(this.lblVersao);
-
-            // TOPO
-            this.pnlTopo.BackColor = System.Drawing.Color.White;
-            this.pnlTopo.Location = new System.Drawing.Point(220, 0);
-            this.pnlTopo.Name = "pnlTopo";
-            this.pnlTopo.Size = new System.Drawing.Size(960, 120);
-
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 26F, System.Drawing.FontStyle.Bold);
-            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(20, 28, 45);
-            this.lblTitulo.Location = new System.Drawing.Point(34, 24);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Text = "Jornada / Calendário";
-
-            this.lblSubtitulo.AutoSize = true;
-            this.lblSubtitulo.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(100, 110, 125);
-            this.lblSubtitulo.Location = new System.Drawing.Point(36, 67);
-            this.lblSubtitulo.Name = "lblSubtitulo";
-            this.lblSubtitulo.Text = "Controle de jornada, calendário e previsões";
-
-            this.lblAdministrador.AutoSize = true;
-            this.lblAdministrador.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblAdministrador.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblAdministrador.Location = new System.Drawing.Point(845, 34);
-            this.lblAdministrador.Name = "lblAdministrador";
-            this.lblAdministrador.Text = "Administrador";
-
-            this.pnlTopo.Controls.Add(this.lblTitulo);
-            this.pnlTopo.Controls.Add(this.lblSubtitulo);
-            this.pnlTopo.Controls.Add(this.lblAdministrador);
-
-            // FILTROS
-            this.pnlFiltros.BackColor = System.Drawing.Color.White;
-            this.pnlFiltros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlFiltros.Location = new System.Drawing.Point(235, 135);
-            this.pnlFiltros.Name = "pnlFiltros";
-            this.pnlFiltros.Size = new System.Drawing.Size(930, 72);
-
-            this.lblFuncionario.AutoSize = true;
-            this.lblFuncionario.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.lblFuncionario.ForeColor = System.Drawing.Color.FromArgb(95, 105, 120);
-            this.lblFuncionario.Location = new System.Drawing.Point(18, 8);
-            this.lblFuncionario.Name = "lblFuncionario";
-            this.lblFuncionario.Text = "Funcionário";
-
-            this.lblMes.AutoSize = true;
-            this.lblMes.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.lblMes.ForeColor = System.Drawing.Color.FromArgb(95, 105, 120);
-            this.lblMes.Location = new System.Drawing.Point(395, 8);
-            this.lblMes.Name = "lblMes";
-            this.lblMes.Text = "Mês";
-
-            this.lblAno.AutoSize = true;
-            this.lblAno.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.lblAno.ForeColor = System.Drawing.Color.FromArgb(95, 105, 120);
-            this.lblAno.Location = new System.Drawing.Point(565, 8);
-            this.lblAno.Name = "lblAno";
-            this.lblAno.Text = "Ano";
-
-            this.cmbFuncionario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFuncionario.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cmbFuncionario.FormattingEnabled = true;
-            this.cmbFuncionario.Location = new System.Drawing.Point(18, 27);
-            this.cmbFuncionario.Name = "cmbFuncionario";
-            this.cmbFuncionario.Size = new System.Drawing.Size(280, 25);
-
-            this.cmbMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMes.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cmbMes.FormattingEnabled = true;
-            this.cmbMes.Location = new System.Drawing.Point(395, 27);
-            this.cmbMes.Name = "cmbMes";
-            this.cmbMes.Size = new System.Drawing.Size(130, 25);
-
-            this.cmbAno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAno.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cmbAno.FormattingEnabled = true;
-            this.cmbAno.Location = new System.Drawing.Point(565, 27);
-            this.cmbAno.Name = "cmbAno";
-            this.cmbAno.Size = new System.Drawing.Size(90, 25);
-
-            this.btnAtualizar.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.btnAtualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAtualizar.FlatAppearance.BorderSize = 0;
-            this.btnAtualizar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnAtualizar.ForeColor = System.Drawing.Color.White;
-            this.btnAtualizar.Location = new System.Drawing.Point(675, 27);
-            this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(105, 31);
-            this.btnAtualizar.Text = "Atualizar";
-            this.btnAtualizar.UseVisualStyleBackColor = false;
-            this.btnAtualizar.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            this.pnlFiltros.Controls.Add(this.lblFuncionario);
-            this.pnlFiltros.Controls.Add(this.lblMes);
-            this.pnlFiltros.Controls.Add(this.lblAno);
-            this.pnlFiltros.Controls.Add(this.cmbFuncionario);
-            this.pnlFiltros.Controls.Add(this.cmbMes);
-            this.pnlFiltros.Controls.Add(this.cmbAno);
-            this.pnlFiltros.Controls.Add(this.btnAtualizar);
-
-            // CALENDÁRIO
-            this.pnlCalendario.BackColor = System.Drawing.Color.White;
-            this.pnlCalendario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlCalendario.Location = new System.Drawing.Point(235, 220);
-            this.pnlCalendario.Name = "pnlCalendario";
-            this.pnlCalendario.Size = new System.Drawing.Size(555, 405);
-
-            this.lblTituloCalendario.AutoSize = true;
-            this.lblTituloCalendario.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblTituloCalendario.ForeColor = System.Drawing.Color.FromArgb(20, 28, 45);
-            this.lblTituloCalendario.Location = new System.Drawing.Point(20, 16);
-            this.lblTituloCalendario.Name = "lblTituloCalendario";
-            this.lblTituloCalendario.Text = "Calendário da jornada";
-
-            this.btnMesAnterior.BackColor = System.Drawing.Color.White;
-            this.btnMesAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMesAnterior.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.btnMesAnterior.FlatAppearance.BorderSize = 1;
-            this.btnMesAnterior.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMesAnterior.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.btnMesAnterior.Location = new System.Drawing.Point(260, 10);
-            this.btnMesAnterior.Name = "btnMesAnterior";
-            this.btnMesAnterior.Size = new System.Drawing.Size(34, 30);
-            this.btnMesAnterior.Text = "<";
-            this.btnMesAnterior.UseVisualStyleBackColor = false;
-            this.btnMesAnterior.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            this.btnProximoMes.BackColor = System.Drawing.Color.White;
-            this.btnProximoMes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProximoMes.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.btnProximoMes.FlatAppearance.BorderSize = 1;
-            this.btnProximoMes.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnProximoMes.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.btnProximoMes.Location = new System.Drawing.Point(484, 10);
-            this.btnProximoMes.Name = "btnProximoMes";
-            this.btnProximoMes.Size = new System.Drawing.Size(34, 30);
-            this.btnProximoMes.Text = ">";
-            this.btnProximoMes.UseVisualStyleBackColor = false;
-            this.btnProximoMes.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            this.lblMesAno.AutoSize = false;
-            this.lblMesAno.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblMesAno.ForeColor = System.Drawing.Color.FromArgb(20, 28, 45);
-            this.lblMesAno.Location = new System.Drawing.Point(300, 10);
-            this.lblMesAno.Name = "lblMesAno";
-            this.lblMesAno.Size = new System.Drawing.Size(180, 30);
-            this.lblMesAno.Text = "SETEMBRO 2026";
-            this.lblMesAno.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
-            this.tblCalendario.BackColor = System.Drawing.Color.White;
-            this.tblCalendario.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.None;
-            this.tblCalendario.ColumnCount = 7;
-            this.tblCalendario.Location = new System.Drawing.Point(18, 58);
-            this.tblCalendario.Name = "tblCalendario";
-            this.tblCalendario.RowCount = 6;
-            this.tblCalendario.Size = new System.Drawing.Size(518, 265);
-            this.tblCalendario.TabIndex = 0;
-            this.tblCalendario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2857F));
-            this.tblCalendario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2857F));
-            this.tblCalendario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2857F));
-            this.tblCalendario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2857F));
-            this.tblCalendario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2857F));
-            this.tblCalendario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2857F));
-            this.tblCalendario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2857F));
-            this.tblCalendario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tblCalendario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tblCalendario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tblCalendario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tblCalendario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tblCalendario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-
-            this.pnlLegenda.BackColor = System.Drawing.Color.White;
-            this.pnlLegenda.Location = new System.Drawing.Point(18, 328);
-            this.pnlLegenda.Name = "pnlLegenda";
-            this.pnlLegenda.Size = new System.Drawing.Size(518, 60);
-
-            this.lblLegendaTitulo.AutoSize = true;
-            this.lblLegendaTitulo.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.lblLegendaTitulo.ForeColor = System.Drawing.Color.FromArgb(95, 105, 120);
-            this.lblLegendaTitulo.Location = new System.Drawing.Point(2, 8);
-            this.lblLegendaTitulo.Text = "Legenda";
-
-            this.lblLegendaTrabalho.AutoSize = true;
-            this.lblLegendaTrabalho.BackColor = System.Drawing.Color.FromArgb(227, 242, 253);
-            this.lblLegendaTrabalho.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.lblLegendaTrabalho.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblLegendaTrabalho.Location = new System.Drawing.Point(62, 5);
-            this.lblLegendaTrabalho.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.lblLegendaTrabalho.Text = "Trabalho";
-
-            this.lblLegendaFolga.AutoSize = true;
-            this.lblLegendaFolga.BackColor = System.Drawing.Color.FromArgb(238, 238, 238);
-            this.lblLegendaFolga.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.lblLegendaFolga.ForeColor = System.Drawing.Color.FromArgb(80, 80, 80);
-            this.lblLegendaFolga.Location = new System.Drawing.Point(138, 5);
-            this.lblLegendaFolga.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.lblLegendaFolga.Text = "Folga";
-
-            this.lblLegendaFeriado.AutoSize = true;
-            this.lblLegendaFeriado.BackColor = System.Drawing.Color.FromArgb(232, 245, 233);
-            this.lblLegendaFeriado.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.lblLegendaFeriado.ForeColor = System.Drawing.Color.FromArgb(46, 125, 50);
-            this.lblLegendaFeriado.Location = new System.Drawing.Point(194, 5);
-            this.lblLegendaFeriado.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.lblLegendaFeriado.Text = "Feriado";
-
-            this.lblLegendaPagamento.AutoSize = true;
-            this.lblLegendaPagamento.BackColor = System.Drawing.Color.FromArgb(243, 229, 245);
-            this.lblLegendaPagamento.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.lblLegendaPagamento.ForeColor = System.Drawing.Color.FromArgb(106, 27, 154);
-            this.lblLegendaPagamento.Location = new System.Drawing.Point(266, 5);
-            this.lblLegendaPagamento.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.lblLegendaPagamento.Text = "Pagamento";
-
-            this.lblLegendaAdiantamento.AutoSize = true;
-            this.lblLegendaAdiantamento.BackColor = System.Drawing.Color.FromArgb(255, 235, 238);
-            this.lblLegendaAdiantamento.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.lblLegendaAdiantamento.ForeColor = System.Drawing.Color.FromArgb(183, 28, 28);
-            this.lblLegendaAdiantamento.Location = new System.Drawing.Point(350, 5);
-            this.lblLegendaAdiantamento.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.lblLegendaAdiantamento.Text = "Adiantamento";
-
-            this.lblLegendaHoje.AutoSize = true;
-            this.lblLegendaHoje.BackColor = System.Drawing.Color.White;
-            this.lblLegendaHoje.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.lblLegendaHoje.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblLegendaHoje.Location = new System.Drawing.Point(454, 5);
-            this.lblLegendaHoje.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.lblLegendaHoje.Text = "Hoje";
-
-            this.pnlLegenda.Controls.Add(this.lblLegendaTitulo);
-            this.pnlLegenda.Controls.Add(this.lblLegendaTrabalho);
-            this.pnlLegenda.Controls.Add(this.lblLegendaFolga);
-            this.pnlLegenda.Controls.Add(this.lblLegendaFeriado);
-            this.pnlLegenda.Controls.Add(this.lblLegendaPagamento);
-            this.pnlLegenda.Controls.Add(this.lblLegendaAdiantamento);
-            this.pnlLegenda.Controls.Add(this.lblLegendaHoje);
-
-            this.pnlCalendario.Controls.Add(this.lblTituloCalendario);
-            this.pnlCalendario.Controls.Add(this.btnMesAnterior);
-            this.pnlCalendario.Controls.Add(this.btnProximoMes);
-            this.pnlCalendario.Controls.Add(this.lblMesAno);
-            this.pnlCalendario.Controls.Add(this.tblCalendario);
-            this.pnlCalendario.Controls.Add(this.pnlLegenda);
-
-            // RESUMO
-            this.pnlResumo.BackColor = System.Drawing.Color.White;
-            this.pnlResumo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlResumo.Location = new System.Drawing.Point(805, 220);
-            this.pnlResumo.Name = "pnlResumo";
-            this.pnlResumo.Size = new System.Drawing.Size(360, 405);
-
-            this.lblTituloResumo.AutoSize = true;
-            this.lblTituloResumo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblTituloResumo.ForeColor = System.Drawing.Color.FromArgb(20, 28, 45);
-            this.lblTituloResumo.Location = new System.Drawing.Point(20, 18);
-            this.lblTituloResumo.Name = "lblTituloResumo";
-            this.lblTituloResumo.Text = "Resumo do mês";
-
-            this.lblDiasUteis.AutoSize = true;
-            this.lblDiasUteis.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblDiasUteis.ForeColor = System.Drawing.Color.FromArgb(55, 65, 80);
-            this.lblDiasUteis.Location = new System.Drawing.Point(20, 70);
-            this.lblDiasUteis.Name = "lblDiasUteis";
-            this.lblDiasUteis.Text = "Dias úteis: 25";
-
-            this.lblDiasTrabalhados.AutoSize = true;
-            this.lblDiasTrabalhados.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblDiasTrabalhados.ForeColor = System.Drawing.Color.FromArgb(55, 65, 80);
-            this.lblDiasTrabalhados.Location = new System.Drawing.Point(20, 116);
-            this.lblDiasTrabalhados.Name = "lblDiasTrabalhados";
-            this.lblDiasTrabalhados.Text = "Trabalhados: 25";
-
-            this.lblFolgas.AutoSize = true;
-            this.lblFolgas.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblFolgas.ForeColor = System.Drawing.Color.FromArgb(55, 65, 80);
-            this.lblFolgas.Location = new System.Drawing.Point(20, 162);
-            this.lblFolgas.Name = "lblFolgas";
-            this.lblFolgas.Text = "Folgas: 4";
-
-            this.lblFerias.AutoSize = true;
-            this.lblFerias.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblFerias.ForeColor = System.Drawing.Color.FromArgb(55, 65, 80);
-            this.lblFerias.Location = new System.Drawing.Point(20, 208);
-            this.lblFerias.Name = "lblFerias";
-            this.lblFerias.Text = "Férias: 0";
-
-            this.lblFaltas.AutoSize = true;
-            this.lblFaltas.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblFaltas.ForeColor = System.Drawing.Color.FromArgb(55, 65, 80);
-            this.lblFaltas.Location = new System.Drawing.Point(20, 254);
-            this.lblFaltas.Name = "lblFaltas";
-            this.lblFaltas.Text = "Faltas: 0";
-
-            this.lblHoras.AutoSize = true;
-            this.lblHoras.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblHoras.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblHoras.Location = new System.Drawing.Point(20, 310);
-            this.lblHoras.Name = "lblHoras";
-            this.lblHoras.Text = "Horas previstas: 200h00";
-
-            this.lblDataSelecionada.AutoSize = false;
-            this.lblDataSelecionada.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.lblDataSelecionada.ForeColor = System.Drawing.Color.FromArgb(115, 125, 140);
-            this.lblDataSelecionada.Location = new System.Drawing.Point(20, 350);
-            this.lblDataSelecionada.Name = "lblDataSelecionada";
-            this.lblDataSelecionada.Size = new System.Drawing.Size(315, 35);
-            this.lblDataSelecionada.Text = "Selecione um dia no calendário";
-            this.lblDataSelecionada.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-
-            this.pnlResumo.Controls.Add(this.lblTituloResumo);
-            this.pnlResumo.Controls.Add(this.lblDiasUteis);
-            this.pnlResumo.Controls.Add(this.lblDiasTrabalhados);
-            this.pnlResumo.Controls.Add(this.lblFolgas);
-            this.pnlResumo.Controls.Add(this.lblFerias);
-            this.pnlResumo.Controls.Add(this.lblFaltas);
-            this.pnlResumo.Controls.Add(this.lblHoras);
-            this.pnlResumo.Controls.Add(this.lblDataSelecionada);
-
-            // EVENTOS
-            this.pnlEventos.BackColor = System.Drawing.Color.White;
-            this.pnlEventos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlEventos.Location = new System.Drawing.Point(235, 640);
-            this.pnlEventos.Name = "pnlEventos";
-            this.pnlEventos.Size = new System.Drawing.Size(930, 115);
-
-            this.lblTituloEventos.AutoSize = true;
-            this.lblTituloEventos.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-            this.lblTituloEventos.ForeColor = System.Drawing.Color.FromArgb(20, 28, 45);
-            this.lblTituloEventos.Location = new System.Drawing.Point(20, 14);
-            this.lblTituloEventos.Name = "lblTituloEventos";
-            this.lblTituloEventos.Text = "Próximos eventos e previsões";
-
-            // Evento 1
-            this.pnlEvento1.BackColor = System.Drawing.Color.FromArgb(249, 251, 254);
-            this.pnlEvento1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlEvento1.Location = new System.Drawing.Point(18, 42);
-            this.pnlEvento1.Name = "pnlEvento1";
-            this.pnlEvento1.Size = new System.Drawing.Size(165, 64);
-            this.pnlEvento1.Controls.Add(this.lblEvento1Data);
-            this.pnlEvento1.Controls.Add(this.lblEvento1Titulo);
-            this.pnlEvento1.Controls.Add(this.lblEvento1Info);
-
-            this.lblEvento1Data.AutoSize = false;
-            this.lblEvento1Data.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblEvento1Data.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblEvento1Data.Location = new System.Drawing.Point(9, 9);
-            this.lblEvento1Data.Name = "lblEvento1Data";
-            this.lblEvento1Data.Size = new System.Drawing.Size(45, 20);
-
-            this.lblEvento1Titulo.AutoEllipsis = true;
-            this.lblEvento1Titulo.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
-            this.lblEvento1Titulo.ForeColor = System.Drawing.Color.FromArgb(35, 42, 55);
-            this.lblEvento1Titulo.Location = new System.Drawing.Point(55, 7);
-            this.lblEvento1Titulo.Name = "lblEvento1Titulo";
-            this.lblEvento1Titulo.Size = new System.Drawing.Size(98, 22);
-
-            this.lblEvento1Info.Font = new System.Drawing.Font("Segoe UI", 7.5F);
-            this.lblEvento1Info.ForeColor = System.Drawing.Color.FromArgb(105, 115, 130);
-            this.lblEvento1Info.Location = new System.Drawing.Point(55, 29);
-            this.lblEvento1Info.Name = "lblEvento1Info";
-            this.lblEvento1Info.Size = new System.Drawing.Size(98, 28);
-
-            // Evento 2
-            this.pnlEvento2.BackColor = System.Drawing.Color.FromArgb(249, 251, 254);
-            this.pnlEvento2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlEvento2.Location = new System.Drawing.Point(200, 42);
-            this.pnlEvento2.Name = "pnlEvento2";
-            this.pnlEvento2.Size = new System.Drawing.Size(165, 64);
-            this.pnlEvento2.Controls.Add(this.lblEvento2Data);
-            this.pnlEvento2.Controls.Add(this.lblEvento2Titulo);
-            this.pnlEvento2.Controls.Add(this.lblEvento2Info);
-
-            this.lblEvento2Data.AutoSize = false;
-            this.lblEvento2Data.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblEvento2Data.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblEvento2Data.Location = new System.Drawing.Point(9, 9);
-            this.lblEvento2Data.Name = "lblEvento2Data";
-            this.lblEvento2Data.Size = new System.Drawing.Size(45, 20);
-
-            this.lblEvento2Titulo.AutoEllipsis = true;
-            this.lblEvento2Titulo.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
-            this.lblEvento2Titulo.ForeColor = System.Drawing.Color.FromArgb(35, 42, 55);
-            this.lblEvento2Titulo.Location = new System.Drawing.Point(55, 7);
-            this.lblEvento2Titulo.Name = "lblEvento2Titulo";
-            this.lblEvento2Titulo.Size = new System.Drawing.Size(98, 22);
-
-            this.lblEvento2Info.Font = new System.Drawing.Font("Segoe UI", 7.5F);
-            this.lblEvento2Info.ForeColor = System.Drawing.Color.FromArgb(105, 115, 130);
-            this.lblEvento2Info.Location = new System.Drawing.Point(55, 29);
-            this.lblEvento2Info.Name = "lblEvento2Info";
-            this.lblEvento2Info.Size = new System.Drawing.Size(98, 28);
-
-            // Evento 3
-            this.pnlEvento3.BackColor = System.Drawing.Color.FromArgb(249, 251, 254);
-            this.pnlEvento3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlEvento3.Location = new System.Drawing.Point(382, 42);
-            this.pnlEvento3.Name = "pnlEvento3";
-            this.pnlEvento3.Size = new System.Drawing.Size(165, 64);
-            this.pnlEvento3.Controls.Add(this.lblEvento3Data);
-            this.pnlEvento3.Controls.Add(this.lblEvento3Titulo);
-            this.pnlEvento3.Controls.Add(this.lblEvento3Info);
-
-            this.lblEvento3Data.AutoSize = false;
-            this.lblEvento3Data.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblEvento3Data.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblEvento3Data.Location = new System.Drawing.Point(9, 9);
-            this.lblEvento3Data.Name = "lblEvento3Data";
-            this.lblEvento3Data.Size = new System.Drawing.Size(45, 20);
-
-            this.lblEvento3Titulo.AutoEllipsis = true;
-            this.lblEvento3Titulo.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
-            this.lblEvento3Titulo.ForeColor = System.Drawing.Color.FromArgb(35, 42, 55);
-            this.lblEvento3Titulo.Location = new System.Drawing.Point(55, 7);
-            this.lblEvento3Titulo.Name = "lblEvento3Titulo";
-            this.lblEvento3Titulo.Size = new System.Drawing.Size(98, 22);
-
-            this.lblEvento3Info.Font = new System.Drawing.Font("Segoe UI", 7.5F);
-            this.lblEvento3Info.ForeColor = System.Drawing.Color.FromArgb(105, 115, 130);
-            this.lblEvento3Info.Location = new System.Drawing.Point(55, 29);
-            this.lblEvento3Info.Name = "lblEvento3Info";
-            this.lblEvento3Info.Size = new System.Drawing.Size(98, 28);
-
-            // Evento 4
-            this.pnlEvento4.BackColor = System.Drawing.Color.FromArgb(249, 251, 254);
-            this.pnlEvento4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlEvento4.Location = new System.Drawing.Point(564, 42);
-            this.pnlEvento4.Name = "pnlEvento4";
-            this.pnlEvento4.Size = new System.Drawing.Size(165, 64);
-            this.pnlEvento4.Controls.Add(this.lblEvento4Data);
-            this.pnlEvento4.Controls.Add(this.lblEvento4Titulo);
-            this.pnlEvento4.Controls.Add(this.lblEvento4Info);
-
-            this.lblEvento4Data.AutoSize = false;
-            this.lblEvento4Data.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblEvento4Data.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblEvento4Data.Location = new System.Drawing.Point(9, 9);
-            this.lblEvento4Data.Name = "lblEvento4Data";
-            this.lblEvento4Data.Size = new System.Drawing.Size(45, 20);
-
-            this.lblEvento4Titulo.AutoEllipsis = true;
-            this.lblEvento4Titulo.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
-            this.lblEvento4Titulo.ForeColor = System.Drawing.Color.FromArgb(35, 42, 55);
-            this.lblEvento4Titulo.Location = new System.Drawing.Point(55, 7);
-            this.lblEvento4Titulo.Name = "lblEvento4Titulo";
-            this.lblEvento4Titulo.Size = new System.Drawing.Size(98, 22);
-
-            this.lblEvento4Info.Font = new System.Drawing.Font("Segoe UI", 7.5F);
-            this.lblEvento4Info.ForeColor = System.Drawing.Color.FromArgb(105, 115, 130);
-            this.lblEvento4Info.Location = new System.Drawing.Point(55, 29);
-            this.lblEvento4Info.Name = "lblEvento4Info";
-            this.lblEvento4Info.Size = new System.Drawing.Size(98, 28);
-
-            // Evento 5
-            this.pnlEvento5.BackColor = System.Drawing.Color.FromArgb(249, 251, 254);
-            this.pnlEvento5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlEvento5.Location = new System.Drawing.Point(746, 42);
-            this.pnlEvento5.Name = "pnlEvento5";
-            this.pnlEvento5.Size = new System.Drawing.Size(165, 64);
-            this.pnlEvento5.Controls.Add(this.lblEvento5Data);
-            this.pnlEvento5.Controls.Add(this.lblEvento5Titulo);
-            this.pnlEvento5.Controls.Add(this.lblEvento5Info);
-
-            this.lblEvento5Data.AutoSize = false;
-            this.lblEvento5Data.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblEvento5Data.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblEvento5Data.Location = new System.Drawing.Point(9, 9);
-            this.lblEvento5Data.Name = "lblEvento5Data";
-            this.lblEvento5Data.Size = new System.Drawing.Size(45, 20);
-
-            this.lblEvento5Titulo.AutoEllipsis = true;
-            this.lblEvento5Titulo.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
-            this.lblEvento5Titulo.ForeColor = System.Drawing.Color.FromArgb(35, 42, 55);
-            this.lblEvento5Titulo.Location = new System.Drawing.Point(55, 7);
-            this.lblEvento5Titulo.Name = "lblEvento5Titulo";
-            this.lblEvento5Titulo.Size = new System.Drawing.Size(98, 22);
-
-            this.lblEvento5Info.Font = new System.Drawing.Font("Segoe UI", 7.5F);
-            this.lblEvento5Info.ForeColor = System.Drawing.Color.FromArgb(105, 115, 130);
-            this.lblEvento5Info.Location = new System.Drawing.Point(55, 29);
-            this.lblEvento5Info.Name = "lblEvento5Info";
-            this.lblEvento5Info.Size = new System.Drawing.Size(98, 28);
-
-            this.pnlEventos.Controls.Add(this.lblTituloEventos);
-            this.pnlEventos.Controls.Add(this.pnlEvento1);
-            this.pnlEventos.Controls.Add(this.pnlEvento2);
-            this.pnlEventos.Controls.Add(this.pnlEvento3);
-            this.pnlEventos.Controls.Add(this.pnlEvento4);
-            this.pnlEventos.Controls.Add(this.pnlEvento5);
-
-            // CONTROLS ON FORM
-            this.Controls.Add(this.pnlMenu);
-            this.Controls.Add(this.pnlTopo);
-            this.Controls.Add(this.pnlFiltros);
-            this.Controls.Add(this.pnlCalendario);
-            this.Controls.Add(this.pnlResumo);
-            this.Controls.Add(this.pnlEventos);
-
-            this.pnlEventos.ResumeLayout(false);
-            this.pnlEventos.PerformLayout();
-            this.pnlResumo.ResumeLayout(false);
-            this.pnlResumo.PerformLayout();
-            this.pnlLegenda.ResumeLayout(false);
-            this.pnlLegenda.PerformLayout();
-            this.pnlCalendario.ResumeLayout(false);
-            this.pnlCalendario.PerformLayout();
-            this.pnlFiltros.ResumeLayout(false);
-            this.pnlFiltros.PerformLayout();
-            this.pnlTopo.ResumeLayout(false);
-            this.pnlTopo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
-            this.pnlMenu.ResumeLayout(false);
-            this.pnlMenu.PerformLayout();
-            this.ResumeLayout(false);
+            pnlMenu = new Panel();
+            picLogo = new PictureBox();
+            lblLogo = new Label();
+            lblLogoSub = new Label();
+            btnDashboard = new Button();
+            btnFuncionarios = new Button();
+            btnJornada = new Button();
+            btnFolha = new Button();
+            btnConfiguracoes = new Button();
+            lblVersao = new Label();
+            pnlTopo = new Panel();
+            lblTitulo = new Label();
+            lblSubtitulo = new Label();
+            lblAdministrador = new Label();
+            pnlFiltros = new Panel();
+            lblFuncionario = new Label();
+            lblMes = new Label();
+            lblAno = new Label();
+            cmbFuncionario = new ComboBox();
+            cmbMes = new ComboBox();
+            cmbAno = new ComboBox();
+            btnAtualizar = new Button();
+            pnlCalendario = new Panel();
+            lblTituloCalendario = new Label();
+            btnMesAnterior = new Button();
+            btnProximoMes = new Button();
+            lblMesAno = new Label();
+            tblCalendario = new TableLayoutPanel();
+            pnlLegenda = new Panel();
+            lblLegendaTitulo = new Label();
+            lblLegendaTrabalho = new Label();
+            lblLegendaFolga = new Label();
+            lblLegendaFeriado = new Label();
+            lblLegendaPagamento = new Label();
+            lblLegendaAdiantamento = new Label();
+            lblLegendaHoje = new Label();
+            pnlResumo = new Panel();
+            lblTituloResumo = new Label();
+            lblIconDiasUteis = new Label();
+            lblIconDiasTrabalhados = new Label();
+            lblIconFolgas = new Label();
+            lblIconFerias = new Label();
+            lblIconFaltas = new Label();
+            lblDiasUteis = new Label();
+            lblDiasTrabalhados = new Label();
+            lblFolgas = new Label();
+            lblFerias = new Label();
+            lblFaltas = new Label();
+            lblHoras = new Label();
+            lblDataSelecionada = new Label();
+            pnlEventos = new Panel();
+            lblTituloEventos = new Label();
+            pnlEvento1 = new Panel();
+            lblEvento1Data = new Label();
+            lblEvento1Titulo = new Label();
+            lblEvento1Info = new Label();
+            lblIconEvento1 = new Label();
+            pnlEvento2 = new Panel();
+            lblEvento2Data = new Label();
+            lblEvento2Titulo = new Label();
+            lblEvento2Info = new Label();
+            lblIconEvento2 = new Label();
+            pnlEvento3 = new Panel();
+            lblEvento3Data = new Label();
+            lblEvento3Titulo = new Label();
+            lblEvento3Info = new Label();
+            lblIconEvento3 = new Label();
+            pnlEvento4 = new Panel();
+            lblEvento4Data = new Label();
+            lblEvento4Titulo = new Label();
+            lblEvento4Info = new Label();
+            lblIconEvento4 = new Label();
+            pnlEvento5 = new Panel();
+            lblEvento5Data = new Label();
+            lblEvento5Titulo = new Label();
+            lblEvento5Info = new Label();
+            lblIconEvento5 = new Label();
+            pnlMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            pnlTopo.SuspendLayout();
+            pnlFiltros.SuspendLayout();
+            pnlCalendario.SuspendLayout();
+            pnlLegenda.SuspendLayout();
+            pnlResumo.SuspendLayout();
+            pnlEventos.SuspendLayout();
+            pnlEvento1.SuspendLayout();
+            pnlEvento2.SuspendLayout();
+            pnlEvento3.SuspendLayout();
+            pnlEvento4.SuspendLayout();
+            pnlEvento5.SuspendLayout();
+            SuspendLayout();
+            // 
+            // pnlMenu
+            // 
+            pnlMenu.BackColor = Color.FromArgb(247, 249, 252);
+            pnlMenu.Controls.Add(picLogo);
+            pnlMenu.Controls.Add(lblLogo);
+            pnlMenu.Controls.Add(lblLogoSub);
+            pnlMenu.Controls.Add(btnDashboard);
+            pnlMenu.Controls.Add(btnFuncionarios);
+            pnlMenu.Controls.Add(btnJornada);
+            pnlMenu.Controls.Add(btnFolha);
+            pnlMenu.Controls.Add(btnConfiguracoes);
+            pnlMenu.Controls.Add(lblVersao);
+            pnlMenu.Location = new Point(0, 0);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(220, 780);
+            pnlMenu.TabIndex = 0;
+            // 
+            // picLogo
+            // 
+            picLogo.BackColor = Color.Transparent;
+            picLogo.Image = Properties.Resources.logorh;
+            picLogo.Location = new Point(66, 54);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(90, 90);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 0;
+            picLogo.TabStop = false;
+            // 
+            // lblLogo
+            // 
+            lblLogo.AutoSize = true;
+            lblLogo.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
+            lblLogo.ForeColor = Color.FromArgb(21, 101, 192);
+            lblLogo.Location = new Point(57, 151);
+            lblLogo.Name = "lblLogo";
+            lblLogo.Size = new Size(134, 31);
+            lblLogo.TabIndex = 1;
+            lblLogo.Text = "RH Control";
+            // 
+            // lblLogoSub
+            // 
+            lblLogoSub.AutoSize = true;
+            lblLogoSub.Font = new Font("Segoe UI", 9F);
+            lblLogoSub.ForeColor = Color.FromArgb(100, 110, 125);
+            lblLogoSub.Location = new Point(66, 182);
+            lblLogoSub.Name = "lblLogoSub";
+            lblLogoSub.Size = new Size(103, 15);
+            lblLogoSub.TabIndex = 2;
+            lblLogoSub.Text = "Gestão de Pessoas";
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.BackColor = Color.White;
+            btnDashboard.Cursor = Cursors.Hand;
+            btnDashboard.FlatAppearance.BorderColor = Color.FromArgb(220, 226, 235);
+            btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Segoe UI", 9.5F);
+            btnDashboard.ForeColor = Color.FromArgb(45, 55, 70);
+            btnDashboard.Location = new Point(15, 218);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(190, 44);
+            btnDashboard.TabIndex = 3;
+            btnDashboard.Text = "Dashboard";
+            btnDashboard.UseVisualStyleBackColor = false;
+            // 
+            // btnFuncionarios
+            // 
+            btnFuncionarios.BackColor = Color.White;
+            btnFuncionarios.Cursor = Cursors.Hand;
+            btnFuncionarios.FlatAppearance.BorderColor = Color.FromArgb(220, 226, 235);
+            btnFuncionarios.FlatStyle = FlatStyle.Flat;
+            btnFuncionarios.Font = new Font("Segoe UI", 9.5F);
+            btnFuncionarios.ForeColor = Color.FromArgb(45, 55, 70);
+            btnFuncionarios.Location = new Point(15, 270);
+            btnFuncionarios.Name = "btnFuncionarios";
+            btnFuncionarios.Size = new Size(190, 44);
+            btnFuncionarios.TabIndex = 4;
+            btnFuncionarios.Text = "Funcionários";
+            btnFuncionarios.UseVisualStyleBackColor = false;
+            // 
+            // btnJornada
+            // 
+            btnJornada.BackColor = Color.FromArgb(21, 101, 192);
+            btnJornada.Cursor = Cursors.Hand;
+            btnJornada.FlatAppearance.BorderColor = Color.FromArgb(21, 101, 192);
+            btnJornada.FlatStyle = FlatStyle.Flat;
+            btnJornada.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnJornada.ForeColor = Color.White;
+            btnJornada.Location = new Point(15, 322);
+            btnJornada.Name = "btnJornada";
+            btnJornada.Size = new Size(190, 44);
+            btnJornada.TabIndex = 5;
+            btnJornada.Text = "Jornada / Calendário";
+            btnJornada.UseVisualStyleBackColor = false;
+            // 
+            // btnFolha
+            // 
+            btnFolha.BackColor = Color.White;
+            btnFolha.Cursor = Cursors.Hand;
+            btnFolha.FlatAppearance.BorderColor = Color.FromArgb(220, 226, 235);
+            btnFolha.FlatStyle = FlatStyle.Flat;
+            btnFolha.Font = new Font("Segoe UI", 9.5F);
+            btnFolha.ForeColor = Color.FromArgb(45, 55, 70);
+            btnFolha.Location = new Point(15, 374);
+            btnFolha.Name = "btnFolha";
+            btnFolha.Size = new Size(190, 44);
+            btnFolha.TabIndex = 6;
+            btnFolha.Text = "Folha / Relatórios";
+            btnFolha.UseVisualStyleBackColor = false;
+            // 
+            // btnConfiguracoes
+            // 
+            btnConfiguracoes.BackColor = Color.White;
+            btnConfiguracoes.Cursor = Cursors.Hand;
+            btnConfiguracoes.FlatAppearance.BorderColor = Color.FromArgb(220, 226, 235);
+            btnConfiguracoes.FlatStyle = FlatStyle.Flat;
+            btnConfiguracoes.Font = new Font("Segoe UI", 9.5F);
+            btnConfiguracoes.ForeColor = Color.FromArgb(45, 55, 70);
+            btnConfiguracoes.Location = new Point(15, 426);
+            btnConfiguracoes.Name = "btnConfiguracoes";
+            btnConfiguracoes.Size = new Size(190, 44);
+            btnConfiguracoes.TabIndex = 7;
+            btnConfiguracoes.Text = "Configurações";
+            btnConfiguracoes.UseVisualStyleBackColor = false;
+            // 
+            // lblVersao
+            // 
+            lblVersao.AutoSize = true;
+            lblVersao.Font = new Font("Segoe UI", 8.5F);
+            lblVersao.ForeColor = Color.FromArgb(105, 115, 130);
+            lblVersao.Location = new Point(30, 735);
+            lblVersao.Name = "lblVersao";
+            lblVersao.Size = new Size(98, 15);
+            lblVersao.TabIndex = 8;
+            lblVersao.Text = "RH Control • v1.0";
+            // 
+            // pnlTopo
+            // 
+            pnlTopo.BackColor = Color.White;
+            pnlTopo.Controls.Add(lblTitulo);
+            pnlTopo.Controls.Add(lblSubtitulo);
+            pnlTopo.Controls.Add(lblAdministrador);
+            pnlTopo.Location = new Point(220, 0);
+            pnlTopo.Name = "pnlTopo";
+            pnlTopo.Size = new Size(960, 120);
+            pnlTopo.TabIndex = 1;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 26F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.FromArgb(20, 28, 45);
+            lblTitulo.Location = new Point(34, 24);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(365, 47);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Jornada / Calendário";
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.AutoSize = true;
+            lblSubtitulo.Font = new Font("Segoe UI", 10F);
+            lblSubtitulo.ForeColor = Color.FromArgb(100, 110, 125);
+            lblSubtitulo.Location = new Point(36, 67);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(272, 19);
+            lblSubtitulo.TabIndex = 1;
+            lblSubtitulo.Text = "Controle de jornada, calendário e previsões";
+            // 
+            // lblAdministrador
+            // 
+            lblAdministrador.AutoSize = true;
+            lblAdministrador.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblAdministrador.ForeColor = Color.FromArgb(21, 101, 192);
+            lblAdministrador.Location = new Point(845, 34);
+            lblAdministrador.Name = "lblAdministrador";
+            lblAdministrador.Size = new Size(86, 15);
+            lblAdministrador.TabIndex = 2;
+            lblAdministrador.Text = "Administrador";
+            // 
+            // pnlFiltros
+            // 
+            pnlFiltros.BackColor = Color.White;
+            pnlFiltros.BorderStyle = BorderStyle.FixedSingle;
+            pnlFiltros.Controls.Add(lblFuncionario);
+            pnlFiltros.Controls.Add(lblMes);
+            pnlFiltros.Controls.Add(lblAno);
+            pnlFiltros.Controls.Add(cmbFuncionario);
+            pnlFiltros.Controls.Add(cmbMes);
+            pnlFiltros.Controls.Add(cmbAno);
+            pnlFiltros.Controls.Add(btnAtualizar);
+            pnlFiltros.Location = new Point(235, 135);
+            pnlFiltros.Name = "pnlFiltros";
+            pnlFiltros.Size = new Size(930, 72);
+            pnlFiltros.TabIndex = 2;
+            // 
+            // lblFuncionario
+            // 
+            lblFuncionario.AutoSize = true;
+            lblFuncionario.Font = new Font("Segoe UI", 8.5F);
+            lblFuncionario.ForeColor = Color.FromArgb(95, 105, 120);
+            lblFuncionario.Location = new Point(18, 8);
+            lblFuncionario.Name = "lblFuncionario";
+            lblFuncionario.Size = new Size(70, 15);
+            lblFuncionario.TabIndex = 0;
+            lblFuncionario.Text = "Funcionário";
+            // 
+            // lblMes
+            // 
+            lblMes.AutoSize = true;
+            lblMes.Font = new Font("Segoe UI", 8.5F);
+            lblMes.ForeColor = Color.FromArgb(95, 105, 120);
+            lblMes.Location = new Point(395, 8);
+            lblMes.Name = "lblMes";
+            lblMes.Size = new Size(29, 15);
+            lblMes.TabIndex = 1;
+            lblMes.Text = "Mês";
+            // 
+            // lblAno
+            // 
+            lblAno.AutoSize = true;
+            lblAno.Font = new Font("Segoe UI", 8.5F);
+            lblAno.ForeColor = Color.FromArgb(95, 105, 120);
+            lblAno.Location = new Point(565, 8);
+            lblAno.Name = "lblAno";
+            lblAno.Size = new Size(29, 15);
+            lblAno.TabIndex = 2;
+            lblAno.Text = "Ano";
+            // 
+            // cmbFuncionario
+            // 
+            cmbFuncionario.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFuncionario.Font = new Font("Segoe UI", 9F);
+            cmbFuncionario.FormattingEnabled = true;
+            cmbFuncionario.Location = new Point(18, 27);
+            cmbFuncionario.Name = "cmbFuncionario";
+            cmbFuncionario.Size = new Size(280, 23);
+            cmbFuncionario.TabIndex = 3;
+            // 
+            // cmbMes
+            // 
+            cmbMes.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbMes.Font = new Font("Segoe UI", 9F);
+            cmbMes.FormattingEnabled = true;
+            cmbMes.Location = new Point(395, 27);
+            cmbMes.Name = "cmbMes";
+            cmbMes.Size = new Size(130, 23);
+            cmbMes.TabIndex = 4;
+            // 
+            // cmbAno
+            // 
+            cmbAno.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbAno.Font = new Font("Segoe UI", 9F);
+            cmbAno.FormattingEnabled = true;
+            cmbAno.Location = new Point(565, 27);
+            cmbAno.Name = "cmbAno";
+            cmbAno.Size = new Size(90, 23);
+            cmbAno.TabIndex = 5;
+            // 
+            // btnAtualizar
+            // 
+            btnAtualizar.BackColor = Color.FromArgb(21, 101, 192);
+            btnAtualizar.Cursor = Cursors.Hand;
+            btnAtualizar.FlatAppearance.BorderSize = 0;
+            btnAtualizar.FlatStyle = FlatStyle.Flat;
+            btnAtualizar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnAtualizar.ForeColor = Color.White;
+            btnAtualizar.Location = new Point(675, 27);
+            btnAtualizar.Name = "btnAtualizar";
+            btnAtualizar.Size = new Size(105, 31);
+            btnAtualizar.TabIndex = 6;
+            btnAtualizar.Text = "Atualizar";
+            btnAtualizar.UseVisualStyleBackColor = false;
+            // 
+            // pnlCalendario
+            // 
+            pnlCalendario.BackColor = Color.White;
+            pnlCalendario.BorderStyle = BorderStyle.FixedSingle;
+            pnlCalendario.Controls.Add(lblTituloCalendario);
+            pnlCalendario.Controls.Add(btnMesAnterior);
+            pnlCalendario.Controls.Add(btnProximoMes);
+            pnlCalendario.Controls.Add(lblMesAno);
+            pnlCalendario.Controls.Add(tblCalendario);
+            pnlCalendario.Controls.Add(pnlLegenda);
+            pnlCalendario.Location = new Point(235, 220);
+            pnlCalendario.Name = "pnlCalendario";
+            pnlCalendario.Size = new Size(555, 405);
+            pnlCalendario.TabIndex = 3;
+            // 
+            // lblTituloCalendario
+            // 
+            lblTituloCalendario.AutoSize = true;
+            lblTituloCalendario.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblTituloCalendario.ForeColor = Color.FromArgb(20, 28, 45);
+            lblTituloCalendario.Location = new Point(20, 16);
+            lblTituloCalendario.Name = "lblTituloCalendario";
+            lblTituloCalendario.Size = new Size(209, 25);
+            lblTituloCalendario.TabIndex = 0;
+            lblTituloCalendario.Text = "Calendário da jornada";
+            // 
+            // btnMesAnterior
+            // 
+            btnMesAnterior.BackColor = Color.White;
+            btnMesAnterior.Cursor = Cursors.Hand;
+            btnMesAnterior.FlatAppearance.BorderColor = Color.FromArgb(21, 101, 192);
+            btnMesAnterior.FlatStyle = FlatStyle.Flat;
+            btnMesAnterior.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnMesAnterior.ForeColor = Color.FromArgb(21, 101, 192);
+            btnMesAnterior.Location = new Point(260, 10);
+            btnMesAnterior.Name = "btnMesAnterior";
+            btnMesAnterior.Size = new Size(34, 30);
+            btnMesAnterior.TabIndex = 1;
+            btnMesAnterior.Text = "<";
+            btnMesAnterior.UseVisualStyleBackColor = false;
+            // 
+            // btnProximoMes
+            // 
+            btnProximoMes.BackColor = Color.White;
+            btnProximoMes.Cursor = Cursors.Hand;
+            btnProximoMes.FlatAppearance.BorderColor = Color.FromArgb(21, 101, 192);
+            btnProximoMes.FlatStyle = FlatStyle.Flat;
+            btnProximoMes.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnProximoMes.ForeColor = Color.FromArgb(21, 101, 192);
+            btnProximoMes.Location = new Point(484, 10);
+            btnProximoMes.Name = "btnProximoMes";
+            btnProximoMes.Size = new Size(34, 30);
+            btnProximoMes.TabIndex = 2;
+            btnProximoMes.Text = ">";
+            btnProximoMes.UseVisualStyleBackColor = false;
+            // 
+            // lblMesAno
+            // 
+            lblMesAno.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblMesAno.ForeColor = Color.FromArgb(20, 28, 45);
+            lblMesAno.Location = new Point(300, 10);
+            lblMesAno.Name = "lblMesAno";
+            lblMesAno.Size = new Size(180, 30);
+            lblMesAno.TabIndex = 3;
+            lblMesAno.Text = "SETEMBRO 2026";
+            lblMesAno.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // tblCalendario
+            // 
+            tblCalendario.BackColor = Color.White;
+            tblCalendario.ColumnCount = 7;
+            tblCalendario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857F));
+            tblCalendario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857F));
+            tblCalendario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857F));
+            tblCalendario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857F));
+            tblCalendario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857F));
+            tblCalendario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857F));
+            tblCalendario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857F));
+            tblCalendario.Location = new Point(18, 58);
+            tblCalendario.Name = "tblCalendario";
+            tblCalendario.RowCount = 6;
+            tblCalendario.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tblCalendario.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tblCalendario.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tblCalendario.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tblCalendario.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tblCalendario.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tblCalendario.Size = new Size(518, 265);
+            tblCalendario.TabIndex = 0;
+            // 
+            // pnlLegenda
+            // 
+            pnlLegenda.BackColor = Color.White;
+            pnlLegenda.Controls.Add(lblLegendaTitulo);
+            pnlLegenda.Controls.Add(lblLegendaTrabalho);
+            pnlLegenda.Controls.Add(lblLegendaFolga);
+            pnlLegenda.Controls.Add(lblLegendaFeriado);
+            pnlLegenda.Controls.Add(lblLegendaPagamento);
+            pnlLegenda.Controls.Add(lblLegendaAdiantamento);
+            pnlLegenda.Controls.Add(lblLegendaHoje);
+            pnlLegenda.Location = new Point(18, 328);
+            pnlLegenda.Name = "pnlLegenda";
+            pnlLegenda.Size = new Size(518, 60);
+            pnlLegenda.TabIndex = 4;
+            // 
+            // lblLegendaTitulo
+            // 
+            lblLegendaTitulo.AutoSize = true;
+            lblLegendaTitulo.Font = new Font("Segoe UI", 8F);
+            lblLegendaTitulo.ForeColor = Color.FromArgb(95, 105, 120);
+            lblLegendaTitulo.Location = new Point(2, 8);
+            lblLegendaTitulo.Name = "lblLegendaTitulo";
+            lblLegendaTitulo.Size = new Size(51, 13);
+            lblLegendaTitulo.TabIndex = 0;
+            lblLegendaTitulo.Text = "Legenda";
+            // 
+            // lblLegendaTrabalho
+            // 
+            lblLegendaTrabalho.AutoSize = true;
+            lblLegendaTrabalho.BackColor = Color.FromArgb(227, 242, 253);
+            lblLegendaTrabalho.Font = new Font("Segoe UI", 8F);
+            lblLegendaTrabalho.ForeColor = Color.FromArgb(21, 101, 192);
+            lblLegendaTrabalho.Location = new Point(62, 5);
+            lblLegendaTrabalho.Name = "lblLegendaTrabalho";
+            lblLegendaTrabalho.Padding = new Padding(5, 3, 5, 3);
+            lblLegendaTrabalho.Size = new Size(62, 19);
+            lblLegendaTrabalho.TabIndex = 1;
+            lblLegendaTrabalho.Text = "Trabalho";
+            // 
+            // lblLegendaFolga
+            // 
+            lblLegendaFolga.AutoSize = true;
+            lblLegendaFolga.BackColor = Color.FromArgb(238, 238, 238);
+            lblLegendaFolga.Font = new Font("Segoe UI", 8F);
+            lblLegendaFolga.ForeColor = Color.FromArgb(80, 80, 80);
+            lblLegendaFolga.Location = new Point(138, 5);
+            lblLegendaFolga.Name = "lblLegendaFolga";
+            lblLegendaFolga.Padding = new Padding(5, 3, 5, 3);
+            lblLegendaFolga.Size = new Size(46, 19);
+            lblLegendaFolga.TabIndex = 2;
+            lblLegendaFolga.Text = "Folga";
+            // 
+            // lblLegendaFeriado
+            // 
+            lblLegendaFeriado.AutoSize = true;
+            lblLegendaFeriado.BackColor = Color.FromArgb(232, 245, 233);
+            lblLegendaFeriado.Font = new Font("Segoe UI", 8F);
+            lblLegendaFeriado.ForeColor = Color.FromArgb(46, 125, 50);
+            lblLegendaFeriado.Location = new Point(194, 5);
+            lblLegendaFeriado.Name = "lblLegendaFeriado";
+            lblLegendaFeriado.Padding = new Padding(5, 3, 5, 3);
+            lblLegendaFeriado.Size = new Size(56, 19);
+            lblLegendaFeriado.TabIndex = 3;
+            lblLegendaFeriado.Text = "Feriado";
+            // 
+            // lblLegendaPagamento
+            // 
+            lblLegendaPagamento.AutoSize = true;
+            lblLegendaPagamento.BackColor = Color.FromArgb(243, 229, 245);
+            lblLegendaPagamento.Font = new Font("Segoe UI", 8F);
+            lblLegendaPagamento.ForeColor = Color.FromArgb(106, 27, 154);
+            lblLegendaPagamento.Location = new Point(266, 5);
+            lblLegendaPagamento.Name = "lblLegendaPagamento";
+            lblLegendaPagamento.Padding = new Padding(5, 3, 5, 3);
+            lblLegendaPagamento.Size = new Size(75, 19);
+            lblLegendaPagamento.TabIndex = 4;
+            lblLegendaPagamento.Text = "Pagamento";
+            // 
+            // lblLegendaAdiantamento
+            // 
+            lblLegendaAdiantamento.AutoSize = true;
+            lblLegendaAdiantamento.BackColor = Color.FromArgb(255, 235, 238);
+            lblLegendaAdiantamento.Font = new Font("Segoe UI", 8F);
+            lblLegendaAdiantamento.ForeColor = Color.FromArgb(183, 28, 28);
+            lblLegendaAdiantamento.Location = new Point(350, 5);
+            lblLegendaAdiantamento.Name = "lblLegendaAdiantamento";
+            lblLegendaAdiantamento.Padding = new Padding(5, 3, 5, 3);
+            lblLegendaAdiantamento.Size = new Size(90, 19);
+            lblLegendaAdiantamento.TabIndex = 5;
+            lblLegendaAdiantamento.Text = "Adiantamento";
+            // 
+            // lblLegendaHoje
+            // 
+            lblLegendaHoje.AutoSize = true;
+            lblLegendaHoje.BackColor = Color.White;
+            lblLegendaHoje.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            lblLegendaHoje.ForeColor = Color.FromArgb(21, 101, 192);
+            lblLegendaHoje.Location = new Point(454, 5);
+            lblLegendaHoje.Name = "lblLegendaHoje";
+            lblLegendaHoje.Padding = new Padding(5, 3, 5, 3);
+            lblLegendaHoje.Size = new Size(41, 19);
+            lblLegendaHoje.TabIndex = 6;
+            lblLegendaHoje.Text = "Hoje";
+            // 
+            // pnlResumo
+            // 
+            pnlResumo.BackColor = Color.White;
+            pnlResumo.BorderStyle = BorderStyle.FixedSingle;
+            pnlResumo.Controls.Add(lblTituloResumo);
+            pnlResumo.Controls.Add(lblIconDiasUteis);
+            pnlResumo.Controls.Add(lblIconDiasTrabalhados);
+            pnlResumo.Controls.Add(lblIconFolgas);
+            pnlResumo.Controls.Add(lblIconFerias);
+            pnlResumo.Controls.Add(lblIconFaltas);
+            pnlResumo.Controls.Add(lblDiasUteis);
+            pnlResumo.Controls.Add(lblDiasTrabalhados);
+            pnlResumo.Controls.Add(lblFolgas);
+            pnlResumo.Controls.Add(lblFerias);
+            pnlResumo.Controls.Add(lblFaltas);
+            pnlResumo.Controls.Add(lblHoras);
+            pnlResumo.Controls.Add(lblDataSelecionada);
+            pnlResumo.Location = new Point(805, 220);
+            pnlResumo.Name = "pnlResumo";
+            pnlResumo.Size = new Size(360, 405);
+            pnlResumo.TabIndex = 4;
+            // 
+            // lblTituloResumo
+            // 
+            lblTituloResumo.AutoSize = true;
+            lblTituloResumo.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblTituloResumo.ForeColor = Color.FromArgb(20, 28, 45);
+            lblTituloResumo.Location = new Point(20, 18);
+            lblTituloResumo.Name = "lblTituloResumo";
+            lblTituloResumo.Size = new Size(152, 25);
+            lblTituloResumo.TabIndex = 0;
+            lblTituloResumo.Text = "Resumo do mês";
+            // 
+            // lblIconDiasUteis
+            // 
+            lblIconDiasUteis.Location = new Point(0, 0);
+            lblIconDiasUteis.Name = "lblIconDiasUteis";
+            lblIconDiasUteis.Size = new Size(100, 23);
+            lblIconDiasUteis.TabIndex = 1;
+            // 
+            // lblIconDiasTrabalhados
+            // 
+            lblIconDiasTrabalhados.Location = new Point(0, 0);
+            lblIconDiasTrabalhados.Name = "lblIconDiasTrabalhados";
+            lblIconDiasTrabalhados.Size = new Size(100, 23);
+            lblIconDiasTrabalhados.TabIndex = 2;
+            // 
+            // lblIconFolgas
+            // 
+            lblIconFolgas.Location = new Point(0, 0);
+            lblIconFolgas.Name = "lblIconFolgas";
+            lblIconFolgas.Size = new Size(100, 23);
+            lblIconFolgas.TabIndex = 3;
+            // 
+            // lblIconFerias
+            // 
+            lblIconFerias.Location = new Point(0, 0);
+            lblIconFerias.Name = "lblIconFerias";
+            lblIconFerias.Size = new Size(100, 23);
+            lblIconFerias.TabIndex = 4;
+            // 
+            // lblIconFaltas
+            // 
+            lblIconFaltas.Location = new Point(0, 0);
+            lblIconFaltas.Name = "lblIconFaltas";
+            lblIconFaltas.Size = new Size(100, 23);
+            lblIconFaltas.TabIndex = 5;
+            // 
+            // lblDiasUteis
+            // 
+            lblDiasUteis.AutoSize = true;
+            lblDiasUteis.Font = new Font("Segoe UI", 10F);
+            lblDiasUteis.ForeColor = Color.FromArgb(55, 65, 80);
+            lblDiasUteis.Location = new Point(52, 70);
+            lblDiasUteis.Name = "lblDiasUteis";
+            lblDiasUteis.Size = new Size(91, 19);
+            lblDiasUteis.TabIndex = 6;
+            lblDiasUteis.Text = "Dias úteis: 25";
+            // 
+            // lblDiasTrabalhados
+            // 
+            lblDiasTrabalhados.AutoSize = true;
+            lblDiasTrabalhados.Font = new Font("Segoe UI", 10F);
+            lblDiasTrabalhados.ForeColor = Color.FromArgb(55, 65, 80);
+            lblDiasTrabalhados.Location = new Point(52, 116);
+            lblDiasTrabalhados.Name = "lblDiasTrabalhados";
+            lblDiasTrabalhados.Size = new Size(105, 19);
+            lblDiasTrabalhados.TabIndex = 7;
+            lblDiasTrabalhados.Text = "Trabalhados: 25";
+            // 
+            // lblFolgas
+            // 
+            lblFolgas.AutoSize = true;
+            lblFolgas.Font = new Font("Segoe UI", 10F);
+            lblFolgas.ForeColor = Color.FromArgb(55, 65, 80);
+            lblFolgas.Location = new Point(52, 162);
+            lblFolgas.Name = "lblFolgas";
+            lblFolgas.Size = new Size(63, 19);
+            lblFolgas.TabIndex = 8;
+            lblFolgas.Text = "Folgas: 4";
+            // 
+            // lblFerias
+            // 
+            lblFerias.AutoSize = true;
+            lblFerias.Font = new Font("Segoe UI", 10F);
+            lblFerias.ForeColor = Color.FromArgb(55, 65, 80);
+            lblFerias.Location = new Point(52, 208);
+            lblFerias.Name = "lblFerias";
+            lblFerias.Size = new Size(59, 19);
+            lblFerias.TabIndex = 9;
+            lblFerias.Text = "Férias: 0";
+            // 
+            // lblFaltas
+            // 
+            lblFaltas.AutoSize = true;
+            lblFaltas.Font = new Font("Segoe UI", 10F);
+            lblFaltas.ForeColor = Color.FromArgb(55, 65, 80);
+            lblFaltas.Location = new Point(52, 254);
+            lblFaltas.Name = "lblFaltas";
+            lblFaltas.Size = new Size(59, 19);
+            lblFaltas.TabIndex = 10;
+            lblFaltas.Text = "Faltas: 0";
+            // 
+            // lblHoras
+            // 
+            lblHoras.AutoSize = true;
+            lblHoras.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblHoras.ForeColor = Color.FromArgb(21, 101, 192);
+            lblHoras.Location = new Point(20, 310);
+            lblHoras.Name = "lblHoras";
+            lblHoras.Size = new Size(179, 20);
+            lblHoras.TabIndex = 11;
+            lblHoras.Text = "Horas previstas: 200h00";
+            // 
+            // lblDataSelecionada
+            // 
+            lblDataSelecionada.Font = new Font("Segoe UI", 8.5F);
+            lblDataSelecionada.ForeColor = Color.FromArgb(115, 125, 140);
+            lblDataSelecionada.Location = new Point(20, 350);
+            lblDataSelecionada.Name = "lblDataSelecionada";
+            lblDataSelecionada.Size = new Size(315, 35);
+            lblDataSelecionada.TabIndex = 12;
+            lblDataSelecionada.Text = "Selecione um dia no calendário";
+            // 
+            // pnlEventos
+            // 
+            pnlEventos.BackColor = Color.White;
+            pnlEventos.BorderStyle = BorderStyle.FixedSingle;
+            pnlEventos.Controls.Add(lblTituloEventos);
+            pnlEventos.Controls.Add(pnlEvento1);
+            pnlEventos.Controls.Add(pnlEvento2);
+            pnlEventos.Controls.Add(pnlEvento3);
+            pnlEventos.Controls.Add(pnlEvento4);
+            pnlEventos.Controls.Add(pnlEvento5);
+            pnlEventos.Location = new Point(235, 640);
+            pnlEventos.Name = "pnlEventos";
+            pnlEventos.Size = new Size(930, 115);
+            pnlEventos.TabIndex = 5;
+            // 
+            // lblTituloEventos
+            // 
+            lblTituloEventos.AutoSize = true;
+            lblTituloEventos.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblTituloEventos.ForeColor = Color.FromArgb(20, 28, 45);
+            lblTituloEventos.Location = new Point(20, 14);
+            lblTituloEventos.Name = "lblTituloEventos";
+            lblTituloEventos.Size = new Size(263, 25);
+            lblTituloEventos.TabIndex = 0;
+            lblTituloEventos.Text = "Próximos eventos e previsões";
+            // 
+            // pnlEvento1
+            // 
+            pnlEvento1.BackColor = Color.FromArgb(249, 251, 254);
+            pnlEvento1.BorderStyle = BorderStyle.FixedSingle;
+            pnlEvento1.Controls.Add(lblEvento1Data);
+            pnlEvento1.Controls.Add(lblEvento1Titulo);
+            pnlEvento1.Controls.Add(lblEvento1Info);
+            pnlEvento1.Controls.Add(lblIconEvento1);
+            pnlEvento1.Location = new Point(18, 42);
+            pnlEvento1.Name = "pnlEvento1";
+            pnlEvento1.Size = new Size(165, 64);
+            pnlEvento1.TabIndex = 1;
+            // 
+            // lblEvento1Data
+            // 
+            lblEvento1Data.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblEvento1Data.ForeColor = Color.FromArgb(21, 101, 192);
+            lblEvento1Data.Location = new Point(9, 9);
+            lblEvento1Data.Name = "lblEvento1Data";
+            lblEvento1Data.Size = new Size(45, 20);
+            lblEvento1Data.TabIndex = 0;
+            // 
+            // lblEvento1Titulo
+            // 
+            lblEvento1Titulo.AutoEllipsis = true;
+            lblEvento1Titulo.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+            lblEvento1Titulo.ForeColor = Color.FromArgb(35, 42, 55);
+            lblEvento1Titulo.Location = new Point(55, 7);
+            lblEvento1Titulo.Name = "lblEvento1Titulo";
+            lblEvento1Titulo.Size = new Size(98, 22);
+            lblEvento1Titulo.TabIndex = 1;
+            // 
+            // lblEvento1Info
+            // 
+            lblEvento1Info.Font = new Font("Segoe UI", 7.5F);
+            lblEvento1Info.ForeColor = Color.FromArgb(105, 115, 130);
+            lblEvento1Info.Location = new Point(55, 29);
+            lblEvento1Info.Name = "lblEvento1Info";
+            lblEvento1Info.Size = new Size(98, 28);
+            lblEvento1Info.TabIndex = 2;
+            // 
+            // lblIconEvento1
+            // 
+            lblIconEvento1.Font = new Font("Segoe UI Symbol", 15F, FontStyle.Bold);
+            lblIconEvento1.ForeColor = Color.FromArgb(21, 101, 192);
+            lblIconEvento1.Location = new Point(8, 34);
+            lblIconEvento1.Name = "lblIconEvento1";
+            lblIconEvento1.Size = new Size(40, 25);
+            lblIconEvento1.TabIndex = 3;
+            lblIconEvento1.Text = "✈";
+            lblIconEvento1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlEvento2
+            // 
+            pnlEvento2.BackColor = Color.FromArgb(249, 251, 254);
+            pnlEvento2.BorderStyle = BorderStyle.FixedSingle;
+            pnlEvento2.Controls.Add(lblEvento2Data);
+            pnlEvento2.Controls.Add(lblEvento2Titulo);
+            pnlEvento2.Controls.Add(lblEvento2Info);
+            pnlEvento2.Controls.Add(lblIconEvento2);
+            pnlEvento2.Location = new Point(200, 42);
+            pnlEvento2.Name = "pnlEvento2";
+            pnlEvento2.Size = new Size(165, 64);
+            pnlEvento2.TabIndex = 2;
+            // 
+            // lblEvento2Data
+            // 
+            lblEvento2Data.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblEvento2Data.ForeColor = Color.FromArgb(21, 101, 192);
+            lblEvento2Data.Location = new Point(9, 9);
+            lblEvento2Data.Name = "lblEvento2Data";
+            lblEvento2Data.Size = new Size(45, 20);
+            lblEvento2Data.TabIndex = 0;
+            // 
+            // lblEvento2Titulo
+            // 
+            lblEvento2Titulo.AutoEllipsis = true;
+            lblEvento2Titulo.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+            lblEvento2Titulo.ForeColor = Color.FromArgb(35, 42, 55);
+            lblEvento2Titulo.Location = new Point(55, 7);
+            lblEvento2Titulo.Name = "lblEvento2Titulo";
+            lblEvento2Titulo.Size = new Size(98, 22);
+            lblEvento2Titulo.TabIndex = 1;
+            // 
+            // lblEvento2Info
+            // 
+            lblEvento2Info.Font = new Font("Segoe UI", 7.5F);
+            lblEvento2Info.ForeColor = Color.FromArgb(105, 115, 130);
+            lblEvento2Info.Location = new Point(55, 29);
+            lblEvento2Info.Name = "lblEvento2Info";
+            lblEvento2Info.Size = new Size(98, 28);
+            lblEvento2Info.TabIndex = 2;
+            // 
+            // lblIconEvento2
+            // 
+            lblIconEvento2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblIconEvento2.ForeColor = Color.FromArgb(106, 27, 154);
+            lblIconEvento2.Location = new Point(8, 34);
+            lblIconEvento2.Name = "lblIconEvento2";
+            lblIconEvento2.Size = new Size(40, 25);
+            lblIconEvento2.TabIndex = 3;
+            lblIconEvento2.Text = "R$";
+            lblIconEvento2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlEvento3
+            // 
+            pnlEvento3.BackColor = Color.FromArgb(249, 251, 254);
+            pnlEvento3.BorderStyle = BorderStyle.FixedSingle;
+            pnlEvento3.Controls.Add(lblEvento3Data);
+            pnlEvento3.Controls.Add(lblEvento3Titulo);
+            pnlEvento3.Controls.Add(lblEvento3Info);
+            pnlEvento3.Controls.Add(lblIconEvento3);
+            pnlEvento3.Location = new Point(382, 42);
+            pnlEvento3.Name = "pnlEvento3";
+            pnlEvento3.Size = new Size(165, 64);
+            pnlEvento3.TabIndex = 3;
+            // 
+            // lblEvento3Data
+            // 
+            lblEvento3Data.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblEvento3Data.ForeColor = Color.FromArgb(21, 101, 192);
+            lblEvento3Data.Location = new Point(9, 9);
+            lblEvento3Data.Name = "lblEvento3Data";
+            lblEvento3Data.Size = new Size(45, 20);
+            lblEvento3Data.TabIndex = 0;
+            // 
+            // lblEvento3Titulo
+            // 
+            lblEvento3Titulo.AutoEllipsis = true;
+            lblEvento3Titulo.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+            lblEvento3Titulo.ForeColor = Color.FromArgb(35, 42, 55);
+            lblEvento3Titulo.Location = new Point(55, 7);
+            lblEvento3Titulo.Name = "lblEvento3Titulo";
+            lblEvento3Titulo.Size = new Size(98, 22);
+            lblEvento3Titulo.TabIndex = 1;
+            // 
+            // lblEvento3Info
+            // 
+            lblEvento3Info.Font = new Font("Segoe UI", 7.5F);
+            lblEvento3Info.ForeColor = Color.FromArgb(105, 115, 130);
+            lblEvento3Info.Location = new Point(55, 29);
+            lblEvento3Info.Name = "lblEvento3Info";
+            lblEvento3Info.Size = new Size(98, 28);
+            lblEvento3Info.TabIndex = 2;
+            // 
+            // lblIconEvento3
+            // 
+            lblIconEvento3.Font = new Font("Segoe UI Symbol", 14F, FontStyle.Bold);
+            lblIconEvento3.ForeColor = Color.FromArgb(230, 126, 34);
+            lblIconEvento3.Location = new Point(8, 34);
+            lblIconEvento3.Name = "lblIconEvento3";
+            lblIconEvento3.Size = new Size(40, 25);
+            lblIconEvento3.TabIndex = 3;
+            lblIconEvento3.Text = "▣";
+            lblIconEvento3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlEvento4
+            // 
+            pnlEvento4.BackColor = Color.FromArgb(249, 251, 254);
+            pnlEvento4.BorderStyle = BorderStyle.FixedSingle;
+            pnlEvento4.Controls.Add(lblEvento4Data);
+            pnlEvento4.Controls.Add(lblEvento4Titulo);
+            pnlEvento4.Controls.Add(lblEvento4Info);
+            pnlEvento4.Controls.Add(lblIconEvento4);
+            pnlEvento4.Location = new Point(564, 42);
+            pnlEvento4.Name = "pnlEvento4";
+            pnlEvento4.Size = new Size(165, 64);
+            pnlEvento4.TabIndex = 4;
+            // 
+            // lblEvento4Data
+            // 
+            lblEvento4Data.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblEvento4Data.ForeColor = Color.FromArgb(21, 101, 192);
+            lblEvento4Data.Location = new Point(9, 9);
+            lblEvento4Data.Name = "lblEvento4Data";
+            lblEvento4Data.Size = new Size(45, 20);
+            lblEvento4Data.TabIndex = 0;
+            // 
+            // lblEvento4Titulo
+            // 
+            lblEvento4Titulo.AutoEllipsis = true;
+            lblEvento4Titulo.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+            lblEvento4Titulo.ForeColor = Color.FromArgb(35, 42, 55);
+            lblEvento4Titulo.Location = new Point(55, 7);
+            lblEvento4Titulo.Name = "lblEvento4Titulo";
+            lblEvento4Titulo.Size = new Size(98, 22);
+            lblEvento4Titulo.TabIndex = 1;
+            // 
+            // lblEvento4Info
+            // 
+            lblEvento4Info.Font = new Font("Segoe UI", 7.5F);
+            lblEvento4Info.ForeColor = Color.FromArgb(105, 115, 130);
+            lblEvento4Info.Location = new Point(55, 29);
+            lblEvento4Info.Name = "lblEvento4Info";
+            lblEvento4Info.Size = new Size(98, 28);
+            lblEvento4Info.TabIndex = 2;
+            // 
+            // lblIconEvento4
+            // 
+            lblIconEvento4.Font = new Font("Segoe UI Symbol", 15F, FontStyle.Bold);
+            lblIconEvento4.ForeColor = Color.FromArgb(46, 125, 50);
+            lblIconEvento4.Location = new Point(8, 34);
+            lblIconEvento4.Name = "lblIconEvento4";
+            lblIconEvento4.Size = new Size(40, 25);
+            lblIconEvento4.TabIndex = 3;
+            lblIconEvento4.Text = "✓";
+            lblIconEvento4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlEvento5
+            // 
+            pnlEvento5.BackColor = Color.FromArgb(249, 251, 254);
+            pnlEvento5.BorderStyle = BorderStyle.FixedSingle;
+            pnlEvento5.Controls.Add(lblEvento5Data);
+            pnlEvento5.Controls.Add(lblEvento5Titulo);
+            pnlEvento5.Controls.Add(lblEvento5Info);
+            pnlEvento5.Controls.Add(lblIconEvento5);
+            pnlEvento5.Location = new Point(746, 42);
+            pnlEvento5.Name = "pnlEvento5";
+            pnlEvento5.Size = new Size(165, 64);
+            pnlEvento5.TabIndex = 5;
+            // 
+            // lblEvento5Data
+            // 
+            lblEvento5Data.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblEvento5Data.ForeColor = Color.FromArgb(21, 101, 192);
+            lblEvento5Data.Location = new Point(9, 9);
+            lblEvento5Data.Name = "lblEvento5Data";
+            lblEvento5Data.Size = new Size(45, 20);
+            lblEvento5Data.TabIndex = 0;
+            // 
+            // lblEvento5Titulo
+            // 
+            lblEvento5Titulo.AutoEllipsis = true;
+            lblEvento5Titulo.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+            lblEvento5Titulo.ForeColor = Color.FromArgb(35, 42, 55);
+            lblEvento5Titulo.Location = new Point(55, 7);
+            lblEvento5Titulo.Name = "lblEvento5Titulo";
+            lblEvento5Titulo.Size = new Size(98, 22);
+            lblEvento5Titulo.TabIndex = 1;
+            // 
+            // lblEvento5Info
+            // 
+            lblEvento5Info.Font = new Font("Segoe UI", 7.5F);
+            lblEvento5Info.ForeColor = Color.FromArgb(105, 115, 130);
+            lblEvento5Info.Location = new Point(55, 29);
+            lblEvento5Info.Name = "lblEvento5Info";
+            lblEvento5Info.Size = new Size(98, 28);
+            lblEvento5Info.TabIndex = 2;
+            // 
+            // lblIconEvento5
+            // 
+            lblIconEvento5.Font = new Font("Segoe UI Symbol", 15F, FontStyle.Bold);
+            lblIconEvento5.ForeColor = Color.FromArgb(21, 101, 192);
+            lblIconEvento5.Location = new Point(8, 34);
+            lblIconEvento5.Name = "lblIconEvento5";
+            lblIconEvento5.Size = new Size(40, 25);
+            lblIconEvento5.TabIndex = 3;
+            lblIconEvento5.Text = "●";
+            lblIconEvento5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // FrmJornada
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(245, 248, 252);
+            ClientSize = new Size(1180, 780);
+            Controls.Add(pnlMenu);
+            Controls.Add(pnlTopo);
+            Controls.Add(pnlFiltros);
+            Controls.Add(pnlCalendario);
+            Controls.Add(pnlResumo);
+            Controls.Add(pnlEventos);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "FrmJornada";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "RH Control — Jornada / Calendário";
+            pnlMenu.ResumeLayout(false);
+            pnlMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            pnlTopo.ResumeLayout(false);
+            pnlTopo.PerformLayout();
+            pnlFiltros.ResumeLayout(false);
+            pnlFiltros.PerformLayout();
+            pnlCalendario.ResumeLayout(false);
+            pnlCalendario.PerformLayout();
+            pnlLegenda.ResumeLayout(false);
+            pnlLegenda.PerformLayout();
+            pnlResumo.ResumeLayout(false);
+            pnlResumo.PerformLayout();
+            pnlEventos.ResumeLayout(false);
+            pnlEventos.PerformLayout();
+            pnlEvento1.ResumeLayout(false);
+            pnlEvento2.ResumeLayout(false);
+            pnlEvento3.ResumeLayout(false);
+            pnlEvento4.ResumeLayout(false);
+            pnlEvento5.ResumeLayout(false);
+            ResumeLayout(false);
         }
     }
 }

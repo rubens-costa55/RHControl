@@ -56,27 +56,23 @@ namespace RHControl
         }
 
         // ============================================================
-        // FORMULÁRIO
+        // CONFIGURAÇÃO DO FORMULÁRIO
         // ============================================================
 
         private void ConfigurarFormulario()
         {
             Text = "RH Control — Detalhes do Funcionário";
 
-            StartPosition =
-                FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterParent;
 
-            FormBorderStyle =
-                FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
 
             MaximizeBox = false;
             MinimizeBox = false;
 
-            ClientSize =
-                new Size(950, 700);
+            ClientSize = new Size(1050, 800);
 
-            BackColor =
-                Color.FromArgb(245, 247, 250);
+            BackColor = Color.FromArgb(244, 247, 251);
 
             // ========================================================
             // CABEÇALHO
@@ -85,8 +81,8 @@ namespace RHControl
             pnlCabecalho = new Panel
             {
                 Location = new Point(0, 0),
-                Size = new Size(950, 90),
-                BackColor = Color.White
+                Size = new Size(1050, 110),
+                BackColor = Color.FromArgb(10, 60, 105)
             };
 
             Controls.Add(pnlCabecalho);
@@ -94,13 +90,12 @@ namespace RHControl
             lblTitulo = new Label
             {
                 AutoSize = true,
-                Location = new Point(30, 20),
+                Location = new Point(38, 20),
                 Font = new Font(
                     "Segoe UI",
-                    20F,
+                    24F,
                     FontStyle.Bold),
-                ForeColor =
-                    Color.FromArgb(35, 45, 55),
+                ForeColor = Color.White,
                 Text = "Detalhes do funcionário"
             };
 
@@ -109,42 +104,48 @@ namespace RHControl
             lblSubtitulo = new Label
             {
                 AutoSize = true,
-                Location = new Point(32, 56),
+                Location = new Point(41, 66),
                 Font = new Font(
                     "Segoe UI",
-                    9F),
-                ForeColor =
-                    Color.FromArgb(100, 110, 120),
-                Text = "Visualização dos dados cadastrados"
+                    9.5F,
+                    FontStyle.Regular),
+                ForeColor = Color.FromArgb(205, 225, 245),
+                Text = "Visualização completa das informações cadastradas"
             };
 
             pnlCabecalho.Controls.Add(lblSubtitulo);
 
+            // ========================================================
+            // STATUS
+            // ========================================================
+
             lblStatus = new Label
             {
-                AutoSize = true,
-                Location = new Point(800, 35),
+                AutoSize = false,
+                Location = new Point(875, 31),
+                Size = new Size(140, 40),
+                TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font(
                     "Segoe UI",
-                    9F,
+                    10F,
                     FontStyle.Bold),
-                ForeColor =
-                    Color.FromArgb(25, 118, 80),
+                ForeColor = Color.White,
+                BackColor = Color.FromArgb(25, 118, 80),
                 Text = "Ativo"
             };
 
             pnlCabecalho.Controls.Add(lblStatus);
 
             // ========================================================
-            // ÁREA DE CONTEÚDO
+            // CONTEÚDO
             // ========================================================
 
             pnlConteudo = new Panel
             {
-                Location = new Point(20, 105),
-                Size = new Size(910, 535),
-                BackColor = Color.White,
-                AutoScroll = true
+                Location = new Point(20, 125),
+                Size = new Size(1010, 640),
+                BackColor = Color.Transparent,
+                AutoScroll = false
             };
 
             Controls.Add(pnlConteudo);
@@ -161,15 +162,14 @@ namespace RHControl
 
             btnFechar = new Button
             {
-                Location = new Point(810, 650),
-                Size = new Size(120, 38),
+                Location = new Point(900, 755),
+                Size = new Size(130, 40),
                 Text = "Fechar",
                 Font = new Font(
                     "Segoe UI",
-                    9F,
+                    9.5F,
                     FontStyle.Bold),
-                BackColor =
-                    Color.FromArgb(21, 101, 192),
+                BackColor = Color.FromArgb(21, 101, 192),
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand
@@ -177,182 +177,255 @@ namespace RHControl
 
             btnFechar.FlatAppearance.BorderSize = 0;
 
-            btnFechar.Click +=
-                (s, e) => Close();
+            btnFechar.FlatAppearance.MouseOverBackColor =
+                Color.FromArgb(25, 118, 210);
+
+            btnFechar.FlatAppearance.MouseDownBackColor =
+                Color.FromArgb(13, 71, 161);
+
+            btnFechar.Click += (s, e) =>
+            {
+                Close();
+            };
 
             Controls.Add(btnFechar);
         }
 
         // ============================================================
-        // GRUPO PESSOAL
+        // DADOS PESSOAIS
         // ============================================================
 
         private void CriarGrupoPessoal()
         {
             grpPessoal = CriarGroupBox(
-                "Dados pessoais",
-                new Point(20, 20),
-                new Size(850, 125));
+                "DADOS PESSOAIS",
+                new Point(15, 10),
+                new Size(960, 125));
 
             pnlConteudo.Controls.Add(grpPessoal);
 
             lblNome = CriarLabel(
                 "Nome:",
-                new Point(20, 32));
+                new Point(25, 35),
+                420);
 
             lblCPF = CriarLabel(
                 "CPF:",
-                new Point(430, 32));
+                new Point(490, 35),
+                400);
 
             lblNascimento = CriarLabel(
                 "Nascimento:",
-                new Point(20, 72));
+                new Point(25, 68),
+                420);
 
             lblTelefone = CriarLabel(
                 "Telefone:",
-                new Point(430, 72));
+                new Point(490, 68),
+                400);
 
             lblEmail = CriarLabel(
                 "E-mail:",
-                new Point(20, 102));
+                new Point(25, 101),
+                850);
 
-            grpPessoal.Controls.Add(lblNome);
-            grpPessoal.Controls.Add(lblCPF);
-            grpPessoal.Controls.Add(lblNascimento);
-            grpPessoal.Controls.Add(lblTelefone);
-            grpPessoal.Controls.Add(lblEmail);
+            grpPessoal.Controls.AddRange(
+                new Control[]
+                {
+                    lblNome,
+                    lblCPF,
+                    lblNascimento,
+                    lblTelefone,
+                    lblEmail
+                });
         }
 
         // ============================================================
-        // GRUPO PROFISSIONAL
+        // DADOS PROFISSIONAIS
         // ============================================================
 
         private void CriarGrupoProfissional()
         {
             grpProfissional = CriarGroupBox(
-                "Dados profissionais",
-                new Point(20, 155),
-                new Size(850, 135));
+                "DADOS PROFISSIONAIS",
+                new Point(15, 145),
+                new Size(960, 125));
 
             pnlConteudo.Controls.Add(grpProfissional);
 
             lblCargo = CriarLabel(
                 "Cargo:",
-                new Point(20, 32));
+                new Point(25, 35),
+                420);
 
             lblSetor = CriarLabel(
                 "Setor:",
-                new Point(430, 32));
+                new Point(490, 35),
+                400);
 
             lblAdmissao = CriarLabel(
                 "Data de admissão:",
-                new Point(20, 72));
+                new Point(25, 68),
+                420);
 
             lblSalario = CriarLabel(
                 "Salário:",
-                new Point(430, 72));
+                new Point(490, 68),
+                400);
 
             lblEscala = CriarLabel(
                 "Escala:",
-                new Point(20, 105));
+                new Point(25, 101),
+                850);
 
-            grpProfissional.Controls.Add(lblCargo);
-            grpProfissional.Controls.Add(lblSetor);
-            grpProfissional.Controls.Add(lblAdmissao);
-            grpProfissional.Controls.Add(lblSalario);
-            grpProfissional.Controls.Add(lblEscala);
+            grpProfissional.Controls.AddRange(
+                new Control[]
+                {
+                    lblCargo,
+                    lblSetor,
+                    lblAdmissao,
+                    lblSalario,
+                    lblEscala
+                });
         }
 
         // ============================================================
-        // GRUPO JORNADA
+        // JORNADA
         // ============================================================
 
         private void CriarGrupoJornada()
         {
             grpJornada = CriarGroupBox(
-                "Jornada de trabalho",
-                new Point(20, 300),
-                new Size(850, 105));
+                "JORNADA DE TRABALHO",
+                new Point(15, 280),
+                new Size(960, 105));
 
             pnlConteudo.Controls.Add(grpJornada);
 
             lblCargaHoraria = CriarLabel(
                 "Carga horária:",
-                new Point(20, 32));
+                new Point(25, 38),
+                180);
 
             lblEntrada = CriarLabel(
                 "Entrada:",
-                new Point(220, 32));
+                new Point(220, 38),
+                180);
 
             lblSaida = CriarLabel(
                 "Saída:",
-                new Point(420, 32));
+                new Point(415, 38),
+                180);
 
             lblIntervalo = CriarLabel(
                 "Intervalo:",
-                new Point(600, 32));
+                new Point(610, 38),
+                300);
 
-            grpJornada.Controls.Add(lblCargaHoraria);
-            grpJornada.Controls.Add(lblEntrada);
-            grpJornada.Controls.Add(lblSaida);
-            grpJornada.Controls.Add(lblIntervalo);
+            grpJornada.Controls.AddRange(
+                new Control[]
+                {
+                    lblCargaHoraria,
+                    lblEntrada,
+                    lblSaida,
+                    lblIntervalo
+                });
         }
 
         // ============================================================
-        // GRUPO BENEFÍCIOS
+        // BENEFÍCIOS
         // ============================================================
 
         private void CriarGrupoBeneficios()
         {
             grpBeneficios = CriarGroupBox(
-                "Benefícios e descontos",
-                new Point(20, 415),
-                new Size(850, 150));
+                "BENEFÍCIOS E DESCONTOS",
+                new Point(15, 395),
+                new Size(960, 125));
 
             pnlConteudo.Controls.Add(grpBeneficios);
 
             dgvBeneficios = new DataGridView
             {
-                Location = new Point(15, 28),
-                Size = new Size(815, 105),
+                Location = new Point(20, 30),
+                Size = new Size(915, 80),
+
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
+                AllowUserToResizeRows = false,
+
                 ReadOnly = true,
                 MultiSelect = false,
+
                 RowHeadersVisible = false,
+
                 SelectionMode =
                     DataGridViewSelectionMode.FullRowSelect,
+
                 AutoSizeColumnsMode =
                     DataGridViewAutoSizeColumnsMode.Fill,
+
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+
+                BorderStyle =
+                    BorderStyle.FixedSingle,
+
                 CellBorderStyle =
                     DataGridViewCellBorderStyle.SingleHorizontal,
-                EnableHeadersVisualStyles = false
+
+                EnableHeadersVisualStyles = false,
+
+                GridColor =
+                    Color.FromArgb(225, 232, 240)
             };
 
-            dgvBeneficios.ColumnHeadersDefaultCellStyle.BackColor =
-                Color.FromArgb(245, 247, 250);
+            dgvBeneficios.ColumnHeadersHeight = 25;
 
-            dgvBeneficios.ColumnHeadersDefaultCellStyle.ForeColor =
-                Color.FromArgb(45, 55, 65);
+            dgvBeneficios.ColumnHeadersDefaultCellStyle =
+                new DataGridViewCellStyle
+                {
+                    BackColor =
+                        Color.FromArgb(235, 242, 249),
 
-            dgvBeneficios.ColumnHeadersDefaultCellStyle.Font =
-                new Font(
-                    "Segoe UI",
-                    8.5F,
-                    FontStyle.Bold);
+                    ForeColor =
+                        Color.FromArgb(35, 55, 75),
 
-            dgvBeneficios.DefaultCellStyle.Font =
-                new Font(
-                    "Segoe UI",
-                    8.5F);
+                    Font =
+                        new Font(
+                            "Segoe UI",
+                            8.5F,
+                            FontStyle.Bold),
 
-            dgvBeneficios.DefaultCellStyle.SelectionBackColor =
-                Color.FromArgb(235, 243, 255);
+                    Alignment =
+                        DataGridViewContentAlignment.MiddleLeft
+                };
 
-            dgvBeneficios.DefaultCellStyle.SelectionForeColor =
-                Color.FromArgb(35, 45, 55);
+            dgvBeneficios.DefaultCellStyle =
+                new DataGridViewCellStyle
+                {
+                    BackColor = Color.White,
+
+                    ForeColor =
+                        Color.FromArgb(50, 65, 80),
+
+                    Font =
+                        new Font(
+                            "Segoe UI",
+                            8.5F),
+
+                    SelectionBackColor =
+                        Color.FromArgb(225, 239, 255),
+
+                    SelectionForeColor =
+                        Color.FromArgb(30, 55, 80)
+                };
+
+            dgvBeneficios.AlternatingRowsDefaultCellStyle =
+                new DataGridViewCellStyle
+                {
+                    BackColor =
+                        Color.FromArgb(249, 251, 253)
+                };
 
             dgvBeneficios.Columns.Add(
                 "Nome",
@@ -371,29 +444,43 @@ namespace RHControl
         }
 
         // ============================================================
-        // GRUPO OBSERVAÇÕES
+        // OBSERVAÇÕES
         // ============================================================
 
         private void CriarGrupoObservacoes()
         {
             grpObservacoes = CriarGroupBox(
-                "Observações",
-                new Point(20, 575),
-                new Size(850, 100));
+                "OBSERVAÇÕES",
+                new Point(15, 530),
+                new Size(960, 105));
 
             pnlConteudo.Controls.Add(grpObservacoes);
 
             txtObservacoes = new TextBox
             {
-                Location = new Point(15, 28),
-                Size = new Size(815, 55),
+                Location = new Point(20, 30),
+                Size = new Size(915, 60),
+
                 Multiline = true,
+
                 ReadOnly = true,
-                BackColor = Color.FromArgb(250, 251, 253),
-                BorderStyle = BorderStyle.FixedSingle,
-                Font = new Font(
-                    "Segoe UI",
-                    9F)
+
+                BackColor =
+                    Color.FromArgb(249, 251, 253),
+
+                ForeColor =
+                    Color.FromArgb(55, 65, 75),
+
+                BorderStyle =
+                    BorderStyle.FixedSingle,
+
+                Font =
+                    new Font(
+                        "Segoe UI",
+                        9F),
+
+                ScrollBars =
+                    ScrollBars.Vertical
             };
 
             grpObservacoes.Controls.Add(
@@ -401,7 +488,7 @@ namespace RHControl
         }
 
         // ============================================================
-        // COMPONENTES AUXILIARES
+        // GROUPBOX
         // ============================================================
 
         private GroupBox CriarGroupBox(
@@ -412,31 +499,64 @@ namespace RHControl
             return new GroupBox
             {
                 Text = titulo,
+
                 Location = local,
+
                 Size = tamanho,
-                Font = new Font(
-                    "Segoe UI",
-                    9F,
-                    FontStyle.Bold),
+
+                Font =
+                    new Font(
+                        "Segoe UI",
+                        9F,
+                        FontStyle.Bold),
+
                 ForeColor =
-                    Color.FromArgb(35, 45, 55)
+                    Color.FromArgb(
+                        21,
+                        101,
+                        192),
+
+                BackColor =
+                    Color.White
             };
         }
 
+        // ============================================================
+        // LABEL
+        // ============================================================
+
         private Label CriarLabel(
             string texto,
-            Point local)
+            Point local,
+            int largura)
         {
             return new Label
             {
-                AutoSize = true,
+                AutoSize = false,
+
                 Location = local,
-                Font = new Font(
-                    "Segoe UI",
-                    9F),
+
+                Size =
+                    new Size(
+                        largura,
+                        25),
+
+                Font =
+                    new Font(
+                        "Segoe UI",
+                        9.5F,
+                        FontStyle.Bold),
+
                 ForeColor =
-                    Color.FromArgb(55, 65, 75),
-                Text = texto
+                    Color.FromArgb(
+                        55,
+                        65,
+                        75),
+
+                Text = texto,
+
+                TextAlign =
+                    ContentAlignment.MiddleLeft
             };
         }
 
@@ -527,37 +647,70 @@ namespace RHControl
                             string observacoes =
                                 reader["Observacoes"]?.ToString() ?? "";
 
+                            // --------------------------------------------
+                            // DADOS PESSOAIS
+                            // --------------------------------------------
+
                             lblNome.Text =
                                 "Nome: " + nome;
 
                             lblCPF.Text =
-                                "CPF: " + cpf;
+                                "CPF: " +
+                                (string.IsNullOrWhiteSpace(cpf)
+                                    ? "—"
+                                    : cpf);
 
                             lblTelefone.Text =
-                                "Telefone: " + telefone;
+                                "Telefone: " +
+                                (string.IsNullOrWhiteSpace(telefone)
+                                    ? "—"
+                                    : telefone);
 
                             lblEmail.Text =
-                                "E-mail: " + email;
+                                "E-mail: " +
+                                (string.IsNullOrWhiteSpace(email)
+                                    ? "—"
+                                    : email);
+
+                            // --------------------------------------------
+                            // DADOS PROFISSIONAIS
+                            // --------------------------------------------
 
                             lblCargo.Text =
-                                "Cargo: " + cargo;
+                                "Cargo: " +
+                                (string.IsNullOrWhiteSpace(cargo)
+                                    ? "—"
+                                    : cargo);
 
                             lblSetor.Text =
-                                "Setor: " + setor;
+                                "Setor: " +
+                                (string.IsNullOrWhiteSpace(setor)
+                                    ? "—"
+                                    : setor);
 
                             lblEscala.Text =
-                                "Escala: " + escala;
+                                "Escala: " +
+                                (string.IsNullOrWhiteSpace(escala)
+                                    ? "—"
+                                    : escala);
+
+                            // --------------------------------------------
+                            // STATUS
+                            // --------------------------------------------
 
                             lblStatus.Text =
                                 string.IsNullOrWhiteSpace(status)
                                     ? "Sem status"
                                     : status;
 
-                            lblStatus.ForeColor =
+                            lblStatus.BackColor =
                                 ObterCorStatus(status);
 
+                            lblStatus.ForeColor =
+                                Color.White;
+
                             // --------------------------------------------
-                            // DATAS
+                            // DATA DE NASCIMENTO
                             // --------------------------------------------
 
                             if (DateTime.TryParse(
@@ -574,6 +727,10 @@ namespace RHControl
                                 lblNascimento.Text =
                                     "Nascimento: —";
                             }
+
+                            // --------------------------------------------
+                            // DATA DE ADMISSÃO
+                            // --------------------------------------------
 
                             if (DateTime.TryParse(
                                 reader["DataAdmissao"]?.ToString(),
@@ -613,22 +770,50 @@ namespace RHControl
                             }
 
                             // --------------------------------------------
-                            // JORNADA
+                            // CARGA HORÁRIA
                             // --------------------------------------------
+
+                            string carga =
+                                reader["CargaHorariaSemanal"]
+                                    ?.ToString() ?? "";
 
                             lblCargaHoraria.Text =
                                 "Carga horária: " +
-                                (reader["CargaHorariaSemanal"]
-                                    ?.ToString() ?? "—") +
-                                "h/semana";
+                                (string.IsNullOrWhiteSpace(carga)
+                                    ? "—"
+                                    : carga + "h/semana");
+
+                            // --------------------------------------------
+                            // HORÁRIO DE ENTRADA
+                            // --------------------------------------------
 
                             string entrada =
                                 reader["HorarioEntrada"]
                                     ?.ToString() ?? "";
 
+                            lblEntrada.Text =
+                                "Entrada: " +
+                                (string.IsNullOrWhiteSpace(entrada)
+                                    ? "—"
+                                    : entrada);
+
+                            // --------------------------------------------
+                            // HORÁRIO DE SAÍDA
+                            // --------------------------------------------
+
                             string saida =
                                 reader["HorarioSaida"]
                                     ?.ToString() ?? "";
+
+                            lblSaida.Text =
+                                "Saída: " +
+                                (string.IsNullOrWhiteSpace(saida)
+                                    ? "—"
+                                    : saida);
+
+                            // --------------------------------------------
+                            // INTERVALO
+                            // --------------------------------------------
 
                             string inicioIntervalo =
                                 reader["InicioIntervalo"]
@@ -638,26 +823,26 @@ namespace RHControl
                                 reader["FimIntervalo"]
                                     ?.ToString() ?? "";
 
-                            lblEntrada.Text =
-                                "Entrada: " +
-                                (string.IsNullOrWhiteSpace(entrada)
-                                    ? "—"
-                                    : entrada);
+                            if (!string.IsNullOrWhiteSpace(
+                                    inicioIntervalo) &&
+                                !string.IsNullOrWhiteSpace(
+                                    fimIntervalo))
+                            {
+                                lblIntervalo.Text =
+                                    "Intervalo: " +
+                                    inicioIntervalo +
+                                    " às " +
+                                    fimIntervalo;
+                            }
+                            else
+                            {
+                                lblIntervalo.Text =
+                                    "Intervalo: —";
+                            }
 
-                            lblSaida.Text =
-                                "Saída: " +
-                                (string.IsNullOrWhiteSpace(saida)
-                                    ? "—"
-                                    : saida);
-
-                            lblIntervalo.Text =
-                                "Intervalo: " +
-                                (string.IsNullOrWhiteSpace(
-                                    inicioIntervalo)
-                                    ? "—"
-                                    : inicioIntervalo +
-                                      " às " +
-                                      fimIntervalo);
+                            // --------------------------------------------
+                            // OBSERVAÇÕES
+                            // --------------------------------------------
 
                             txtObservacoes.Text =
                                 string.IsNullOrWhiteSpace(
@@ -686,7 +871,7 @@ namespace RHControl
         }
 
         // ============================================================
-        // BENEFÍCIOS
+        // CARREGAR BENEFÍCIOS
         // ============================================================
 
         private void CarregarBeneficios(
@@ -782,7 +967,7 @@ namespace RHControl
         }
 
         // ============================================================
-        // COR DO STATUS
+        // CORES DO STATUS
         // ============================================================
 
         private Color ObterCorStatus(

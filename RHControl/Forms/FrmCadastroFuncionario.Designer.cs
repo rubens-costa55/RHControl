@@ -42,49 +42,43 @@
         private System.Windows.Forms.Label lblDataBaseEscala;
         private System.Windows.Forms.DateTimePicker dtpDataBaseEscala;
 
+        private System.Windows.Forms.Panel pnlJornada;
+        private System.Windows.Forms.Label lblJornadaTitulo;
+        private System.Windows.Forms.Label lblJornadaSubtitulo;
         private System.Windows.Forms.Label lblCargaHoraria;
         private System.Windows.Forms.NumericUpDown nudCargaHoraria;
-
         private System.Windows.Forms.Label lblHorarioEntrada;
         private System.Windows.Forms.DateTimePicker dtpHorarioEntrada;
-
         private System.Windows.Forms.Label lblHorarioSaida;
         private System.Windows.Forms.DateTimePicker dtpHorarioSaida;
-
         private System.Windows.Forms.Label lblInicioIntervalo;
         private System.Windows.Forms.DateTimePicker dtpInicioIntervalo;
-
         private System.Windows.Forms.Label lblFimIntervalo;
         private System.Windows.Forms.DateTimePicker dtpFimIntervalo;
 
         private System.Windows.Forms.Panel pnlBeneficios;
         private System.Windows.Forms.Label lblBeneficios;
-
+        private System.Windows.Forms.Label lblBeneficiosSubtitulo;
         private System.Windows.Forms.Label lblNomeBeneficio;
         private System.Windows.Forms.TextBox txtNomeBeneficio;
-
         private System.Windows.Forms.Label lblTipoDesconto;
         private System.Windows.Forms.RadioButton rbPercentual;
         private System.Windows.Forms.RadioButton rbValorFixo;
-
         private System.Windows.Forms.Label lblValorDesconto;
         private System.Windows.Forms.NumericUpDown nudPercentual;
-
         private System.Windows.Forms.Button btnAdicionarBeneficio;
-
         private System.Windows.Forms.DataGridView dgvBeneficios;
-
         private System.Windows.Forms.DataGridViewTextBoxColumn colBeneficio;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDesconto;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorDesconto;
         private System.Windows.Forms.DataGridViewButtonColumn colRemoverBeneficio;
-
         private System.Windows.Forms.Label lblTotalDescontos;
         private System.Windows.Forms.Label lblSalarioEstimado;
 
         private System.Windows.Forms.Panel pnlObservacoes;
         private System.Windows.Forms.Label lblObservacoes;
+        private System.Windows.Forms.Label lblObservacoesSubtitulo;
         private System.Windows.Forms.TextBox txtObservacoes;
 
         private System.Windows.Forms.Button btnCancelar;
@@ -93,879 +87,1056 @@
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
 
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            pnlCabecalho = new Panel();
-            lblTitulo = new Label();
-            lblSubtitulo = new Label();
-            pnlDadosPessoais = new Panel();
-            lblDadosPessoais = new Label();
-            lblNome = new Label();
-            txtNome = new TextBox();
-            lblCPF = new Label();
-            txtCPF = new TextBox();
-            lblDataNascimento = new Label();
-            dtpDataNascimento = new DateTimePicker();
-            lblTelefone = new Label();
-            txtTelefone = new TextBox();
-            lblEmail = new Label();
-            txtEmail = new TextBox();
-            pnlDadosProfissionais = new Panel();
-            lblDadosProfissionais = new Label();
-            lblCargo = new Label();
-            txtCargo = new TextBox();
-            lblSetor = new Label();
-            txtSetor = new TextBox();
-            lblDataAdmissao = new Label();
-            dtpDataAdmissao = new DateTimePicker();
-            lblSalario = new Label();
-            txtSalario = new TextBox();
-            lblTipoJornada = new Label();
-            cmbTipoJornada = new ComboBox();
-            lblEscala = new Label();
-            cmbEscala = new ComboBox();
-            lblDiaFolga = new Label();
-            cmbDiaFolga = new ComboBox();
-            lblDiaFolga2 = new Label();
-            cmbDiaFolga2 = new ComboBox();
-            lblDataBaseEscala = new Label();
-            dtpDataBaseEscala = new DateTimePicker();
-            lblCargaHoraria = new Label();
-            nudCargaHoraria = new NumericUpDown();
-            lblHorarioEntrada = new Label();
-            dtpHorarioEntrada = new DateTimePicker();
-            lblHorarioSaida = new Label();
-            dtpHorarioSaida = new DateTimePicker();
-            lblInicioIntervalo = new Label();
-            dtpInicioIntervalo = new DateTimePicker();
-            lblFimIntervalo = new Label();
-            dtpFimIntervalo = new DateTimePicker();
-            pnlBeneficios = new Panel();
-            lblBeneficios = new Label();
-            lblNomeBeneficio = new Label();
-            txtNomeBeneficio = new TextBox();
-            lblTipoDesconto = new Label();
-            rbPercentual = new RadioButton();
-            rbValorFixo = new RadioButton();
-            lblValorDesconto = new Label();
-            nudPercentual = new NumericUpDown();
-            btnAdicionarBeneficio = new Button();
-            dgvBeneficios = new DataGridView();
-            colBeneficio = new DataGridViewTextBoxColumn();
-            colTipo = new DataGridViewTextBoxColumn();
-            colDesconto = new DataGridViewTextBoxColumn();
-            colValorDesconto = new DataGridViewTextBoxColumn();
-            colRemoverBeneficio = new DataGridViewButtonColumn();
-            lblTotalDescontos = new Label();
-            lblSalarioEstimado = new Label();
-            pnlObservacoes = new Panel();
-            lblObservacoes = new Label();
-            txtObservacoes = new TextBox();
-            btnCancelar = new Button();
-            btnSalvar = new Button();
-            pnlCabecalho.SuspendLayout();
-            pnlDadosPessoais.SuspendLayout();
-            pnlDadosProfissionais.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudCargaHoraria).BeginInit();
-            pnlBeneficios.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudPercentual).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvBeneficios).BeginInit();
-            pnlObservacoes.SuspendLayout();
-            SuspendLayout();
-            // 
-            // pnlCabecalho
-            // 
-            pnlCabecalho.BackColor = Color.White;
-            pnlCabecalho.Controls.Add(lblTitulo);
-            pnlCabecalho.Controls.Add(lblSubtitulo);
-            pnlCabecalho.Location = new Point(0, 0);
-            pnlCabecalho.Name = "pnlCabecalho";
-            pnlCabecalho.Size = new Size(1000, 90);
-            pnlCabecalho.TabIndex = 0;
-            // 
-            // lblTitulo
-            // 
-            lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
-            lblTitulo.ForeColor = Color.FromArgb(35, 45, 55);
-            lblTitulo.Location = new Point(40, 18);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(268, 41);
-            lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "Novo Funcionário";
-            // 
-            // lblSubtitulo
-            // 
-            lblSubtitulo.AutoSize = true;
-            lblSubtitulo.Font = new Font("Segoe UI", 9F);
-            lblSubtitulo.ForeColor = Color.FromArgb(100, 110, 120);
-            lblSubtitulo.Location = new Point(42, 58);
-            lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(345, 15);
-            lblSubtitulo.TabIndex = 1;
-            lblSubtitulo.Text = "Cadastre as informações pessoais e profissionais do colaborador";
-            // 
-            // pnlDadosPessoais
-            // 
-            pnlDadosPessoais.BackColor = Color.White;
-            pnlDadosPessoais.BorderStyle = BorderStyle.FixedSingle;
-            pnlDadosPessoais.Controls.Add(lblDadosPessoais);
-            pnlDadosPessoais.Controls.Add(lblNome);
-            pnlDadosPessoais.Controls.Add(txtNome);
-            pnlDadosPessoais.Controls.Add(lblCPF);
-            pnlDadosPessoais.Controls.Add(txtCPF);
-            pnlDadosPessoais.Controls.Add(lblDataNascimento);
-            pnlDadosPessoais.Controls.Add(dtpDataNascimento);
-            pnlDadosPessoais.Controls.Add(lblTelefone);
-            pnlDadosPessoais.Controls.Add(txtTelefone);
-            pnlDadosPessoais.Controls.Add(lblEmail);
-            pnlDadosPessoais.Controls.Add(txtEmail);
-            pnlDadosPessoais.Location = new Point(25, 105);
-            pnlDadosPessoais.Name = "pnlDadosPessoais";
-            pnlDadosPessoais.Size = new Size(950, 125);
-            pnlDadosPessoais.TabIndex = 1;
-            // 
-            // lblDadosPessoais
-            // 
-            lblDadosPessoais.AutoSize = true;
-            lblDadosPessoais.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblDadosPessoais.ForeColor = Color.FromArgb(21, 101, 192);
-            lblDadosPessoais.Location = new Point(20, 12);
-            lblDadosPessoais.Name = "lblDadosPessoais";
-            lblDadosPessoais.Size = new Size(111, 19);
-            lblDadosPessoais.TabIndex = 0;
-            lblDadosPessoais.Text = "Dados pessoais";
-            // 
-            // lblNome
-            // 
-            lblNome.AutoSize = true;
-            lblNome.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblNome.Location = new Point(20, 40);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(105, 15);
-            lblNome.TabIndex = 1;
-            lblNome.Text = "Nome completo *";
-            // 
-            // txtNome
-            // 
-            txtNome.Location = new Point(20, 60);
-            txtNome.Name = "txtNome";
-            txtNome.Size = new Size(390, 23);
-            txtNome.TabIndex = 2;
-            // 
-            // lblCPF
-            // 
-            lblCPF.AutoSize = true;
-            lblCPF.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblCPF.Location = new Point(430, 40);
-            lblCPF.Name = "lblCPF";
-            lblCPF.Size = new Size(27, 15);
-            lblCPF.TabIndex = 3;
-            lblCPF.Text = "CPF";
-            // 
-            // txtCPF
-            // 
-            txtCPF.Location = new Point(430, 60);
-            txtCPF.Name = "txtCPF";
-            txtCPF.Size = new Size(180, 23);
-            txtCPF.TabIndex = 4;
-            // 
-            // lblDataNascimento
-            // 
-            lblDataNascimento.AutoSize = true;
-            lblDataNascimento.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblDataNascimento.Location = new Point(630, 40);
-            lblDataNascimento.Name = "lblDataNascimento";
-            lblDataNascimento.Size = new Size(117, 15);
-            lblDataNascimento.TabIndex = 5;
-            lblDataNascimento.Text = "Data de nascimento";
-            // 
-            // dtpDataNascimento
-            // 
-            dtpDataNascimento.Format = DateTimePickerFormat.Short;
-            dtpDataNascimento.Location = new Point(630, 60);
-            dtpDataNascimento.Name = "dtpDataNascimento";
-            dtpDataNascimento.Size = new Size(135, 23);
-            dtpDataNascimento.TabIndex = 6;
-            // 
-            // lblTelefone
-            // 
-            lblTelefone.AutoSize = true;
-            lblTelefone.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblTelefone.Location = new Point(785, 40);
-            lblTelefone.Name = "lblTelefone";
-            lblTelefone.Size = new Size(56, 15);
-            lblTelefone.TabIndex = 7;
-            lblTelefone.Text = "Telefone";
-            // 
-            // txtTelefone
-            // 
-            txtTelefone.Location = new Point(785, 60);
-            txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(140, 23);
-            txtTelefone.TabIndex = 8;
-            // 
-            // lblEmail
-            // 
-            lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblEmail.Location = new Point(20, 92);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(41, 15);
-            lblEmail.TabIndex = 9;
-            lblEmail.Text = "E-mail";
-            // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(70, 89);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(540, 23);
-            txtEmail.TabIndex = 10;
-            // 
-            // pnlDadosProfissionais
-            // 
-            pnlDadosProfissionais.BackColor = Color.White;
-            pnlDadosProfissionais.BorderStyle = BorderStyle.FixedSingle;
-            pnlDadosProfissionais.Controls.Add(lblDadosProfissionais);
-            pnlDadosProfissionais.Controls.Add(lblCargo);
-            pnlDadosProfissionais.Controls.Add(txtCargo);
-            pnlDadosProfissionais.Controls.Add(lblSetor);
-            pnlDadosProfissionais.Controls.Add(txtSetor);
-            pnlDadosProfissionais.Controls.Add(lblDataAdmissao);
-            pnlDadosProfissionais.Controls.Add(dtpDataAdmissao);
-            pnlDadosProfissionais.Controls.Add(lblSalario);
-            pnlDadosProfissionais.Controls.Add(txtSalario);
-            pnlDadosProfissionais.Controls.Add(lblTipoJornada);
-            pnlDadosProfissionais.Controls.Add(cmbTipoJornada);
-            pnlDadosProfissionais.Controls.Add(lblEscala);
-            pnlDadosProfissionais.Controls.Add(cmbEscala);
-            pnlDadosProfissionais.Controls.Add(lblDiaFolga);
-            pnlDadosProfissionais.Controls.Add(cmbDiaFolga);
-            pnlDadosProfissionais.Controls.Add(lblDiaFolga2);
-            pnlDadosProfissionais.Controls.Add(cmbDiaFolga2);
-            pnlDadosProfissionais.Controls.Add(lblDataBaseEscala);
-            pnlDadosProfissionais.Controls.Add(dtpDataBaseEscala);
-            pnlDadosProfissionais.Controls.Add(lblCargaHoraria);
-            pnlDadosProfissionais.Controls.Add(nudCargaHoraria);
-            pnlDadosProfissionais.Controls.Add(lblHorarioEntrada);
-            pnlDadosProfissionais.Controls.Add(dtpHorarioEntrada);
-            pnlDadosProfissionais.Controls.Add(lblHorarioSaida);
-            pnlDadosProfissionais.Controls.Add(dtpHorarioSaida);
-            pnlDadosProfissionais.Controls.Add(lblInicioIntervalo);
-            pnlDadosProfissionais.Controls.Add(dtpInicioIntervalo);
-            pnlDadosProfissionais.Controls.Add(lblFimIntervalo);
-            pnlDadosProfissionais.Controls.Add(dtpFimIntervalo);
-            pnlDadosProfissionais.Location = new Point(25, 245);
-            pnlDadosProfissionais.Name = "pnlDadosProfissionais";
-            pnlDadosProfissionais.Size = new Size(950, 225);
-            pnlDadosProfissionais.TabIndex = 2;
-            // 
-            // lblDadosProfissionais
-            // 
-            lblDadosProfissionais.AutoSize = true;
-            lblDadosProfissionais.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblDadosProfissionais.ForeColor = Color.FromArgb(21, 101, 192);
-            lblDadosProfissionais.Location = new Point(20, 12);
-            lblDadosProfissionais.Name = "lblDadosProfissionais";
-            lblDadosProfissionais.Size = new Size(139, 19);
-            lblDadosProfissionais.TabIndex = 0;
-            lblDadosProfissionais.Text = "Dados profissionais";
-            // 
-            // lblCargo
-            // 
-            lblCargo.AutoSize = true;
-            lblCargo.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblCargo.Location = new Point(20, 40);
-            lblCargo.Name = "lblCargo";
-            lblCargo.Size = new Size(47, 15);
-            lblCargo.TabIndex = 1;
-            lblCargo.Text = "Cargo *";
-            // 
-            // txtCargo
-            // 
-            txtCargo.Location = new Point(20, 60);
-            txtCargo.Name = "txtCargo";
-            txtCargo.Size = new Size(230, 23);
-            txtCargo.TabIndex = 2;
-            // 
-            // lblSetor
-            // 
-            lblSetor.AutoSize = true;
-            lblSetor.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblSetor.Location = new Point(270, 40);
-            lblSetor.Name = "lblSetor";
-            lblSetor.Size = new Size(38, 15);
-            lblSetor.TabIndex = 3;
-            lblSetor.Text = "Setor";
-            // 
-            // txtSetor
-            // 
-            txtSetor.Location = new Point(270, 60);
-            txtSetor.Name = "txtSetor";
-            txtSetor.Size = new Size(170, 23);
-            txtSetor.TabIndex = 4;
-            // 
-            // lblDataAdmissao
-            // 
-            lblDataAdmissao.AutoSize = true;
-            lblDataAdmissao.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblDataAdmissao.Location = new Point(460, 40);
-            lblDataAdmissao.Name = "lblDataAdmissao";
-            lblDataAdmissao.Size = new Size(111, 15);
-            lblDataAdmissao.TabIndex = 5;
-            lblDataAdmissao.Text = "Data de admissão *";
-            // 
-            // dtpDataAdmissao
-            // 
-            dtpDataAdmissao.Format = DateTimePickerFormat.Short;
-            dtpDataAdmissao.Location = new Point(460, 60);
-            dtpDataAdmissao.Name = "dtpDataAdmissao";
-            dtpDataAdmissao.Size = new Size(140, 23);
-            dtpDataAdmissao.TabIndex = 6;
-            // 
-            // lblSalario
-            // 
-            lblSalario.AutoSize = true;
-            lblSalario.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblSalario.Location = new Point(620, 40);
-            lblSalario.Name = "lblSalario";
-            lblSalario.Size = new Size(52, 15);
-            lblSalario.TabIndex = 7;
-            lblSalario.Text = "Salário *";
-            // 
-            // txtSalario
-            // 
-            txtSalario.Location = new Point(620, 60);
-            txtSalario.Name = "txtSalario";
-            txtSalario.Size = new Size(135, 23);
-            txtSalario.TabIndex = 8;
-            // 
-            // lblTipoJornada
-            // 
-            lblTipoJornada.AutoSize = true;
-            lblTipoJornada.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblTipoJornada.Location = new Point(775, 40);
-            lblTipoJornada.Name = "lblTipoJornada";
-            lblTipoJornada.Size = new Size(88, 15);
-            lblTipoJornada.TabIndex = 9;
-            lblTipoJornada.Text = "Tipo de jornada";
-            // 
-            // cmbTipoJornada
-            // 
-            cmbTipoJornada.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbTipoJornada.Items.AddRange(new object[] { "Jornada fixa", "Por escala" });
-            cmbTipoJornada.Location = new Point(775, 60);
-            cmbTipoJornada.Name = "cmbTipoJornada";
-            cmbTipoJornada.Size = new Size(150, 23);
-            cmbTipoJornada.TabIndex = 10;
-            // 
-            // lblEscala
-            // 
-            lblEscala.AutoSize = true;
-            lblEscala.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblEscala.Location = new Point(20, 102);
-            lblEscala.Name = "lblEscala";
-            lblEscala.Size = new Size(47, 15);
-            lblEscala.TabIndex = 11;
-            lblEscala.Text = "Escala *";
-            // 
-            // cmbEscala
-            // 
-            cmbEscala.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbEscala.Items.AddRange(new object[] { "5x2", "6x1", "12x36", "4x2", "5x1", "Outra" });
-            cmbEscala.Location = new Point(20, 122);
-            cmbEscala.Name = "cmbEscala";
-            cmbEscala.Size = new Size(120, 23);
-            cmbEscala.TabIndex = 12;
-            // 
-            // lblDiaFolga
-            // 
-            lblDiaFolga.AutoSize = true;
-            lblDiaFolga.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblDiaFolga.Location = new Point(165, 102);
-            lblDiaFolga.Name = "lblDiaFolga";
-            lblDiaFolga.Size = new Size(90, 15);
-            lblDiaFolga.TabIndex = 13;
-            lblDiaFolga.Text = "Folga principal";
-            // 
-            // cmbDiaFolga
-            // 
-            cmbDiaFolga.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbDiaFolga.Items.AddRange(new object[] { "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado" });
-            cmbDiaFolga.Location = new Point(165, 122);
-            cmbDiaFolga.Name = "cmbDiaFolga";
-            cmbDiaFolga.Size = new Size(145, 23);
-            cmbDiaFolga.TabIndex = 14;
-            // 
-            // lblDiaFolga2
-            // 
-            lblDiaFolga2.AutoSize = true;
-            lblDiaFolga2.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblDiaFolga2.Location = new Point(330, 102);
-            lblDiaFolga2.Name = "lblDiaFolga2";
-            lblDiaFolga2.Size = new Size(61, 15);
-            lblDiaFolga2.TabIndex = 15;
-            lblDiaFolga2.Text = "2ª folga";
-            // 
-            // cmbDiaFolga2
-            // 
-            cmbDiaFolga2.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbDiaFolga2.Items.AddRange(new object[] { "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado" });
-            cmbDiaFolga2.Location = new Point(330, 122);
-            cmbDiaFolga2.Name = "cmbDiaFolga2";
-            cmbDiaFolga2.Size = new Size(145, 23);
-            cmbDiaFolga2.TabIndex = 16;
-            // 
-            // lblDataBaseEscala
-            // 
-            lblDataBaseEscala.AutoSize = true;
-            lblDataBaseEscala.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblDataBaseEscala.Location = new Point(495, 102);
-            lblDataBaseEscala.Name = "lblDataBaseEscala";
-            lblDataBaseEscala.Size = new Size(116, 15);
-            lblDataBaseEscala.TabIndex = 17;
-            lblDataBaseEscala.Text = "Data-base da escala";
-            // 
-            // dtpDataBaseEscala
-            // 
-            dtpDataBaseEscala.Format = DateTimePickerFormat.Short;
-            dtpDataBaseEscala.Location = new Point(495, 122);
-            dtpDataBaseEscala.Name = "dtpDataBaseEscala";
-            dtpDataBaseEscala.Size = new Size(125, 23);
-            dtpDataBaseEscala.TabIndex = 18;
-            // 
-            // lblCargaHoraria
-            // 
-            lblCargaHoraria.AutoSize = true;
-            lblCargaHoraria.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblCargaHoraria.Location = new Point(20, 180);
-            lblCargaHoraria.Name = "lblCargaHoraria";
-            lblCargaHoraria.Size = new Size(128, 15);
-            lblCargaHoraria.TabIndex = 19;
-            lblCargaHoraria.Text = "Carga horária semanal";
-            // 
-            // nudCargaHoraria
-            // 
-            nudCargaHoraria.Location = new Point(151, 177);
-            nudCargaHoraria.Maximum = new decimal(new int[] { 60, 0, 0, 0 });
-            nudCargaHoraria.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudCargaHoraria.Name = "nudCargaHoraria";
-            nudCargaHoraria.Size = new Size(52, 23);
-            nudCargaHoraria.TabIndex = 20;
-            nudCargaHoraria.Value = new decimal(new int[] { 44, 0, 0, 0 });
-            // 
-            // lblHorarioEntrada
-            // 
-            lblHorarioEntrada.AutoSize = true;
-            lblHorarioEntrada.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblHorarioEntrada.Location = new Point(271, 180);
-            lblHorarioEntrada.Name = "lblHorarioEntrada";
-            lblHorarioEntrada.Size = new Size(49, 15);
-            lblHorarioEntrada.TabIndex = 21;
-            lblHorarioEntrada.Text = "Entrada";
-            // 
-            // dtpHorarioEntrada
-            // 
-            dtpHorarioEntrada.Format = DateTimePickerFormat.Time;
-            dtpHorarioEntrada.Location = new Point(326, 176);
-            dtpHorarioEntrada.Name = "dtpHorarioEntrada";
-            dtpHorarioEntrada.ShowUpDown = true;
-            dtpHorarioEntrada.Size = new Size(67, 23);
-            dtpHorarioEntrada.TabIndex = 22;
-            dtpHorarioEntrada.Value = new DateTime(2026, 9, 7, 8, 0, 0, 0);
-            // 
-            // lblHorarioSaida
-            // 
-            lblHorarioSaida.AutoSize = true;
-            lblHorarioSaida.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblHorarioSaida.Location = new Point(460, 180);
-            lblHorarioSaida.Name = "lblHorarioSaida";
-            lblHorarioSaida.Size = new Size(36, 15);
-            lblHorarioSaida.TabIndex = 23;
-            lblHorarioSaida.Text = "Saída";
-            // 
-            // dtpHorarioSaida
-            // 
-            dtpHorarioSaida.Format = DateTimePickerFormat.Time;
-            dtpHorarioSaida.Location = new Point(502, 176);
-            dtpHorarioSaida.Name = "dtpHorarioSaida";
-            dtpHorarioSaida.ShowUpDown = true;
-            dtpHorarioSaida.Size = new Size(85, 23);
-            dtpHorarioSaida.TabIndex = 24;
-            dtpHorarioSaida.Value = new DateTime(2026, 9, 7, 17, 0, 0, 0);
-            // 
-            // lblInicioIntervalo
-            // 
-            lblInicioIntervalo.AutoSize = true;
-            lblInicioIntervalo.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblInicioIntervalo.Location = new Point(614, 180);
-            lblInicioIntervalo.Name = "lblInicioIntervalo";
-            lblInicioIntervalo.Size = new Size(58, 15);
-            lblInicioIntervalo.TabIndex = 25;
-            lblInicioIntervalo.Text = "Intervalo";
-            // 
-            // dtpInicioIntervalo
-            // 
-            dtpInicioIntervalo.Format = DateTimePickerFormat.Time;
-            dtpInicioIntervalo.Location = new Point(690, 176);
-            dtpInicioIntervalo.Name = "dtpInicioIntervalo";
-            dtpInicioIntervalo.ShowUpDown = true;
-            dtpInicioIntervalo.Size = new Size(65, 23);
-            dtpInicioIntervalo.TabIndex = 26;
-            dtpInicioIntervalo.Value = new DateTime(2026, 9, 7, 12, 0, 0, 0);
-            // 
-            // lblFimIntervalo
-            // 
-            lblFimIntervalo.AutoSize = true;
-            lblFimIntervalo.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblFimIntervalo.Location = new Point(777, 180);
-            lblFimIntervalo.Name = "lblFimIntervalo";
-            lblFimIntervalo.Size = new Size(27, 15);
-            lblFimIntervalo.TabIndex = 27;
-            lblFimIntervalo.Text = "Até";
-            // 
-            // dtpFimIntervalo
-            // 
-            dtpFimIntervalo.Format = DateTimePickerFormat.Time;
-            dtpFimIntervalo.Location = new Point(810, 176);
-            dtpFimIntervalo.Name = "dtpFimIntervalo";
-            dtpFimIntervalo.ShowUpDown = true;
-            dtpFimIntervalo.Size = new Size(85, 23);
-            dtpFimIntervalo.TabIndex = 28;
-            dtpFimIntervalo.Value = new DateTime(2026, 9, 7, 13, 0, 0, 0);
-            // 
-            // pnlBeneficios
-            // 
-            pnlBeneficios.BackColor = Color.White;
-            pnlBeneficios.BorderStyle = BorderStyle.FixedSingle;
-            pnlBeneficios.Controls.Add(lblBeneficios);
-            pnlBeneficios.Controls.Add(lblNomeBeneficio);
-            pnlBeneficios.Controls.Add(txtNomeBeneficio);
-            pnlBeneficios.Controls.Add(lblTipoDesconto);
-            pnlBeneficios.Controls.Add(rbPercentual);
-            pnlBeneficios.Controls.Add(rbValorFixo);
-            pnlBeneficios.Controls.Add(lblValorDesconto);
-            pnlBeneficios.Controls.Add(nudPercentual);
-            pnlBeneficios.Controls.Add(btnAdicionarBeneficio);
-            pnlBeneficios.Controls.Add(dgvBeneficios);
-            pnlBeneficios.Controls.Add(lblTotalDescontos);
-            pnlBeneficios.Controls.Add(lblSalarioEstimado);
-            pnlBeneficios.Location = new Point(25, 485);
-            pnlBeneficios.Name = "pnlBeneficios";
-            pnlBeneficios.Size = new Size(950, 265);
-            pnlBeneficios.TabIndex = 3;
-            // 
-            // lblBeneficios
-            // 
-            lblBeneficios.AutoSize = true;
-            lblBeneficios.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblBeneficios.ForeColor = Color.FromArgb(21, 101, 192);
-            lblBeneficios.Location = new Point(20, 12);
-            lblBeneficios.Name = "lblBeneficios";
-            lblBeneficios.Size = new Size(160, 19);
-            lblBeneficios.TabIndex = 0;
-            lblBeneficios.Text = "Benefícios e descontos";
-            // 
-            // lblNomeBeneficio
-            // 
-            lblNomeBeneficio.AutoSize = true;
-            lblNomeBeneficio.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblNomeBeneficio.Location = new Point(20, 43);
-            lblNomeBeneficio.Name = "lblNomeBeneficio";
-            lblNomeBeneficio.Size = new Size(113, 15);
-            lblNomeBeneficio.TabIndex = 1;
-            lblNomeBeneficio.Text = "Nome do benefício";
-            // 
-            // txtNomeBeneficio
-            // 
-            txtNomeBeneficio.Location = new Point(20, 63);
-            txtNomeBeneficio.Name = "txtNomeBeneficio";
-            txtNomeBeneficio.Size = new Size(300, 23);
-            txtNomeBeneficio.TabIndex = 2;
-            // 
-            // lblTipoDesconto
-            // 
-            lblTipoDesconto.AutoSize = true;
-            lblTipoDesconto.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblTipoDesconto.Location = new Point(340, 43);
-            lblTipoDesconto.Name = "lblTipoDesconto";
-            lblTipoDesconto.Size = new Size(102, 15);
-            lblTipoDesconto.TabIndex = 3;
-            lblTipoDesconto.Text = "Tipo de desconto";
-            // 
-            // rbPercentual
-            // 
-            rbPercentual.AutoSize = true;
-            rbPercentual.Checked = true;
-            rbPercentual.Font = new Font("Segoe UI", 8.5F);
-            rbPercentual.Location = new Point(340, 64);
-            rbPercentual.Name = "rbPercentual";
-            rbPercentual.Size = new Size(117, 19);
-            rbPercentual.TabIndex = 4;
-            rbPercentual.TabStop = true;
-            rbPercentual.Text = "Porcentagem (%)";
-            // 
-            // rbValorFixo
-            // 
-            rbValorFixo.AutoSize = true;
-            rbValorFixo.Font = new Font("Segoe UI", 8.5F);
-            rbValorFixo.Location = new Point(340, 88);
-            rbValorFixo.Name = "rbValorFixo";
-            rbValorFixo.Size = new Size(98, 19);
-            rbValorFixo.TabIndex = 5;
-            rbValorFixo.Text = "Valor fixo (R$)";
-            // 
-            // lblValorDesconto
-            // 
-            lblValorDesconto.AutoSize = true;
-            lblValorDesconto.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            lblValorDesconto.Location = new Point(540, 43);
-            lblValorDesconto.Name = "lblValorDesconto";
-            lblValorDesconto.Size = new Size(35, 15);
-            lblValorDesconto.TabIndex = 6;
-            lblValorDesconto.Text = "Valor";
-            // 
-            // nudPercentual
-            // 
-            nudPercentual.DecimalPlaces = 2;
-            nudPercentual.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
-            nudPercentual.Location = new Point(540, 63);
-            nudPercentual.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            nudPercentual.Name = "nudPercentual";
-            nudPercentual.Size = new Size(110, 23);
-            nudPercentual.TabIndex = 7;
-            nudPercentual.ThousandsSeparator = true;
-            // 
-            // btnAdicionarBeneficio
-            // 
-            btnAdicionarBeneficio.BackColor = Color.FromArgb(21, 101, 192);
-            btnAdicionarBeneficio.Cursor = Cursors.Hand;
-            btnAdicionarBeneficio.FlatAppearance.BorderSize = 0;
-            btnAdicionarBeneficio.FlatAppearance.MouseDownBackColor = Color.FromArgb(13, 71, 161);
-            btnAdicionarBeneficio.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, 118, 210);
-            btnAdicionarBeneficio.FlatStyle = FlatStyle.Flat;
-            btnAdicionarBeneficio.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAdicionarBeneficio.ForeColor = Color.White;
-            btnAdicionarBeneficio.Location = new Point(680, 60);
-            btnAdicionarBeneficio.Name = "btnAdicionarBeneficio";
-            btnAdicionarBeneficio.Size = new Size(125, 35);
-            btnAdicionarBeneficio.TabIndex = 8;
-            btnAdicionarBeneficio.Text = "+ Adicionar";
-            btnAdicionarBeneficio.UseVisualStyleBackColor = false;
-            btnAdicionarBeneficio.Click += BtnAdicionarBeneficio_Click;
-            // 
-            // dgvBeneficios
-            // 
-            dgvBeneficios.AllowUserToAddRows = false;
-            dgvBeneficios.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(250, 251, 253);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(250, 251, 253);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(35, 45, 55);
-            dgvBeneficios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvBeneficios.BackgroundColor = Color.White;
-            dgvBeneficios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvBeneficios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(245, 247, 250);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(45, 55, 65);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(245, 247, 250);
-            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(45, 55, 65);
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvBeneficios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvBeneficios.ColumnHeadersHeight = 34;
-            dgvBeneficios.Columns.AddRange(new DataGridViewColumn[] { colBeneficio, colTipo, colDesconto, colValorDesconto, colRemoverBeneficio });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(35, 45, 55);
-            dataGridViewCellStyle3.SelectionBackColor = Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(35, 45, 55);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvBeneficios.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvBeneficios.EnableHeadersVisualStyles = false;
-            dgvBeneficios.GridColor = Color.FromArgb(225, 230, 235);
-            dgvBeneficios.Location = new Point(20, 125);
-            dgvBeneficios.MultiSelect = false;
-            dgvBeneficios.Name = "dgvBeneficios";
-            dgvBeneficios.ReadOnly = true;
-            dgvBeneficios.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(35, 45, 55);
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(35, 45, 55);
-            dgvBeneficios.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            dgvBeneficios.RowTemplate.Height = 32;
-            dgvBeneficios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBeneficios.Size = new Size(652, 120);
-            dgvBeneficios.TabIndex = 9;
-            dgvBeneficios.CellContentClick += DgvBeneficios_CellContentClick;
-            // 
-            // colBeneficio
-            // 
-            colBeneficio.HeaderText = "Benefício";
-            colBeneficio.Name = "colBeneficio";
-            colBeneficio.ReadOnly = true;
-            colBeneficio.Width = 190;
-            // 
-            // colTipo
-            // 
-            colTipo.HeaderText = "Tipo";
-            colTipo.Name = "colTipo";
-            colTipo.ReadOnly = true;
-            colTipo.Width = 125;
-            // 
-            // colDesconto
-            // 
-            colDesconto.HeaderText = "Desconto";
-            colDesconto.Name = "colDesconto";
-            colDesconto.ReadOnly = true;
-            colDesconto.Width = 110;
-            // 
-            // colValorDesconto
-            // 
-            colValorDesconto.HeaderText = "Valor";
-            colValorDesconto.Name = "colValorDesconto";
-            colValorDesconto.ReadOnly = true;
-            colValorDesconto.Width = 120;
-            // 
-            // colRemoverBeneficio
-            // 
-            colRemoverBeneficio.HeaderText = "Ação";
-            colRemoverBeneficio.Name = "colRemoverBeneficio";
-            colRemoverBeneficio.ReadOnly = true;
-            colRemoverBeneficio.Text = "Remover";
-            colRemoverBeneficio.UseColumnTextForButtonValue = true;
-            colRemoverBeneficio.Width = 95;
-            // 
-            // lblTotalDescontos
-            // 
-            lblTotalDescontos.AutoSize = true;
-            lblTotalDescontos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblTotalDescontos.ForeColor = Color.FromArgb(80, 90, 100);
-            lblTotalDescontos.Location = new Point(709, 141);
-            lblTotalDescontos.Name = "lblTotalDescontos";
-            lblTotalDescontos.Size = new Size(113, 15);
-            lblTotalDescontos.TabIndex = 10;
-            lblTotalDescontos.Text = "Descontos: R$ 0,00";
-            // 
-            // lblSalarioEstimado
-            // 
-            lblSalarioEstimado.AutoSize = true;
-            lblSalarioEstimado.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblSalarioEstimado.ForeColor = Color.FromArgb(21, 101, 192);
-            lblSalarioEstimado.Location = new Point(709, 178);
-            lblSalarioEstimado.Name = "lblSalarioEstimado";
-            lblSalarioEstimado.Size = new Size(179, 19);
-            lblSalarioEstimado.TabIndex = 11;
-            lblSalarioEstimado.Text = "Salário estimado: R$ 0,00";
-            // 
-            // pnlObservacoes
-            // 
-            pnlObservacoes.BackColor = Color.White;
-            pnlObservacoes.BorderStyle = BorderStyle.FixedSingle;
-            pnlObservacoes.Controls.Add(lblObservacoes);
-            pnlObservacoes.Controls.Add(txtObservacoes);
-            pnlObservacoes.Location = new Point(25, 765);
-            pnlObservacoes.Name = "pnlObservacoes";
-            pnlObservacoes.Size = new Size(950, 80);
-            pnlObservacoes.TabIndex = 4;
-            // 
-            // lblObservacoes
-            // 
-            lblObservacoes.AutoSize = true;
-            lblObservacoes.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblObservacoes.Location = new Point(20, 10);
-            lblObservacoes.Name = "lblObservacoes";
-            lblObservacoes.Size = new Size(78, 15);
-            lblObservacoes.TabIndex = 0;
-            lblObservacoes.Text = "Observações";
-            // 
-            // txtObservacoes
-            // 
-            txtObservacoes.Location = new Point(20, 32);
-            txtObservacoes.Multiline = true;
-            txtObservacoes.Name = "txtObservacoes";
-            txtObservacoes.ScrollBars = ScrollBars.Vertical;
-            txtObservacoes.Size = new Size(900, 35);
-            txtObservacoes.TabIndex = 1;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.BackColor = Color.White;
-            btnCancelar.Cursor = Cursors.Hand;
-            btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(210, 215, 220);
-            btnCancelar.FlatStyle = FlatStyle.Flat;
-            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnCancelar.ForeColor = Color.FromArgb(80, 90, 100);
-            btnCancelar.Location = new Point(705, 870);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(120, 42);
-            btnCancelar.TabIndex = 5;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            // 
-            // btnSalvar
-            // 
-            btnSalvar.BackColor = Color.FromArgb(21, 101, 192);
-            btnSalvar.Cursor = Cursors.Hand;
-            btnSalvar.FlatAppearance.BorderSize = 0;
-            btnSalvar.FlatAppearance.MouseDownBackColor = Color.FromArgb(13, 71, 161);
-            btnSalvar.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, 118, 210);
-            btnSalvar.FlatStyle = FlatStyle.Flat;
-            btnSalvar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSalvar.ForeColor = Color.White;
-            btnSalvar.Location = new Point(835, 870);
-            btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(150, 42);
-            btnSalvar.TabIndex = 6;
-            btnSalvar.Text = "Salvar funcionário";
-            btnSalvar.UseVisualStyleBackColor = false;
-            // 
-            // FrmCadastroFuncionario
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(245, 247, 250);
-            ClientSize = new Size(1000, 930);
-            Controls.Add(pnlCabecalho);
-            Controls.Add(pnlDadosPessoais);
-            Controls.Add(pnlDadosProfissionais);
-            Controls.Add(pnlBeneficios);
-            Controls.Add(pnlObservacoes);
-            Controls.Add(btnCancelar);
-            Controls.Add(btnSalvar);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "FrmCadastroFuncionario";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "RH Control — Novo Funcionário";
-            pnlCabecalho.ResumeLayout(false);
-            pnlCabecalho.PerformLayout();
-            pnlDadosPessoais.ResumeLayout(false);
-            pnlDadosPessoais.PerformLayout();
-            pnlDadosProfissionais.ResumeLayout(false);
-            pnlDadosProfissionais.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudCargaHoraria).EndInit();
-            pnlBeneficios.ResumeLayout(false);
-            pnlBeneficios.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudPercentual).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvBeneficios).EndInit();
-            pnlObservacoes.ResumeLayout(false);
-            pnlObservacoes.PerformLayout();
-            ResumeLayout(false);
+            System.Windows.Forms.DataGridViewCellStyle dgvHeader = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dgvCell = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dgvAlt = new System.Windows.Forms.DataGridViewCellStyle();
+
+            this.components = new System.ComponentModel.Container();
+
+            this.pnlCabecalho = new System.Windows.Forms.Panel();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblSubtitulo = new System.Windows.Forms.Label();
+
+            this.pnlDadosPessoais = new System.Windows.Forms.Panel();
+            this.lblDadosPessoais = new System.Windows.Forms.Label();
+            this.lblNome = new System.Windows.Forms.Label();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.lblCPF = new System.Windows.Forms.Label();
+            this.txtCPF = new System.Windows.Forms.TextBox();
+            this.lblDataNascimento = new System.Windows.Forms.Label();
+            this.dtpDataNascimento = new System.Windows.Forms.DateTimePicker();
+            this.lblTelefone = new System.Windows.Forms.Label();
+            this.txtTelefone = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+
+            this.pnlDadosProfissionais = new System.Windows.Forms.Panel();
+            this.lblDadosProfissionais = new System.Windows.Forms.Label();
+            this.lblCargo = new System.Windows.Forms.Label();
+            this.txtCargo = new System.Windows.Forms.TextBox();
+            this.lblSetor = new System.Windows.Forms.Label();
+            this.txtSetor = new System.Windows.Forms.TextBox();
+            this.lblDataAdmissao = new System.Windows.Forms.Label();
+            this.dtpDataAdmissao = new System.Windows.Forms.DateTimePicker();
+            this.lblSalario = new System.Windows.Forms.Label();
+            this.txtSalario = new System.Windows.Forms.TextBox();
+            this.lblTipoJornada = new System.Windows.Forms.Label();
+            this.cmbTipoJornada = new System.Windows.Forms.ComboBox();
+            this.lblEscala = new System.Windows.Forms.Label();
+            this.cmbEscala = new System.Windows.Forms.ComboBox();
+            this.lblDiaFolga = new System.Windows.Forms.Label();
+            this.cmbDiaFolga = new System.Windows.Forms.ComboBox();
+            this.lblDiaFolga2 = new System.Windows.Forms.Label();
+            this.cmbDiaFolga2 = new System.Windows.Forms.ComboBox();
+            this.lblDataBaseEscala = new System.Windows.Forms.Label();
+            this.dtpDataBaseEscala = new System.Windows.Forms.DateTimePicker();
+
+            this.pnlJornada = new System.Windows.Forms.Panel();
+            this.lblJornadaTitulo = new System.Windows.Forms.Label();
+            this.lblJornadaSubtitulo = new System.Windows.Forms.Label();
+            this.lblCargaHoraria = new System.Windows.Forms.Label();
+            this.nudCargaHoraria = new System.Windows.Forms.NumericUpDown();
+            this.lblHorarioEntrada = new System.Windows.Forms.Label();
+            this.dtpHorarioEntrada = new System.Windows.Forms.DateTimePicker();
+            this.lblHorarioSaida = new System.Windows.Forms.Label();
+            this.dtpHorarioSaida = new System.Windows.Forms.DateTimePicker();
+            this.lblInicioIntervalo = new System.Windows.Forms.Label();
+            this.dtpInicioIntervalo = new System.Windows.Forms.DateTimePicker();
+            this.lblFimIntervalo = new System.Windows.Forms.Label();
+            this.dtpFimIntervalo = new System.Windows.Forms.DateTimePicker();
+
+            this.pnlBeneficios = new System.Windows.Forms.Panel();
+            this.lblBeneficios = new System.Windows.Forms.Label();
+            this.lblBeneficiosSubtitulo = new System.Windows.Forms.Label();
+            this.lblNomeBeneficio = new System.Windows.Forms.Label();
+            this.txtNomeBeneficio = new System.Windows.Forms.TextBox();
+            this.lblTipoDesconto = new System.Windows.Forms.Label();
+            this.rbPercentual = new System.Windows.Forms.RadioButton();
+            this.rbValorFixo = new System.Windows.Forms.RadioButton();
+            this.lblValorDesconto = new System.Windows.Forms.Label();
+            this.nudPercentual = new System.Windows.Forms.NumericUpDown();
+            this.btnAdicionarBeneficio = new System.Windows.Forms.Button();
+            this.dgvBeneficios = new System.Windows.Forms.DataGridView();
+            this.colBeneficio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDesconto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colValorDesconto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRemoverBeneficio = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lblTotalDescontos = new System.Windows.Forms.Label();
+            this.lblSalarioEstimado = new System.Windows.Forms.Label();
+
+            this.pnlObservacoes = new System.Windows.Forms.Panel();
+            this.lblObservacoes = new System.Windows.Forms.Label();
+            this.lblObservacoesSubtitulo = new System.Windows.Forms.Label();
+            this.txtObservacoes = new System.Windows.Forms.TextBox();
+
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
+
+            this.SuspendLayout();
+            this.pnlCabecalho.SuspendLayout();
+            this.pnlDadosPessoais.SuspendLayout();
+            this.pnlDadosProfissionais.SuspendLayout();
+            this.pnlJornada.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCargaHoraria)).BeginInit();
+            this.pnlBeneficios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPercentual)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficios)).BeginInit();
+            this.pnlObservacoes.SuspendLayout();
+
+            // =========================
+            // FORM
+            // =========================
+
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(244, 247, 251);
+            this.ClientSize = new System.Drawing.Size(1100, 940);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "RH Control — Novo Funcionário";
+
+            // =========================
+            // CABEÇALHO
+            // =========================
+
+            this.pnlCabecalho.BackColor = System.Drawing.Color.FromArgb(10, 60, 105);
+            this.pnlCabecalho.Location = new System.Drawing.Point(0, 0);
+            this.pnlCabecalho.Size = new System.Drawing.Size(1100, 105);
+            this.pnlCabecalho.Controls.Add(this.lblTitulo);
+            this.pnlCabecalho.Controls.Add(this.lblSubtitulo);
+
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font(
+                "Segoe UI", 25F,
+                System.Drawing.FontStyle.Bold);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(38, 22);
+            this.lblTitulo.Text = "Novo Funcionário";
+
+            this.lblSubtitulo.AutoSize = true;
+            this.lblSubtitulo.Font = new System.Drawing.Font(
+                "Segoe UI", 9.5F);
+            this.lblSubtitulo.ForeColor =
+                System.Drawing.Color.FromArgb(205, 225, 245);
+            this.lblSubtitulo.Location = new System.Drawing.Point(42, 67);
+            this.lblSubtitulo.Text =
+                "Cadastre as informações pessoais e profissionais do colaborador";
+
+            // =========================
+            // DADOS PESSOAIS
+            // =========================
+
+            this.pnlDadosPessoais.BackColor = System.Drawing.Color.White;
+            this.pnlDadosPessoais.BorderStyle =
+                System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDadosPessoais.Location = new System.Drawing.Point(25, 125);
+            this.pnlDadosPessoais.Size = new System.Drawing.Size(1050, 135);
+
+            this.pnlDadosPessoais.Controls.Add(this.lblDadosPessoais);
+            this.pnlDadosPessoais.Controls.Add(this.lblNome);
+            this.pnlDadosPessoais.Controls.Add(this.txtNome);
+            this.pnlDadosPessoais.Controls.Add(this.lblCPF);
+            this.pnlDadosPessoais.Controls.Add(this.txtCPF);
+            this.pnlDadosPessoais.Controls.Add(this.lblDataNascimento);
+            this.pnlDadosPessoais.Controls.Add(this.dtpDataNascimento);
+            this.pnlDadosPessoais.Controls.Add(this.lblTelefone);
+            this.pnlDadosPessoais.Controls.Add(this.txtTelefone);
+            this.pnlDadosPessoais.Controls.Add(this.lblEmail);
+            this.pnlDadosPessoais.Controls.Add(this.txtEmail);
+
+            this.lblDadosPessoais.AutoSize = true;
+            this.lblDadosPessoais.Font =
+                new System.Drawing.Font("Segoe UI", 11F,
+                System.Drawing.FontStyle.Bold);
+            this.lblDadosPessoais.ForeColor =
+                System.Drawing.Color.FromArgb(21, 101, 192);
+            this.lblDadosPessoais.Location =
+                new System.Drawing.Point(20, 12);
+            this.lblDadosPessoais.Text = "Dados pessoais";
+
+            this.lblNome.AutoSize = true;
+            this.lblNome.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblNome.Location = new System.Drawing.Point(20, 43);
+            this.lblNome.Text = "Nome completo *";
+
+            this.txtNome.Font =
+                new System.Drawing.Font("Segoe UI", 10F);
+            this.txtNome.Location = new System.Drawing.Point(20, 64);
+            this.txtNome.Size = new System.Drawing.Size(390, 25);
+            this.txtNome.Name = "txtNome";
+
+            this.lblCPF.AutoSize = true;
+            this.lblCPF.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblCPF.Location = new System.Drawing.Point(430, 43);
+            this.lblCPF.Text = "CPF";
+
+            this.txtCPF.Font =
+                new System.Drawing.Font("Segoe UI", 10F);
+            this.txtCPF.Location = new System.Drawing.Point(430, 64);
+            this.txtCPF.Size = new System.Drawing.Size(180, 25);
+            this.txtCPF.Name = "txtCPF";
+
+            this.lblDataNascimento.AutoSize = true;
+            this.lblDataNascimento.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblDataNascimento.Location =
+                new System.Drawing.Point(630, 43);
+            this.lblDataNascimento.Text = "Data de nascimento";
+
+            this.dtpDataNascimento.Format =
+                System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataNascimento.Location =
+                new System.Drawing.Point(630, 64);
+            this.dtpDataNascimento.Size =
+                new System.Drawing.Size(145, 25);
+            this.dtpDataNascimento.Name = "dtpDataNascimento";
+
+            this.lblTelefone.AutoSize = true;
+            this.lblTelefone.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblTelefone.Location =
+                new System.Drawing.Point(795, 43);
+            this.lblTelefone.Text = "Telefone";
+
+            this.txtTelefone.Font =
+                new System.Drawing.Font("Segoe UI", 10F);
+            this.txtTelefone.Location =
+                new System.Drawing.Point(795, 64);
+            this.txtTelefone.Size =
+                new System.Drawing.Size(225, 25);
+            this.txtTelefone.Name = "txtTelefone";
+
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblEmail.Location =
+                new System.Drawing.Point(20, 101);
+            this.lblEmail.Text = "E-mail";
+
+            this.txtEmail.Font =
+                new System.Drawing.Font("Segoe UI", 10F);
+            this.txtEmail.Location =
+                new System.Drawing.Point(70, 98);
+            this.txtEmail.Size =
+                new System.Drawing.Size(540, 25);
+            this.txtEmail.Name = "txtEmail";
+
+            // =========================
+            // DADOS PROFISSIONAIS
+            // =========================
+
+            this.pnlDadosProfissionais.BackColor =
+                System.Drawing.Color.White;
+            this.pnlDadosProfissionais.BorderStyle =
+                System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDadosProfissionais.Location =
+                new System.Drawing.Point(25, 275);
+            this.pnlDadosProfissionais.Size =
+                new System.Drawing.Size(1050, 175);
+
+            this.pnlDadosProfissionais.Controls.Add(this.lblDadosProfissionais);
+            this.pnlDadosProfissionais.Controls.Add(this.lblCargo);
+            this.pnlDadosProfissionais.Controls.Add(this.txtCargo);
+            this.pnlDadosProfissionais.Controls.Add(this.lblSetor);
+            this.pnlDadosProfissionais.Controls.Add(this.txtSetor);
+            this.pnlDadosProfissionais.Controls.Add(this.lblDataAdmissao);
+            this.pnlDadosProfissionais.Controls.Add(this.dtpDataAdmissao);
+            this.pnlDadosProfissionais.Controls.Add(this.lblSalario);
+            this.pnlDadosProfissionais.Controls.Add(this.txtSalario);
+            this.pnlDadosProfissionais.Controls.Add(this.lblTipoJornada);
+            this.pnlDadosProfissionais.Controls.Add(this.cmbTipoJornada);
+            this.pnlDadosProfissionais.Controls.Add(this.lblEscala);
+            this.pnlDadosProfissionais.Controls.Add(this.cmbEscala);
+            this.pnlDadosProfissionais.Controls.Add(this.lblDiaFolga);
+            this.pnlDadosProfissionais.Controls.Add(this.cmbDiaFolga);
+            this.pnlDadosProfissionais.Controls.Add(this.lblDiaFolga2);
+            this.pnlDadosProfissionais.Controls.Add(this.cmbDiaFolga2);
+            this.pnlDadosProfissionais.Controls.Add(this.lblDataBaseEscala);
+            this.pnlDadosProfissionais.Controls.Add(this.dtpDataBaseEscala);
+
+            this.lblDadosProfissionais.AutoSize = true;
+            this.lblDadosProfissionais.Font =
+                new System.Drawing.Font("Segoe UI", 11F,
+                System.Drawing.FontStyle.Bold);
+            this.lblDadosProfissionais.ForeColor =
+                System.Drawing.Color.FromArgb(21, 101, 192);
+            this.lblDadosProfissionais.Location =
+                new System.Drawing.Point(20, 12);
+            this.lblDadosProfissionais.Text =
+                "Dados profissionais";
+
+            this.lblCargo.AutoSize = true;
+            this.lblCargo.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblCargo.Location =
+                new System.Drawing.Point(20, 43);
+            this.lblCargo.Text = "Cargo *";
+
+            this.txtCargo.Font =
+                new System.Drawing.Font("Segoe UI", 10F);
+            this.txtCargo.Location =
+                new System.Drawing.Point(20, 64);
+            this.txtCargo.Size =
+                new System.Drawing.Size(250, 25);
+            this.txtCargo.Name = "txtCargo";
+
+            this.lblSetor.AutoSize = true;
+            this.lblSetor.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblSetor.Location =
+                new System.Drawing.Point(290, 43);
+            this.lblSetor.Text = "Setor";
+
+            this.txtSetor.Font =
+                new System.Drawing.Font("Segoe UI", 10F);
+            this.txtSetor.Location =
+                new System.Drawing.Point(290, 64);
+            this.txtSetor.Size =
+                new System.Drawing.Size(180, 25);
+            this.txtSetor.Name = "txtSetor";
+
+            this.lblDataAdmissao.AutoSize = true;
+            this.lblDataAdmissao.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblDataAdmissao.Location =
+                new System.Drawing.Point(490, 43);
+            this.lblDataAdmissao.Text =
+                "Data de admissão *";
+
+            this.dtpDataAdmissao.Format =
+                System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataAdmissao.Location =
+                new System.Drawing.Point(490, 64);
+            this.dtpDataAdmissao.Size =
+                new System.Drawing.Size(145, 25);
+            this.dtpDataAdmissao.Name =
+                "dtpDataAdmissao";
+
+            this.lblSalario.AutoSize = true;
+            this.lblSalario.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblSalario.Location =
+                new System.Drawing.Point(655, 43);
+            this.lblSalario.Text = "Salário *";
+
+            this.txtSalario.Font =
+                new System.Drawing.Font("Segoe UI", 10F);
+            this.txtSalario.Location =
+                new System.Drawing.Point(655, 64);
+            this.txtSalario.Size =
+                new System.Drawing.Size(145, 25);
+            this.txtSalario.Name =
+                "txtSalario";
+
+            this.lblTipoJornada.AutoSize = true;
+            this.lblTipoJornada.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblTipoJornada.Location =
+                new System.Drawing.Point(820, 43);
+            this.lblTipoJornada.Text =
+                "Tipo de jornada";
+
+            this.cmbTipoJornada.DropDownStyle =
+                System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoJornada.Font =
+                new System.Drawing.Font("Segoe UI", 9F);
+            this.cmbTipoJornada.Items.AddRange(
+                new object[] { "Jornada fixa", "Por escala" });
+            this.cmbTipoJornada.Location =
+                new System.Drawing.Point(820, 64);
+            this.cmbTipoJornada.Size =
+                new System.Drawing.Size(200, 25);
+            this.cmbTipoJornada.Name =
+                "cmbTipoJornada";
+
+            this.lblEscala.AutoSize = true;
+            this.lblEscala.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblEscala.Location =
+                new System.Drawing.Point(20, 105);
+            this.lblEscala.Text = "Escala *";
+
+            this.cmbEscala.DropDownStyle =
+                System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEscala.Font =
+                new System.Drawing.Font("Segoe UI", 9F);
+            this.cmbEscala.Items.AddRange(
+                new object[] { "5x2", "6x1", "12x36", "4x2", "5x1", "Outra" });
+            this.cmbEscala.Location =
+                new System.Drawing.Point(20, 126);
+            this.cmbEscala.Size =
+                new System.Drawing.Size(130, 25);
+            this.cmbEscala.Name =
+                "cmbEscala";
+
+            this.lblDiaFolga.AutoSize = true;
+            this.lblDiaFolga.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblDiaFolga.Location =
+                new System.Drawing.Point(175, 105);
+            this.lblDiaFolga.Text =
+                "Folga principal";
+
+            this.cmbDiaFolga.DropDownStyle =
+                System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDiaFolga.Font =
+                new System.Drawing.Font("Segoe UI", 9F);
+            this.cmbDiaFolga.Items.AddRange(
+                new object[]
+                {
+                    "Domingo",
+                    "Segunda-feira",
+                    "Terça-feira",
+                    "Quarta-feira",
+                    "Quinta-feira",
+                    "Sexta-feira",
+                    "Sábado"
+                });
+            this.cmbDiaFolga.Location =
+                new System.Drawing.Point(175, 126);
+            this.cmbDiaFolga.Size =
+                new System.Drawing.Size(150, 25);
+            this.cmbDiaFolga.Name =
+                "cmbDiaFolga";
+
+            this.lblDiaFolga2.AutoSize = true;
+            this.lblDiaFolga2.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblDiaFolga2.Location =
+                new System.Drawing.Point(350, 105);
+            this.lblDiaFolga2.Text =
+                "2ª folga";
+
+            this.cmbDiaFolga2.DropDownStyle =
+                System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDiaFolga2.Font =
+                new System.Drawing.Font("Segoe UI", 9F);
+            this.cmbDiaFolga2.Items.AddRange(
+                new object[]
+                {
+                    "Domingo",
+                    "Segunda-feira",
+                    "Terça-feira",
+                    "Quarta-feira",
+                    "Quinta-feira",
+                    "Sexta-feira",
+                    "Sábado"
+                });
+            this.cmbDiaFolga2.Location =
+                new System.Drawing.Point(350, 126);
+            this.cmbDiaFolga2.Size =
+                new System.Drawing.Size(150, 25);
+            this.cmbDiaFolga2.Name =
+                "cmbDiaFolga2";
+
+            this.lblDataBaseEscala.AutoSize = true;
+            this.lblDataBaseEscala.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblDataBaseEscala.Location =
+                new System.Drawing.Point(525, 105);
+            this.lblDataBaseEscala.Text =
+                "Data-base da escala";
+
+            this.dtpDataBaseEscala.Format =
+                System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataBaseEscala.Location =
+                new System.Drawing.Point(525, 126);
+            this.dtpDataBaseEscala.Size =
+                new System.Drawing.Size(145, 25);
+            this.dtpDataBaseEscala.Name =
+                "dtpDataBaseEscala";
+
+            // =========================
+            // JORNADA
+            // =========================
+
+            this.pnlJornada.BackColor =
+                System.Drawing.Color.FromArgb(237, 246, 255);
+            this.pnlJornada.BorderStyle =
+                System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlJornada.Location =
+                new System.Drawing.Point(25, 465);
+            this.pnlJornada.Size =
+                new System.Drawing.Size(1050, 105);
+
+            this.pnlJornada.Controls.Add(this.lblJornadaTitulo);
+            this.pnlJornada.Controls.Add(this.lblJornadaSubtitulo);
+            this.pnlJornada.Controls.Add(this.lblCargaHoraria);
+            this.pnlJornada.Controls.Add(this.nudCargaHoraria);
+            this.pnlJornada.Controls.Add(this.lblHorarioEntrada);
+            this.pnlJornada.Controls.Add(this.dtpHorarioEntrada);
+            this.pnlJornada.Controls.Add(this.lblHorarioSaida);
+            this.pnlJornada.Controls.Add(this.dtpHorarioSaida);
+            this.pnlJornada.Controls.Add(this.lblInicioIntervalo);
+            this.pnlJornada.Controls.Add(this.dtpInicioIntervalo);
+            this.pnlJornada.Controls.Add(this.lblFimIntervalo);
+            this.pnlJornada.Controls.Add(this.dtpFimIntervalo);
+
+            this.lblJornadaTitulo.AutoSize = true;
+            this.lblJornadaTitulo.Font =
+                new System.Drawing.Font("Segoe UI", 10.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblJornadaTitulo.ForeColor =
+                System.Drawing.Color.FromArgb(21, 101, 192);
+            this.lblJornadaTitulo.Location =
+                new System.Drawing.Point(20, 10);
+            this.lblJornadaTitulo.Text =
+                "Jornada de trabalho";
+
+            this.lblJornadaSubtitulo.AutoSize = true;
+            this.lblJornadaSubtitulo.Font =
+                new System.Drawing.Font("Segoe UI", 8F);
+            this.lblJornadaSubtitulo.ForeColor =
+                System.Drawing.Color.FromArgb(90, 120, 150);
+            this.lblJornadaSubtitulo.Location =
+                new System.Drawing.Point(180, 13);
+            this.lblJornadaSubtitulo.Text =
+                "Configure os horários e a carga horária semanal";
+
+            this.lblCargaHoraria.AutoSize = true;
+            this.lblCargaHoraria.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblCargaHoraria.Location =
+                new System.Drawing.Point(20, 53);
+            this.lblCargaHoraria.Text =
+                "Carga horária semanal";
+
+            this.nudCargaHoraria.Location =
+                new System.Drawing.Point(145, 50);
+            this.nudCargaHoraria.Maximum =
+                new decimal(new int[] { 60, 0, 0, 0 });
+            this.nudCargaHoraria.Minimum =
+                new decimal(new int[] { 1, 0, 0, 0 });
+            this.nudCargaHoraria.Value =
+                new decimal(new int[] { 44, 0, 0, 0 });
+            this.nudCargaHoraria.Size =
+                new System.Drawing.Size(60, 25);
+            this.nudCargaHoraria.Name =
+                "nudCargaHoraria";
+
+            this.lblHorarioEntrada.AutoSize = true;
+            this.lblHorarioEntrada.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblHorarioEntrada.Location =
+                new System.Drawing.Point(240, 53);
+            this.lblHorarioEntrada.Text =
+                "Entrada";
+
+            this.dtpHorarioEntrada.Format =
+                System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpHorarioEntrada.ShowUpDown = true;
+            this.dtpHorarioEntrada.Location =
+                new System.Drawing.Point(295, 49);
+            this.dtpHorarioEntrada.Size =
+                new System.Drawing.Size(80, 25);
+            this.dtpHorarioEntrada.Name =
+                "dtpHorarioEntrada";
+            this.dtpHorarioEntrada.Value =
+                new System.DateTime(2026, 9, 8, 8, 0, 0);
+
+            this.lblHorarioSaida.AutoSize = true;
+            this.lblHorarioSaida.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblHorarioSaida.Location =
+                new System.Drawing.Point(410, 53);
+            this.lblHorarioSaida.Text =
+                "Saída";
+
+            this.dtpHorarioSaida.Format =
+                System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpHorarioSaida.ShowUpDown = true;
+            this.dtpHorarioSaida.Location =
+                new System.Drawing.Point(450, 49);
+            this.dtpHorarioSaida.Size =
+                new System.Drawing.Size(85, 25);
+            this.dtpHorarioSaida.Name =
+                "dtpHorarioSaida";
+            this.dtpHorarioSaida.Value =
+                new System.DateTime(2026, 9, 8, 17, 0, 0);
+
+            this.lblInicioIntervalo.AutoSize = true;
+            this.lblInicioIntervalo.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblInicioIntervalo.Location =
+                new System.Drawing.Point(570, 53);
+            this.lblInicioIntervalo.Text =
+                "Início intervalo";
+
+            this.dtpInicioIntervalo.Format =
+                System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpInicioIntervalo.ShowUpDown = true;
+            this.dtpInicioIntervalo.Location =
+                new System.Drawing.Point(665, 49);
+            this.dtpInicioIntervalo.Size =
+                new System.Drawing.Size(85, 25);
+            this.dtpInicioIntervalo.Name =
+                "dtpInicioIntervalo";
+            this.dtpInicioIntervalo.Value =
+                new System.DateTime(2026, 9, 8, 12, 0, 0);
+
+            this.lblFimIntervalo.AutoSize = true;
+            this.lblFimIntervalo.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblFimIntervalo.Location =
+                new System.Drawing.Point(785, 53);
+            this.lblFimIntervalo.Text =
+                "Fim intervalo";
+
+            this.dtpFimIntervalo.Format =
+                System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpFimIntervalo.ShowUpDown = true;
+            this.dtpFimIntervalo.Location =
+                new System.Drawing.Point(875, 49);
+            this.dtpFimIntervalo.Size =
+                new System.Drawing.Size(90, 25);
+            this.dtpFimIntervalo.Name =
+                "dtpFimIntervalo";
+            this.dtpFimIntervalo.Value =
+                new System.DateTime(2026, 9, 8, 13, 0, 0);
+
+            // =========================
+            // BENEFÍCIOS
+            // =========================
+
+            this.pnlBeneficios.BackColor =
+                System.Drawing.Color.White;
+            this.pnlBeneficios.BorderStyle =
+                System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBeneficios.Location =
+                new System.Drawing.Point(25, 585);
+            this.pnlBeneficios.Size =
+                new System.Drawing.Size(1050, 225);
+
+            this.pnlBeneficios.Controls.Add(this.lblBeneficios);
+            this.pnlBeneficios.Controls.Add(this.lblBeneficiosSubtitulo);
+            this.pnlBeneficios.Controls.Add(this.lblNomeBeneficio);
+            this.pnlBeneficios.Controls.Add(this.txtNomeBeneficio);
+            this.pnlBeneficios.Controls.Add(this.lblTipoDesconto);
+            this.pnlBeneficios.Controls.Add(this.rbPercentual);
+            this.pnlBeneficios.Controls.Add(this.rbValorFixo);
+            this.pnlBeneficios.Controls.Add(this.lblValorDesconto);
+            this.pnlBeneficios.Controls.Add(this.nudPercentual);
+            this.pnlBeneficios.Controls.Add(this.btnAdicionarBeneficio);
+            this.pnlBeneficios.Controls.Add(this.dgvBeneficios);
+            this.pnlBeneficios.Controls.Add(this.lblTotalDescontos);
+            this.pnlBeneficios.Controls.Add(this.lblSalarioEstimado);
+
+            this.lblBeneficios.AutoSize = true;
+            this.lblBeneficios.Font =
+                new System.Drawing.Font("Segoe UI", 11F,
+                System.Drawing.FontStyle.Bold);
+            this.lblBeneficios.ForeColor =
+                System.Drawing.Color.FromArgb(21, 101, 192);
+            this.lblBeneficios.Location =
+                new System.Drawing.Point(20, 10);
+            this.lblBeneficios.Text =
+                "Benefícios e descontos";
+
+            this.lblBeneficiosSubtitulo.AutoSize = true;
+            this.lblBeneficiosSubtitulo.Font =
+                new System.Drawing.Font("Segoe UI", 8F);
+            this.lblBeneficiosSubtitulo.ForeColor =
+                System.Drawing.Color.FromArgb(105, 125, 145);
+            this.lblBeneficiosSubtitulo.Location =
+                new System.Drawing.Point(190, 13);
+            this.lblBeneficiosSubtitulo.Text =
+                "Adicione benefícios e configure os descontos";
+
+            this.lblNomeBeneficio.AutoSize = true;
+            this.lblNomeBeneficio.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblNomeBeneficio.Location =
+                new System.Drawing.Point(20, 43);
+            this.lblNomeBeneficio.Text =
+                "Nome do benefício";
+
+            this.txtNomeBeneficio.Font =
+                new System.Drawing.Font("Segoe UI", 9.5F);
+            this.txtNomeBeneficio.Location =
+                new System.Drawing.Point(20, 64);
+            this.txtNomeBeneficio.Size =
+                new System.Drawing.Size(300, 24);
+            this.txtNomeBeneficio.Name =
+                "txtNomeBeneficio";
+
+            this.lblTipoDesconto.AutoSize = true;
+            this.lblTipoDesconto.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblTipoDesconto.Location =
+                new System.Drawing.Point(345, 43);
+            this.lblTipoDesconto.Text =
+                "Tipo de desconto";
+
+            this.rbPercentual.AutoSize = true;
+            this.rbPercentual.Checked = true;
+            this.rbPercentual.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F);
+            this.rbPercentual.Location =
+                new System.Drawing.Point(345, 64);
+            this.rbPercentual.Name =
+                "rbPercentual";
+            this.rbPercentual.Text =
+                "Percentual (%)";
+
+            this.rbValorFixo.AutoSize = true;
+            this.rbValorFixo.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F);
+            this.rbValorFixo.Location =
+                new System.Drawing.Point(345, 88);
+            this.rbValorFixo.Name =
+                "rbValorFixo";
+            this.rbValorFixo.Text =
+                "Valor fixo (R$)";
+
+            this.lblValorDesconto.AutoSize = true;
+            this.lblValorDesconto.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            this.lblValorDesconto.Location =
+                new System.Drawing.Point(530, 43);
+            this.lblValorDesconto.Text =
+                "Valor";
+
+            this.nudPercentual.DecimalPlaces = 2;
+            this.nudPercentual.Increment =
+                new decimal(new int[] { 5, 0, 0, 65536 });
+            this.nudPercentual.Maximum =
+                new decimal(new int[] { 100000, 0, 0, 0 });
+            this.nudPercentual.Location =
+                new System.Drawing.Point(530, 64);
+            this.nudPercentual.Size =
+                new System.Drawing.Size(105, 25);
+            this.nudPercentual.Name =
+                "nudPercentual";
+
+            this.btnAdicionarBeneficio.BackColor =
+                System.Drawing.Color.FromArgb(21, 101, 192);
+            this.btnAdicionarBeneficio.Cursor =
+                System.Windows.Forms.Cursors.Hand;
+            this.btnAdicionarBeneficio.FlatAppearance.BorderSize = 0;
+            this.btnAdicionarBeneficio.FlatAppearance.MouseOverBackColor =
+                System.Drawing.Color.FromArgb(25, 118, 210);
+            this.btnAdicionarBeneficio.FlatStyle =
+                System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdicionarBeneficio.Font =
+                new System.Drawing.Font("Segoe UI", 9F,
+                System.Drawing.FontStyle.Bold);
+            this.btnAdicionarBeneficio.ForeColor =
+                System.Drawing.Color.White;
+            this.btnAdicionarBeneficio.Location =
+                new System.Drawing.Point(660, 61);
+            this.btnAdicionarBeneficio.Size =
+                new System.Drawing.Size(140, 38);
+            this.btnAdicionarBeneficio.Name =
+                "btnAdicionarBeneficio";
+            this.btnAdicionarBeneficio.Text =
+                "+ Adicionar";
+
+            // TABELA BENEFÍCIOS
+
+            dgvHeader.Alignment =
+                System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dgvHeader.BackColor =
+                System.Drawing.Color.FromArgb(235, 242, 249);
+            dgvHeader.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F,
+                System.Drawing.FontStyle.Bold);
+            dgvHeader.ForeColor =
+                System.Drawing.Color.FromArgb(30, 55, 80);
+            dgvHeader.SelectionBackColor =
+                System.Drawing.Color.FromArgb(235, 242, 249);
+            dgvHeader.SelectionForeColor =
+                System.Drawing.Color.FromArgb(30, 55, 80);
+
+            dgvCell.BackColor = System.Drawing.Color.White;
+            dgvCell.Font =
+                new System.Drawing.Font("Segoe UI", 8.5F);
+            dgvCell.ForeColor =
+                System.Drawing.Color.FromArgb(45, 60, 75);
+            dgvCell.SelectionBackColor =
+                System.Drawing.Color.FromArgb(225, 239, 255);
+            dgvCell.SelectionForeColor =
+                System.Drawing.Color.FromArgb(25, 55, 85);
+
+            dgvAlt.BackColor =
+                System.Drawing.Color.FromArgb(249, 251, 253);
+
+            this.dgvBeneficios.AllowUserToAddRows = false;
+            this.dgvBeneficios.AllowUserToDeleteRows = false;
+            this.dgvBeneficios.AllowUserToResizeRows = false;
+            this.dgvBeneficios.BackgroundColor =
+                System.Drawing.Color.White;
+            this.dgvBeneficios.BorderStyle =
+                System.Windows.Forms.BorderStyle.None;
+            this.dgvBeneficios.CellBorderStyle =
+                System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvBeneficios.ColumnHeadersDefaultCellStyle =
+                dgvHeader;
+            this.dgvBeneficios.ColumnHeadersHeight = 35;
+            this.dgvBeneficios.DefaultCellStyle =
+                dgvCell;
+            this.dgvBeneficios.AlternatingRowsDefaultCellStyle =
+                dgvAlt;
+            this.dgvBeneficios.EnableHeadersVisualStyles = false;
+            this.dgvBeneficios.GridColor =
+                System.Drawing.Color.FromArgb(225, 232, 240);
+            this.dgvBeneficios.Location =
+                new System.Drawing.Point(20, 120);
+            this.dgvBeneficios.MultiSelect = false;
+            this.dgvBeneficios.Name =
+                "dgvBeneficios";
+            this.dgvBeneficios.ReadOnly = true;
+            this.dgvBeneficios.RowHeadersVisible = false;
+            this.dgvBeneficios.RowTemplate.Height = 30;
+            this.dgvBeneficios.SelectionMode =
+                System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBeneficios.Size =
+                new System.Drawing.Size(650, 88);
+
+            this.colBeneficio.HeaderText =
+                "Benefício";
+            this.colBeneficio.Name =
+                "colBeneficio";
+            this.colBeneficio.ReadOnly = true;
+            this.colBeneficio.Width = 190;
+
+            this.colTipo.HeaderText =
+                "Tipo";
+            this.colTipo.Name =
+                "colTipo";
+            this.colTipo.ReadOnly = true;
+            this.colTipo.Width = 120;
+
+            this.colDesconto.HeaderText =
+                "Desconto";
+            this.colDesconto.Name =
+                "colDesconto";
+            this.colDesconto.ReadOnly = true;
+            this.colDesconto.Width = 110;
+
+            this.colValorDesconto.HeaderText =
+                "Valor";
+            this.colValorDesconto.Name =
+                "colValorDesconto";
+            this.colValorDesconto.ReadOnly = true;
+            this.colValorDesconto.Width = 120;
+
+            this.colRemoverBeneficio.HeaderText =
+                "Ação";
+            this.colRemoverBeneficio.Name =
+                "colRemoverBeneficio";
+            this.colRemoverBeneficio.ReadOnly = true;
+            this.colRemoverBeneficio.Text =
+                "Remover";
+            this.colRemoverBeneficio.UseColumnTextForButtonValue = true;
+            this.colRemoverBeneficio.Width = 90;
+
+            this.dgvBeneficios.Columns.AddRange(
+                new System.Windows.Forms.DataGridViewColumn[]
+                {
+                    this.colBeneficio,
+                    this.colTipo,
+                    this.colDesconto,
+                    this.colValorDesconto,
+                    this.colRemoverBeneficio
+                });
+
+            this.lblTotalDescontos.AutoSize = true;
+            this.lblTotalDescontos.Font =
+                new System.Drawing.Font("Segoe UI", 9F,
+                System.Drawing.FontStyle.Bold);
+            this.lblTotalDescontos.ForeColor =
+                System.Drawing.Color.FromArgb(90, 105, 120);
+            this.lblTotalDescontos.Location =
+                new System.Drawing.Point(705, 135);
+            this.lblTotalDescontos.Name =
+                "lblTotalDescontos";
+            this.lblTotalDescontos.Text =
+                "Descontos: R$ 0,00";
+
+            this.lblSalarioEstimado.AutoSize = true;
+            this.lblSalarioEstimado.Font =
+                new System.Drawing.Font("Segoe UI", 11F,
+                System.Drawing.FontStyle.Bold);
+            this.lblSalarioEstimado.ForeColor =
+                System.Drawing.Color.FromArgb(21, 101, 192);
+            this.lblSalarioEstimado.Location =
+                new System.Drawing.Point(705, 172);
+            this.lblSalarioEstimado.Name =
+                "lblSalarioEstimado";
+            this.lblSalarioEstimado.Text =
+                "Salário estimado: R$ 0,00";
+
+            // =========================
+            // OBSERVAÇÕES
+            // =========================
+
+            this.pnlObservacoes.BackColor =
+                System.Drawing.Color.White;
+            this.pnlObservacoes.BorderStyle =
+                System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlObservacoes.Location =
+                new System.Drawing.Point(25, 825);
+            this.pnlObservacoes.Size =
+                new System.Drawing.Size(1050, 65);
+
+            this.pnlObservacoes.Controls.Add(this.lblObservacoes);
+            this.pnlObservacoes.Controls.Add(this.lblObservacoesSubtitulo);
+            this.pnlObservacoes.Controls.Add(this.txtObservacoes);
+
+            this.lblObservacoes.AutoSize = true;
+            this.lblObservacoes.Font =
+                new System.Drawing.Font("Segoe UI", 10F,
+                System.Drawing.FontStyle.Bold);
+            this.lblObservacoes.ForeColor =
+                System.Drawing.Color.FromArgb(21, 101, 192);
+            this.lblObservacoes.Location =
+                new System.Drawing.Point(20, 8);
+            this.lblObservacoes.Text =
+                "Observações";
+
+            this.lblObservacoesSubtitulo.AutoSize = true;
+            this.lblObservacoesSubtitulo.Font =
+                new System.Drawing.Font("Segoe UI", 8F);
+            this.lblObservacoesSubtitulo.ForeColor =
+                System.Drawing.Color.FromArgb(105, 125, 145);
+            this.lblObservacoesSubtitulo.Location =
+                new System.Drawing.Point(110, 11);
+            this.lblObservacoesSubtitulo.Text =
+                "Informações adicionais sobre o colaborador";
+
+            this.txtObservacoes.Font =
+                new System.Drawing.Font("Segoe UI", 9F);
+            this.txtObservacoes.Location =
+                new System.Drawing.Point(20, 32);
+            this.txtObservacoes.Multiline = true;
+            this.txtObservacoes.ScrollBars =
+                System.Windows.Forms.ScrollBars.Vertical;
+            this.txtObservacoes.Size =
+                new System.Drawing.Size(1000, 25);
+            this.txtObservacoes.Name =
+                "txtObservacoes";
+
+            // =========================
+            // BOTÕES
+            // =========================
+
+            this.btnCancelar.BackColor =
+                System.Drawing.Color.White;
+            this.btnCancelar.Cursor =
+                System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.FlatAppearance.BorderColor =
+                System.Drawing.Color.FromArgb(205, 215, 225);
+            this.btnCancelar.FlatAppearance.MouseOverBackColor =
+                System.Drawing.Color.FromArgb(245, 247, 250);
+            this.btnCancelar.FlatStyle =
+                System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font =
+                new System.Drawing.Font("Segoe UI", 9F,
+                System.Drawing.FontStyle.Bold);
+            this.btnCancelar.ForeColor =
+                System.Drawing.Color.FromArgb(70, 85, 100);
+            this.btnCancelar.Location =
+                new System.Drawing.Point(775, 900);
+            this.btnCancelar.Size =
+                new System.Drawing.Size(125, 40);
+            this.btnCancelar.Name =
+                "btnCancelar";
+            this.btnCancelar.Text =
+                "Cancelar";
+
+            this.btnSalvar.BackColor =
+                System.Drawing.Color.FromArgb(21, 101, 192);
+            this.btnSalvar.Cursor =
+                System.Windows.Forms.Cursors.Hand;
+            this.btnSalvar.FlatAppearance.BorderSize = 0;
+            this.btnSalvar.FlatAppearance.MouseOverBackColor =
+                System.Drawing.Color.FromArgb(25, 118, 210);
+            this.btnSalvar.FlatStyle =
+                System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvar.Font =
+                new System.Drawing.Font("Segoe UI", 9F,
+                System.Drawing.FontStyle.Bold);
+            this.btnSalvar.ForeColor =
+                System.Drawing.Color.White;
+            this.btnSalvar.Location =
+                new System.Drawing.Point(915, 900);
+            this.btnSalvar.Size =
+                new System.Drawing.Size(160, 40);
+            this.btnSalvar.Name =
+                "btnSalvar";
+            this.btnSalvar.Text =
+                "Salvar funcionário";
+
+            // =========================
+            // CONTROLES DO FORM
+            // =========================
+
+            this.Controls.Add(this.pnlCabecalho);
+            this.Controls.Add(this.pnlDadosPessoais);
+            this.Controls.Add(this.pnlDadosProfissionais);
+            this.Controls.Add(this.pnlJornada);
+            this.Controls.Add(this.pnlBeneficios);
+            this.Controls.Add(this.pnlObservacoes);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnSalvar);
+
+            ((System.ComponentModel.ISupportInitialize)(this.nudCargaHoraria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPercentual)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficios)).EndInit();
+
+            this.pnlCabecalho.ResumeLayout(false);
+            this.pnlCabecalho.PerformLayout();
+
+            this.pnlDadosPessoais.ResumeLayout(false);
+            this.pnlDadosPessoais.PerformLayout();
+
+            this.pnlDadosProfissionais.ResumeLayout(false);
+            this.pnlDadosProfissionais.PerformLayout();
+
+            this.pnlJornada.ResumeLayout(false);
+            this.pnlJornada.PerformLayout();
+
+            this.pnlBeneficios.ResumeLayout(false);
+            this.pnlBeneficios.PerformLayout();
+
+            this.pnlObservacoes.ResumeLayout(false);
+            this.pnlObservacoes.PerformLayout();
+
+            this.ResumeLayout(false);
         }
     }
 }
