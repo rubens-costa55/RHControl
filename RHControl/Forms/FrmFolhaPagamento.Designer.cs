@@ -41,6 +41,12 @@ namespace RHControl.Forms
         private Panel pnlCardLiquido;
         private Panel pnlCardHoras;
 
+        private Label lblIconFuncionarios;
+        private Label lblIconBruto;
+        private Label lblIconDescontos;
+        private Label lblIconLiquido;
+        private Label lblIconHoras;
+
         private Label lblCardFuncionariosTitulo;
         private Label lblFuncionariosValor;
         private Label lblFuncionariosInfo;
@@ -88,7 +94,6 @@ namespace RHControl.Forms
         private Button btnRelatorioSintetico;
         private Button btnRelatorioAnalitico;
         private Button btnImprimir;
-        private Button btnExportar;
 
         protected override void Dispose(bool disposing)
         {
@@ -100,472 +105,1087 @@ namespace RHControl.Forms
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-
-            this.pnlMenu = new Panel();
-            this.picLogo = new PictureBox();
-            this.lblNomeSistema = new Label();
-            this.lblSubtituloMenu = new Label();
-            this.btnDashboard = new Button();
-            this.btnFuncionarios = new Button();
-            this.btnJornada = new Button();
-            this.btnFolha = new Button();
-            this.btnConfiguracoes = new Button();
-            this.lblVersao = new Label();
-
-            this.pnlConteudo = new Panel();
-            this.pnlCabecalho = new Panel();
-            this.lblTitulo = new Label();
-            this.lblSubtitulo = new Label();
-            this.lblUsuario = new Label();
-
-            this.pnlFiltros = new Panel();
-            this.lblMes = new Label();
-            this.lblAno = new Label();
-            this.lblDepartamento = new Label();
-            this.lblSituacaoFiltro = new Label();
-            this.cmbMes = new ComboBox();
-            this.cmbAno = new ComboBox();
-            this.cmbDepartamento = new ComboBox();
-            this.cmbSituacao = new ComboBox();
-            this.btnFiltrar = new Button();
-
-            this.pnlCardFuncionarios = new Panel();
-            this.pnlCardBruto = new Panel();
-            this.pnlCardDescontos = new Panel();
-            this.pnlCardLiquido = new Panel();
-            this.pnlCardHoras = new Panel();
-
-            this.lblCardFuncionariosTitulo = new Label();
-            this.lblFuncionariosValor = new Label();
-            this.lblFuncionariosInfo = new Label();
-            this.lblCardBrutoTitulo = new Label();
-            this.lblBrutoValor = new Label();
-            this.lblBrutoInfo = new Label();
-            this.lblCardDescontosTitulo = new Label();
-            this.lblDescontosValor = new Label();
-            this.lblDescontosInfo = new Label();
-            this.lblCardLiquidoTitulo = new Label();
-            this.lblLiquidoValor = new Label();
-            this.lblLiquidoInfo = new Label();
-            this.lblCardHorasTitulo = new Label();
-            this.lblHorasValor = new Label();
-            this.lblHorasInfo = new Label();
-
-            this.pnlLista = new Panel();
-            this.lblListaTitulo = new Label();
-            this.txtPesquisar = new TextBox();
-            this.dgvFuncionarios = new DataGridView();
-            this.colNome = new DataGridViewTextBoxColumn();
-            this.colCargo = new DataGridViewTextBoxColumn();
-            this.colSalario = new DataGridViewTextBoxColumn();
-            this.colDescontos = new DataGridViewTextBoxColumn();
-            this.colLiquido = new DataGridViewTextBoxColumn();
-            this.colHorasExtras = new DataGridViewTextBoxColumn();
-            this.colStatus = new DataGridViewTextBoxColumn();
-
-            this.pnlResumo = new Panel();
-            this.lblResumoTitulo = new Label();
-            this.lblPeriodoTitulo = new Label();
-            this.lblPeriodo = new Label();
-            this.lblProcessadosTitulo = new Label();
-            this.lblProcessados = new Label();
-            this.progressProcessados = new ProgressBar();
-            this.lblGeradaTitulo = new Label();
-            this.lblGerada = new Label();
-            this.lblSituacaoTitulo = new Label();
-            this.lblSituacaoFolha = new Label();
-            this.lblObservacoesTitulo = new Label();
-            this.lblObservacoes = new Label();
-
-            this.pnlAcoes = new Panel();
-            this.btnGerarFolha = new Button();
-            this.btnRelatorioSintetico = new Button();
-            this.btnRelatorioAnalitico = new Button();
-            this.btnImprimir = new Button();
-            this.btnExportar = new Button();
-
-            // FORM
-            this.SuspendLayout();
-            this.Text = "Folha de Pagamento — RH Control";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.ClientSize = new Size(1260, 760);
-            this.MinimumSize = new Size(1100, 680);
-            this.BackColor = Color.FromArgb(246, 248, 251);
-            this.Font = new Font("Segoe UI", 9F);
-
-            // MENU
-            this.pnlMenu.BackColor = Color.FromArgb(15, 73, 116);
-            this.pnlMenu.Dock = DockStyle.Left;
-            this.pnlMenu.Width = 215;
-            this.pnlMenu.Controls.AddRange(new Control[] {
-                this.picLogo, this.lblNomeSistema, this.lblSubtituloMenu,
-                this.btnDashboard, this.btnFuncionarios, this.btnJornada,
-                this.btnFolha, this.btnConfiguracoes, this.lblVersao
-            });
-
-            this.picLogo.BackColor = Color.FromArgb(15, 73, 116);
-            this.picLogo.Location = new Point(52, 36);
-            this.picLogo.Size = new Size(110, 86);
-            this.picLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            this.picLogo.Image = global::RHControl.Properties.Resources.logorh;
-
-            this.lblNomeSistema.AutoSize = false;
-            this.lblNomeSistema.Text = "RH CONTROL";
-            this.lblNomeSistema.ForeColor = Color.White;
-            this.lblNomeSistema.Font = new Font("Segoe UI Semibold", 17F);
-            this.lblNomeSistema.TextAlign = ContentAlignment.MiddleCenter;
-            this.lblNomeSistema.Location = new Point(15, 126);
-            this.lblNomeSistema.Size = new Size(185, 32);
-
-            this.lblSubtituloMenu.AutoSize = false;
-            this.lblSubtituloMenu.Text = "GESTÃO DE PESSOAS";
-            this.lblSubtituloMenu.ForeColor = Color.FromArgb(205, 224, 240);
-            this.lblSubtituloMenu.Font = new Font("Segoe UI", 8F);
-            this.lblSubtituloMenu.TextAlign = ContentAlignment.MiddleCenter;
-            this.lblSubtituloMenu.Location = new Point(15, 154);
-            this.lblSubtituloMenu.Size = new Size(185, 22);
-
-            ConfigurarMenuButton(this.btnDashboard, "⌂   Dashboard", 210);
-            ConfigurarMenuButton(this.btnFuncionarios, "♙   Funcionários", 258);
-            ConfigurarMenuButton(this.btnJornada, "▣   Jornada / Calendário", 306);
-            ConfigurarMenuButton(this.btnFolha, "▤   Folha / Relatórios", 354);
-            this.btnFolha.BackColor = Color.FromArgb(31, 126, 215);
-            this.btnFolha.ForeColor = Color.White;
-            ConfigurarMenuButton(this.btnConfiguracoes, "⚙   Configurações", 402);
-
-            this.lblVersao.AutoSize = false;
-            this.lblVersao.Text = "RH Control • v1.0";
-            this.lblVersao.ForeColor = Color.FromArgb(190, 211, 228);
-            this.lblVersao.Font = new Font("Segoe UI", 8F);
-            this.lblVersao.TextAlign = ContentAlignment.MiddleCenter;
-            this.lblVersao.Location = new Point(15, 700);
-            this.lblVersao.Size = new Size(185, 25);
-            this.lblVersao.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
-
-            // CONTEÚDO
-            this.pnlConteudo.Dock = DockStyle.Fill;
-            this.pnlConteudo.BackColor = Color.FromArgb(246, 248, 251);
-            this.pnlConteudo.Padding = new Padding(22, 0, 18, 16);
-            this.pnlConteudo.Controls.Add(this.pnlAcoes);
-            this.pnlConteudo.Controls.Add(this.pnlResumo);
-            this.pnlConteudo.Controls.Add(this.pnlLista);
-            this.pnlConteudo.Controls.Add(this.pnlCardHoras);
-            this.pnlConteudo.Controls.Add(this.pnlCardLiquido);
-            this.pnlConteudo.Controls.Add(this.pnlCardDescontos);
-            this.pnlConteudo.Controls.Add(this.pnlCardBruto);
-            this.pnlConteudo.Controls.Add(this.pnlCardFuncionarios);
-            this.pnlConteudo.Controls.Add(this.pnlFiltros);
-            this.pnlConteudo.Controls.Add(this.pnlCabecalho);
-
-            // CABEÇALHO
-            this.pnlCabecalho.Dock = DockStyle.Top;
-            this.pnlCabecalho.Height = 92;
-            this.pnlCabecalho.BackColor = Color.White;
-            this.pnlCabecalho.Controls.Add(this.lblTitulo);
-            this.pnlCabecalho.Controls.Add(this.lblSubtitulo);
-            this.pnlCabecalho.Controls.Add(this.lblUsuario);
-
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Text = "Folha de Pagamento";
-            this.lblTitulo.Font = new Font("Segoe UI Semibold", 24F);
-            this.lblTitulo.ForeColor = Color.FromArgb(15, 56, 92);
-            this.lblTitulo.Location = new Point(24, 17);
-
-            this.lblSubtitulo.AutoSize = true;
-            this.lblSubtitulo.Text = "Processamento da folha, relatórios e informações financeiras";
-            this.lblSubtitulo.Font = new Font("Segoe UI", 9F);
-            this.lblSubtitulo.ForeColor = Color.FromArgb(105, 118, 132);
-            this.lblSubtitulo.Location = new Point(26, 58);
-
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Text = "♙  Administrador";
-            this.lblUsuario.Font = new Font("Segoe UI Semibold", 9F);
-            this.lblUsuario.ForeColor = Color.FromArgb(18, 103, 181);
-            this.lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.lblUsuario.Location = new Point(1025, 34);
-
-            // FILTROS
-            this.pnlFiltros.Dock = DockStyle.Top;
-            this.pnlFiltros.Height = 92;
-            this.pnlFiltros.BackColor = Color.White;
-            this.pnlFiltros.Padding = new Padding(18, 12, 12, 10);
-
-            ConfigurarLabel(this.lblMes, "Mês", 18, 10);
-            ConfigurarLabel(this.lblAno, "Ano", 178, 10);
-            ConfigurarLabel(this.lblDepartamento, "Departamento", 328, 10);
-            ConfigurarLabel(this.lblSituacaoFiltro, "Situação", 550, 10);
-
-            ConfigurarCombo(this.cmbMes, 18, 32, 128, "Setembro");
-            ConfigurarCombo(this.cmbAno, 178, 32, 110, "2026");
-            ConfigurarCombo(this.cmbDepartamento, 328, 32, 195, "Todos os departamentos");
-            ConfigurarCombo(this.cmbSituacao, 550, 32, 160, "Todos");
-
-            this.btnFiltrar.Text = "⌕  Filtrar";
-            this.btnFiltrar.Location = new Point(725, 30);
-            this.btnFiltrar.Size = new Size(105, 38);
-            this.btnFiltrar.BackColor = Color.FromArgb(31, 126, 215);
-            this.btnFiltrar.ForeColor = Color.White;
-            this.btnFiltrar.FlatStyle = FlatStyle.Flat;
-            this.btnFiltrar.FlatAppearance.BorderSize = 0;
-            this.btnFiltrar.Font = new Font("Segoe UI Semibold", 9F);
-            this.btnFiltrar.Cursor = Cursors.Hand;
-            this.pnlFiltros.Controls.AddRange(new Control[] {
-                this.lblMes, this.lblAno, this.lblDepartamento, this.lblSituacaoFiltro,
-                this.cmbMes, this.cmbAno, this.cmbDepartamento, this.cmbSituacao,
-                this.btnFiltrar
-            });
-
-            // CARDS
-            ConfigurarCard(this.pnlCardFuncionarios, 0, "♙", "Funcionários", "25", "Ativos no período");
-            ConfigurarCard(this.pnlCardBruto, 1, "$", "Salário bruto", "R$ 87.450,00", "Total de proventos");
-            ConfigurarCard(this.pnlCardDescontos, 2, "−", "Descontos", "R$ 18.320,00", "Total de descontos");
-            ConfigurarCard(this.pnlCardLiquido, 3, "▣", "Salário líquido", "R$ 69.130,00", "Total a pagar");
-            ConfigurarCard(this.pnlCardHoras, 4, "◷", "Horas extras", "320h", "Total no período");
-
-            // LISTA
-            this.pnlLista.BackColor = Color.White;
-            this.pnlLista.BorderStyle = BorderStyle.FixedSingle;
-            this.pnlLista.Location = new Point(22, 360);
-            this.pnlLista.Size = new Size(790, 235);
-            this.pnlLista.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom;
-            this.pnlLista.Controls.Add(this.dgvFuncionarios);
-            this.pnlLista.Controls.Add(this.txtPesquisar);
-            this.pnlLista.Controls.Add(this.lblListaTitulo);
-
-            this.lblListaTitulo.AutoSize = true;
-            this.lblListaTitulo.Text = "Funcionários na folha (Setembro/2026)";
-            this.lblListaTitulo.Font = new Font("Segoe UI Semibold", 12F);
-            this.lblListaTitulo.ForeColor = Color.FromArgb(20, 55, 87);
-            this.lblListaTitulo.Location = new Point(18, 15);
-
-            this.txtPesquisar.Text = "Pesquisar funcionário...";
-            this.txtPesquisar.ForeColor = Color.Gray;
-            this.txtPesquisar.Location = new Point(535, 12);
-            this.txtPesquisar.Size = new Size(205, 27);
-            this.txtPesquisar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-
-            this.dgvFuncionarios.Location = new Point(14, 48);
-            this.dgvFuncionarios.Size = new Size(760, 170);
-            this.dgvFuncionarios.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            this.dgvFuncionarios.AllowUserToAddRows = false;
-            this.dgvFuncionarios.AllowUserToDeleteRows = false;
-            this.dgvFuncionarios.AllowUserToResizeRows = false;
-            this.dgvFuncionarios.BackgroundColor = Color.White;
-            this.dgvFuncionarios.BorderStyle = BorderStyle.None;
-            this.dgvFuncionarios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvFuncionarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            this.dgvFuncionarios.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(244, 247, 250);
-            this.dgvFuncionarios.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(55, 68, 82);
-            this.dgvFuncionarios.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 8.5F);
-            this.dgvFuncionarios.ColumnHeadersHeight = 34;
-            this.dgvFuncionarios.DefaultCellStyle.Font = new Font("Segoe UI", 8.5F);
-            this.dgvFuncionarios.DefaultCellStyle.ForeColor = Color.FromArgb(45, 55, 65);
-            this.dgvFuncionarios.DefaultCellStyle.SelectionBackColor = Color.FromArgb(232, 242, 252);
-            this.dgvFuncionarios.DefaultCellStyle.SelectionForeColor = Color.FromArgb(25, 55, 85);
-            this.dgvFuncionarios.RowHeadersVisible = false;
-            this.dgvFuncionarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFuncionarios.AutoGenerateColumns = false;
-            this.dgvFuncionarios.Columns.AddRange(new DataGridViewColumn[] {
-                this.colNome, this.colCargo, this.colSalario, this.colDescontos,
-                this.colLiquido, this.colHorasExtras, this.colStatus
-            });
-
-            ConfigurarColuna(this.colNome, "Funcionário", 150);
-            ConfigurarColuna(this.colCargo, "Cargo", 115);
-            ConfigurarColuna(this.colSalario, "Bruto", 90);
-            ConfigurarColuna(this.colDescontos, "Descontos", 90);
-            ConfigurarColuna(this.colLiquido, "Líquido", 90);
-            ConfigurarColuna(this.colHorasExtras, "Horas extras", 85);
-            ConfigurarColuna(this.colStatus, "Situação", 85);
-
-            // RESUMO
-            this.pnlResumo.BackColor = Color.White;
-            this.pnlResumo.BorderStyle = BorderStyle.FixedSingle;
-            this.pnlResumo.Location = new Point(824, 360);
-            this.pnlResumo.Size = new Size(250, 235);
-            this.pnlResumo.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom;
-            this.pnlResumo.Controls.AddRange(new Control[] {
-                this.lblResumoTitulo, this.lblPeriodoTitulo, this.lblPeriodo,
-                this.lblProcessadosTitulo, this.lblProcessados, this.progressProcessados,
-                this.lblGeradaTitulo, this.lblGerada, this.lblSituacaoTitulo,
-                this.lblSituacaoFolha, this.lblObservacoesTitulo, this.lblObservacoes
-            });
-
-            ConfigurarResumoLabel(this.lblResumoTitulo, "Resumo do período", 18, 14, 12F, true);
-            ConfigurarResumoLabel(this.lblPeriodoTitulo, "Período de referência", 18, 46, 7.5F, false);
-            ConfigurarResumoLabel(this.lblPeriodo, "01/09/2026 a 30/09/2026", 18, 62, 8.5F, true);
-            ConfigurarResumoLabel(this.lblProcessadosTitulo, "Funcionários processados", 18, 91, 7.5F, false);
-            ConfigurarResumoLabel(this.lblProcessados, "25 de 25", 18, 107, 8.5F, true);
-
-            this.progressProcessados.Location = new Point(18, 126);
-            this.progressProcessados.Size = new Size(210, 8);
-            this.progressProcessados.Value = 100;
-
-            ConfigurarResumoLabel(this.lblGeradaTitulo, "Folha gerada em", 18, 143, 7.5F, false);
-            ConfigurarResumoLabel(this.lblGerada, "28/09/2026 às 14:32", 18, 159, 8.5F, true);
-            ConfigurarResumoLabel(this.lblSituacaoTitulo, "Situação da folha", 18, 184, 7.5F, false);
-            ConfigurarResumoLabel(this.lblSituacaoFolha, "●  Processada", 18, 200, 8.5F, true);
-            this.lblSituacaoFolha.ForeColor = Color.FromArgb(0, 145, 75);
-            ConfigurarResumoLabel(this.lblObservacoesTitulo, "Observações", 18, 222, 7.5F, false);
-            this.lblObservacoes.Text = "Folha processada sem inconsistências.";
-            this.lblObservacoes.Font = new Font("Segoe UI Semibold", 7.5F);
-            this.lblObservacoes.ForeColor = Color.FromArgb(35, 55, 75);
-            this.lblObservacoes.Location = new Point(18, 238);
-            this.lblObservacoes.Size = new Size(215, 30);
-
-            // AÇÕES
-            this.pnlAcoes.BackColor = Color.White;
-            this.pnlAcoes.BorderStyle = BorderStyle.FixedSingle;
-            this.pnlAcoes.Dock = DockStyle.Bottom;
-            this.pnlAcoes.Height = 70;
-            this.pnlAcoes.Padding = new Padding(10);
-            this.pnlAcoes.Controls.AddRange(new Control[] {
-                this.btnGerarFolha, this.btnRelatorioSintetico, this.btnRelatorioAnalitico,
-                this.btnImprimir, this.btnExportar
-            });
-
-            ConfigurarAcao(this.btnGerarFolha, "▣  Gerar Folha", 10, true, 145);
-            ConfigurarAcao(this.btnRelatorioSintetico, "■  Relatório Sintético", 165, false, 155);
-            ConfigurarAcao(this.btnRelatorioAnalitico, "▤  Relatório Analítico", 330, false, 160);
-            ConfigurarAcao(this.btnImprimir, "▣  Imprimir", 500, false, 130);
-            ConfigurarAcao(this.btnExportar, "⇩  Exportar", 640, false, 130);
-
-            this.Controls.Add(this.pnlConteudo);
-            this.Controls.Add(this.pnlMenu);
-            this.ResumeLayout(false);
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            pnlMenu = new Panel();
+            picLogo = new PictureBox();
+            lblNomeSistema = new Label();
+            lblSubtituloMenu = new Label();
+            btnDashboard = new Button();
+            btnFuncionarios = new Button();
+            btnJornada = new Button();
+            btnFolha = new Button();
+            btnConfiguracoes = new Button();
+            lblVersao = new Label();
+            pnlConteudo = new Panel();
+            pnlAcoes = new Panel();
+            btnGerarFolha = new Button();
+            btnRelatorioSintetico = new Button();
+            btnRelatorioAnalitico = new Button();
+            btnImprimir = new Button();
+            pnlLista = new Panel();
+            dgvFuncionarios = new DataGridView();
+            colNome = new DataGridViewTextBoxColumn();
+            colCargo = new DataGridViewTextBoxColumn();
+            colSalario = new DataGridViewTextBoxColumn();
+            colDescontos = new DataGridViewTextBoxColumn();
+            colLiquido = new DataGridViewTextBoxColumn();
+            colHorasExtras = new DataGridViewTextBoxColumn();
+            colStatus = new DataGridViewTextBoxColumn();
+            txtPesquisar = new TextBox();
+            lblListaTitulo = new Label();
+            pnlResumo = new Panel();
+            lblResumoTitulo = new Label();
+            lblPeriodoTitulo = new Label();
+            lblPeriodo = new Label();
+            lblProcessadosTitulo = new Label();
+            lblProcessados = new Label();
+            progressProcessados = new ProgressBar();
+            lblGeradaTitulo = new Label();
+            lblGerada = new Label();
+            lblSituacaoTitulo = new Label();
+            lblSituacaoFolha = new Label();
+            lblObservacoesTitulo = new Label();
+            lblObservacoes = new Label();
+            pnlCardHoras = new Panel();
+            lblHorasInfo = new Label();
+            lblHorasValor = new Label();
+            lblCardHorasTitulo = new Label();
+            lblIconHoras = new Label();
+            pnlCardLiquido = new Panel();
+            lblLiquidoInfo = new Label();
+            lblLiquidoValor = new Label();
+            lblCardLiquidoTitulo = new Label();
+            lblIconLiquido = new Label();
+            pnlCardDescontos = new Panel();
+            lblDescontosInfo = new Label();
+            lblDescontosValor = new Label();
+            lblCardDescontosTitulo = new Label();
+            lblIconDescontos = new Label();
+            pnlCardBruto = new Panel();
+            lblBrutoInfo = new Label();
+            lblBrutoValor = new Label();
+            lblCardBrutoTitulo = new Label();
+            lblIconBruto = new Label();
+            pnlCardFuncionarios = new Panel();
+            lblFuncionariosInfo = new Label();
+            lblFuncionariosValor = new Label();
+            lblCardFuncionariosTitulo = new Label();
+            lblIconFuncionarios = new Label();
+            pnlFiltros = new Panel();
+            lblMes = new Label();
+            lblAno = new Label();
+            lblDepartamento = new Label();
+            lblSituacaoFiltro = new Label();
+            cmbMes = new ComboBox();
+            cmbAno = new ComboBox();
+            cmbDepartamento = new ComboBox();
+            cmbSituacao = new ComboBox();
+            btnFiltrar = new Button();
+            pnlCabecalho = new Panel();
+            lblTitulo = new Label();
+            lblSubtitulo = new Label();
+            lblUsuario = new Label();
+            pnlMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            pnlConteudo.SuspendLayout();
+            pnlAcoes.SuspendLayout();
+            pnlLista.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFuncionarios).BeginInit();
+            pnlResumo.SuspendLayout();
+            pnlCardHoras.SuspendLayout();
+            pnlCardLiquido.SuspendLayout();
+            pnlCardDescontos.SuspendLayout();
+            pnlCardBruto.SuspendLayout();
+            pnlCardFuncionarios.SuspendLayout();
+            pnlFiltros.SuspendLayout();
+            pnlCabecalho.SuspendLayout();
+            SuspendLayout();
+            // 
+            // pnlMenu
+            // 
+            pnlMenu.BackColor = Color.FromArgb(15, 73, 116);
+            pnlMenu.Controls.Add(picLogo);
+            pnlMenu.Controls.Add(lblNomeSistema);
+            pnlMenu.Controls.Add(lblSubtituloMenu);
+            pnlMenu.Controls.Add(btnDashboard);
+            pnlMenu.Controls.Add(btnFuncionarios);
+            pnlMenu.Controls.Add(btnJornada);
+            pnlMenu.Controls.Add(btnFolha);
+            pnlMenu.Controls.Add(btnConfiguracoes);
+            pnlMenu.Controls.Add(lblVersao);
+            pnlMenu.Dock = DockStyle.Left;
+            pnlMenu.Location = new Point(0, 0);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(215, 780);
+            pnlMenu.TabIndex = 1;
+            // 
+            // picLogo
+            // 
+            picLogo.BackColor = Color.FromArgb(15, 73, 116);
+            picLogo.Image = Properties.Resources.logorh;
+            picLogo.Location = new Point(52, 36);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(110, 86);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 0;
+            picLogo.TabStop = false;
+            // 
+            // lblNomeSistema
+            // 
+            lblNomeSistema.Font = new Font("Segoe UI Semibold", 17F);
+            lblNomeSistema.ForeColor = Color.White;
+            lblNomeSistema.Location = new Point(15, 126);
+            lblNomeSistema.Name = "lblNomeSistema";
+            lblNomeSistema.Size = new Size(185, 32);
+            lblNomeSistema.TabIndex = 1;
+            lblNomeSistema.Text = "RH CONTROL";
+            lblNomeSistema.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblSubtituloMenu
+            // 
+            lblSubtituloMenu.Font = new Font("Segoe UI", 8F);
+            lblSubtituloMenu.ForeColor = Color.FromArgb(205, 224, 240);
+            lblSubtituloMenu.Location = new Point(15, 154);
+            lblSubtituloMenu.Name = "lblSubtituloMenu";
+            lblSubtituloMenu.Size = new Size(185, 22);
+            lblSubtituloMenu.TabIndex = 2;
+            lblSubtituloMenu.Text = "GESTÃO DE PESSOAS";
+            lblSubtituloMenu.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.BackColor = Color.FromArgb(15, 73, 116);
+            btnDashboard.Cursor = Cursors.Hand;
+            btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
+            btnDashboard.FlatAppearance.MouseOverBackColor = Color.FromArgb(28, 96, 145);
+            btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Segoe UI", 9F);
+            btnDashboard.ForeColor = Color.FromArgb(235, 242, 248);
+            btnDashboard.Location = new Point(10, 210);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Padding = new Padding(18, 0, 0, 0);
+            btnDashboard.Size = new Size(195, 42);
+            btnDashboard.TabIndex = 3;
+            btnDashboard.Text = "⌂   Dashboard";
+            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.UseVisualStyleBackColor = false;
+            // 
+            // btnFuncionarios
+            // 
+            btnFuncionarios.BackColor = Color.FromArgb(15, 73, 116);
+            btnFuncionarios.Cursor = Cursors.Hand;
+            btnFuncionarios.FlatAppearance.BorderSize = 0;
+            btnFuncionarios.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
+            btnFuncionarios.FlatAppearance.MouseOverBackColor = Color.FromArgb(28, 96, 145);
+            btnFuncionarios.FlatStyle = FlatStyle.Flat;
+            btnFuncionarios.Font = new Font("Segoe UI", 9F);
+            btnFuncionarios.ForeColor = Color.FromArgb(235, 242, 248);
+            btnFuncionarios.Location = new Point(10, 258);
+            btnFuncionarios.Name = "btnFuncionarios";
+            btnFuncionarios.Padding = new Padding(18, 0, 0, 0);
+            btnFuncionarios.Size = new Size(195, 42);
+            btnFuncionarios.TabIndex = 4;
+            btnFuncionarios.Text = "♙   Funcionários";
+            btnFuncionarios.TextAlign = ContentAlignment.MiddleLeft;
+            btnFuncionarios.UseVisualStyleBackColor = false;
+            // 
+            // btnJornada
+            // 
+            btnJornada.BackColor = Color.FromArgb(15, 73, 116);
+            btnJornada.Cursor = Cursors.Hand;
+            btnJornada.FlatAppearance.BorderSize = 0;
+            btnJornada.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
+            btnJornada.FlatAppearance.MouseOverBackColor = Color.FromArgb(28, 96, 145);
+            btnJornada.FlatStyle = FlatStyle.Flat;
+            btnJornada.Font = new Font("Segoe UI", 9F);
+            btnJornada.ForeColor = Color.FromArgb(235, 242, 248);
+            btnJornada.Location = new Point(10, 306);
+            btnJornada.Name = "btnJornada";
+            btnJornada.Padding = new Padding(18, 0, 0, 0);
+            btnJornada.Size = new Size(195, 42);
+            btnJornada.TabIndex = 5;
+            btnJornada.Text = "▣   Jornada / Calendário";
+            btnJornada.TextAlign = ContentAlignment.MiddleLeft;
+            btnJornada.UseVisualStyleBackColor = false;
+            // 
+            // btnFolha
+            // 
+            btnFolha.BackColor = Color.FromArgb(31, 126, 215);
+            btnFolha.Cursor = Cursors.Hand;
+            btnFolha.FlatAppearance.BorderSize = 0;
+            btnFolha.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
+            btnFolha.FlatAppearance.MouseOverBackColor = Color.FromArgb(28, 96, 145);
+            btnFolha.FlatStyle = FlatStyle.Flat;
+            btnFolha.Font = new Font("Segoe UI", 9F);
+            btnFolha.ForeColor = Color.White;
+            btnFolha.Location = new Point(10, 354);
+            btnFolha.Name = "btnFolha";
+            btnFolha.Padding = new Padding(18, 0, 0, 0);
+            btnFolha.Size = new Size(195, 42);
+            btnFolha.TabIndex = 6;
+            btnFolha.Text = "▤   Folha / Relatórios";
+            btnFolha.TextAlign = ContentAlignment.MiddleLeft;
+            btnFolha.UseVisualStyleBackColor = false;
+            // 
+            // btnConfiguracoes
+            // 
+            btnConfiguracoes.BackColor = Color.FromArgb(15, 73, 116);
+            btnConfiguracoes.Cursor = Cursors.Hand;
+            btnConfiguracoes.FlatAppearance.BorderSize = 0;
+            btnConfiguracoes.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
+            btnConfiguracoes.FlatAppearance.MouseOverBackColor = Color.FromArgb(28, 96, 145);
+            btnConfiguracoes.FlatStyle = FlatStyle.Flat;
+            btnConfiguracoes.Font = new Font("Segoe UI", 9F);
+            btnConfiguracoes.ForeColor = Color.FromArgb(235, 242, 248);
+            btnConfiguracoes.Location = new Point(10, 402);
+            btnConfiguracoes.Name = "btnConfiguracoes";
+            btnConfiguracoes.Padding = new Padding(18, 0, 0, 0);
+            btnConfiguracoes.Size = new Size(195, 42);
+            btnConfiguracoes.TabIndex = 7;
+            btnConfiguracoes.Text = "⚙   Configurações";
+            btnConfiguracoes.TextAlign = ContentAlignment.MiddleLeft;
+            btnConfiguracoes.UseVisualStyleBackColor = false;
+            // 
+            // lblVersao
+            // 
+            lblVersao.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblVersao.Font = new Font("Segoe UI", 8F);
+            lblVersao.ForeColor = Color.FromArgb(190, 211, 228);
+            lblVersao.Location = new Point(15, 1380);
+            lblVersao.Name = "lblVersao";
+            lblVersao.Size = new Size(185, 25);
+            lblVersao.TabIndex = 8;
+            lblVersao.Text = "RH Control • v1.0";
+            lblVersao.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlConteudo
+            // 
+            pnlConteudo.BackColor = Color.FromArgb(246, 248, 251);
+            pnlConteudo.Controls.Add(pnlAcoes);
+            pnlConteudo.Controls.Add(pnlLista);
+            pnlConteudo.Controls.Add(pnlResumo);
+            pnlConteudo.Controls.Add(pnlCardHoras);
+            pnlConteudo.Controls.Add(pnlCardLiquido);
+            pnlConteudo.Controls.Add(pnlCardDescontos);
+            pnlConteudo.Controls.Add(pnlCardBruto);
+            pnlConteudo.Controls.Add(pnlCardFuncionarios);
+            pnlConteudo.Controls.Add(pnlFiltros);
+            pnlConteudo.Controls.Add(pnlCabecalho);
+            pnlConteudo.Dock = DockStyle.Fill;
+            pnlConteudo.Location = new Point(215, 0);
+            pnlConteudo.Name = "pnlConteudo";
+            pnlConteudo.Padding = new Padding(22, 0, 18, 16);
+            pnlConteudo.Size = new Size(1045, 780);
+            pnlConteudo.TabIndex = 0;
+            // 
+            // pnlAcoes
+            // 
+            pnlAcoes.BackColor = Color.White;
+            pnlAcoes.BorderStyle = BorderStyle.FixedSingle;
+            pnlAcoes.Controls.Add(btnGerarFolha);
+            pnlAcoes.Controls.Add(btnRelatorioSintetico);
+            pnlAcoes.Controls.Add(btnRelatorioAnalitico);
+            pnlAcoes.Controls.Add(btnImprimir);
+            pnlAcoes.Dock = DockStyle.Bottom;
+            pnlAcoes.Location = new Point(22, 690);
+            pnlAcoes.Name = "pnlAcoes";
+            pnlAcoes.Padding = new Padding(10);
+            pnlAcoes.Size = new Size(1005, 74);
+            pnlAcoes.TabIndex = 0;
+            // 
+            // btnGerarFolha
+            // 
+            btnGerarFolha.BackColor = Color.FromArgb(31, 126, 215);
+            btnGerarFolha.Cursor = Cursors.Hand;
+            btnGerarFolha.FlatAppearance.BorderColor = Color.FromArgb(31, 126, 215);
+            btnGerarFolha.FlatStyle = FlatStyle.Flat;
+            btnGerarFolha.Font = new Font("Segoe UI Semibold", 8.5F);
+            btnGerarFolha.ForeColor = Color.White;
+            btnGerarFolha.Location = new Point(10, 10);
+            btnGerarFolha.Name = "btnGerarFolha";
+            btnGerarFolha.Size = new Size(160, 38);
+            btnGerarFolha.TabIndex = 0;
+            btnGerarFolha.Text = "▣  Gerar Folha";
+            btnGerarFolha.UseVisualStyleBackColor = false;
+            // 
+            // btnRelatorioSintetico
+            // 
+            btnRelatorioSintetico.BackColor = Color.White;
+            btnRelatorioSintetico.Cursor = Cursors.Hand;
+            btnRelatorioSintetico.FlatAppearance.BorderColor = Color.FromArgb(205, 216, 227);
+            btnRelatorioSintetico.FlatStyle = FlatStyle.Flat;
+            btnRelatorioSintetico.Font = new Font("Segoe UI Semibold", 8.5F);
+            btnRelatorioSintetico.ForeColor = Color.FromArgb(31, 91, 145);
+            btnRelatorioSintetico.Location = new Point(180, 10);
+            btnRelatorioSintetico.Name = "btnRelatorioSintetico";
+            btnRelatorioSintetico.Size = new Size(155, 38);
+            btnRelatorioSintetico.TabIndex = 1;
+            btnRelatorioSintetico.Text = "■  Relatório Sintético";
+            btnRelatorioSintetico.UseVisualStyleBackColor = false;
+            // 
+            // btnRelatorioAnalitico
+            // 
+            btnRelatorioAnalitico.BackColor = Color.White;
+            btnRelatorioAnalitico.Cursor = Cursors.Hand;
+            btnRelatorioAnalitico.FlatAppearance.BorderColor = Color.FromArgb(205, 216, 227);
+            btnRelatorioAnalitico.FlatStyle = FlatStyle.Flat;
+            btnRelatorioAnalitico.Font = new Font("Segoe UI Semibold", 8.5F);
+            btnRelatorioAnalitico.ForeColor = Color.FromArgb(31, 91, 145);
+            btnRelatorioAnalitico.Location = new Point(345, 10);
+            btnRelatorioAnalitico.Name = "btnRelatorioAnalitico";
+            btnRelatorioAnalitico.Size = new Size(160, 38);
+            btnRelatorioAnalitico.TabIndex = 2;
+            btnRelatorioAnalitico.Text = "▤  Relatório Analítico";
+            btnRelatorioAnalitico.UseVisualStyleBackColor = false;
+            // 
+            // btnImprimir
+            // 
+            btnImprimir.BackColor = Color.White;
+            btnImprimir.Cursor = Cursors.Hand;
+            btnImprimir.FlatAppearance.BorderColor = Color.FromArgb(205, 216, 227);
+            btnImprimir.FlatStyle = FlatStyle.Flat;
+            btnImprimir.Font = new Font("Segoe UI Semibold", 8.5F);
+            btnImprimir.ForeColor = Color.FromArgb(31, 91, 145);
+            btnImprimir.Location = new Point(515, 10);
+            btnImprimir.Name = "btnImprimir";
+            btnImprimir.Size = new Size(170, 38);
+            btnImprimir.TabIndex = 3;
+            btnImprimir.Text = "⇩  Exportar PDF";
+            btnImprimir.UseVisualStyleBackColor = false;
+            btnImprimir.Click += btnExportarPdf_Click;
+            // 
+            // pnlLista
+            // 
+            pnlLista.BackColor = Color.White;
+            pnlLista.BorderStyle = BorderStyle.FixedSingle;
+            pnlLista.Controls.Add(dgvFuncionarios);
+            pnlLista.Controls.Add(txtPesquisar);
+            pnlLista.Controls.Add(lblListaTitulo);
+            pnlLista.Location = new Point(22, 330);
+            pnlLista.Name = "pnlLista";
+            pnlLista.Size = new Size(650, 320);
+            pnlLista.TabIndex = 1;
+            // 
+            // dgvFuncionarios
+            // 
+            dgvFuncionarios.AllowUserToAddRows = false;
+            dgvFuncionarios.AllowUserToDeleteRows = false;
+            dgvFuncionarios.AllowUserToResizeRows = false;
+            dgvFuncionarios.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dgvFuncionarios.BackgroundColor = Color.White;
+            dgvFuncionarios.BorderStyle = BorderStyle.None;
+            dgvFuncionarios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvFuncionarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(244, 247, 250);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 8.5F);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(55, 68, 82);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvFuncionarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvFuncionarios.ColumnHeadersHeight = 34;
+            dgvFuncionarios.Columns.AddRange(new DataGridViewColumn[] { colNome, colCargo, colSalario, colDescontos, colLiquido, colHorasExtras, colStatus });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 8.5F);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(45, 55, 65);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(232, 242, 252);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(25, 55, 85);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvFuncionarios.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvFuncionarios.Location = new Point(14, 48);
+            dgvFuncionarios.Name = "dgvFuncionarios";
+            dgvFuncionarios.RowHeadersVisible = false;
+            dgvFuncionarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFuncionarios.Size = new Size(631, 270);
+            dgvFuncionarios.TabIndex = 0;
+            // 
+            // colNome
+            // 
+            colNome.HeaderText = "Funcionário";
+            colNome.Name = "colNome";
+            colNome.ReadOnly = true;
+            colNome.Width = 135;
+            // 
+            // colCargo
+            // 
+            colCargo.HeaderText = "Cargo";
+            colCargo.Name = "colCargo";
+            colCargo.ReadOnly = true;
+            colCargo.Width = 115;
+            // 
+            // colSalario
+            // 
+            colSalario.HeaderText = "Bruto";
+            colSalario.Name = "colSalario";
+            colSalario.ReadOnly = true;
+            colSalario.Width = 80;
+            // 
+            // colDescontos
+            // 
+            colDescontos.HeaderText = "Descontos";
+            colDescontos.Name = "colDescontos";
+            colDescontos.ReadOnly = true;
+            colDescontos.Width = 80;
+            // 
+            // colLiquido
+            // 
+            colLiquido.HeaderText = "Líquido";
+            colLiquido.Name = "colLiquido";
+            colLiquido.ReadOnly = true;
+            colLiquido.Width = 80;
+            // 
+            // colHorasExtras
+            // 
+            colHorasExtras.HeaderText = "Horas extras";
+            colHorasExtras.Name = "colHorasExtras";
+            colHorasExtras.ReadOnly = true;
+            colHorasExtras.Width = 80;
+            // 
+            // colStatus
+            // 
+            colStatus.HeaderText = "Situação";
+            colStatus.Name = "colStatus";
+            colStatus.ReadOnly = true;
+            colStatus.Width = 80;
+            // 
+            // txtPesquisar
+            // 
+            txtPesquisar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtPesquisar.ForeColor = Color.Gray;
+            txtPesquisar.Location = new Point(429, 13);
+            txtPesquisar.Name = "txtPesquisar";
+            txtPesquisar.Size = new Size(205, 23);
+            txtPesquisar.TabIndex = 1;
+            txtPesquisar.Text = "Pesquisar funcionário...";
+            // 
+            // lblListaTitulo
+            // 
+            lblListaTitulo.AutoSize = true;
+            lblListaTitulo.Font = new Font("Segoe UI Semibold", 12F);
+            lblListaTitulo.ForeColor = Color.FromArgb(20, 55, 87);
+            lblListaTitulo.Location = new Point(18, 15);
+            lblListaTitulo.Name = "lblListaTitulo";
+            lblListaTitulo.Size = new Size(294, 21);
+            lblListaTitulo.TabIndex = 2;
+            lblListaTitulo.Text = "Funcionários na folha (Setembro/2026)";
+            // 
+            // pnlResumo
+            // 
+            pnlResumo.BackColor = Color.White;
+            pnlResumo.BorderStyle = BorderStyle.FixedSingle;
+            pnlResumo.Controls.Add(lblResumoTitulo);
+            pnlResumo.Controls.Add(lblPeriodoTitulo);
+            pnlResumo.Controls.Add(lblPeriodo);
+            pnlResumo.Controls.Add(lblProcessadosTitulo);
+            pnlResumo.Controls.Add(lblProcessados);
+            pnlResumo.Controls.Add(progressProcessados);
+            pnlResumo.Controls.Add(lblGeradaTitulo);
+            pnlResumo.Controls.Add(lblGerada);
+            pnlResumo.Controls.Add(lblSituacaoTitulo);
+            pnlResumo.Controls.Add(lblSituacaoFolha);
+            pnlResumo.Controls.Add(lblObservacoesTitulo);
+            pnlResumo.Controls.Add(lblObservacoes);
+            pnlResumo.Location = new Point(686, 330);
+            pnlResumo.Name = "pnlResumo";
+            pnlResumo.Size = new Size(347, 320);
+            pnlResumo.TabIndex = 2;
+            // 
+            // lblResumoTitulo
+            // 
+            lblResumoTitulo.Font = new Font("Segoe UI Semibold", 12F);
+            lblResumoTitulo.ForeColor = Color.FromArgb(18, 77, 125);
+            lblResumoTitulo.Location = new Point(18, 14);
+            lblResumoTitulo.Name = "lblResumoTitulo";
+            lblResumoTitulo.Size = new Size(225, 20);
+            lblResumoTitulo.TabIndex = 0;
+            lblResumoTitulo.Text = "Resumo do período";
+            // 
+            // lblPeriodoTitulo
+            // 
+            lblPeriodoTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblPeriodoTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblPeriodoTitulo.Location = new Point(18, 46);
+            lblPeriodoTitulo.Name = "lblPeriodoTitulo";
+            lblPeriodoTitulo.Size = new Size(225, 15);
+            lblPeriodoTitulo.TabIndex = 1;
+            lblPeriodoTitulo.Text = "Período de referência";
+            // 
+            // lblPeriodo
+            // 
+            lblPeriodo.Font = new Font("Segoe UI Semibold", 8.5F);
+            lblPeriodo.ForeColor = Color.FromArgb(18, 77, 125);
+            lblPeriodo.Location = new Point(18, 62);
+            lblPeriodo.Name = "lblPeriodo";
+            lblPeriodo.Size = new Size(225, 20);
+            lblPeriodo.TabIndex = 2;
+            lblPeriodo.Text = "01/09/2026 a 30/09/2026";
+            // 
+            // lblProcessadosTitulo
+            // 
+            lblProcessadosTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblProcessadosTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblProcessadosTitulo.Location = new Point(18, 91);
+            lblProcessadosTitulo.Name = "lblProcessadosTitulo";
+            lblProcessadosTitulo.Size = new Size(225, 15);
+            lblProcessadosTitulo.TabIndex = 3;
+            lblProcessadosTitulo.Text = "Funcionários processados";
+            // 
+            // lblProcessados
+            // 
+            lblProcessados.Font = new Font("Segoe UI Semibold", 8.5F);
+            lblProcessados.ForeColor = Color.FromArgb(18, 77, 125);
+            lblProcessados.Location = new Point(18, 107);
+            lblProcessados.Name = "lblProcessados";
+            lblProcessados.Size = new Size(225, 20);
+            lblProcessados.TabIndex = 4;
+            lblProcessados.Text = "25 de 25";
+            // 
+            // progressProcessados
+            // 
+            progressProcessados.Location = new Point(18, 126);
+            progressProcessados.Name = "progressProcessados";
+            progressProcessados.Size = new Size(215, 8);
+            progressProcessados.TabIndex = 5;
+            progressProcessados.Value = 100;
+            // 
+            // lblGeradaTitulo
+            // 
+            lblGeradaTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblGeradaTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblGeradaTitulo.Location = new Point(18, 150);
+            lblGeradaTitulo.Name = "lblGeradaTitulo";
+            lblGeradaTitulo.Size = new Size(225, 15);
+            lblGeradaTitulo.TabIndex = 6;
+            lblGeradaTitulo.Text = "Folha gerada em";
+            // 
+            // lblGerada
+            // 
+            lblGerada.Font = new Font("Segoe UI Semibold", 8.5F);
+            lblGerada.ForeColor = Color.FromArgb(18, 77, 125);
+            lblGerada.Location = new Point(18, 166);
+            lblGerada.Name = "lblGerada";
+            lblGerada.Size = new Size(225, 20);
+            lblGerada.TabIndex = 7;
+            lblGerada.Text = "28/09/2026 às 14:32";
+            // 
+            // lblSituacaoTitulo
+            // 
+            lblSituacaoTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblSituacaoTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblSituacaoTitulo.Location = new Point(18, 196);
+            lblSituacaoTitulo.Name = "lblSituacaoTitulo";
+            lblSituacaoTitulo.Size = new Size(225, 15);
+            lblSituacaoTitulo.TabIndex = 8;
+            lblSituacaoTitulo.Text = "Situação da folha";
+            // 
+            // lblSituacaoFolha
+            // 
+            lblSituacaoFolha.Font = new Font("Segoe UI Semibold", 8.5F);
+            lblSituacaoFolha.ForeColor = Color.FromArgb(0, 145, 75);
+            lblSituacaoFolha.Location = new Point(18, 212);
+            lblSituacaoFolha.Name = "lblSituacaoFolha";
+            lblSituacaoFolha.Size = new Size(225, 20);
+            lblSituacaoFolha.TabIndex = 9;
+            lblSituacaoFolha.Text = "●  Processada";
+            // 
+            // lblObservacoesTitulo
+            // 
+            lblObservacoesTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblObservacoesTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblObservacoesTitulo.Location = new Point(18, 238);
+            lblObservacoesTitulo.Name = "lblObservacoesTitulo";
+            lblObservacoesTitulo.Size = new Size(225, 15);
+            lblObservacoesTitulo.TabIndex = 10;
+            lblObservacoesTitulo.Text = "Observações";
+            // 
+            // lblObservacoes
+            // 
+            lblObservacoes.Font = new Font("Segoe UI Semibold", 7.5F);
+            lblObservacoes.ForeColor = Color.FromArgb(35, 55, 75);
+            lblObservacoes.Location = new Point(18, 250);
+            lblObservacoes.Name = "lblObservacoes";
+            lblObservacoes.Size = new Size(215, 55);
+            lblObservacoes.TabIndex = 11;
+            lblObservacoes.Text = "Folha processada sem inconsistências.";
+            // 
+            // pnlCardHoras
+            // 
+            pnlCardHoras.BackColor = Color.White;
+            pnlCardHoras.BorderStyle = BorderStyle.FixedSingle;
+            pnlCardHoras.Controls.Add(lblHorasInfo);
+            pnlCardHoras.Controls.Add(lblHorasValor);
+            pnlCardHoras.Controls.Add(lblCardHorasTitulo);
+            pnlCardHoras.Controls.Add(lblIconHoras);
+            pnlCardHoras.Location = new Point(802, 202);
+            pnlCardHoras.Name = "pnlCardHoras";
+            pnlCardHoras.Size = new Size(185, 108);
+            pnlCardHoras.TabIndex = 3;
+            // 
+            // lblHorasInfo
+            // 
+            lblHorasInfo.Font = new Font("Segoe UI", 7.5F);
+            lblHorasInfo.ForeColor = Color.FromArgb(115, 125, 138);
+            lblHorasInfo.Location = new Point(12, 77);
+            lblHorasInfo.Name = "lblHorasInfo";
+            lblHorasInfo.Size = new Size(126, 18);
+            lblHorasInfo.TabIndex = 0;
+            lblHorasInfo.Text = "Total no período";
+            // 
+            // lblHorasValor
+            // 
+            lblHorasValor.AutoEllipsis = true;
+            lblHorasValor.Font = new Font("Segoe UI Semibold", 11F);
+            lblHorasValor.ForeColor = Color.FromArgb(18, 77, 125);
+            lblHorasValor.Location = new Point(58, 34);
+            lblHorasValor.Name = "lblHorasValor";
+            lblHorasValor.Size = new Size(82, 24);
+            lblHorasValor.TabIndex = 1;
+            lblHorasValor.Text = "320h";
+            // 
+            // lblCardHorasTitulo
+            // 
+            lblCardHorasTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblCardHorasTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblCardHorasTitulo.Location = new Point(58, 15);
+            lblCardHorasTitulo.Name = "lblCardHorasTitulo";
+            lblCardHorasTitulo.Size = new Size(82, 18);
+            lblCardHorasTitulo.TabIndex = 2;
+            lblCardHorasTitulo.Text = "Horas extras";
+            // 
+            // lblIconHoras
+            // 
+            lblIconHoras.BackColor = Color.FromArgb(235, 243, 252);
+            lblIconHoras.Font = new Font("Segoe UI Semibold", 13F);
+            lblIconHoras.ForeColor = Color.FromArgb(20, 105, 185);
+            lblIconHoras.Location = new Point(12, 16);
+            lblIconHoras.Name = "lblIconHoras";
+            lblIconHoras.Size = new Size(38, 38);
+            lblIconHoras.TabIndex = 3;
+            lblIconHoras.Text = "◷";
+            lblIconHoras.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlCardLiquido
+            // 
+            pnlCardLiquido.BackColor = Color.White;
+            pnlCardLiquido.BorderStyle = BorderStyle.FixedSingle;
+            pnlCardLiquido.Controls.Add(lblLiquidoInfo);
+            pnlCardLiquido.Controls.Add(lblLiquidoValor);
+            pnlCardLiquido.Controls.Add(lblCardLiquidoTitulo);
+            pnlCardLiquido.Controls.Add(lblIconLiquido);
+            pnlCardLiquido.Location = new Point(607, 202);
+            pnlCardLiquido.Name = "pnlCardLiquido";
+            pnlCardLiquido.Size = new Size(185, 108);
+            pnlCardLiquido.TabIndex = 4;
+            // 
+            // lblLiquidoInfo
+            // 
+            lblLiquidoInfo.Font = new Font("Segoe UI", 7.5F);
+            lblLiquidoInfo.ForeColor = Color.FromArgb(115, 125, 138);
+            lblLiquidoInfo.Location = new Point(12, 77);
+            lblLiquidoInfo.Name = "lblLiquidoInfo";
+            lblLiquidoInfo.Size = new Size(126, 18);
+            lblLiquidoInfo.TabIndex = 0;
+            lblLiquidoInfo.Text = "Total a pagar";
+            // 
+            // lblLiquidoValor
+            // 
+            lblLiquidoValor.AutoEllipsis = true;
+            lblLiquidoValor.Font = new Font("Segoe UI Semibold", 11F);
+            lblLiquidoValor.ForeColor = Color.FromArgb(18, 77, 125);
+            lblLiquidoValor.Location = new Point(58, 34);
+            lblLiquidoValor.Name = "lblLiquidoValor";
+            lblLiquidoValor.Size = new Size(82, 24);
+            lblLiquidoValor.TabIndex = 1;
+            lblLiquidoValor.Text = "R$ 69.130,00";
+            // 
+            // lblCardLiquidoTitulo
+            // 
+            lblCardLiquidoTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblCardLiquidoTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblCardLiquidoTitulo.Location = new Point(58, 15);
+            lblCardLiquidoTitulo.Name = "lblCardLiquidoTitulo";
+            lblCardLiquidoTitulo.Size = new Size(82, 18);
+            lblCardLiquidoTitulo.TabIndex = 2;
+            lblCardLiquidoTitulo.Text = "Salário líquido";
+            // 
+            // lblIconLiquido
+            // 
+            lblIconLiquido.BackColor = Color.FromArgb(235, 243, 252);
+            lblIconLiquido.Font = new Font("Segoe UI Semibold", 13F);
+            lblIconLiquido.ForeColor = Color.FromArgb(20, 105, 185);
+            lblIconLiquido.Location = new Point(12, 16);
+            lblIconLiquido.Name = "lblIconLiquido";
+            lblIconLiquido.Size = new Size(38, 38);
+            lblIconLiquido.TabIndex = 3;
+            lblIconLiquido.Text = "▣";
+            lblIconLiquido.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlCardDescontos
+            // 
+            pnlCardDescontos.BackColor = Color.White;
+            pnlCardDescontos.BorderStyle = BorderStyle.FixedSingle;
+            pnlCardDescontos.Controls.Add(lblDescontosInfo);
+            pnlCardDescontos.Controls.Add(lblDescontosValor);
+            pnlCardDescontos.Controls.Add(lblCardDescontosTitulo);
+            pnlCardDescontos.Controls.Add(lblIconDescontos);
+            pnlCardDescontos.Location = new Point(412, 202);
+            pnlCardDescontos.Name = "pnlCardDescontos";
+            pnlCardDescontos.Size = new Size(185, 108);
+            pnlCardDescontos.TabIndex = 5;
+            // 
+            // lblDescontosInfo
+            // 
+            lblDescontosInfo.Font = new Font("Segoe UI", 7.5F);
+            lblDescontosInfo.ForeColor = Color.FromArgb(115, 125, 138);
+            lblDescontosInfo.Location = new Point(12, 77);
+            lblDescontosInfo.Name = "lblDescontosInfo";
+            lblDescontosInfo.Size = new Size(126, 18);
+            lblDescontosInfo.TabIndex = 0;
+            lblDescontosInfo.Text = "Total de descontos";
+            // 
+            // lblDescontosValor
+            // 
+            lblDescontosValor.AutoEllipsis = true;
+            lblDescontosValor.Font = new Font("Segoe UI Semibold", 11F);
+            lblDescontosValor.ForeColor = Color.FromArgb(195, 55, 55);
+            lblDescontosValor.Location = new Point(58, 34);
+            lblDescontosValor.Name = "lblDescontosValor";
+            lblDescontosValor.Size = new Size(82, 24);
+            lblDescontosValor.TabIndex = 1;
+            lblDescontosValor.Text = "R$ 18.320,00";
+            // 
+            // lblCardDescontosTitulo
+            // 
+            lblCardDescontosTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblCardDescontosTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblCardDescontosTitulo.Location = new Point(58, 15);
+            lblCardDescontosTitulo.Name = "lblCardDescontosTitulo";
+            lblCardDescontosTitulo.Size = new Size(82, 18);
+            lblCardDescontosTitulo.TabIndex = 2;
+            lblCardDescontosTitulo.Text = "Descontos";
+            // 
+            // lblIconDescontos
+            // 
+            lblIconDescontos.BackColor = Color.FromArgb(235, 243, 252);
+            lblIconDescontos.Font = new Font("Segoe UI Semibold", 13F);
+            lblIconDescontos.ForeColor = Color.FromArgb(20, 105, 185);
+            lblIconDescontos.Location = new Point(12, 16);
+            lblIconDescontos.Name = "lblIconDescontos";
+            lblIconDescontos.Size = new Size(38, 38);
+            lblIconDescontos.TabIndex = 3;
+            lblIconDescontos.Text = "−";
+            lblIconDescontos.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlCardBruto
+            // 
+            pnlCardBruto.BackColor = Color.White;
+            pnlCardBruto.BorderStyle = BorderStyle.FixedSingle;
+            pnlCardBruto.Controls.Add(lblBrutoInfo);
+            pnlCardBruto.Controls.Add(lblBrutoValor);
+            pnlCardBruto.Controls.Add(lblCardBrutoTitulo);
+            pnlCardBruto.Controls.Add(lblIconBruto);
+            pnlCardBruto.Location = new Point(217, 202);
+            pnlCardBruto.Name = "pnlCardBruto";
+            pnlCardBruto.Size = new Size(185, 108);
+            pnlCardBruto.TabIndex = 6;
+            // 
+            // lblBrutoInfo
+            // 
+            lblBrutoInfo.Font = new Font("Segoe UI", 7.5F);
+            lblBrutoInfo.ForeColor = Color.FromArgb(115, 125, 138);
+            lblBrutoInfo.Location = new Point(12, 77);
+            lblBrutoInfo.Name = "lblBrutoInfo";
+            lblBrutoInfo.Size = new Size(126, 18);
+            lblBrutoInfo.TabIndex = 0;
+            lblBrutoInfo.Text = "Total de proventos";
+            // 
+            // lblBrutoValor
+            // 
+            lblBrutoValor.AutoEllipsis = true;
+            lblBrutoValor.Font = new Font("Segoe UI Semibold", 11F);
+            lblBrutoValor.ForeColor = Color.FromArgb(18, 77, 125);
+            lblBrutoValor.Location = new Point(58, 34);
+            lblBrutoValor.Name = "lblBrutoValor";
+            lblBrutoValor.Size = new Size(82, 24);
+            lblBrutoValor.TabIndex = 1;
+            lblBrutoValor.Text = "R$ 87.450,00";
+            // 
+            // lblCardBrutoTitulo
+            // 
+            lblCardBrutoTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblCardBrutoTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblCardBrutoTitulo.Location = new Point(58, 15);
+            lblCardBrutoTitulo.Name = "lblCardBrutoTitulo";
+            lblCardBrutoTitulo.Size = new Size(82, 18);
+            lblCardBrutoTitulo.TabIndex = 2;
+            lblCardBrutoTitulo.Text = "Salário bruto";
+            // 
+            // lblIconBruto
+            // 
+            lblIconBruto.BackColor = Color.FromArgb(235, 243, 252);
+            lblIconBruto.Font = new Font("Segoe UI Semibold", 13F);
+            lblIconBruto.ForeColor = Color.FromArgb(20, 105, 185);
+            lblIconBruto.Location = new Point(12, 16);
+            lblIconBruto.Name = "lblIconBruto";
+            lblIconBruto.Size = new Size(38, 38);
+            lblIconBruto.TabIndex = 3;
+            lblIconBruto.Text = "$";
+            lblIconBruto.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlCardFuncionarios
+            // 
+            pnlCardFuncionarios.BackColor = Color.White;
+            pnlCardFuncionarios.BorderStyle = BorderStyle.FixedSingle;
+            pnlCardFuncionarios.Controls.Add(lblFuncionariosInfo);
+            pnlCardFuncionarios.Controls.Add(lblFuncionariosValor);
+            pnlCardFuncionarios.Controls.Add(lblCardFuncionariosTitulo);
+            pnlCardFuncionarios.Controls.Add(lblIconFuncionarios);
+            pnlCardFuncionarios.Location = new Point(22, 202);
+            pnlCardFuncionarios.Name = "pnlCardFuncionarios";
+            pnlCardFuncionarios.Size = new Size(185, 108);
+            pnlCardFuncionarios.TabIndex = 7;
+            // 
+            // lblFuncionariosInfo
+            // 
+            lblFuncionariosInfo.Font = new Font("Segoe UI", 7.5F);
+            lblFuncionariosInfo.ForeColor = Color.FromArgb(115, 125, 138);
+            lblFuncionariosInfo.Location = new Point(12, 77);
+            lblFuncionariosInfo.Name = "lblFuncionariosInfo";
+            lblFuncionariosInfo.Size = new Size(126, 18);
+            lblFuncionariosInfo.TabIndex = 0;
+            lblFuncionariosInfo.Text = "Ativos no período";
+            // 
+            // lblFuncionariosValor
+            // 
+            lblFuncionariosValor.AutoEllipsis = true;
+            lblFuncionariosValor.Font = new Font("Segoe UI Semibold", 11F);
+            lblFuncionariosValor.ForeColor = Color.FromArgb(18, 77, 125);
+            lblFuncionariosValor.Location = new Point(58, 34);
+            lblFuncionariosValor.Name = "lblFuncionariosValor";
+            lblFuncionariosValor.Size = new Size(82, 24);
+            lblFuncionariosValor.TabIndex = 1;
+            lblFuncionariosValor.Text = "25";
+            // 
+            // lblCardFuncionariosTitulo
+            // 
+            lblCardFuncionariosTitulo.Font = new Font("Segoe UI", 7.5F);
+            lblCardFuncionariosTitulo.ForeColor = Color.FromArgb(105, 116, 130);
+            lblCardFuncionariosTitulo.Location = new Point(58, 15);
+            lblCardFuncionariosTitulo.Name = "lblCardFuncionariosTitulo";
+            lblCardFuncionariosTitulo.Size = new Size(82, 18);
+            lblCardFuncionariosTitulo.TabIndex = 2;
+            lblCardFuncionariosTitulo.Text = "Funcionários";
+            // 
+            // lblIconFuncionarios
+            // 
+            lblIconFuncionarios.BackColor = Color.FromArgb(235, 243, 252);
+            lblIconFuncionarios.Font = new Font("Segoe UI Semibold", 13F);
+            lblIconFuncionarios.ForeColor = Color.FromArgb(20, 105, 185);
+            lblIconFuncionarios.Location = new Point(12, 16);
+            lblIconFuncionarios.Name = "lblIconFuncionarios";
+            lblIconFuncionarios.Size = new Size(38, 38);
+            lblIconFuncionarios.TabIndex = 3;
+            lblIconFuncionarios.Text = "♙";
+            lblIconFuncionarios.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnlFiltros
+            // 
+            pnlFiltros.BackColor = Color.White;
+            pnlFiltros.Controls.Add(lblMes);
+            pnlFiltros.Controls.Add(lblAno);
+            pnlFiltros.Controls.Add(lblDepartamento);
+            pnlFiltros.Controls.Add(lblSituacaoFiltro);
+            pnlFiltros.Controls.Add(cmbMes);
+            pnlFiltros.Controls.Add(cmbAno);
+            pnlFiltros.Controls.Add(cmbDepartamento);
+            pnlFiltros.Controls.Add(cmbSituacao);
+            pnlFiltros.Controls.Add(btnFiltrar);
+            pnlFiltros.Dock = DockStyle.Top;
+            pnlFiltros.Location = new Point(22, 92);
+            pnlFiltros.Name = "pnlFiltros";
+            pnlFiltros.Padding = new Padding(18, 12, 12, 10);
+            pnlFiltros.Size = new Size(1005, 92);
+            pnlFiltros.TabIndex = 8;
+            // 
+            // lblMes
+            // 
+            lblMes.AutoSize = true;
+            lblMes.Font = new Font("Segoe UI Semibold", 8F);
+            lblMes.ForeColor = Color.FromArgb(75, 88, 102);
+            lblMes.Location = new Point(18, 10);
+            lblMes.Name = "lblMes";
+            lblMes.Size = new Size(28, 13);
+            lblMes.TabIndex = 0;
+            lblMes.Text = "Mês";
+            // 
+            // lblAno
+            // 
+            lblAno.AutoSize = true;
+            lblAno.Font = new Font("Segoe UI Semibold", 8F);
+            lblAno.ForeColor = Color.FromArgb(75, 88, 102);
+            lblAno.Location = new Point(178, 10);
+            lblAno.Name = "lblAno";
+            lblAno.Size = new Size(27, 13);
+            lblAno.TabIndex = 1;
+            lblAno.Text = "Ano";
+            // 
+            // lblDepartamento
+            // 
+            lblDepartamento.AutoSize = true;
+            lblDepartamento.Font = new Font("Segoe UI Semibold", 8F);
+            lblDepartamento.ForeColor = Color.FromArgb(75, 88, 102);
+            lblDepartamento.Location = new Point(328, 10);
+            lblDepartamento.Name = "lblDepartamento";
+            lblDepartamento.Size = new Size(81, 13);
+            lblDepartamento.TabIndex = 2;
+            lblDepartamento.Text = "Departamento";
+            // 
+            // lblSituacaoFiltro
+            // 
+            lblSituacaoFiltro.AutoSize = true;
+            lblSituacaoFiltro.Font = new Font("Segoe UI Semibold", 8F);
+            lblSituacaoFiltro.ForeColor = Color.FromArgb(75, 88, 102);
+            lblSituacaoFiltro.Location = new Point(550, 10);
+            lblSituacaoFiltro.Name = "lblSituacaoFiltro";
+            lblSituacaoFiltro.Size = new Size(50, 13);
+            lblSituacaoFiltro.TabIndex = 3;
+            lblSituacaoFiltro.Text = "Situação";
+            // 
+            // cmbMes
+            // 
+            cmbMes.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbMes.Font = new Font("Segoe UI", 8.5F);
+            cmbMes.Items.AddRange(new object[] { "Setembro" });
+            cmbMes.Location = new Point(18, 32);
+            cmbMes.Name = "cmbMes";
+            cmbMes.Size = new Size(128, 21);
+            cmbMes.TabIndex = 4;
+            // 
+            // cmbAno
+            // 
+            cmbAno.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbAno.Font = new Font("Segoe UI", 8.5F);
+            cmbAno.Items.AddRange(new object[] { "2026" });
+            cmbAno.Location = new Point(178, 32);
+            cmbAno.Name = "cmbAno";
+            cmbAno.Size = new Size(110, 21);
+            cmbAno.TabIndex = 5;
+            // 
+            // cmbDepartamento
+            // 
+            cmbDepartamento.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDepartamento.Font = new Font("Segoe UI", 8.5F);
+            cmbDepartamento.Items.AddRange(new object[] { "Todos os departamentos" });
+            cmbDepartamento.Location = new Point(328, 32);
+            cmbDepartamento.Name = "cmbDepartamento";
+            cmbDepartamento.Size = new Size(195, 21);
+            cmbDepartamento.TabIndex = 6;
+            // 
+            // cmbSituacao
+            // 
+            cmbSituacao.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbSituacao.Font = new Font("Segoe UI", 8.5F);
+            cmbSituacao.Items.AddRange(new object[] { "Todos" });
+            cmbSituacao.Location = new Point(550, 32);
+            cmbSituacao.Name = "cmbSituacao";
+            cmbSituacao.Size = new Size(160, 21);
+            cmbSituacao.TabIndex = 7;
+            // 
+            // btnFiltrar
+            // 
+            btnFiltrar.BackColor = Color.FromArgb(31, 126, 215);
+            btnFiltrar.Cursor = Cursors.Hand;
+            btnFiltrar.FlatAppearance.BorderSize = 0;
+            btnFiltrar.FlatStyle = FlatStyle.Flat;
+            btnFiltrar.Font = new Font("Segoe UI Semibold", 9F);
+            btnFiltrar.ForeColor = Color.White;
+            btnFiltrar.Location = new Point(725, 30);
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.Size = new Size(105, 38);
+            btnFiltrar.TabIndex = 8;
+            btnFiltrar.Text = "⌕  Filtrar";
+            btnFiltrar.UseVisualStyleBackColor = false;
+            // 
+            // pnlCabecalho
+            // 
+            pnlCabecalho.BackColor = Color.White;
+            pnlCabecalho.Controls.Add(lblTitulo);
+            pnlCabecalho.Controls.Add(lblSubtitulo);
+            pnlCabecalho.Controls.Add(lblUsuario);
+            pnlCabecalho.Dock = DockStyle.Top;
+            pnlCabecalho.Location = new Point(22, 0);
+            pnlCabecalho.Name = "pnlCabecalho";
+            pnlCabecalho.Size = new Size(1005, 92);
+            pnlCabecalho.TabIndex = 9;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI Semibold", 24F);
+            lblTitulo.ForeColor = Color.FromArgb(15, 56, 92);
+            lblTitulo.Location = new Point(24, 17);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(319, 45);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Folha de Pagamento";
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.AutoSize = true;
+            lblSubtitulo.Font = new Font("Segoe UI", 9F);
+            lblSubtitulo.ForeColor = Color.FromArgb(105, 118, 132);
+            lblSubtitulo.Location = new Point(26, 58);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(327, 15);
+            lblSubtitulo.TabIndex = 1;
+            lblSubtitulo.Text = "Processamento da folha, relatórios e informações financeiras";
+            // 
+            // lblUsuario
+            // 
+            lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblUsuario.AutoSize = true;
+            lblUsuario.Font = new Font("Segoe UI Semibold", 9F);
+            lblUsuario.ForeColor = Color.FromArgb(18, 103, 181);
+            lblUsuario.Location = new Point(1830, 34);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(101, 15);
+            lblUsuario.TabIndex = 2;
+            lblUsuario.Text = "♙  Administrador";
+            // 
+            // FrmFolhaPagamento
+            // 
+            BackColor = Color.FromArgb(246, 248, 251);
+            ClientSize = new Size(1260, 780);
+            Controls.Add(pnlConteudo);
+            Controls.Add(pnlMenu);
+            Font = new Font("Segoe UI", 9F);
+            MinimumSize = new Size(1100, 720);
+            Name = "FrmFolhaPagamento";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Folha de Pagamento — RH Control";
+            pnlMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            pnlConteudo.ResumeLayout(false);
+            pnlAcoes.ResumeLayout(false);
+            pnlLista.ResumeLayout(false);
+            pnlLista.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFuncionarios).EndInit();
+            pnlResumo.ResumeLayout(false);
+            pnlCardHoras.ResumeLayout(false);
+            pnlCardLiquido.ResumeLayout(false);
+            pnlCardDescontos.ResumeLayout(false);
+            pnlCardBruto.ResumeLayout(false);
+            pnlCardFuncionarios.ResumeLayout(false);
+            pnlFiltros.ResumeLayout(false);
+            pnlFiltros.PerformLayout();
+            pnlCabecalho.ResumeLayout(false);
+            pnlCabecalho.PerformLayout();
+            ResumeLayout(false);
         }
 
-        private void ConfigurarMenuButton(Button b, string texto, int y)
-        {
-            b.BackColor = Color.FromArgb(15, 73, 116);
-            b.FlatStyle = FlatStyle.Flat;
-            b.FlatAppearance.BorderSize = 0;
-            b.FlatAppearance.MouseOverBackColor = Color.FromArgb(28, 96, 145);
-            b.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
-            b.ForeColor = Color.FromArgb(235, 242, 248);
-            b.Font = new Font("Segoe UI", 9F);
-            b.Text = texto;
-            b.TextAlign = ContentAlignment.MiddleLeft;
-            b.Padding = new Padding(18, 0, 0, 0);
-            b.Location = new Point(10, y);
-            b.Size = new Size(195, 42);
-            b.Cursor = Cursors.Hand;
-            b.FlatAppearance.BorderColor = Color.Transparent;
-            this.pnlMenu.Controls.Add(b);
-        }
-
-        private void ConfigurarLabel(Label l, string texto, int x, int y)
-        {
-            l.AutoSize = true;
-            l.Text = texto;
-            l.Font = new Font("Segoe UI Semibold", 8F);
-            l.ForeColor = Color.FromArgb(75, 88, 102);
-            l.Location = new Point(x, y);
-        }
-
-        private void ConfigurarCombo(ComboBox c, int x, int y, int w, string texto)
-        {
-            c.DropDownStyle = ComboBoxStyle.DropDownList;
-            c.Location = new Point(x, y);
-            c.Size = new Size(w, 28);
-            c.Font = new Font("Segoe UI", 8.5F);
-            c.Items.Add(texto);
-            c.SelectedIndex = 0;
-        }
-
-        private void ConfigurarCard(Panel p, int indice, string icone, string titulo, string valor, string info)
-        {
-            int x = 0;
-            int w = 150;
-            int gap = 12;
-            x = 22 + indice * (w + gap);
-
-            p.BackColor = Color.White;
-            p.BorderStyle = BorderStyle.FixedSingle;
-            p.Location = new Point(x, 202);
-            p.Size = new Size(w, 108);
-            p.Controls.Add(new Label());
-            p.Controls.Add(new Label());
-            p.Controls.Add(new Label());
-
-            Label icon = p.Controls[2] as Label;
-            Label title = p.Controls[1] as Label;
-            Label valueLabel = p.Controls[0] as Label;
-
-            icon.Text = icone;
-            icon.TextAlign = ContentAlignment.MiddleCenter;
-            icon.BackColor = Color.FromArgb(235, 243, 252);
-            icon.ForeColor = Color.FromArgb(20, 105, 185);
-            icon.Font = new Font("Segoe UI Semibold", 13F);
-            icon.Location = new Point(12, 16);
-            icon.Size = new Size(38, 38);
-
-            title.Text = titulo;
-            title.Font = new Font("Segoe UI", 7.5F);
-            title.ForeColor = Color.FromArgb(105, 116, 130);
-            title.Location = new Point(58, 15);
-            title.Size = new Size(82, 18);
-
-            valueLabel.Text = valor;
-            valueLabel.Font = new Font("Segoe UI Semibold", 11F);
-            valueLabel.ForeColor = Color.FromArgb(18, 77, 125);
-            valueLabel.Location = new Point(58, 34);
-            valueLabel.Size = new Size(82, 24);
-            valueLabel.AutoEllipsis = true;
-
-            Label infoLabel = new Label();
-            infoLabel.Text = info;
-            infoLabel.Font = new Font("Segoe UI", 7.5F);
-            infoLabel.ForeColor = Color.FromArgb(115, 125, 138);
-            infoLabel.Location = new Point(12, 77);
-            infoLabel.Size = new Size(126, 18);
-            infoLabel.AutoEllipsis = true;
-            p.Controls.Add(infoLabel);
-
-            if (indice == 2)
-                valueLabel.ForeColor = Color.FromArgb(195, 55, 55);
-        }
-
-        private void ConfigurarColuna(DataGridViewTextBoxColumn c, string header, int width)
-        {
-            c.HeaderText = header;
-            c.Width = width;
-            c.ReadOnly = true;
-        }
-
-        private void ConfigurarResumoLabel(Label l, string texto, int x, int y, float tamanho, bool destaque)
-        {
-            l.AutoSize = false;
-            l.Text = texto;
-            l.Font = new Font(destaque ? "Segoe UI Semibold" : "Segoe UI", tamanho);
-            l.ForeColor = destaque ? Color.FromArgb(18, 77, 125) : Color.FromArgb(105, 116, 130);
-            l.Location = new Point(x, y);
-            l.Size = new Size(215, destaque ? 20 : 15);
-        }
-
-        private void ConfigurarAcao(Button b, string texto, int x, bool principal, int w)
-        {
-            b.Text = texto;
-            b.Location = new Point(x, 10);
-            b.Size = new Size(w, 38);
-            b.Font = new Font("Segoe UI Semibold", 8.5F);
-            b.Cursor = Cursors.Hand;
-            b.FlatStyle = FlatStyle.Flat;
-            b.FlatAppearance.BorderSize = 1;
-
-            if (principal)
-            {
-                b.BackColor = Color.FromArgb(31, 126, 215);
-                b.ForeColor = Color.White;
-                b.FlatAppearance.BorderColor = Color.FromArgb(31, 126, 215);
-            }
-            else
-            {
-                b.BackColor = Color.White;
-                b.ForeColor = Color.FromArgb(31, 91, 145);
-                b.FlatAppearance.BorderColor = Color.FromArgb(205, 216, 227);
-            }
-        }
     }
 }

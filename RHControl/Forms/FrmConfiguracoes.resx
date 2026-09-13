@@ -117,4 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblTextoInfoFolha.Text" xml:space="preserve">
+    <value>Essas opções serão utilizadas pela folha de pagamento.
+
+As alíquotas de INSS e IRRF não ficam fixas aqui: o sistema poderá aplicar as tabelas vigentes quando o cálculo for implementado.
+
+Os percentuais de benefícios são configurações da empresa.</value>
+  </data>
 </root>

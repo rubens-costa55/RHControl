@@ -37,6 +37,8 @@ namespace RHControl
         {
             InitializeComponent();
 
+            AplicarPermissoes();
+
             ConfigurarEventos();
 
             // Garante que os períodos de férias sejam criados/atualizados
@@ -52,6 +54,45 @@ namespace RHControl
 
             AtualizarDadosFuncionario();
             AtualizarCalendario();
+        }
+
+        // =========================================================
+        // PERMISSÕES
+        // =========================================================
+        // A Jornada / Calendário é uma tela de consulta.
+        // O perfil Usuário pode visualizar funcionários, calendário,
+        // escala, férias e previsões, mas não possui ações para alterar
+        // dados nesta tela.
+        //
+        // O Administrador continua com acesso completo à navegação.
+        // =========================================================
+        private void AplicarPermissoes()
+        {
+            bool administrador = SessaoUsuario.PodeEditar;
+
+            if (lblAdministrador != null)
+            {
+                string nome = SessaoUsuario.Nome?.Trim() ?? "";
+                string tipo = administrador ? "Administrador" : "Usuário";
+
+                lblAdministrador.Text =
+                    string.IsNullOrWhiteSpace(nome)
+                        ? tipo
+                        : $"{nome} • {tipo}";
+            }
+
+            // Configurações é área administrativa.
+            btnConfiguracoes.Visible = SessaoUsuario.PodeConfigurar;
+            btnConfiguracoes.Enabled = SessaoUsuario.PodeConfigurar;
+
+            // Estes controles são somente de consulta/navegação.
+            // Permanecem disponíveis para Administrador e Usuário.
+            btnAtualizar.Enabled = true;
+            btnMesAnterior.Enabled = true;
+            btnProximoMes.Enabled = true;
+            cmbFuncionario.Enabled = true;
+            cmbMes.Enabled = true;
+            cmbAno.Enabled = true;
         }
 
         private void ConfigurarEventos()

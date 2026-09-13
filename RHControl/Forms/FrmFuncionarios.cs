@@ -48,6 +48,29 @@ namespace RHControl
 
             dgvFuncionarios.CellFormatting -= DgvFuncionarios_CellFormatting;
             dgvFuncionarios.CellFormatting += DgvFuncionarios_CellFormatting;
+
+            AplicarPermissoes();
+        }
+
+        // =========================================================
+        // PERMISSÕES
+        // =========================================================
+
+        private void AplicarPermissoes()
+        {
+            bool administrador = SessaoUsuario.EhAdministrador;
+
+            // Usuário comum pode apenas consultar os funcionários.
+            // Administradores continuam com todas as ações disponíveis.
+            btnNovoFuncionario.Visible = administrador;
+            btnNovoFuncionario.Enabled = administrador;
+
+            colEditar.Visible = administrador;
+            colJornada.Visible = administrador;
+            colDesligar.Visible = administrador;
+
+            // A única ação disponível na lista para Usuário é Detalhes.
+            colDetalhes.Visible = true;
         }
 
         // =========================================================
@@ -359,6 +382,16 @@ namespace RHControl
             object sender,
             EventArgs e)
         {
+            if (!SessaoUsuario.EhAdministrador)
+            {
+                MessageBox.Show(
+                    "Seu perfil possui acesso somente para visualização dos funcionários.",
+                    "Acesso restrito",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
             using (FrmCadastroFuncionario cadastro =
                    new FrmCadastroFuncionario())
             {
@@ -414,6 +447,16 @@ namespace RHControl
 
             if (e.ColumnIndex == colEditar.Index)
             {
+                if (!SessaoUsuario.EhAdministrador)
+                {
+                    MessageBox.Show(
+                        "Seu perfil não possui permissão para editar funcionários.",
+                        "Acesso restrito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
                 using (FrmCadastroFuncionario cadastro =
                        new FrmCadastroFuncionario(funcionarioId))
                 {
@@ -442,6 +485,16 @@ namespace RHControl
 
             if (e.ColumnIndex == colJornada.Index)
             {
+                if (!SessaoUsuario.EhAdministrador)
+                {
+                    MessageBox.Show(
+                        "Seu perfil não possui permissão para abrir a jornada por esta tela.",
+                        "Acesso restrito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
                 FrmJornada jornada =
                     new FrmJornada();
 
@@ -489,6 +542,16 @@ namespace RHControl
 
             if (e.ColumnIndex == colDesligar.Index)
             {
+                if (!SessaoUsuario.EhAdministrador)
+                {
+                    MessageBox.Show(
+                        "Seu perfil não possui permissão para desligar funcionários.",
+                        "Acesso restrito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
                 string nome =
                     linha.Cells[colNome.Index]
                         .Value?.ToString() ?? "";
@@ -509,6 +572,9 @@ namespace RHControl
             long funcionarioId,
             string nome)
         {
+            if (!SessaoUsuario.EhAdministrador)
+                return;
+
             DialogResult resposta =
                 MessageBox.Show(
                     "Deseja realmente desligar o funcionário?\n\n" +

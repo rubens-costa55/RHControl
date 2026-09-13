@@ -79,1609 +79,687 @@
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-
-            this.pnlMenu = new System.Windows.Forms.Panel();
-            this.picLogo = new System.Windows.Forms.PictureBox();
-            this.lblNomeSistema = new System.Windows.Forms.Label();
-            this.lblSubtituloMenu = new System.Windows.Forms.Label();
-
-            this.btnDashboard = new System.Windows.Forms.Button();
-            this.btnFuncionarios = new System.Windows.Forms.Button();
-            this.btnJornada = new System.Windows.Forms.Button();
-            this.btnFolha = new System.Windows.Forms.Button();
-            this.btnConfiguracoes = new System.Windows.Forms.Button();
-
-            this.lblVersao = new System.Windows.Forms.Label();
-
-            this.pnlConteudo = new System.Windows.Forms.Panel();
-            this.pnlCabecalho = new System.Windows.Forms.Panel();
-
-            this.lblTitulo = new System.Windows.Forms.Label();
-            this.lblSubtitulo = new System.Windows.Forms.Label();
-            this.lblUsuario = new System.Windows.Forms.Label();
-
-            this.pnlResumo = new System.Windows.Forms.Panel();
-
-            this.pnlResumoTotal = new System.Windows.Forms.Panel();
-            this.pnlResumoAtivos = new System.Windows.Forms.Panel();
-            this.pnlResumoFerias = new System.Windows.Forms.Panel();
-            this.pnlResumoAfastados = new System.Windows.Forms.Panel();
-
-            this.lblResumoTotal = new System.Windows.Forms.Label();
-            this.lblResumoTotalTexto = new System.Windows.Forms.Label();
-
-            this.lblResumoAtivos = new System.Windows.Forms.Label();
-            this.lblResumoAtivosTexto = new System.Windows.Forms.Label();
-
-            this.lblResumoFerias = new System.Windows.Forms.Label();
-            this.lblResumoFeriasTexto = new System.Windows.Forms.Label();
-
-            this.lblResumoAfastados = new System.Windows.Forms.Label();
-            this.lblResumoAfastadosTexto = new System.Windows.Forms.Label();
-
-            this.pnlBusca = new System.Windows.Forms.Panel();
-            this.lblBuscar = new System.Windows.Forms.Label();
-            this.txtBusca = new System.Windows.Forms.TextBox();
-            this.btnNovoFuncionario = new System.Windows.Forms.Button();
-
-            this.pnlFiltros = new System.Windows.Forms.Panel();
-
-            this.btnTodos = new System.Windows.Forms.Button();
-            this.btnAtivos = new System.Windows.Forms.Button();
-            this.btnFerias = new System.Windows.Forms.Button();
-            this.btnAfastados = new System.Windows.Forms.Button();
-            this.btnDesligados = new System.Windows.Forms.Button();
-
-            this.pnlLista = new System.Windows.Forms.Panel();
-            this.lblLista = new System.Windows.Forms.Label();
-
-            this.dgvFuncionarios = new System.Windows.Forms.DataGridView();
-
-            this.colNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSetor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAdmissao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-
-            this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colJornada = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colDetalhes = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colDesligar = new System.Windows.Forms.DataGridViewButtonColumn();
-
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFuncionarios)).BeginInit();
-
-            this.SuspendLayout();
-
-            // =========================================================
-            // FORM
-            // =========================================================
-
-            this.AutoScaleDimensions =
-                new System.Drawing.SizeF(7F, 15F);
-
-            this.AutoScaleMode =
-                System.Windows.Forms.AutoScaleMode.Font;
-
-            this.BackColor =
-                System.Drawing.Color.FromArgb(244, 247, 251);
-
-            this.ClientSize =
-                new System.Drawing.Size(1280, 800);
-
-            this.FormBorderStyle =
-                System.Windows.Forms.FormBorderStyle.FixedSingle;
-
-            this.MaximizeBox = false;
-            this.MinimizeBox = true;
-
-            this.StartPosition =
-                System.Windows.Forms.FormStartPosition.CenterScreen;
-
-            this.Text =
-                "RH Control — Funcionários";
-
-            // =========================================================
-            // MENU LATERAL
-            // =========================================================
-
-            this.pnlMenu.BackColor =
-                System.Drawing.Color.FromArgb(8, 48, 88);
-
-            this.pnlMenu.Dock =
-                System.Windows.Forms.DockStyle.Left;
-
-            this.pnlMenu.Location =
-                new System.Drawing.Point(0, 0);
-
-            this.pnlMenu.Name =
-                "pnlMenu";
-
-            this.pnlMenu.Size =
-                new System.Drawing.Size(235, 800);
-
-            // =========================================================
-            // LOGO
-            // =========================================================
-
-            this.picLogo.BackColor =
-                System.Drawing.Color.Transparent;
-
-            this.picLogo.Image =
-                global::RHControl.Properties.Resources.logorh;
-
-            this.picLogo.Location =
-                new System.Drawing.Point(38, 30);
-
-            this.picLogo.Name =
-                "picLogo";
-
-            this.picLogo.Size =
-                new System.Drawing.Size(160, 125);
-
-            this.picLogo.SizeMode =
-                System.Windows.Forms.PictureBoxSizeMode.Zoom;
-
-            // =========================================================
-            // NOME SISTEMA
-            // =========================================================
-
-            this.lblNomeSistema.AutoSize = true;
-
-            this.lblNomeSistema.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    17F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.lblNomeSistema.ForeColor =
-                System.Drawing.Color.White;
-
-            this.lblNomeSistema.Location =
-                new System.Drawing.Point(43, 162);
-
-            this.lblNomeSistema.Name =
-                "lblNomeSistema";
-
-            this.lblNomeSistema.Text =
-                "RH CONTROL";
-
-            // =========================================================
-            // SUBTÍTULO MENU
-            // =========================================================
-
-            this.lblSubtituloMenu.AutoSize = true;
-
-            this.lblSubtituloMenu.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    9F);
-
-            this.lblSubtituloMenu.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    175,
-                    202,
-                    225);
-
-            this.lblSubtituloMenu.Location =
-                new System.Drawing.Point(47, 189);
-
-            this.lblSubtituloMenu.Name =
-                "lblSubtituloMenu";
-
-            this.lblSubtituloMenu.Text =
-                "GESTÃO DE PESSOAS";
-
-            // =========================================================
-            // DASHBOARD
-            // =========================================================
-
-            this.btnDashboard.BackColor =
-                System.Drawing.Color.FromArgb(8, 48, 88);
-
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-
-            this.btnDashboard.FlatAppearance.MouseOverBackColor =
-                System.Drawing.Color.FromArgb(22, 82, 125);
-
-            this.btnDashboard.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnDashboard.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.btnDashboard.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnDashboard.Location =
-                new System.Drawing.Point(10, 225);
-
-            this.btnDashboard.Name =
-                "btnDashboard";
-
-            this.btnDashboard.Size =
-                new System.Drawing.Size(215, 44);
-
-            this.btnDashboard.Text =
-                "⌂   Dashboard";
-
-            this.btnDashboard.TextAlign =
-                System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.btnDashboard.Padding =
-                new System.Windows.Forms.Padding(15, 0, 0, 0);
-
-            this.btnDashboard.UseVisualStyleBackColor =
-                false;
-
-            // =========================================================
-            // FUNCIONÁRIOS
-            // =========================================================
-
-            this.btnFuncionarios.BackColor =
-                System.Drawing.Color.FromArgb(20, 125, 235);
-
-            this.btnFuncionarios.FlatAppearance.BorderSize = 0;
-
-            this.btnFuncionarios.FlatAppearance.MouseOverBackColor =
-                System.Drawing.Color.FromArgb(35, 145, 250);
-
-            this.btnFuncionarios.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnFuncionarios.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.btnFuncionarios.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnFuncionarios.Location =
-                new System.Drawing.Point(10, 277);
-
-            this.btnFuncionarios.Name =
-                "btnFuncionarios";
-
-            this.btnFuncionarios.Size =
-                new System.Drawing.Size(215, 44);
-
-            this.btnFuncionarios.Text =
-                "●   Funcionários";
-
-            this.btnFuncionarios.TextAlign =
-                System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.btnFuncionarios.Padding =
-                new System.Windows.Forms.Padding(15, 0, 0, 0);
-
-            this.btnFuncionarios.UseVisualStyleBackColor =
-                false;
-
-            // =========================================================
-            // JORNADA
-            // =========================================================
-
-            this.btnJornada.BackColor =
-                System.Drawing.Color.FromArgb(8, 48, 88);
-
-            this.btnJornada.FlatAppearance.BorderSize = 0;
-
-            this.btnJornada.FlatAppearance.MouseOverBackColor =
-                System.Drawing.Color.FromArgb(22, 82, 125);
-
-            this.btnJornada.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnJornada.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.btnJornada.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnJornada.Location =
-                new System.Drawing.Point(10, 329);
-
-            this.btnJornada.Name =
-                "btnJornada";
-
-            this.btnJornada.Size =
-                new System.Drawing.Size(215, 44);
-
-            this.btnJornada.Text =
-                "▣   Jornada / Calendário";
-
-            this.btnJornada.TextAlign =
-                System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.btnJornada.Padding =
-                new System.Windows.Forms.Padding(15, 0, 0, 0);
-
-            this.btnJornada.UseVisualStyleBackColor =
-                false;
-
-            // =========================================================
-            // FOLHA
-            // =========================================================
-
-            this.btnFolha.BackColor =
-                System.Drawing.Color.FromArgb(8, 48, 88);
-
-            this.btnFolha.FlatAppearance.BorderSize = 0;
-
-            this.btnFolha.FlatAppearance.MouseOverBackColor =
-                System.Drawing.Color.FromArgb(22, 82, 125);
-
-            this.btnFolha.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnFolha.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.btnFolha.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnFolha.Location =
-                new System.Drawing.Point(10, 381);
-
-            this.btnFolha.Name =
-                "btnFolha";
-
-            this.btnFolha.Size =
-                new System.Drawing.Size(215, 44);
-
-            this.btnFolha.Text =
-                "$   Folha / Relatórios";
-
-            this.btnFolha.TextAlign =
-                System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.btnFolha.Padding =
-                new System.Windows.Forms.Padding(15, 0, 0, 0);
-
-            this.btnFolha.UseVisualStyleBackColor =
-                false;
-
-            // =========================================================
-            // CONFIGURAÇÕES
-            // =========================================================
-
-            this.btnConfiguracoes.BackColor =
-                System.Drawing.Color.FromArgb(8, 48, 88);
-
-            this.btnConfiguracoes.FlatAppearance.BorderSize = 0;
-
-            this.btnConfiguracoes.FlatAppearance.MouseOverBackColor =
-                System.Drawing.Color.FromArgb(22, 82, 125);
-
-            this.btnConfiguracoes.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnConfiguracoes.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.btnConfiguracoes.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnConfiguracoes.Location =
-                new System.Drawing.Point(10, 433);
-
-            this.btnConfiguracoes.Name =
-                "btnConfiguracoes";
-
-            this.btnConfiguracoes.Size =
-                new System.Drawing.Size(215, 44);
-
-            this.btnConfiguracoes.Text =
-                "⚙   Configurações";
-
-            this.btnConfiguracoes.TextAlign =
-                System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.btnConfiguracoes.Padding =
-                new System.Windows.Forms.Padding(15, 0, 0, 0);
-
-            this.btnConfiguracoes.UseVisualStyleBackColor =
-                false;
-
-            // =========================================================
-            // VERSÃO
-            // =========================================================
-
-            this.lblVersao.AutoSize = true;
-
-            this.lblVersao.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    8.5F);
-
-            this.lblVersao.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    145,
-                    180,
-                    210);
-
-            this.lblVersao.Location =
-                new System.Drawing.Point(42, 752);
-
-            this.lblVersao.Name =
-                "lblVersao";
-
-            this.lblVersao.Text =
-                "RH Control • v1.0";
-
-            // =========================================================
-            // CONTROLES MENU
-            // =========================================================
-
-            this.pnlMenu.Controls.Add(this.picLogo);
-            this.pnlMenu.Controls.Add(this.lblNomeSistema);
-            this.pnlMenu.Controls.Add(this.lblSubtituloMenu);
-            this.pnlMenu.Controls.Add(this.btnDashboard);
-            this.pnlMenu.Controls.Add(this.btnFuncionarios);
-            this.pnlMenu.Controls.Add(this.btnJornada);
-            this.pnlMenu.Controls.Add(this.btnFolha);
-            this.pnlMenu.Controls.Add(this.btnConfiguracoes);
-            this.pnlMenu.Controls.Add(this.lblVersao);
-
-            // =========================================================
-            // CONTEÚDO
-            // =========================================================
-
-            this.pnlConteudo.BackColor =
-                System.Drawing.Color.FromArgb(
-                    244,
-                    247,
-                    251);
-
-            this.pnlConteudo.Dock =
-                System.Windows.Forms.DockStyle.Fill;
-
-            this.pnlConteudo.Location =
-                new System.Drawing.Point(235, 0);
-
-            this.pnlConteudo.Name =
-                "pnlConteudo";
-
-            this.pnlConteudo.Size =
-                new System.Drawing.Size(1045, 800);
-
-            // =========================================================
-            // CABEÇALHO
-            // =========================================================
-
-            this.pnlCabecalho.BackColor =
-                System.Drawing.Color.White;
-
-            this.pnlCabecalho.Location =
-                new System.Drawing.Point(0, 0);
-
-            this.pnlCabecalho.Name =
-                "pnlCabecalho";
-
-            this.pnlCabecalho.Size =
-                new System.Drawing.Size(1045, 112);
-
-            this.lblTitulo.AutoSize = true;
-
-            this.lblTitulo.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    26F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.lblTitulo.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    14,
-                    48,
-                    82);
-
-            this.lblTitulo.Location =
-                new System.Drawing.Point(34, 25);
-
-            this.lblTitulo.Name =
-                "lblTitulo";
-
-            this.lblTitulo.Text =
-                "Funcionários";
-
-            this.lblSubtitulo.AutoSize = true;
-
-            this.lblSubtitulo.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.lblSubtitulo.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    100,
-                    125,
-                    150);
-
-            this.lblSubtitulo.Location =
-                new System.Drawing.Point(38, 73);
-
-            this.lblSubtitulo.Name =
-                "lblSubtitulo";
-
-            this.lblSubtitulo.Text =
-                "Gerencie os colaboradores da empresa";
-
-            this.lblUsuario.AutoSize = true;
-
-            this.lblUsuario.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.lblUsuario.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    21,
-                    101,
-                    192);
-
-            this.lblUsuario.Location =
-                new System.Drawing.Point(875, 40);
-
-            this.lblUsuario.Name =
-                "lblUsuario";
-
-            this.lblUsuario.Text =
-                "●  Administrador";
-
-            this.pnlCabecalho.Controls.Add(this.lblTitulo);
-            this.pnlCabecalho.Controls.Add(this.lblSubtitulo);
-            this.pnlCabecalho.Controls.Add(this.lblUsuario);
-
-            // =========================================================
-            // RESUMO
-            // =========================================================
-
-            this.pnlResumo.BackColor =
-                System.Drawing.Color.Transparent;
-
-            this.pnlResumo.Location =
-                new System.Drawing.Point(25, 130);
-
-            this.pnlResumo.Name =
-                "pnlResumo";
-
-            this.pnlResumo.Size =
-                new System.Drawing.Size(995, 90);
-
-            // TOTAL
-            this.pnlResumoTotal.BackColor =
-                System.Drawing.Color.White;
-
-            this.pnlResumoTotal.BorderStyle =
-                System.Windows.Forms.BorderStyle.FixedSingle;
-
-            this.pnlResumoTotal.Location =
-                new System.Drawing.Point(0, 0);
-
-            this.pnlResumoTotal.Name =
-                "pnlResumoTotal";
-
-            this.pnlResumoTotal.Size =
-                new System.Drawing.Size(235, 88);
-
-            this.lblResumoTotal.AutoSize = true;
-
-            this.lblResumoTotal.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    24F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.lblResumoTotal.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    21,
-                    101,
-                    192);
-
-            this.lblResumoTotal.Location =
-                new System.Drawing.Point(18, 9);
-
-            this.lblResumoTotal.Name =
-                "lblResumoTotal";
-
-            this.lblResumoTotal.Text =
-                "0";
-
-            this.lblResumoTotalTexto.AutoSize = true;
-
-            this.lblResumoTotalTexto.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    9F);
-
-            this.lblResumoTotalTexto.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    95,
-                    115,
-                    135);
-
-            this.lblResumoTotalTexto.Location =
-                new System.Drawing.Point(20, 57);
-
-            this.lblResumoTotalTexto.Name =
-                "lblResumoTotalTexto";
-
-            this.lblResumoTotalTexto.Text =
-                "Funcionários cadastrados";
-
-            this.pnlResumoTotal.Controls.Add(this.lblResumoTotal);
-            this.pnlResumoTotal.Controls.Add(this.lblResumoTotalTexto);
-
-            // ATIVOS
-            this.pnlResumoAtivos.BackColor =
-                System.Drawing.Color.White;
-
-            this.pnlResumoAtivos.BorderStyle =
-                System.Windows.Forms.BorderStyle.FixedSingle;
-
-            this.pnlResumoAtivos.Location =
-                new System.Drawing.Point(253, 0);
-
-            this.pnlResumoAtivos.Name =
-                "pnlResumoAtivos";
-
-            this.pnlResumoAtivos.Size =
-                new System.Drawing.Size(235, 88);
-
-            this.lblResumoAtivos.AutoSize = true;
-
-            this.lblResumoAtivos.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    24F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.lblResumoAtivos.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    34,
-                    139,
-                    82);
-
-            this.lblResumoAtivos.Location =
-                new System.Drawing.Point(18, 9);
-
-            this.lblResumoAtivos.Name =
-                "lblResumoAtivos";
-
-            this.lblResumoAtivos.Text =
-                "0";
-
-            this.lblResumoAtivosTexto.AutoSize = true;
-
-            this.lblResumoAtivosTexto.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    9F);
-
-            this.lblResumoAtivosTexto.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    95,
-                    115,
-                    135);
-
-            this.lblResumoAtivosTexto.Location =
-                new System.Drawing.Point(20, 57);
-
-            this.lblResumoAtivosTexto.Name =
-                "lblResumoAtivosTexto";
-
-            this.lblResumoAtivosTexto.Text =
-                "Colaboradores ativos";
-
-            this.pnlResumoAtivos.Controls.Add(this.lblResumoAtivos);
-            this.pnlResumoAtivos.Controls.Add(this.lblResumoAtivosTexto);
-
-            // FÉRIAS
-            this.pnlResumoFerias.BackColor =
-                System.Drawing.Color.White;
-
-            this.pnlResumoFerias.BorderStyle =
-                System.Windows.Forms.BorderStyle.FixedSingle;
-
-            this.pnlResumoFerias.Location =
-                new System.Drawing.Point(506, 0);
-
-            this.pnlResumoFerias.Name =
-                "pnlResumoFerias";
-
-            this.pnlResumoFerias.Size =
-                new System.Drawing.Size(235, 88);
-
-            this.lblResumoFerias.AutoSize = true;
-
-            this.lblResumoFerias.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    24F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.lblResumoFerias.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    230,
-                    145,
-                    20);
-
-            this.lblResumoFerias.Location =
-                new System.Drawing.Point(18, 9);
-
-            this.lblResumoFerias.Name =
-                "lblResumoFerias";
-
-            this.lblResumoFerias.Text =
-                "0";
-
-            this.lblResumoFeriasTexto.AutoSize = true;
-
-            this.lblResumoFeriasTexto.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    9F);
-
-            this.lblResumoFeriasTexto.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    95,
-                    115,
-                    135);
-
-            this.lblResumoFeriasTexto.Location =
-                new System.Drawing.Point(20, 57);
-
-            this.lblResumoFeriasTexto.Name =
-                "lblResumoFeriasTexto";
-
-            this.lblResumoFeriasTexto.Text =
-                "Em período de férias";
-
-            this.pnlResumoFerias.Controls.Add(this.lblResumoFerias);
-            this.pnlResumoFerias.Controls.Add(this.lblResumoFeriasTexto);
-
-            // AFASTADOS
-            this.pnlResumoAfastados.BackColor =
-                System.Drawing.Color.White;
-
-            this.pnlResumoAfastados.BorderStyle =
-                System.Windows.Forms.BorderStyle.FixedSingle;
-
-            this.pnlResumoAfastados.Location =
-                new System.Drawing.Point(759, 0);
-
-            this.pnlResumoAfastados.Name =
-                "pnlResumoAfastados";
-
-            this.pnlResumoAfastados.Size =
-                new System.Drawing.Size(235, 88);
-
-            this.lblResumoAfastados.AutoSize = true;
-
-            this.lblResumoAfastados.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    24F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.lblResumoAfastados.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    190,
-                    75,
-                    75);
-
-            this.lblResumoAfastados.Location =
-                new System.Drawing.Point(18, 9);
-
-            this.lblResumoAfastados.Name =
-                "lblResumoAfastados";
-
-            this.lblResumoAfastados.Text =
-                "0";
-
-            this.lblResumoAfastadosTexto.AutoSize = true;
-
-            this.lblResumoAfastadosTexto.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    9F);
-
-            this.lblResumoAfastadosTexto.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    95,
-                    115,
-                    135);
-
-            this.lblResumoAfastadosTexto.Location =
-                new System.Drawing.Point(20, 57);
-
-            this.lblResumoAfastadosTexto.Name =
-                "lblResumoAfastadosTexto";
-
-            this.lblResumoAfastadosTexto.Text =
-                "Afastamentos registrados";
-
-            this.pnlResumoAfastados.Controls.Add(this.lblResumoAfastados);
-            this.pnlResumoAfastados.Controls.Add(this.lblResumoAfastadosTexto);
-
-            this.pnlResumo.Controls.Add(this.pnlResumoTotal);
-            this.pnlResumo.Controls.Add(this.pnlResumoAtivos);
-            this.pnlResumo.Controls.Add(this.pnlResumoFerias);
-            this.pnlResumo.Controls.Add(this.pnlResumoAfastados);
-
-            // =========================================================
-            // BUSCA
-            // =========================================================
-
-            this.pnlBusca.BackColor =
-                System.Drawing.Color.FromArgb(
-                    14,
-                    52,
-                    86);
-
-            this.pnlBusca.Location =
-                new System.Drawing.Point(25, 235);
-
-            this.pnlBusca.Name =
-                "pnlBusca";
-
-            this.pnlBusca.Size =
-                new System.Drawing.Size(995, 82);
-
-            this.lblBuscar.AutoSize = true;
-
-            this.lblBuscar.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    9F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.lblBuscar.ForeColor =
-                System.Drawing.Color.White;
-
-            this.lblBuscar.Location =
-                new System.Drawing.Point(20, 10);
-
-            this.lblBuscar.Name =
-                "lblBuscar";
-
-            this.lblBuscar.Text =
-                "Buscar funcionário";
-
-            this.txtBusca.BackColor =
-                System.Drawing.Color.FromArgb(
-                    35,
-                    72,
-                    106);
-
-            this.txtBusca.BorderStyle =
-                System.Windows.Forms.BorderStyle.FixedSingle;
-
-            this.txtBusca.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F);
-
-            this.txtBusca.ForeColor =
-                System.Drawing.Color.White;
-
-            this.txtBusca.Location =
-                new System.Drawing.Point(20, 36);
-
-            this.txtBusca.Name =
-                "txtBusca";
-
-            this.txtBusca.Size =
-                new System.Drawing.Size(700, 27);
-
-            this.btnNovoFuncionario.BackColor =
-                System.Drawing.Color.FromArgb(
-                    20,
-                    125,
-                    235);
-
-            this.btnNovoFuncionario.Cursor =
-                System.Windows.Forms.Cursors.Hand;
-
-            this.btnNovoFuncionario.FlatAppearance.BorderSize = 0;
-
-            this.btnNovoFuncionario.FlatAppearance.MouseOverBackColor =
-                System.Drawing.Color.FromArgb(
-                    35,
-                    145,
-                    250);
-
-            this.btnNovoFuncionario.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.btnNovoFuncionario.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    10F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.btnNovoFuncionario.ForeColor =
-                System.Drawing.Color.White;
-
-            this.btnNovoFuncionario.Location =
-                new System.Drawing.Point(740, 25);
-
-            this.btnNovoFuncionario.Name =
-                "btnNovoFuncionario";
-
-            this.btnNovoFuncionario.Size =
-                new System.Drawing.Size(235, 40);
-
-            this.btnNovoFuncionario.Text =
-                "+   Novo Funcionário";
-
-            this.btnNovoFuncionario.UseVisualStyleBackColor =
-                false;
-
-            this.pnlBusca.Controls.Add(this.lblBuscar);
-            this.pnlBusca.Controls.Add(this.txtBusca);
-            this.pnlBusca.Controls.Add(this.btnNovoFuncionario);
-
-            // =========================================================
-            // FILTROS
-            // =========================================================
-
-            this.pnlFiltros.BackColor =
-                System.Drawing.Color.Transparent;
-
-            this.pnlFiltros.Location =
-                new System.Drawing.Point(25, 330);
-
-            this.pnlFiltros.Name =
-                "pnlFiltros";
-
-            this.pnlFiltros.Size =
-                new System.Drawing.Size(995, 48);
-
-            ConfigurarFiltro(
-                this.btnTodos,
-                "Todos",
-                0,
-                true);
-
-            ConfigurarFiltro(
-                this.btnAtivos,
-                "Ativos",
-                110,
-                false);
-
-            ConfigurarFiltro(
-                this.btnFerias,
-                "Férias",
-                220,
-                false);
-
-            ConfigurarFiltro(
-                this.btnAfastados,
-                "Afastados",
-                330,
-                false);
-
-            ConfigurarFiltro(
-                this.btnDesligados,
-                "Desligados",
-                450,
-                false);
-
-            this.pnlFiltros.Controls.Add(this.btnTodos);
-            this.pnlFiltros.Controls.Add(this.btnAtivos);
-            this.pnlFiltros.Controls.Add(this.btnFerias);
-            this.pnlFiltros.Controls.Add(this.btnAfastados);
-            this.pnlFiltros.Controls.Add(this.btnDesligados);
-
-            // =========================================================
-            // LISTA
-            // =========================================================
-
-            this.pnlLista.BackColor =
-                System.Drawing.Color.White;
-
-            this.pnlLista.BorderStyle =
-                System.Windows.Forms.BorderStyle.FixedSingle;
-
-            this.pnlLista.Location =
-                new System.Drawing.Point(25, 395);
-
-            this.pnlLista.Name =
-                "pnlLista";
-
-            this.pnlLista.Size =
-                new System.Drawing.Size(995, 380);
-
-            this.lblLista.AutoSize = true;
-
-            this.lblLista.Font =
-                new System.Drawing.Font(
-                    "Segoe UI",
-                    13F,
-                    System.Drawing.FontStyle.Bold);
-
-            this.lblLista.ForeColor =
-                System.Drawing.Color.FromArgb(
-                    14,
-                    48,
-                    82);
-
-            this.lblLista.Location =
-                new System.Drawing.Point(20, 15);
-
-            this.lblLista.Name =
-                "lblLista";
-
-            this.lblLista.Text =
-                "Lista de funcionários";
-
-            // =========================================================
-            // DATAGRIDVIEW
-            // =========================================================
-
-            this.dgvFuncionarios.AllowUserToAddRows = false;
-            this.dgvFuncionarios.AllowUserToDeleteRows = false;
-            this.dgvFuncionarios.AllowUserToResizeRows = false;
-
-            this.dgvFuncionarios.AutoSizeColumnsMode =
-                System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None;
-
-            this.dgvFuncionarios.BackgroundColor =
-                System.Drawing.Color.White;
-
-            this.dgvFuncionarios.BorderStyle =
-                System.Windows.Forms.BorderStyle.None;
-
-            this.dgvFuncionarios.CellBorderStyle =
-                System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-
-            this.dgvFuncionarios.ColumnHeadersBorderStyle =
-                System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-
-            this.dgvFuncionarios.ColumnHeadersHeight =
-                42;
-
-            this.dgvFuncionarios.ColumnHeadersHeightSizeMode =
-                System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-
-            this.dgvFuncionarios.EnableHeadersVisualStyles =
-                false;
-
-            this.dgvFuncionarios.GridColor =
-                System.Drawing.Color.FromArgb(
-                    228,
-                    235,
-                    242);
-
-            this.dgvFuncionarios.Location =
-                new System.Drawing.Point(18, 52);
-
-            this.dgvFuncionarios.MultiSelect =
-                false;
-
-            this.dgvFuncionarios.Name =
-                "dgvFuncionarios";
-
-            this.dgvFuncionarios.ReadOnly =
-                true;
-
-            this.dgvFuncionarios.RowHeadersVisible =
-                false;
-
-            this.dgvFuncionarios.RowTemplate.Height =
-                43;
-
-            this.dgvFuncionarios.SelectionMode =
-                System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-
-            this.dgvFuncionarios.Size =
-                new System.Drawing.Size(955, 310);
-
-            // =========================================================
-            // CABEÇALHO GRID
-            // =========================================================
-
-            this.dgvFuncionarios.ColumnHeadersDefaultCellStyle =
-                new System.Windows.Forms.DataGridViewCellStyle
-                {
-                    Alignment =
-                        System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft,
-
-                    BackColor =
-                        System.Drawing.Color.FromArgb(
-                            237,
-                            243,
-                            249),
-
-                    Font =
-                        new System.Drawing.Font(
-                            "Segoe UI",
-                            8.5F,
-                            System.Drawing.FontStyle.Bold),
-
-                    ForeColor =
-                        System.Drawing.Color.FromArgb(
-                            25,
-                            55,
-                            85),
-
-                    SelectionBackColor =
-                        System.Drawing.Color.FromArgb(
-                            237,
-                            243,
-                            249),
-
-                    SelectionForeColor =
-                        System.Drawing.Color.FromArgb(
-                            25,
-                            55,
-                            85),
-
-                    WrapMode =
-                        System.Windows.Forms.DataGridViewTriState.False
-                };
-
-            // =========================================================
-            // CÉLULAS
-            // =========================================================
-
-            this.dgvFuncionarios.DefaultCellStyle =
-                new System.Windows.Forms.DataGridViewCellStyle
-                {
-                    Alignment =
-                        System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft,
-
-                    BackColor =
-                        System.Drawing.Color.White,
-
-                    Font =
-                        new System.Drawing.Font(
-                            "Segoe UI",
-                            8.5F),
-
-                    ForeColor =
-                        System.Drawing.Color.FromArgb(
-                            35,
-                            55,
-                            75),
-
-                    SelectionBackColor =
-                        System.Drawing.Color.FromArgb(
-                            225,
-                            239,
-                            255),
-
-                    SelectionForeColor =
-                        System.Drawing.Color.FromArgb(
-                            20,
-                            55,
-                            90),
-
-                    WrapMode =
-                        System.Windows.Forms.DataGridViewTriState.False
-                };
-
-            this.dgvFuncionarios.AlternatingRowsDefaultCellStyle =
-                new System.Windows.Forms.DataGridViewCellStyle
-                {
-                    BackColor =
-                        System.Drawing.Color.FromArgb(
-                            249,
-                            251,
-                            253),
-
-                    SelectionBackColor =
-                        System.Drawing.Color.FromArgb(
-                            225,
-                            239,
-                            255),
-
-                    SelectionForeColor =
-                        System.Drawing.Color.FromArgb(
-                            20,
-                            55,
-                            90)
-                };
-
-            // =========================================================
-            // COLUNAS
-            // =========================================================
-
-            this.colNome.HeaderText =
-                "Nome";
-
-            this.colNome.Name =
-                "colNome";
-
-            this.colNome.ReadOnly = true;
-
-            this.colNome.SortMode =
-                System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-
-            this.colNome.Width =
-                175;
-
-            this.colCargo.HeaderText =
-                "Cargo";
-
-            this.colCargo.Name =
-                "colCargo";
-
-            this.colCargo.ReadOnly = true;
-
-            this.colCargo.SortMode =
-                System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-
-            this.colCargo.Width =
-                155;
-
-            this.colSetor.HeaderText =
-                "Setor";
-
-            this.colSetor.Name =
-                "colSetor";
-
-            this.colSetor.ReadOnly = true;
-
-            this.colSetor.SortMode =
-                System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-
-            this.colSetor.Width =
-                115;
-
-            this.colAdmissao.HeaderText =
-                "Admissão";
-
-            this.colAdmissao.Name =
-                "colAdmissao";
-
-            this.colAdmissao.ReadOnly = true;
-
-            this.colAdmissao.SortMode =
-                System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-
-            this.colAdmissao.Width =
-                100;
-
-            this.colStatus.HeaderText =
-                "Status";
-
-            this.colStatus.Name =
-                "colStatus";
-
-            this.colStatus.ReadOnly = true;
-
-            this.colStatus.SortMode =
-                System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-
-            this.colStatus.Width =
-                85;
-
-            // =========================================================
-            // EDITAR
-            // =========================================================
-
-            this.colEditar.HeaderText =
-                "Ações";
-
-            this.colEditar.Name =
-                "colEditar";
-
-            this.colEditar.ReadOnly =
-                true;
-
-            this.colEditar.Text =
-                "Editar";
-
-            this.colEditar.UseColumnTextForButtonValue =
-                true;
-
-            this.colEditar.Width =
-                70;
-
-            this.colEditar.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.colEditar.DefaultCellStyle =
-                new System.Windows.Forms.DataGridViewCellStyle
-                {
-                    Alignment =
-                        System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter,
-
-                    BackColor =
-                        System.Drawing.Color.FromArgb(
-                            232,
-                            242,
-                            253),
-
-                    ForeColor =
-                        System.Drawing.Color.FromArgb(
-                            21,
-                            101,
-                            192),
-
-                    SelectionBackColor =
-                        System.Drawing.Color.FromArgb(
-                            210,
-                            230,
-                            250),
-
-                    SelectionForeColor =
-                        System.Drawing.Color.FromArgb(
-                            21,
-                            101,
-                            192),
-
-                    Font =
-                        new System.Drawing.Font(
-                            "Segoe UI",
-                            8.5F,
-                            System.Drawing.FontStyle.Bold)
-                };
-
-            // =========================================================
-            // JORNADA
-            // =========================================================
-
-            this.colJornada.HeaderText =
-                "";
-
-            this.colJornada.Name =
-                "colJornada";
-
-            this.colJornada.ReadOnly =
-                true;
-
-            this.colJornada.Text =
-                "Jornada";
-
-            this.colJornada.UseColumnTextForButtonValue =
-                true;
-
-            this.colJornada.Width =
-                80;
-
-            this.colJornada.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.colJornada.DefaultCellStyle =
-                new System.Windows.Forms.DataGridViewCellStyle
-                {
-                    Alignment =
-                        System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter,
-
-                    BackColor =
-                        System.Drawing.Color.FromArgb(
-                            245,
-                            248,
-                            251),
-
-                    ForeColor =
-                        System.Drawing.Color.FromArgb(
-                            45,
-                            65,
-                            85),
-
-                    SelectionBackColor =
-                        System.Drawing.Color.FromArgb(
-                            225,
-                            239,
-                            255),
-
-                    SelectionForeColor =
-                        System.Drawing.Color.FromArgb(
-                            30,
-                            65,
-                            100),
-
-                    Font =
-                        new System.Drawing.Font(
-                            "Segoe UI",
-                            8.5F,
-                            System.Drawing.FontStyle.Bold)
-                };
-
-            // =========================================================
-            // DETALHES
-            // =========================================================
-
-            this.colDetalhes.HeaderText =
-                "";
-
-            this.colDetalhes.Name =
-                "colDetalhes";
-
-            this.colDetalhes.ReadOnly =
-                true;
-
-            this.colDetalhes.Text =
-                "Detalhes";
-
-            this.colDetalhes.UseColumnTextForButtonValue =
-                true;
-
-            this.colDetalhes.Width =
-                80;
-
-            this.colDetalhes.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.colDetalhes.DefaultCellStyle =
-                new System.Windows.Forms.DataGridViewCellStyle
-                {
-                    Alignment =
-                        System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter,
-
-                    BackColor =
-                        System.Drawing.Color.FromArgb(
-                            245,
-                            248,
-                            251),
-
-                    ForeColor =
-                        System.Drawing.Color.FromArgb(
-                            21,
-                            101,
-                            192),
-
-                    SelectionBackColor =
-                        System.Drawing.Color.FromArgb(
-                            225,
-                            239,
-                            255),
-
-                    SelectionForeColor =
-                        System.Drawing.Color.FromArgb(
-                            21,
-                            101,
-                            192),
-
-                    Font =
-                        new System.Drawing.Font(
-                            "Segoe UI",
-                            8.5F,
-                            System.Drawing.FontStyle.Bold)
-                };
-
-            // =========================================================
-            // DESLIGAR
-            // =========================================================
-
-            this.colDesligar.HeaderText =
-                "";
-
-            this.colDesligar.Name =
-                "colDesligar";
-
-            this.colDesligar.ReadOnly =
-                true;
-
-            this.colDesligar.Text =
-                "Desligar";
-
-            this.colDesligar.UseColumnTextForButtonValue =
-                true;
-
-            this.colDesligar.Width =
-                80;
-
-            this.colDesligar.FlatStyle =
-                System.Windows.Forms.FlatStyle.Flat;
-
-            this.colDesligar.DefaultCellStyle =
-                new System.Windows.Forms.DataGridViewCellStyle
-                {
-                    Alignment =
-                        System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter,
-
-                    BackColor =
-                        System.Drawing.Color.FromArgb(
-                            253,
-                            241,
-                            241),
-
-                    ForeColor =
-                        System.Drawing.Color.FromArgb(
-                            198,
-                            40,
-                            40),
-
-                    SelectionBackColor =
-                        System.Drawing.Color.FromArgb(
-                            250,
-                            225,
-                            225),
-
-                    SelectionForeColor =
-                        System.Drawing.Color.FromArgb(
-                            198,
-                            40,
-                            40),
-
-                    Font =
-                        new System.Drawing.Font(
-                            "Segoe UI",
-                            8.5F,
-                            System.Drawing.FontStyle.Bold)
-                };
-
-            // =========================================================
-            // ADICIONAR COLUNAS
-            // =========================================================
-
-            this.dgvFuncionarios.Columns.AddRange(
-                new System.Windows.Forms.DataGridViewColumn[]
-                {
-                    this.colNome,
-                    this.colCargo,
-                    this.colSetor,
-                    this.colAdmissao,
-                    this.colStatus,
-                    this.colEditar,
-                    this.colJornada,
-                    this.colDetalhes,
-                    this.colDesligar
-                });
-
-            // =========================================================
-            // LISTA
-            // =========================================================
-
-            this.pnlLista.Controls.Add(
-                this.lblLista);
-
-            this.pnlLista.Controls.Add(
-                this.dgvFuncionarios);
-
-            // =========================================================
-            // CONTEÚDO
-            // =========================================================
-
-            this.pnlConteudo.Controls.Add(
-                this.pnlLista);
-
-            this.pnlConteudo.Controls.Add(
-                this.pnlFiltros);
-
-            this.pnlConteudo.Controls.Add(
-                this.pnlBusca);
-
-            this.pnlConteudo.Controls.Add(
-                this.pnlResumo);
-
-            this.pnlConteudo.Controls.Add(
-                this.pnlCabecalho);
-
-            // =========================================================
-            // FORM
-            // =========================================================
-
-            this.Controls.Add(
-                this.pnlConteudo);
-
-            this.Controls.Add(
-                this.pnlMenu);
-
-            ((System.ComponentModel.ISupportInitialize)
-                (this.picLogo)).EndInit();
-
-            ((System.ComponentModel.ISupportInitialize)
-                (this.dgvFuncionarios)).EndInit();
-
-            this.ResumeLayout(false);
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            pnlMenu = new Panel();
+            picLogo = new PictureBox();
+            lblNomeSistema = new Label();
+            lblSubtituloMenu = new Label();
+            btnDashboard = new Button();
+            btnFuncionarios = new Button();
+            btnJornada = new Button();
+            btnFolha = new Button();
+            btnConfiguracoes = new Button();
+            lblVersao = new Label();
+            pnlConteudo = new Panel();
+            pnlLista = new Panel();
+            lblLista = new Label();
+            dgvFuncionarios = new DataGridView();
+            colNome = new DataGridViewTextBoxColumn();
+            colCargo = new DataGridViewTextBoxColumn();
+            colSetor = new DataGridViewTextBoxColumn();
+            colAdmissao = new DataGridViewTextBoxColumn();
+            colStatus = new DataGridViewTextBoxColumn();
+            colEditar = new DataGridViewButtonColumn();
+            colJornada = new DataGridViewButtonColumn();
+            colDetalhes = new DataGridViewButtonColumn();
+            colDesligar = new DataGridViewButtonColumn();
+            pnlFiltros = new Panel();
+            btnTodos = new Button();
+            btnAtivos = new Button();
+            btnFerias = new Button();
+            btnAfastados = new Button();
+            btnDesligados = new Button();
+            pnlBusca = new Panel();
+            lblBuscar = new Label();
+            txtBusca = new TextBox();
+            btnNovoFuncionario = new Button();
+            pnlResumo = new Panel();
+            pnlResumoTotal = new Panel();
+            lblResumoTotal = new Label();
+            lblResumoTotalTexto = new Label();
+            pnlResumoAtivos = new Panel();
+            lblResumoAtivos = new Label();
+            lblResumoAtivosTexto = new Label();
+            pnlResumoFerias = new Panel();
+            lblResumoFerias = new Label();
+            lblResumoFeriasTexto = new Label();
+            pnlResumoAfastados = new Panel();
+            lblResumoAfastados = new Label();
+            lblResumoAfastadosTexto = new Label();
+            pnlCabecalho = new Panel();
+            lblTitulo = new Label();
+            lblSubtitulo = new Label();
+            lblUsuario = new Label();
+            pnlMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            pnlConteudo.SuspendLayout();
+            pnlLista.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFuncionarios).BeginInit();
+            pnlFiltros.SuspendLayout();
+            pnlBusca.SuspendLayout();
+            pnlResumo.SuspendLayout();
+            pnlResumoTotal.SuspendLayout();
+            pnlResumoAtivos.SuspendLayout();
+            pnlResumoFerias.SuspendLayout();
+            pnlResumoAfastados.SuspendLayout();
+            pnlCabecalho.SuspendLayout();
+            SuspendLayout();
+            // 
+            // pnlMenu
+            // 
+            pnlMenu.BackColor = Color.FromArgb(8, 48, 88);
+            pnlMenu.Controls.Add(picLogo);
+            pnlMenu.Controls.Add(lblNomeSistema);
+            pnlMenu.Controls.Add(lblSubtituloMenu);
+            pnlMenu.Controls.Add(btnDashboard);
+            pnlMenu.Controls.Add(btnFuncionarios);
+            pnlMenu.Controls.Add(btnJornada);
+            pnlMenu.Controls.Add(btnFolha);
+            pnlMenu.Controls.Add(btnConfiguracoes);
+            pnlMenu.Controls.Add(lblVersao);
+            pnlMenu.Dock = DockStyle.Left;
+            pnlMenu.Location = new Point(0, 0);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(235, 800);
+            pnlMenu.TabIndex = 1;
+            // 
+            // picLogo
+            // 
+            picLogo.BackColor = Color.Transparent;
+            picLogo.Image = Properties.Resources.logorh;
+            picLogo.Location = new Point(38, 30);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(160, 125);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 0;
+            picLogo.TabStop = false;
+            // 
+            // lblNomeSistema
+            // 
+            lblNomeSistema.AutoSize = true;
+            lblNomeSistema.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
+            lblNomeSistema.ForeColor = Color.White;
+            lblNomeSistema.Location = new Point(43, 162);
+            lblNomeSistema.Name = "lblNomeSistema";
+            lblNomeSistema.Size = new Size(159, 31);
+            lblNomeSistema.TabIndex = 1;
+            lblNomeSistema.Text = "RH CONTROL";
+            // 
+            // lblSubtituloMenu
+            // 
+            lblSubtituloMenu.AutoSize = true;
+            lblSubtituloMenu.Font = new Font("Segoe UI", 9F);
+            lblSubtituloMenu.ForeColor = Color.FromArgb(175, 202, 225);
+            lblSubtituloMenu.Location = new Point(47, 189);
+            lblSubtituloMenu.Name = "lblSubtituloMenu";
+            lblSubtituloMenu.Size = new Size(117, 15);
+            lblSubtituloMenu.TabIndex = 2;
+            lblSubtituloMenu.Text = "GESTÃO DE PESSOAS";
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.BackColor = Color.FromArgb(8, 48, 88);
+            btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatAppearance.MouseOverBackColor = Color.FromArgb(22, 82, 125);
+            btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Segoe UI", 10F);
+            btnDashboard.ForeColor = Color.White;
+            btnDashboard.Location = new Point(10, 225);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Padding = new Padding(15, 0, 0, 0);
+            btnDashboard.Size = new Size(215, 44);
+            btnDashboard.TabIndex = 3;
+            btnDashboard.Text = "⌂   Dashboard";
+            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.UseVisualStyleBackColor = false;
+            // 
+            // btnFuncionarios
+            // 
+            btnFuncionarios.BackColor = Color.FromArgb(20, 125, 235);
+            btnFuncionarios.FlatAppearance.BorderSize = 0;
+            btnFuncionarios.FlatAppearance.MouseOverBackColor = Color.FromArgb(35, 145, 250);
+            btnFuncionarios.FlatStyle = FlatStyle.Flat;
+            btnFuncionarios.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnFuncionarios.ForeColor = Color.White;
+            btnFuncionarios.Location = new Point(10, 277);
+            btnFuncionarios.Name = "btnFuncionarios";
+            btnFuncionarios.Padding = new Padding(15, 0, 0, 0);
+            btnFuncionarios.Size = new Size(215, 44);
+            btnFuncionarios.TabIndex = 4;
+            btnFuncionarios.Text = "●   Funcionários";
+            btnFuncionarios.TextAlign = ContentAlignment.MiddleLeft;
+            btnFuncionarios.UseVisualStyleBackColor = false;
+            // 
+            // btnJornada
+            // 
+            btnJornada.BackColor = Color.FromArgb(8, 48, 88);
+            btnJornada.FlatAppearance.BorderSize = 0;
+            btnJornada.FlatAppearance.MouseOverBackColor = Color.FromArgb(22, 82, 125);
+            btnJornada.FlatStyle = FlatStyle.Flat;
+            btnJornada.Font = new Font("Segoe UI", 10F);
+            btnJornada.ForeColor = Color.White;
+            btnJornada.Location = new Point(10, 329);
+            btnJornada.Name = "btnJornada";
+            btnJornada.Padding = new Padding(15, 0, 0, 0);
+            btnJornada.Size = new Size(215, 44);
+            btnJornada.TabIndex = 5;
+            btnJornada.Text = "▣   Jornada / Calendário";
+            btnJornada.TextAlign = ContentAlignment.MiddleLeft;
+            btnJornada.UseVisualStyleBackColor = false;
+            // 
+            // btnFolha
+            // 
+            btnFolha.BackColor = Color.FromArgb(8, 48, 88);
+            btnFolha.FlatAppearance.BorderSize = 0;
+            btnFolha.FlatAppearance.MouseOverBackColor = Color.FromArgb(22, 82, 125);
+            btnFolha.FlatStyle = FlatStyle.Flat;
+            btnFolha.Font = new Font("Segoe UI", 10F);
+            btnFolha.ForeColor = Color.White;
+            btnFolha.Location = new Point(10, 381);
+            btnFolha.Name = "btnFolha";
+            btnFolha.Padding = new Padding(15, 0, 0, 0);
+            btnFolha.Size = new Size(215, 44);
+            btnFolha.TabIndex = 6;
+            btnFolha.Text = "$   Folha / Relatórios";
+            btnFolha.TextAlign = ContentAlignment.MiddleLeft;
+            btnFolha.UseVisualStyleBackColor = false;
+            // 
+            // btnConfiguracoes
+            // 
+            btnConfiguracoes.BackColor = Color.FromArgb(8, 48, 88);
+            btnConfiguracoes.FlatAppearance.BorderSize = 0;
+            btnConfiguracoes.FlatAppearance.MouseOverBackColor = Color.FromArgb(22, 82, 125);
+            btnConfiguracoes.FlatStyle = FlatStyle.Flat;
+            btnConfiguracoes.Font = new Font("Segoe UI", 10F);
+            btnConfiguracoes.ForeColor = Color.White;
+            btnConfiguracoes.Location = new Point(10, 433);
+            btnConfiguracoes.Name = "btnConfiguracoes";
+            btnConfiguracoes.Padding = new Padding(15, 0, 0, 0);
+            btnConfiguracoes.Size = new Size(215, 44);
+            btnConfiguracoes.TabIndex = 7;
+            btnConfiguracoes.Text = "⚙   Configurações";
+            btnConfiguracoes.TextAlign = ContentAlignment.MiddleLeft;
+            btnConfiguracoes.UseVisualStyleBackColor = false;
+            // 
+            // lblVersao
+            // 
+            lblVersao.AutoSize = true;
+            lblVersao.Font = new Font("Segoe UI", 8.5F);
+            lblVersao.ForeColor = Color.FromArgb(145, 180, 210);
+            lblVersao.Location = new Point(42, 752);
+            lblVersao.Name = "lblVersao";
+            lblVersao.Size = new Size(98, 15);
+            lblVersao.TabIndex = 8;
+            lblVersao.Text = "RH Control • v1.0";
+            // 
+            // pnlConteudo
+            // 
+            pnlConteudo.BackColor = Color.FromArgb(244, 247, 251);
+            pnlConteudo.Controls.Add(pnlLista);
+            pnlConteudo.Controls.Add(pnlFiltros);
+            pnlConteudo.Controls.Add(pnlBusca);
+            pnlConteudo.Controls.Add(pnlResumo);
+            pnlConteudo.Controls.Add(pnlCabecalho);
+            pnlConteudo.Dock = DockStyle.Fill;
+            pnlConteudo.Location = new Point(235, 0);
+            pnlConteudo.Name = "pnlConteudo";
+            pnlConteudo.Size = new Size(1045, 800);
+            pnlConteudo.TabIndex = 0;
+            // 
+            // pnlLista
+            // 
+            pnlLista.BackColor = Color.White;
+            pnlLista.BorderStyle = BorderStyle.FixedSingle;
+            pnlLista.Controls.Add(lblLista);
+            pnlLista.Controls.Add(dgvFuncionarios);
+            pnlLista.Location = new Point(25, 395);
+            pnlLista.Name = "pnlLista";
+            pnlLista.Size = new Size(995, 380);
+            pnlLista.TabIndex = 0;
+            // 
+            // lblLista
+            // 
+            lblLista.AutoSize = true;
+            lblLista.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblLista.ForeColor = Color.FromArgb(14, 48, 82);
+            lblLista.Location = new Point(20, 15);
+            lblLista.Name = "lblLista";
+            lblLista.Size = new Size(188, 25);
+            lblLista.TabIndex = 0;
+            lblLista.Text = "Lista de funcionários";
+            // 
+            // dgvFuncionarios
+            // 
+            dgvFuncionarios.AllowUserToAddRows = false;
+            dgvFuncionarios.AllowUserToDeleteRows = false;
+            dgvFuncionarios.AllowUserToResizeRows = false;
+            dgvFuncionarios.BackgroundColor = Color.White;
+            dgvFuncionarios.BorderStyle = BorderStyle.None;
+            dgvFuncionarios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvFuncionarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvFuncionarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvFuncionarios.ColumnHeadersHeight = 42;
+            dgvFuncionarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvFuncionarios.Columns.AddRange(new DataGridViewColumn[] { colNome, colCargo, colSetor, colAdmissao, colStatus, colEditar, colJornada, colDetalhes, colDesligar });
+            dgvFuncionarios.EnableHeadersVisualStyles = false;
+            dgvFuncionarios.GridColor = Color.FromArgb(228, 235, 242);
+            dgvFuncionarios.Location = new Point(18, 52);
+            dgvFuncionarios.MultiSelect = false;
+            dgvFuncionarios.Name = "dgvFuncionarios";
+            dgvFuncionarios.ReadOnly = true;
+            dgvFuncionarios.RowHeadersVisible = false;
+            dgvFuncionarios.RowTemplate.Height = 43;
+            dgvFuncionarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFuncionarios.Size = new Size(955, 310);
+            dgvFuncionarios.TabIndex = 1;
+            // 
+            // colNome
+            // 
+            colNome.HeaderText = "Nome";
+            colNome.Name = "colNome";
+            colNome.ReadOnly = true;
+            colNome.SortMode = DataGridViewColumnSortMode.NotSortable;
+            colNome.Width = 175;
+            // 
+            // colCargo
+            // 
+            colCargo.HeaderText = "Cargo";
+            colCargo.Name = "colCargo";
+            colCargo.ReadOnly = true;
+            colCargo.SortMode = DataGridViewColumnSortMode.NotSortable;
+            colCargo.Width = 155;
+            // 
+            // colSetor
+            // 
+            colSetor.HeaderText = "Setor";
+            colSetor.Name = "colSetor";
+            colSetor.ReadOnly = true;
+            colSetor.SortMode = DataGridViewColumnSortMode.NotSortable;
+            colSetor.Width = 115;
+            // 
+            // colAdmissao
+            // 
+            colAdmissao.HeaderText = "Admissão";
+            colAdmissao.Name = "colAdmissao";
+            colAdmissao.ReadOnly = true;
+            colAdmissao.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colStatus
+            // 
+            colStatus.HeaderText = "Status";
+            colStatus.Name = "colStatus";
+            colStatus.ReadOnly = true;
+            colStatus.SortMode = DataGridViewColumnSortMode.NotSortable;
+            colStatus.Width = 85;
+            // 
+            // colEditar
+            // 
+            colEditar.DefaultCellStyle = dataGridViewCellStyle2;
+            colEditar.FlatStyle = FlatStyle.Flat;
+            colEditar.HeaderText = "Ações";
+            colEditar.Name = "colEditar";
+            colEditar.ReadOnly = true;
+            colEditar.Text = "Editar";
+            colEditar.UseColumnTextForButtonValue = true;
+            colEditar.Width = 70;
+            // 
+            // colJornada
+            // 
+            colJornada.DefaultCellStyle = dataGridViewCellStyle3;
+            colJornada.FlatStyle = FlatStyle.Flat;
+            colJornada.HeaderText = "";
+            colJornada.Name = "colJornada";
+            colJornada.ReadOnly = true;
+            colJornada.Text = "Jornada";
+            colJornada.UseColumnTextForButtonValue = true;
+            colJornada.Width = 80;
+            // 
+            // colDetalhes
+            // 
+            colDetalhes.DefaultCellStyle = dataGridViewCellStyle4;
+            colDetalhes.FlatStyle = FlatStyle.Flat;
+            colDetalhes.HeaderText = "";
+            colDetalhes.Name = "colDetalhes";
+            colDetalhes.ReadOnly = true;
+            colDetalhes.Text = "Detalhes";
+            colDetalhes.UseColumnTextForButtonValue = true;
+            colDetalhes.Width = 80;
+            // 
+            // colDesligar
+            // 
+            colDesligar.DefaultCellStyle = dataGridViewCellStyle5;
+            colDesligar.FlatStyle = FlatStyle.Flat;
+            colDesligar.HeaderText = "";
+            colDesligar.Name = "colDesligar";
+            colDesligar.ReadOnly = true;
+            colDesligar.Text = "Desligar";
+            colDesligar.UseColumnTextForButtonValue = true;
+            colDesligar.Width = 80;
+            // 
+            // pnlFiltros
+            // 
+            pnlFiltros.BackColor = Color.Transparent;
+            pnlFiltros.Controls.Add(btnTodos);
+            pnlFiltros.Controls.Add(btnAtivos);
+            pnlFiltros.Controls.Add(btnFerias);
+            pnlFiltros.Controls.Add(btnAfastados);
+            pnlFiltros.Controls.Add(btnDesligados);
+            pnlFiltros.Location = new Point(25, 330);
+            pnlFiltros.Name = "pnlFiltros";
+            pnlFiltros.Size = new Size(995, 48);
+            pnlFiltros.TabIndex = 1;
+            // 
+            // btnTodos
+            // 
+            btnTodos.Location = new Point(0, 0);
+            btnTodos.Name = "btnTodos";
+            btnTodos.Size = new Size(75, 23);
+            btnTodos.TabIndex = 0;
+            // 
+            // btnAtivos
+            // 
+            btnAtivos.Location = new Point(0, 0);
+            btnAtivos.Name = "btnAtivos";
+            btnAtivos.Size = new Size(75, 23);
+            btnAtivos.TabIndex = 1;
+            // 
+            // btnFerias
+            // 
+            btnFerias.Location = new Point(0, 0);
+            btnFerias.Name = "btnFerias";
+            btnFerias.Size = new Size(75, 23);
+            btnFerias.TabIndex = 2;
+            // 
+            // btnAfastados
+            // 
+            btnAfastados.Location = new Point(0, 0);
+            btnAfastados.Name = "btnAfastados";
+            btnAfastados.Size = new Size(75, 23);
+            btnAfastados.TabIndex = 3;
+            // 
+            // btnDesligados
+            // 
+            btnDesligados.Location = new Point(0, 0);
+            btnDesligados.Name = "btnDesligados";
+            btnDesligados.Size = new Size(75, 23);
+            btnDesligados.TabIndex = 4;
+            // 
+            // pnlBusca
+            // 
+            pnlBusca.BackColor = Color.FromArgb(14, 52, 86);
+            pnlBusca.Controls.Add(lblBuscar);
+            pnlBusca.Controls.Add(txtBusca);
+            pnlBusca.Controls.Add(btnNovoFuncionario);
+            pnlBusca.Location = new Point(25, 235);
+            pnlBusca.Name = "pnlBusca";
+            pnlBusca.Size = new Size(995, 82);
+            pnlBusca.TabIndex = 2;
+            // 
+            // lblBuscar
+            // 
+            lblBuscar.AutoSize = true;
+            lblBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblBuscar.ForeColor = Color.White;
+            lblBuscar.Location = new Point(20, 10);
+            lblBuscar.Name = "lblBuscar";
+            lblBuscar.Size = new Size(110, 15);
+            lblBuscar.TabIndex = 0;
+            lblBuscar.Text = "Buscar funcionário";
+            // 
+            // txtBusca
+            // 
+            txtBusca.BackColor = Color.FromArgb(35, 72, 106);
+            txtBusca.BorderStyle = BorderStyle.FixedSingle;
+            txtBusca.Font = new Font("Segoe UI", 10F);
+            txtBusca.ForeColor = Color.White;
+            txtBusca.Location = new Point(20, 36);
+            txtBusca.Name = "txtBusca";
+            txtBusca.Size = new Size(700, 25);
+            txtBusca.TabIndex = 1;
+            // 
+            // btnNovoFuncionario
+            // 
+            btnNovoFuncionario.BackColor = Color.FromArgb(20, 125, 235);
+            btnNovoFuncionario.Cursor = Cursors.Hand;
+            btnNovoFuncionario.FlatAppearance.BorderSize = 0;
+            btnNovoFuncionario.FlatAppearance.MouseOverBackColor = Color.FromArgb(35, 145, 250);
+            btnNovoFuncionario.FlatStyle = FlatStyle.Flat;
+            btnNovoFuncionario.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnNovoFuncionario.ForeColor = Color.White;
+            btnNovoFuncionario.Location = new Point(740, 25);
+            btnNovoFuncionario.Name = "btnNovoFuncionario";
+            btnNovoFuncionario.Size = new Size(235, 40);
+            btnNovoFuncionario.TabIndex = 2;
+            btnNovoFuncionario.Text = "+   Novo Funcionário";
+            btnNovoFuncionario.UseVisualStyleBackColor = false;
+            // 
+            // pnlResumo
+            // 
+            pnlResumo.BackColor = Color.Transparent;
+            pnlResumo.Controls.Add(pnlResumoTotal);
+            pnlResumo.Controls.Add(pnlResumoAtivos);
+            pnlResumo.Controls.Add(pnlResumoFerias);
+            pnlResumo.Controls.Add(pnlResumoAfastados);
+            pnlResumo.Location = new Point(25, 130);
+            pnlResumo.Name = "pnlResumo";
+            pnlResumo.Size = new Size(995, 90);
+            pnlResumo.TabIndex = 3;
+            // 
+            // pnlResumoTotal
+            // 
+            pnlResumoTotal.BackColor = Color.White;
+            pnlResumoTotal.BorderStyle = BorderStyle.FixedSingle;
+            pnlResumoTotal.Controls.Add(lblResumoTotal);
+            pnlResumoTotal.Controls.Add(lblResumoTotalTexto);
+            pnlResumoTotal.Location = new Point(0, 0);
+            pnlResumoTotal.Name = "pnlResumoTotal";
+            pnlResumoTotal.Size = new Size(235, 88);
+            pnlResumoTotal.TabIndex = 0;
+            // 
+            // lblResumoTotal
+            // 
+            lblResumoTotal.AutoSize = true;
+            lblResumoTotal.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblResumoTotal.ForeColor = Color.FromArgb(21, 101, 192);
+            lblResumoTotal.Location = new Point(18, 9);
+            lblResumoTotal.Name = "lblResumoTotal";
+            lblResumoTotal.Size = new Size(38, 45);
+            lblResumoTotal.TabIndex = 0;
+            lblResumoTotal.Text = "0";
+            // 
+            // lblResumoTotalTexto
+            // 
+            lblResumoTotalTexto.AutoSize = true;
+            lblResumoTotalTexto.Font = new Font("Segoe UI", 9F);
+            lblResumoTotalTexto.ForeColor = Color.FromArgb(95, 115, 135);
+            lblResumoTotalTexto.Location = new Point(20, 57);
+            lblResumoTotalTexto.Name = "lblResumoTotalTexto";
+            lblResumoTotalTexto.Size = new Size(141, 15);
+            lblResumoTotalTexto.TabIndex = 1;
+            lblResumoTotalTexto.Text = "Funcionários cadastrados";
+            // 
+            // pnlResumoAtivos
+            // 
+            pnlResumoAtivos.BackColor = Color.White;
+            pnlResumoAtivos.BorderStyle = BorderStyle.FixedSingle;
+            pnlResumoAtivos.Controls.Add(lblResumoAtivos);
+            pnlResumoAtivos.Controls.Add(lblResumoAtivosTexto);
+            pnlResumoAtivos.Location = new Point(253, 0);
+            pnlResumoAtivos.Name = "pnlResumoAtivos";
+            pnlResumoAtivos.Size = new Size(235, 88);
+            pnlResumoAtivos.TabIndex = 1;
+            // 
+            // lblResumoAtivos
+            // 
+            lblResumoAtivos.AutoSize = true;
+            lblResumoAtivos.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblResumoAtivos.ForeColor = Color.FromArgb(34, 139, 82);
+            lblResumoAtivos.Location = new Point(18, 9);
+            lblResumoAtivos.Name = "lblResumoAtivos";
+            lblResumoAtivos.Size = new Size(38, 45);
+            lblResumoAtivos.TabIndex = 0;
+            lblResumoAtivos.Text = "0";
+            // 
+            // lblResumoAtivosTexto
+            // 
+            lblResumoAtivosTexto.AutoSize = true;
+            lblResumoAtivosTexto.Font = new Font("Segoe UI", 9F);
+            lblResumoAtivosTexto.ForeColor = Color.FromArgb(95, 115, 135);
+            lblResumoAtivosTexto.Location = new Point(20, 57);
+            lblResumoAtivosTexto.Name = "lblResumoAtivosTexto";
+            lblResumoAtivosTexto.Size = new Size(118, 15);
+            lblResumoAtivosTexto.TabIndex = 1;
+            lblResumoAtivosTexto.Text = "Colaboradores ativos";
+            // 
+            // pnlResumoFerias
+            // 
+            pnlResumoFerias.BackColor = Color.White;
+            pnlResumoFerias.BorderStyle = BorderStyle.FixedSingle;
+            pnlResumoFerias.Controls.Add(lblResumoFerias);
+            pnlResumoFerias.Controls.Add(lblResumoFeriasTexto);
+            pnlResumoFerias.Location = new Point(506, 0);
+            pnlResumoFerias.Name = "pnlResumoFerias";
+            pnlResumoFerias.Size = new Size(235, 88);
+            pnlResumoFerias.TabIndex = 2;
+            // 
+            // lblResumoFerias
+            // 
+            lblResumoFerias.AutoSize = true;
+            lblResumoFerias.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblResumoFerias.ForeColor = Color.FromArgb(230, 145, 20);
+            lblResumoFerias.Location = new Point(18, 9);
+            lblResumoFerias.Name = "lblResumoFerias";
+            lblResumoFerias.Size = new Size(38, 45);
+            lblResumoFerias.TabIndex = 0;
+            lblResumoFerias.Text = "0";
+            // 
+            // lblResumoFeriasTexto
+            // 
+            lblResumoFeriasTexto.AutoSize = true;
+            lblResumoFeriasTexto.Font = new Font("Segoe UI", 9F);
+            lblResumoFeriasTexto.ForeColor = Color.FromArgb(95, 115, 135);
+            lblResumoFeriasTexto.Location = new Point(20, 57);
+            lblResumoFeriasTexto.Name = "lblResumoFeriasTexto";
+            lblResumoFeriasTexto.Size = new Size(115, 15);
+            lblResumoFeriasTexto.TabIndex = 1;
+            lblResumoFeriasTexto.Text = "Em período de férias";
+            // 
+            // pnlResumoAfastados
+            // 
+            pnlResumoAfastados.BackColor = Color.White;
+            pnlResumoAfastados.BorderStyle = BorderStyle.FixedSingle;
+            pnlResumoAfastados.Controls.Add(lblResumoAfastados);
+            pnlResumoAfastados.Controls.Add(lblResumoAfastadosTexto);
+            pnlResumoAfastados.Location = new Point(759, 0);
+            pnlResumoAfastados.Name = "pnlResumoAfastados";
+            pnlResumoAfastados.Size = new Size(235, 88);
+            pnlResumoAfastados.TabIndex = 3;
+            // 
+            // lblResumoAfastados
+            // 
+            lblResumoAfastados.AutoSize = true;
+            lblResumoAfastados.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblResumoAfastados.ForeColor = Color.FromArgb(190, 75, 75);
+            lblResumoAfastados.Location = new Point(18, 9);
+            lblResumoAfastados.Name = "lblResumoAfastados";
+            lblResumoAfastados.Size = new Size(38, 45);
+            lblResumoAfastados.TabIndex = 0;
+            lblResumoAfastados.Text = "0";
+            // 
+            // lblResumoAfastadosTexto
+            // 
+            lblResumoAfastadosTexto.AutoSize = true;
+            lblResumoAfastadosTexto.Font = new Font("Segoe UI", 9F);
+            lblResumoAfastadosTexto.ForeColor = Color.FromArgb(95, 115, 135);
+            lblResumoAfastadosTexto.Location = new Point(20, 57);
+            lblResumoAfastadosTexto.Name = "lblResumoAfastadosTexto";
+            lblResumoAfastadosTexto.Size = new Size(141, 15);
+            lblResumoAfastadosTexto.TabIndex = 1;
+            lblResumoAfastadosTexto.Text = "Afastamentos registrados";
+            // 
+            // pnlCabecalho
+            // 
+            pnlCabecalho.BackColor = Color.White;
+            pnlCabecalho.Controls.Add(lblTitulo);
+            pnlCabecalho.Controls.Add(lblSubtitulo);
+            pnlCabecalho.Controls.Add(lblUsuario);
+            pnlCabecalho.Location = new Point(0, 0);
+            pnlCabecalho.Name = "pnlCabecalho";
+            pnlCabecalho.Size = new Size(1045, 112);
+            pnlCabecalho.TabIndex = 4;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 26F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.FromArgb(14, 48, 82);
+            lblTitulo.Location = new Point(44, 16);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(228, 47);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Funcionários";
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.AutoSize = true;
+            lblSubtitulo.Font = new Font("Segoe UI", 10F);
+            lblSubtitulo.ForeColor = Color.FromArgb(100, 125, 150);
+            lblSubtitulo.Location = new Point(38, 73);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(245, 19);
+            lblSubtitulo.TabIndex = 1;
+            lblSubtitulo.Text = "Gerencie os colaboradores da empresa";
+            // 
+            // lblUsuario
+            // 
+            lblUsuario.AutoSize = true;
+            lblUsuario.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblUsuario.ForeColor = Color.FromArgb(21, 101, 192);
+            lblUsuario.Location = new Point(875, 40);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(122, 19);
+            lblUsuario.TabIndex = 2;
+            lblUsuario.Text = "●  Administrador";
+            // 
+            // FrmFuncionarios
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(244, 247, 251);
+            ClientSize = new Size(1280, 800);
+            Controls.Add(pnlConteudo);
+            Controls.Add(pnlMenu);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "FrmFuncionarios";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "RH Control — Funcionários";
+            pnlMenu.ResumeLayout(false);
+            pnlMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            pnlConteudo.ResumeLayout(false);
+            pnlLista.ResumeLayout(false);
+            pnlLista.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFuncionarios).EndInit();
+            pnlFiltros.ResumeLayout(false);
+            pnlBusca.ResumeLayout(false);
+            pnlBusca.PerformLayout();
+            pnlResumo.ResumeLayout(false);
+            pnlResumoTotal.ResumeLayout(false);
+            pnlResumoTotal.PerformLayout();
+            pnlResumoAtivos.ResumeLayout(false);
+            pnlResumoAtivos.PerformLayout();
+            pnlResumoFerias.ResumeLayout(false);
+            pnlResumoFerias.PerformLayout();
+            pnlResumoAfastados.ResumeLayout(false);
+            pnlResumoAfastados.PerformLayout();
+            pnlCabecalho.ResumeLayout(false);
+            pnlCabecalho.PerformLayout();
+            ResumeLayout(false);
         }
 
         // =============================================================

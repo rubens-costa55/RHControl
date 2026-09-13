@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 using System;
 using System.IO;
 
@@ -117,6 +117,90 @@ namespace RHControl.Data
                 "IX_Ferias_FimConcessivo",
                 "Ferias",
                 "FimConcessivo");
+
+            string sqlConfiguracoes = @"
+                CREATE TABLE IF NOT EXISTS Configuracoes
+                (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Chave TEXT NOT NULL UNIQUE,
+                    Valor TEXT,
+                    AtualizadoEm TEXT
+                );
+            ";
+
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = sqlConfiguracoes;
+                command.ExecuteNonQuery();
+            }
+
+            string sqlUsuarios = @"
+                CREATE TABLE IF NOT EXISTS Usuarios
+                (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Nome TEXT NOT NULL,
+                    Usuario TEXT NOT NULL UNIQUE,
+                    Senha TEXT NOT NULL,
+                    TipoUsuario TEXT NOT NULL DEFAULT 'Usuario',
+                    Status TEXT NOT NULL DEFAULT 'Ativo',
+                    Email TEXT,
+                    CriadoEm TEXT NOT NULL,
+                    AtualizadoEm TEXT,
+                    UltimoAcesso TEXT
+                );
+            ";
+
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = sqlUsuarios;
+                command.ExecuteNonQuery();
+            }
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_Usuarios_TipoUsuario",
+                "Usuarios",
+                "TipoUsuario");
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_Usuarios_Status",
+                "Usuarios",
+                "Status");
+
+            // Cria o primeiro administrador somente se ainda não existir
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = @"
+                    INSERT INTO Usuarios
+                    (
+                        Nome,
+                        Usuario,
+                        Senha,
+                        TipoUsuario,
+                        Status,
+                        CriadoEm
+                    )
+                    SELECT
+                        'Administrador',
+                        'admin',
+                        'admin123',
+                        'Administrador',
+                        'Ativo',
+                        $criadoEm
+                    WHERE NOT EXISTS
+                    (
+                        SELECT 1
+                        FROM Usuarios
+                        WHERE Usuario = 'admin'
+                    );";
+
+                command.Parameters.AddWithValue(
+                    "$criadoEm",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                command.ExecuteNonQuery();
+            }
         }
 
         private static void AdicionarColunaSeNaoExistir(

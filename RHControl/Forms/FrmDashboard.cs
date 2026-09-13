@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using RHControl.Forms;
 
@@ -13,45 +13,34 @@ namespace RHControl
             btnFuncionarios.Click += BtnFuncionarios_Click;
             btnJornada.Click += BtnJornada_Click;
             btnFolha.Click += BtnFolha_Click;
+            btnConfiguracoes.Click += BtnConfiguracoes_Click;
         }
 
         private void BtnFuncionarios_Click(object sender, EventArgs e)
         {
-            FrmFuncionarios funcionarios = new FrmFuncionarios();
-
-            funcionarios.FormClosed += (s, args) =>
-            {
-                this.Show();
-            };
-
-            this.Hide();
-            funcionarios.Show();
+            AbrirForm(new FrmFuncionarios());
         }
 
         private void BtnJornada_Click(object sender, EventArgs e)
         {
-            FrmJornada jornada = new FrmJornada();
-
-            jornada.FormClosed += (s, args) =>
-            {
-                this.Show();
-            };
-
-            this.Hide();
-            jornada.Show();
+            AbrirForm(new FrmJornada());
         }
 
         private void BtnFolha_Click(object sender, EventArgs e)
         {
-            FrmFolhaPagamento folha = new FrmFolhaPagamento();
+            AbrirForm(new FrmFolhaPagamento());
+        }
 
-            folha.FormClosed += (s, args) =>
-            {
-                this.Show();
-            };
+        private void BtnConfiguracoes_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new FrmConfiguracoes());
+        }
 
-            this.Hide();
-            folha.Show();
+        private void AbrirForm(Form form)
+        {
+            form.FormClosed += (s, args) => Show();
+            Hide();
+            form.Show();
         }
     }
 }

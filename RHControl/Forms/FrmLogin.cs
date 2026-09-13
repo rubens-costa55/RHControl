@@ -1,11 +1,14 @@
 using System;
+using System.Drawing;
 using System.Windows.Forms;
+using RHControl.Services;
 
 namespace RHControl
 {
     public partial class FrmLogin : Form
     {
         private bool senhaVisivel = false;
+        private bool processandoLogin = false;
 
         public FrmLogin()
         {
@@ -16,44 +19,51 @@ namespace RHControl
 
             btnMostrarSenha.Click += BtnMostrarSenha_Click;
             btnEntrar.Click += BtnEntrar_Click;
+            btnEsqueciSenha.Click += BtnEsqueciSenha_Click;
+
+            txtUsuario.KeyDown += CampoLogin_KeyDown;
+            txtSenha.KeyDown += CampoLogin_KeyDown;
         }
 
         private void BtnMostrarSenha_Click(object sender, EventArgs e)
         {
             senhaVisivel = !senhaVisivel;
-
             txtSenha.UseSystemPasswordChar = !senhaVisivel;
-
             AtualizarIconeSenha();
         }
 
         private void AtualizarIconeSenha()
         {
             if (senhaVisivel)
-            {
-                btnMostrarSenha.Image =
-                    Properties.Resources.ico_esconder;
-            }
+                btnMostrarSenha.Image = Properties.Resources.ico_esconder;
             else
-            {
-                btnMostrarSenha.Image =
-                    Properties.Resources.ico_mostrar;
-            }
+                btnMostrarSenha.Image = Properties.Resources.ico_mostrar;
 
-            btnMostrarSenha.ImageAlign =
-                ContentAlignment.MiddleCenter;
+            btnMostrarSenha.ImageAlign = ContentAlignment.MiddleCenter;
+        }
+
+        private void CampoLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                BtnEntrar_Click(btnEntrar, EventArgs.Empty);
+            }
         }
 
         private void BtnEntrar_Click(object sender, EventArgs e)
         {
+            if (processandoLogin)
+                return;
+
             string usuario = txtUsuario.Text.Trim();
             string senha = txtSenha.Text;
 
             if (string.IsNullOrWhiteSpace(usuario))
             {
                 MessageBox.Show(
-                    "Digite seu usu·rio.",
-                    "AtenÁ„o",
+                    "Digite seu usu√°rio.",
+                    "Aten√ß√£o",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -65,7 +75,7 @@ namespace RHControl
             {
                 MessageBox.Show(
                     "Digite sua senha.",
-                    "AtenÁ„o",
+                    "Aten√ß√£o",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -73,19 +83,73 @@ namespace RHControl
                 return;
             }
 
-            // Por enquanto, qualquer usu·rio e senha preenchidos entram.
-            // A autenticaÁ„o real ser· ligada ao SQLite posteriormente.
-
-            FrmDashboard dashboard = new FrmDashboard();
-
-            dashboard.FormClosed += (s, args) =>
+            try
             {
-                this.Close();
-            };
+                processandoLogin = true;
+                btnEntrar.Enabled = false;
+                Cursor = Cursors.WaitCursor;
 
-            dashboard.Show();
+                UsuarioService.ResultadoLogin resultado =
+                    UsuarioService.Autenticar(usuario, senha);
 
-            this.Hide();
+                if (!resultado.Sucesso)
+                {
+                    MessageBox.Show(
+                        resultado.Mensagem,
+                        "Login",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    txtSenha.SelectAll();
+                    txtSenha.Focus();
+                    return;
+                }
+
+                SessaoUsuario.Iniciar(
+                    resultado.Id,
+                    resultado.Nome,
+                    resultado.Usuario,
+                    resultado.Email,
+                    resultado.TipoUsuario,
+                    resultado.UltimoAcesso);
+
+                FrmDashboard dashboard = new FrmDashboard();
+
+                dashboard.FormClosed += (s, args) =>
+                {
+                    SessaoUsuario.Encerrar();
+                    this.Close();
+                };
+
+                dashboard.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "N√£o foi poss√≠vel realizar o login.\r\n\r\nDetalhes: " + ex.Message,
+                    "Erro de login",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (!IsDisposed)
+                {
+                    processandoLogin = false;
+                    btnEntrar.Enabled = true;
+                    Cursor = Cursors.Default;
+                }
+            }
+        }
+
+        private void BtnEsqueciSenha_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "A recupera√ß√£o de senha ser√° disponibilizada na etapa de gerenciamento de usu√°rios.\r\n\r\nPor enquanto, solicite a redefini√ß√£o ao administrador do sistema.",
+                "Recupera√ß√£o de senha",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }
