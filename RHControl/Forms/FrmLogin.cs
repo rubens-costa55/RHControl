@@ -10,6 +10,11 @@ namespace RHControl
         private bool senhaVisivel = false;
         private bool processandoLogin = false;
 
+        private void BtnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         public FrmLogin()
         {
             InitializeComponent();
@@ -20,6 +25,7 @@ namespace RHControl
             btnMostrarSenha.Click += BtnMostrarSenha_Click;
             btnEntrar.Click += BtnEntrar_Click;
             btnEsqueciSenha.Click += BtnEsqueciSenha_Click;
+            btnFechar.Click += BtnFechar_Click;
 
             txtUsuario.KeyDown += CampoLogin_KeyDown;
             txtSenha.KeyDown += CampoLogin_KeyDown;
@@ -117,8 +123,17 @@ namespace RHControl
 
                 dashboard.FormClosed += (s, args) =>
                 {
-                    SessaoUsuario.Encerrar();
-                    this.Close();
+                    if (SessaoUsuario.Id > 0)
+                    {
+                        SessaoUsuario.Encerrar();
+                        this.Close();
+                    }
+                    else
+                    {
+                        // Logout: o Login permanece aberto para novo acesso.
+                        this.Show();
+                        this.BringToFront();
+                    }
                 };
 
                 dashboard.Show();

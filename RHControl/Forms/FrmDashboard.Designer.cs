@@ -13,6 +13,7 @@
         private System.Windows.Forms.Button btnJornada;
         private System.Windows.Forms.Button btnFolha;
         private System.Windows.Forms.Button btnConfiguracoes;
+        private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Label lblVersao;
 
         private System.Windows.Forms.Panel pnlTopo;
@@ -89,6 +90,7 @@
             this.btnJornada = new System.Windows.Forms.Button();
             this.btnFolha = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
+            this.btnSair = new System.Windows.Forms.Button();
             this.lblVersao = new System.Windows.Forms.Label();
 
             this.pnlTopo = new System.Windows.Forms.Panel();
@@ -202,7 +204,7 @@
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Size = new System.Drawing.Size(209, 45);
             this.btnDashboard.TabIndex = 0;
-            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.Text = "⌂   Dashboard";
             this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDashboard.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnDashboard.UseVisualStyleBackColor = false;
@@ -218,7 +220,7 @@
             this.btnFuncionarios.Name = "btnFuncionarios";
             this.btnFuncionarios.Size = new System.Drawing.Size(209, 45);
             this.btnFuncionarios.TabIndex = 1;
-            this.btnFuncionarios.Text = "Funcionários";
+            this.btnFuncionarios.Text = "●   Funcionários";
             this.btnFuncionarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFuncionarios.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnFuncionarios.UseVisualStyleBackColor = false;
@@ -234,7 +236,7 @@
             this.btnJornada.Name = "btnJornada";
             this.btnJornada.Size = new System.Drawing.Size(209, 45);
             this.btnJornada.TabIndex = 2;
-            this.btnJornada.Text = "Jornada / Calendário";
+            this.btnJornada.Text = "▣   Jornada / Calendário";
             this.btnJornada.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnJornada.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnJornada.UseVisualStyleBackColor = false;
@@ -250,7 +252,7 @@
             this.btnFolha.Name = "btnFolha";
             this.btnFolha.Size = new System.Drawing.Size(209, 45);
             this.btnFolha.TabIndex = 3;
-            this.btnFolha.Text = "Folha / Relatórios";
+            this.btnFolha.Text = "$   Folha / Relatórios";
             this.btnFolha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFolha.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnFolha.UseVisualStyleBackColor = false;
@@ -266,10 +268,27 @@
             this.btnConfiguracoes.Name = "btnConfiguracoes";
             this.btnConfiguracoes.Size = new System.Drawing.Size(209, 45);
             this.btnConfiguracoes.TabIndex = 4;
-            this.btnConfiguracoes.Text = "Configurações";
+            this.btnConfiguracoes.Text = "⚙   Configurações";
             this.btnConfiguracoes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfiguracoes.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnConfiguracoes.UseVisualStyleBackColor = false;
+
+            // SAIR
+            this.btnSair.BackColor = System.Drawing.Color.FromArgb(10, 30, 50);
+            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 62, 93);
+            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSair.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnSair.ForeColor = System.Drawing.Color.White;
+            this.btnSair.Location = new System.Drawing.Point(18, 650);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(209, 45);
+            this.btnSair.TabIndex = 5;
+            this.btnSair.Text = "↪   Sair";
+            this.btnSair.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSair.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnSair.UseVisualStyleBackColor = false;
 
             this.lblVersao.AutoSize = false;
             this.lblVersao.Font = new System.Drawing.Font("Segoe UI", 8F);
@@ -288,6 +307,7 @@
             this.pnlMenu.Controls.Add(this.btnJornada);
             this.pnlMenu.Controls.Add(this.btnFolha);
             this.pnlMenu.Controls.Add(this.btnConfiguracoes);
+            this.pnlMenu.Controls.Add(this.btnSair);
             this.pnlMenu.Controls.Add(this.lblVersao);
 
             // TOPO

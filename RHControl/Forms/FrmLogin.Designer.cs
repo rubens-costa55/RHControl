@@ -17,6 +17,7 @@
         private System.Windows.Forms.Button btnMostrarSenha;
         private System.Windows.Forms.Button btnEntrar;
         private System.Windows.Forms.Button btnEsqueciSenha;
+        private System.Windows.Forms.Button btnFechar;
 
         private System.Windows.Forms.Panel pnlLogin;
         private System.Windows.Forms.Panel pnlCampoUsuario;
@@ -78,6 +79,7 @@
             this.chkLembrar = new System.Windows.Forms.CheckBox();
             this.btnEntrar = new System.Windows.Forms.Button();
             this.btnEsqueciSenha = new System.Windows.Forms.Button();
+            this.btnFechar = new System.Windows.Forms.Button();
             this.lblLinha = new System.Windows.Forms.Label();
             this.lblLoginRodape = new System.Windows.Forms.Label();
             this.lblRodape = new System.Windows.Forms.Label();
@@ -173,6 +175,7 @@
             this.pnlLogin.Controls.Add(this.lblRodape);
             this.pnlLogin.Controls.Add(this.lblLoginRodape);
             this.pnlLogin.Controls.Add(this.lblLinha);
+            this.pnlLogin.Controls.Add(this.btnFechar);
             this.pnlLogin.Controls.Add(this.btnEsqueciSenha);
             this.pnlLogin.Controls.Add(this.btnEntrar);
             this.pnlLogin.Controls.Add(this.chkLembrar);
@@ -186,6 +189,22 @@
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(500, 522);
             this.pnlLogin.TabIndex = 1;
+
+            // FECHAR
+            this.btnFechar.BackColor = System.Drawing.Color.Transparent;
+            this.btnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFechar.FlatAppearance.BorderSize = 0;
+            this.btnFechar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(45, 66, 91);
+            this.btnFechar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(40, 58, 80);
+            this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.btnFechar.ForeColor = System.Drawing.Color.FromArgb(166, 188, 214);
+            this.btnFechar.Location = new System.Drawing.Point(448, 8);
+            this.btnFechar.Name = "btnFechar";
+            this.btnFechar.Size = new System.Drawing.Size(42, 34);
+            this.btnFechar.TabIndex = 14;
+            this.btnFechar.Text = "×";
+            this.btnFechar.UseVisualStyleBackColor = false;
 
             // TÍTULO
             this.lblTitulo.AutoSize = false;
