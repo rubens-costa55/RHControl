@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace RHControl.Forms
@@ -16,6 +16,7 @@ namespace RHControl.Forms
         private Button btnJornada;
         private Button btnFolha;
         private Button btnConfiguracoes;
+        private Button btnSair;
         private Label lblVersao;
 
         private Panel pnlConteudo;
@@ -74,6 +75,7 @@ namespace RHControl.Forms
         private DataGridViewTextBoxColumn colLiquido;
         private DataGridViewTextBoxColumn colHorasExtras;
         private DataGridViewTextBoxColumn colStatus;
+        private DataGridViewTextBoxColumn colPagamento;
 
         private Panel pnlResumo;
         private Label lblResumoTitulo;
@@ -94,6 +96,7 @@ namespace RHControl.Forms
         private Button btnRelatorioSintetico;
         private Button btnRelatorioAnalitico;
         private Button btnImprimir;
+        private Button btnRegistrarPagamento;
 
         protected override void Dispose(bool disposing)
         {
@@ -116,6 +119,7 @@ namespace RHControl.Forms
             btnJornada = new Button();
             btnFolha = new Button();
             btnConfiguracoes = new Button();
+            btnSair = new Button();
             lblVersao = new Label();
             pnlConteudo = new Panel();
             pnlAcoes = new Panel();
@@ -123,6 +127,7 @@ namespace RHControl.Forms
             btnRelatorioSintetico = new Button();
             btnRelatorioAnalitico = new Button();
             btnImprimir = new Button();
+            btnRegistrarPagamento = new Button();
             pnlLista = new Panel();
             dgvFuncionarios = new DataGridView();
             colNome = new DataGridViewTextBoxColumn();
@@ -132,6 +137,7 @@ namespace RHControl.Forms
             colLiquido = new DataGridViewTextBoxColumn();
             colHorasExtras = new DataGridViewTextBoxColumn();
             colStatus = new DataGridViewTextBoxColumn();
+            colPagamento = new DataGridViewTextBoxColumn();
             txtPesquisar = new TextBox();
             lblListaTitulo = new Label();
             pnlResumo = new Panel();
@@ -204,7 +210,7 @@ namespace RHControl.Forms
             // 
             // pnlMenu
             // 
-            pnlMenu.BackColor = Color.FromArgb(15, 73, 116);
+            pnlMenu.BackColor = Color.FromArgb(10, 30, 50);
             pnlMenu.Controls.Add(picLogo);
             pnlMenu.Controls.Add(lblNomeSistema);
             pnlMenu.Controls.Add(lblSubtituloMenu);
@@ -213,18 +219,19 @@ namespace RHControl.Forms
             pnlMenu.Controls.Add(btnJornada);
             pnlMenu.Controls.Add(btnFolha);
             pnlMenu.Controls.Add(btnConfiguracoes);
+            pnlMenu.Controls.Add(btnSair);
             pnlMenu.Controls.Add(lblVersao);
             pnlMenu.Dock = DockStyle.Left;
             pnlMenu.Location = new Point(0, 0);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(215, 780);
+            pnlMenu.Size = new Size(245, 760);
             pnlMenu.TabIndex = 1;
             // 
             // picLogo
             // 
-            picLogo.BackColor = Color.FromArgb(15, 73, 116);
+            picLogo.BackColor = Color.White;
             picLogo.Image = Properties.Resources.logorh;
-            picLogo.Location = new Point(52, 36);
+            picLogo.Location = new Point(69, 36);
             picLogo.Name = "picLogo";
             picLogo.Size = new Size(110, 86);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
@@ -235,9 +242,9 @@ namespace RHControl.Forms
             // 
             lblNomeSistema.Font = new Font("Segoe UI Semibold", 17F);
             lblNomeSistema.ForeColor = Color.White;
-            lblNomeSistema.Location = new Point(15, 126);
+            lblNomeSistema.Location = new Point(25, 126);
             lblNomeSistema.Name = "lblNomeSistema";
-            lblNomeSistema.Size = new Size(185, 32);
+            lblNomeSistema.Size = new Size(198, 32);
             lblNomeSistema.TabIndex = 1;
             lblNomeSistema.Text = "RH CONTROL";
             lblNomeSistema.TextAlign = ContentAlignment.MiddleCenter;
@@ -246,16 +253,16 @@ namespace RHControl.Forms
             // 
             lblSubtituloMenu.Font = new Font("Segoe UI", 8F);
             lblSubtituloMenu.ForeColor = Color.FromArgb(205, 224, 240);
-            lblSubtituloMenu.Location = new Point(15, 154);
+            lblSubtituloMenu.Location = new Point(25, 154);
             lblSubtituloMenu.Name = "lblSubtituloMenu";
-            lblSubtituloMenu.Size = new Size(185, 22);
+            lblSubtituloMenu.Size = new Size(198, 22);
             lblSubtituloMenu.TabIndex = 2;
             lblSubtituloMenu.Text = "GESTÃO DE PESSOAS";
             lblSubtituloMenu.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnDashboard
             // 
-            btnDashboard.BackColor = Color.FromArgb(15, 73, 116);
+            btnDashboard.BackColor = Color.FromArgb(10, 30, 50);
             btnDashboard.Cursor = Cursors.Hand;
             btnDashboard.FlatAppearance.BorderSize = 0;
             btnDashboard.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
@@ -263,10 +270,10 @@ namespace RHControl.Forms
             btnDashboard.FlatStyle = FlatStyle.Flat;
             btnDashboard.Font = new Font("Segoe UI", 9F);
             btnDashboard.ForeColor = Color.FromArgb(235, 242, 248);
-            btnDashboard.Location = new Point(10, 210);
+            btnDashboard.Location = new Point(18, 210);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Padding = new Padding(18, 0, 0, 0);
-            btnDashboard.Size = new Size(195, 42);
+            btnDashboard.Size = new Size(209, 45);
             btnDashboard.TabIndex = 3;
             btnDashboard.Text = "⌂   Dashboard";
             btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
@@ -274,7 +281,7 @@ namespace RHControl.Forms
             // 
             // btnFuncionarios
             // 
-            btnFuncionarios.BackColor = Color.FromArgb(15, 73, 116);
+            btnFuncionarios.BackColor = Color.FromArgb(10, 30, 50);
             btnFuncionarios.Cursor = Cursors.Hand;
             btnFuncionarios.FlatAppearance.BorderSize = 0;
             btnFuncionarios.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
@@ -282,10 +289,10 @@ namespace RHControl.Forms
             btnFuncionarios.FlatStyle = FlatStyle.Flat;
             btnFuncionarios.Font = new Font("Segoe UI", 9F);
             btnFuncionarios.ForeColor = Color.FromArgb(235, 242, 248);
-            btnFuncionarios.Location = new Point(10, 258);
+            btnFuncionarios.Location = new Point(18, 263);
             btnFuncionarios.Name = "btnFuncionarios";
             btnFuncionarios.Padding = new Padding(18, 0, 0, 0);
-            btnFuncionarios.Size = new Size(195, 42);
+            btnFuncionarios.Size = new Size(209, 45);
             btnFuncionarios.TabIndex = 4;
             btnFuncionarios.Text = "♙   Funcionários";
             btnFuncionarios.TextAlign = ContentAlignment.MiddleLeft;
@@ -293,7 +300,7 @@ namespace RHControl.Forms
             // 
             // btnJornada
             // 
-            btnJornada.BackColor = Color.FromArgb(15, 73, 116);
+            btnJornada.BackColor = Color.FromArgb(10, 30, 50);
             btnJornada.Cursor = Cursors.Hand;
             btnJornada.FlatAppearance.BorderSize = 0;
             btnJornada.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
@@ -301,10 +308,10 @@ namespace RHControl.Forms
             btnJornada.FlatStyle = FlatStyle.Flat;
             btnJornada.Font = new Font("Segoe UI", 9F);
             btnJornada.ForeColor = Color.FromArgb(235, 242, 248);
-            btnJornada.Location = new Point(10, 306);
+            btnJornada.Location = new Point(18, 316);
             btnJornada.Name = "btnJornada";
             btnJornada.Padding = new Padding(18, 0, 0, 0);
-            btnJornada.Size = new Size(195, 42);
+            btnJornada.Size = new Size(209, 45);
             btnJornada.TabIndex = 5;
             btnJornada.Text = "▣   Jornada / Calendário";
             btnJornada.TextAlign = ContentAlignment.MiddleLeft;
@@ -312,7 +319,7 @@ namespace RHControl.Forms
             // 
             // btnFolha
             // 
-            btnFolha.BackColor = Color.FromArgb(31, 126, 215);
+            btnFolha.BackColor = Color.FromArgb(18, 126, 255);
             btnFolha.Cursor = Cursors.Hand;
             btnFolha.FlatAppearance.BorderSize = 0;
             btnFolha.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
@@ -320,10 +327,10 @@ namespace RHControl.Forms
             btnFolha.FlatStyle = FlatStyle.Flat;
             btnFolha.Font = new Font("Segoe UI", 9F);
             btnFolha.ForeColor = Color.White;
-            btnFolha.Location = new Point(10, 354);
+            btnFolha.Location = new Point(18, 369);
             btnFolha.Name = "btnFolha";
             btnFolha.Padding = new Padding(18, 0, 0, 0);
-            btnFolha.Size = new Size(195, 42);
+            btnFolha.Size = new Size(209, 45);
             btnFolha.TabIndex = 6;
             btnFolha.Text = "▤   Folha / Relatórios";
             btnFolha.TextAlign = ContentAlignment.MiddleLeft;
@@ -331,7 +338,7 @@ namespace RHControl.Forms
             // 
             // btnConfiguracoes
             // 
-            btnConfiguracoes.BackColor = Color.FromArgb(15, 73, 116);
+            btnConfiguracoes.BackColor = Color.FromArgb(10, 30, 50);
             btnConfiguracoes.Cursor = Cursors.Hand;
             btnConfiguracoes.FlatAppearance.BorderSize = 0;
             btnConfiguracoes.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
@@ -339,30 +346,49 @@ namespace RHControl.Forms
             btnConfiguracoes.FlatStyle = FlatStyle.Flat;
             btnConfiguracoes.Font = new Font("Segoe UI", 9F);
             btnConfiguracoes.ForeColor = Color.FromArgb(235, 242, 248);
-            btnConfiguracoes.Location = new Point(10, 402);
+            btnConfiguracoes.Location = new Point(18, 422);
             btnConfiguracoes.Name = "btnConfiguracoes";
             btnConfiguracoes.Padding = new Padding(18, 0, 0, 0);
-            btnConfiguracoes.Size = new Size(195, 42);
+            btnConfiguracoes.Size = new Size(209, 45);
             btnConfiguracoes.TabIndex = 7;
             btnConfiguracoes.Text = "⚙   Configurações";
             btnConfiguracoes.TextAlign = ContentAlignment.MiddleLeft;
             btnConfiguracoes.UseVisualStyleBackColor = false;
             // 
+            // btnSair
+            // 
+            btnSair.BackColor = Color.FromArgb(10, 30, 50);
+            btnSair.Cursor = Cursors.Hand;
+            btnSair.FlatAppearance.BorderSize = 0;
+            btnSair.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 111, 165);
+            btnSair.FlatAppearance.MouseOverBackColor = Color.FromArgb(20, 58, 88);
+            btnSair.FlatStyle = FlatStyle.Flat;
+            btnSair.Font = new Font("Segoe UI", 9F);
+            btnSair.ForeColor = Color.White;
+            btnSair.Location = new Point(18, 650);
+            btnSair.Name = "btnSair";
+            btnSair.Padding = new Padding(18, 0, 0, 0);
+            btnSair.Size = new Size(209, 45);
+            btnSair.TabIndex = 8;
+            btnSair.Text = "↪   Sair";
+            btnSair.TextAlign = ContentAlignment.MiddleLeft;
+            btnSair.UseVisualStyleBackColor = false;
+            // 
             // lblVersao
             // 
-            lblVersao.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblVersao.Dock = DockStyle.Bottom;
             lblVersao.Font = new Font("Segoe UI", 8F);
             lblVersao.ForeColor = Color.FromArgb(190, 211, 228);
-            lblVersao.Location = new Point(15, 1380);
+            lblVersao.Location = new Point(25, 725);
             lblVersao.Name = "lblVersao";
-            lblVersao.Size = new Size(185, 25);
+            lblVersao.Size = new Size(248, 45);
             lblVersao.TabIndex = 8;
             lblVersao.Text = "RH Control • v1.0";
             lblVersao.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlConteudo
             // 
-            pnlConteudo.BackColor = Color.FromArgb(246, 248, 251);
+            pnlConteudo.BackColor = Color.FromArgb(244, 247, 251);
             pnlConteudo.Controls.Add(pnlAcoes);
             pnlConteudo.Controls.Add(pnlLista);
             pnlConteudo.Controls.Add(pnlResumo);
@@ -374,10 +400,10 @@ namespace RHControl.Forms
             pnlConteudo.Controls.Add(pnlFiltros);
             pnlConteudo.Controls.Add(pnlCabecalho);
             pnlConteudo.Dock = DockStyle.Fill;
-            pnlConteudo.Location = new Point(215, 0);
+            pnlConteudo.Location = new Point(245, 0);
             pnlConteudo.Name = "pnlConteudo";
             pnlConteudo.Padding = new Padding(22, 0, 18, 16);
-            pnlConteudo.Size = new Size(1045, 780);
+            pnlConteudo.Size = new Size(955, 760);
             pnlConteudo.TabIndex = 0;
             // 
             // pnlAcoes
@@ -388,6 +414,7 @@ namespace RHControl.Forms
             pnlAcoes.Controls.Add(btnRelatorioSintetico);
             pnlAcoes.Controls.Add(btnRelatorioAnalitico);
             pnlAcoes.Controls.Add(btnImprimir);
+            pnlAcoes.Controls.Add(btnRegistrarPagamento);
             pnlAcoes.Dock = DockStyle.Bottom;
             pnlAcoes.Location = new Point(22, 690);
             pnlAcoes.Name = "pnlAcoes";
@@ -456,6 +483,21 @@ namespace RHControl.Forms
             btnImprimir.UseVisualStyleBackColor = false;
             btnImprimir.Click += btnExportarPdf_Click;
             // 
+            // btnRegistrarPagamento
+            // 
+            btnRegistrarPagamento.BackColor = Color.FromArgb(18, 126, 255);
+            btnRegistrarPagamento.Cursor = Cursors.Hand;
+            btnRegistrarPagamento.FlatAppearance.BorderColor = Color.FromArgb(18, 126, 255);
+            btnRegistrarPagamento.FlatStyle = FlatStyle.Flat;
+            btnRegistrarPagamento.Font = new Font("Segoe UI Semibold", 8.5F);
+            btnRegistrarPagamento.ForeColor = Color.White;
+            btnRegistrarPagamento.Location = new Point(695, 10);
+            btnRegistrarPagamento.Name = "btnRegistrarPagamento";
+            btnRegistrarPagamento.Size = new Size(170, 38);
+            btnRegistrarPagamento.TabIndex = 4;
+            btnRegistrarPagamento.Text = "✓  Registrar pagamento";
+            btnRegistrarPagamento.UseVisualStyleBackColor = false;
+            // 
             // pnlLista
             // 
             pnlLista.BackColor = Color.White;
@@ -487,7 +529,7 @@ namespace RHControl.Forms
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvFuncionarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvFuncionarios.ColumnHeadersHeight = 34;
-            dgvFuncionarios.Columns.AddRange(new DataGridViewColumn[] { colNome, colCargo, colSalario, colDescontos, colLiquido, colHorasExtras, colStatus });
+            dgvFuncionarios.Columns.AddRange(new DataGridViewColumn[] { colNome, colCargo, colSalario, colDescontos, colLiquido, colHorasExtras, colStatus, colPagamento });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 8.5F);
@@ -508,49 +550,56 @@ namespace RHControl.Forms
             colNome.HeaderText = "Funcionário";
             colNome.Name = "colNome";
             colNome.ReadOnly = true;
-            colNome.Width = 135;
+            colNome.Width = 110;
             // 
             // colCargo
             // 
             colCargo.HeaderText = "Cargo";
             colCargo.Name = "colCargo";
             colCargo.ReadOnly = true;
-            colCargo.Width = 115;
+            colCargo.Width = 90;
             // 
             // colSalario
             // 
             colSalario.HeaderText = "Bruto";
             colSalario.Name = "colSalario";
             colSalario.ReadOnly = true;
-            colSalario.Width = 80;
+            colSalario.Width = 70;
             // 
             // colDescontos
             // 
             colDescontos.HeaderText = "Descontos";
             colDescontos.Name = "colDescontos";
             colDescontos.ReadOnly = true;
-            colDescontos.Width = 80;
+            colDescontos.Width = 70;
             // 
             // colLiquido
             // 
             colLiquido.HeaderText = "Líquido";
             colLiquido.Name = "colLiquido";
             colLiquido.ReadOnly = true;
-            colLiquido.Width = 80;
+            colLiquido.Width = 70;
             // 
             // colHorasExtras
             // 
             colHorasExtras.HeaderText = "Horas extras";
             colHorasExtras.Name = "colHorasExtras";
             colHorasExtras.ReadOnly = true;
-            colHorasExtras.Width = 80;
+            colHorasExtras.Width = 60;
             // 
             // colStatus
             // 
             colStatus.HeaderText = "Situação";
             colStatus.Name = "colStatus";
             colStatus.ReadOnly = true;
-            colStatus.Width = 80;
+            colStatus.Width = 70;
+            // 
+            // colPagamento
+            // 
+            colPagamento.HeaderText = "Pagamento";
+            colPagamento.Name = "colPagamento";
+            colPagamento.ReadOnly = true;
+            colPagamento.Width = 105;
             // 
             // txtPesquisar
             // 
@@ -591,7 +640,7 @@ namespace RHControl.Forms
             pnlResumo.Controls.Add(lblObservacoes);
             pnlResumo.Location = new Point(686, 330);
             pnlResumo.Name = "pnlResumo";
-            pnlResumo.Size = new Size(347, 320);
+            pnlResumo.Size = new Size(251, 320);
             pnlResumo.TabIndex = 2;
             // 
             // lblResumoTitulo
@@ -720,9 +769,9 @@ namespace RHControl.Forms
             pnlCardHoras.Controls.Add(lblHorasValor);
             pnlCardHoras.Controls.Add(lblCardHorasTitulo);
             pnlCardHoras.Controls.Add(lblIconHoras);
-            pnlCardHoras.Location = new Point(802, 202);
+            pnlCardHoras.Location = new Point(762, 202);
             pnlCardHoras.Name = "pnlCardHoras";
-            pnlCardHoras.Size = new Size(185, 108);
+            pnlCardHoras.Size = new Size(175, 108);
             pnlCardHoras.TabIndex = 3;
             // 
             // lblHorasInfo
@@ -776,9 +825,9 @@ namespace RHControl.Forms
             pnlCardLiquido.Controls.Add(lblLiquidoValor);
             pnlCardLiquido.Controls.Add(lblCardLiquidoTitulo);
             pnlCardLiquido.Controls.Add(lblIconLiquido);
-            pnlCardLiquido.Location = new Point(607, 202);
+            pnlCardLiquido.Location = new Point(577, 202);
             pnlCardLiquido.Name = "pnlCardLiquido";
-            pnlCardLiquido.Size = new Size(185, 108);
+            pnlCardLiquido.Size = new Size(175, 108);
             pnlCardLiquido.TabIndex = 4;
             // 
             // lblLiquidoInfo
@@ -832,9 +881,9 @@ namespace RHControl.Forms
             pnlCardDescontos.Controls.Add(lblDescontosValor);
             pnlCardDescontos.Controls.Add(lblCardDescontosTitulo);
             pnlCardDescontos.Controls.Add(lblIconDescontos);
-            pnlCardDescontos.Location = new Point(412, 202);
+            pnlCardDescontos.Location = new Point(392, 202);
             pnlCardDescontos.Name = "pnlCardDescontos";
-            pnlCardDescontos.Size = new Size(185, 108);
+            pnlCardDescontos.Size = new Size(175, 108);
             pnlCardDescontos.TabIndex = 5;
             // 
             // lblDescontosInfo
@@ -888,9 +937,9 @@ namespace RHControl.Forms
             pnlCardBruto.Controls.Add(lblBrutoValor);
             pnlCardBruto.Controls.Add(lblCardBrutoTitulo);
             pnlCardBruto.Controls.Add(lblIconBruto);
-            pnlCardBruto.Location = new Point(217, 202);
+            pnlCardBruto.Location = new Point(207, 202);
             pnlCardBruto.Name = "pnlCardBruto";
-            pnlCardBruto.Size = new Size(185, 108);
+            pnlCardBruto.Size = new Size(175, 108);
             pnlCardBruto.TabIndex = 6;
             // 
             // lblBrutoInfo
@@ -946,7 +995,7 @@ namespace RHControl.Forms
             pnlCardFuncionarios.Controls.Add(lblIconFuncionarios);
             pnlCardFuncionarios.Location = new Point(22, 202);
             pnlCardFuncionarios.Name = "pnlCardFuncionarios";
-            pnlCardFuncionarios.Size = new Size(185, 108);
+            pnlCardFuncionarios.Size = new Size(175, 108);
             pnlCardFuncionarios.TabIndex = 7;
             // 
             // lblFuncionariosInfo
@@ -1147,19 +1196,20 @@ namespace RHControl.Forms
             // lblUsuario
             // 
             lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblUsuario.AutoSize = true;
+            lblUsuario.AutoSize = false;
             lblUsuario.Font = new Font("Segoe UI Semibold", 9F);
             lblUsuario.ForeColor = Color.FromArgb(18, 103, 181);
-            lblUsuario.Location = new Point(1830, 34);
+            lblUsuario.TextAlign = ContentAlignment.MiddleRight;
+            lblUsuario.Location = new Point(760, 34);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(101, 15);
+            lblUsuario.Size = new Size(170, 20);
             lblUsuario.TabIndex = 2;
             lblUsuario.Text = "♙  Administrador";
             // 
             // FrmFolhaPagamento
             // 
-            BackColor = Color.FromArgb(246, 248, 251);
-            ClientSize = new Size(1260, 780);
+            BackColor = Color.FromArgb(244, 247, 251);
+            ClientSize = new Size(1200, 760);
             Controls.Add(pnlConteudo);
             Controls.Add(pnlMenu);
             Font = new Font("Segoe UI", 9F);

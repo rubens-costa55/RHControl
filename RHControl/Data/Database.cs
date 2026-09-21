@@ -57,8 +57,7 @@ namespace RHControl.Data
                     Observacoes TEXT,
                     CriadoEm TEXT NOT NULL,
                     AtualizadoEm TEXT
-                );
-            ";
+                );";
 
             using (var command = connection.CreateCommand())
             {
@@ -91,8 +90,7 @@ namespace RHControl.Data
                     FOREIGN KEY (FuncionarioId)
                         REFERENCES Funcionarios(Id)
                         ON DELETE CASCADE
-                );
-            ";
+                );";
 
             using (var command = connection.CreateCommand())
             {
@@ -100,23 +98,9 @@ namespace RHControl.Data
                 command.ExecuteNonQuery();
             }
 
-            CriarIndiceSeNaoExistir(
-                connection,
-                "IX_Ferias_FuncionarioId",
-                "Ferias",
-                "FuncionarioId");
-
-            CriarIndiceSeNaoExistir(
-                connection,
-                "IX_Ferias_DataDireito",
-                "Ferias",
-                "DataDireito");
-
-            CriarIndiceSeNaoExistir(
-                connection,
-                "IX_Ferias_FimConcessivo",
-                "Ferias",
-                "FimConcessivo");
+            CriarIndiceSeNaoExistir(connection, "IX_Ferias_FuncionarioId", "Ferias", "FuncionarioId");
+            CriarIndiceSeNaoExistir(connection, "IX_Ferias_DataDireito", "Ferias", "DataDireito");
+            CriarIndiceSeNaoExistir(connection, "IX_Ferias_FimConcessivo", "Ferias", "FimConcessivo");
 
             string sqlConfiguracoes = @"
                 CREATE TABLE IF NOT EXISTS Configuracoes
@@ -125,8 +109,7 @@ namespace RHControl.Data
                     Chave TEXT NOT NULL UNIQUE,
                     Valor TEXT,
                     AtualizadoEm TEXT
-                );
-            ";
+                );";
 
             using (var command = connection.CreateCommand())
             {
@@ -147,8 +130,7 @@ namespace RHControl.Data
                     CriadoEm TEXT NOT NULL,
                     AtualizadoEm TEXT,
                     UltimoAcesso TEXT
-                );
-            ";
+                );";
 
             using (var command = connection.CreateCommand())
             {
@@ -156,19 +138,9 @@ namespace RHControl.Data
                 command.ExecuteNonQuery();
             }
 
-            CriarIndiceSeNaoExistir(
-                connection,
-                "IX_Usuarios_TipoUsuario",
-                "Usuarios",
-                "TipoUsuario");
+            CriarIndiceSeNaoExistir(connection, "IX_Usuarios_TipoUsuario", "Usuarios", "TipoUsuario");
+            CriarIndiceSeNaoExistir(connection, "IX_Usuarios_Status", "Usuarios", "Status");
 
-            CriarIndiceSeNaoExistir(
-                connection,
-                "IX_Usuarios_Status",
-                "Usuarios",
-                "Status");
-
-            // Cria o primeiro administrador somente se ainda não existir
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = @"
@@ -201,6 +173,139 @@ namespace RHControl.Data
 
                 command.ExecuteNonQuery();
             }
+
+            // ============================================================
+            // PAGAMENTOS DA FOLHA
+            // ============================================================
+            // A versão atual usa Ano/Mes + RegistradoEm.
+            // A compatibilidade abaixo mantém funcionando também versões
+            // anteriores que usavam CompetenciaAno/CompetenciaMes + CriadoEm.
+            string sqlPagamentos = @"
+                CREATE TABLE IF NOT EXISTS PagamentosFolha
+                (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    FuncionarioId INTEGER NOT NULL,
+                    Ano INTEGER NOT NULL,
+                    Mes INTEGER NOT NULL,
+                    DataPrevista TEXT NOT NULL,
+                    DataPagamento TEXT,
+                    Status TEXT NOT NULL DEFAULT 'Pendente',
+                    RegistradoEm TEXT,
+                    Observacoes TEXT,
+                    FOREIGN KEY (FuncionarioId)
+                        REFERENCES Funcionarios(Id)
+                        ON DELETE CASCADE,
+                    UNIQUE (FuncionarioId, Ano, Mes)
+                );";
+
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = sqlPagamentos;
+                command.ExecuteNonQuery();
+            }
+
+            // Colunas usadas pela versão atual.
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "PagamentosFolha",
+                "Ano",
+                "INTEGER");
+
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "PagamentosFolha",
+                "Mes",
+                "INTEGER");
+
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "PagamentosFolha",
+                "RegistradoEm",
+                "TEXT");
+
+            // Colunas usadas por versões anteriores do projeto.
+            // Elas permanecem para que Jornada/Folha de versões anteriores
+            // não quebrem o banco existente.
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "PagamentosFolha",
+                "CompetenciaAno",
+                "INTEGER");
+
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "PagamentosFolha",
+                "CompetenciaMes",
+                "INTEGER");
+
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "PagamentosFolha",
+                "CriadoEm",
+                "TEXT");
+
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "PagamentosFolha",
+                "AtualizadoEm",
+                "TEXT");
+
+            // Sincroniza a nomenclatura antiga com a atual.
+            // Não apaga nem substitui registros existentes.
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = @"
+                    UPDATE PagamentosFolha
+                    SET Ano = CompetenciaAno
+                    WHERE (Ano IS NULL OR Ano = 0)
+                      AND CompetenciaAno IS NOT NULL;
+
+                    UPDATE PagamentosFolha
+                    SET Mes = CompetenciaMes
+                    WHERE (Mes IS NULL OR Mes = 0)
+                      AND CompetenciaMes IS NOT NULL;
+
+                    UPDATE PagamentosFolha
+                    SET CompetenciaAno = Ano
+                    WHERE (CompetenciaAno IS NULL OR CompetenciaAno = 0)
+                      AND Ano IS NOT NULL;
+
+                    UPDATE PagamentosFolha
+                    SET CompetenciaMes = Mes
+                    WHERE (CompetenciaMes IS NULL OR CompetenciaMes = 0)
+                      AND Mes IS NOT NULL;
+
+                    UPDATE PagamentosFolha
+                    SET CriadoEm = RegistradoEm
+                    WHERE (CriadoEm IS NULL OR CriadoEm = '')
+                      AND RegistradoEm IS NOT NULL;
+
+                    UPDATE PagamentosFolha
+                    SET RegistradoEm = CriadoEm
+                    WHERE (RegistradoEm IS NULL OR RegistradoEm = '')
+                      AND CriadoEm IS NOT NULL;
+                ";
+
+                command.ExecuteNonQuery();
+            }
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_PagamentosFolha_Funcionario",
+                "PagamentosFolha",
+                "FuncionarioId");
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_PagamentosFolha_Competencia",
+                "PagamentosFolha",
+                "Ano, Mes");
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_PagamentosFolha_CompetenciaAntiga",
+                "PagamentosFolha",
+                "CompetenciaAno, CompetenciaMes");
         }
 
         private static void AdicionarColunaSeNaoExistir(
@@ -214,8 +319,7 @@ namespace RHControl.Data
             command.CommandText = $@"
                 SELECT COUNT(*)
                 FROM pragma_table_info('{tabela}')
-                WHERE name = $coluna;
-            ";
+                WHERE name = $coluna;";
 
             command.Parameters.AddWithValue("$coluna", coluna);
 
@@ -241,8 +345,7 @@ namespace RHControl.Data
 
             command.CommandText = $@"
                 CREATE INDEX IF NOT EXISTS {nomeIndice}
-                ON {tabela} ({coluna});
-            ";
+                ON {tabela} ({coluna});";
 
             command.ExecuteNonQuery();
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Data.Sqlite;
 using RHControl.Data;
@@ -13,6 +14,8 @@ namespace RHControl.Forms
 
         public FrmConfiguracoes()
         {
+            InitializeComponent();
+
             if (!SessaoUsuario.EhAdministrador)
             {
                 MessageBox.Show(
@@ -24,8 +27,6 @@ namespace RHControl.Forms
                 BeginInvoke(new Action(Close));
                 return;
             }
-
-            InitializeComponent();
 
             try
             {
@@ -60,9 +61,9 @@ namespace RHControl.Forms
 
             btnAbaEmpresa.Click += (s, e) => SelecionarAba(0);
             btnAbaFolha.Click += (s, e) => SelecionarAba(1);
-            btnAbaSistema.Click += (s, e) => SelecionarAba(2);
             btnAbaUsuario.Click += (s, e) => SelecionarAba(3);
             btnAbaBackup.Click += (s, e) => SelecionarAba(4);
+            btnSair.Click += BtnSair_Click;
 
             btnNovaConta.Click += BtnNovaConta_Click;
             btnEditarUsuario.Click += BtnEditarUsuario_Click;
@@ -73,12 +74,57 @@ namespace RHControl.Forms
 
         private void FrmConfiguracoes_Load(object? sender, EventArgs e)
         {
+            btnAbaSistema.Visible = false;
+            btnAbaSistema.Enabled = false;
+            pnlSistema.Visible = false;
+
             CarregarConfiguracoes();
             AtualizarResumoFolha();
             CarregarUsuarios();
             AplicarPermissoesUsuarios();
             AtualizarEstadoBotoesUsuarios();
             SelecionarAba(0);
+        }
+
+
+        private void BtnSair_Click(object? sender, EventArgs e)
+        {
+            DialogResult resposta = MessageBox.Show(
+                "Deseja realmente sair do RH Control?",
+                "Sair",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (resposta != DialogResult.Yes)
+                return;
+
+            SessaoUsuario.Encerrar();
+
+            FrmLogin? login = Application.OpenForms
+                .OfType<FrmLogin>()
+                .FirstOrDefault();
+
+            if (login == null || login.IsDisposed)
+                login = new FrmLogin();
+
+            login.Show();
+            login.BringToFront();
+
+            foreach (Form form in Application.OpenForms.Cast<Form>().ToArray())
+            {
+                if (form == login || form == this)
+                    continue;
+
+                if (form is FrmDashboard ||
+                    form is FrmFuncionarios ||
+                    form is FrmJornada ||
+                    form is FrmFolhaPagamento)
+                {
+                    form.Close();
+                }
+            }
+
+            Close();
         }
 
         private void SelecionarAba(int indice)

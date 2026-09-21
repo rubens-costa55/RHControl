@@ -13,6 +13,7 @@
         private System.Windows.Forms.Button btnJornada;
         private System.Windows.Forms.Button btnFolha;
         private System.Windows.Forms.Button btnConfiguracoes;
+        private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Label lblVersao;
 
         private System.Windows.Forms.Panel pnlTopo;
@@ -121,6 +122,7 @@
             btnJornada = new Button();
             btnFolha = new Button();
             btnConfiguracoes = new Button();
+            btnSair = new Button();
             lblVersao = new Label();
             pnlTopo = new Panel();
             lblTitulo = new Label();
@@ -206,7 +208,7 @@
             // 
             // pnlMenu
             // 
-            pnlMenu.BackColor = Color.FromArgb(247, 249, 252);
+            pnlMenu.BackColor = Color.FromArgb(10, 30, 50);
             pnlMenu.Controls.Add(picLogo);
             pnlMenu.Controls.Add(lblLogo);
             pnlMenu.Controls.Add(lblLogoSub);
@@ -216,129 +218,166 @@
             pnlMenu.Controls.Add(btnFolha);
             pnlMenu.Controls.Add(btnConfiguracoes);
             pnlMenu.Controls.Add(lblVersao);
+            pnlMenu.Controls.Add(btnSair);
+            pnlMenu.Dock = DockStyle.Left;
             pnlMenu.Location = new Point(0, 0);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(220, 780);
+            pnlMenu.Size = new Size(245, 760);
             pnlMenu.TabIndex = 0;
             // 
             // picLogo
             // 
-            picLogo.BackColor = Color.Transparent;
+            picLogo.BackColor = Color.White;
             picLogo.Image = Properties.Resources.logorh;
-            picLogo.Location = new Point(66, 54);
+            picLogo.Location = new Point(68, 35);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(90, 90);
+            picLogo.Size = new Size(110, 92);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
             // 
             // lblLogo
             // 
-            lblLogo.AutoSize = true;
-            lblLogo.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
-            lblLogo.ForeColor = Color.FromArgb(21, 101, 192);
-            lblLogo.Location = new Point(57, 151);
+            lblLogo.AutoSize = false;
+            lblLogo.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
+            lblLogo.ForeColor = Color.White;
+            lblLogo.Location = new Point(20, 140);
             lblLogo.Name = "lblLogo";
-            lblLogo.Size = new Size(134, 31);
+            lblLogo.Size = new Size(205, 30);
             lblLogo.TabIndex = 1;
             lblLogo.Text = "RH Control";
+            lblLogo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblLogoSub
             // 
-            lblLogoSub.AutoSize = true;
-            lblLogoSub.Font = new Font("Segoe UI", 9F);
-            lblLogoSub.ForeColor = Color.FromArgb(100, 110, 125);
-            lblLogoSub.Location = new Point(66, 182);
+            lblLogoSub.AutoSize = false;
+            lblLogoSub.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            lblLogoSub.ForeColor = Color.FromArgb(153, 178, 202);
+            lblLogoSub.Location = new Point(20, 169);
             lblLogoSub.Name = "lblLogoSub";
-            lblLogoSub.Size = new Size(103, 15);
+            lblLogoSub.Size = new Size(205, 20);
             lblLogoSub.TabIndex = 2;
-            lblLogoSub.Text = "Gestão de Pessoas";
+            lblLogoSub.Text = "GESTÃO DE PESSOAS";
+            lblLogoSub.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnDashboard
             // 
-            btnDashboard.BackColor = Color.White;
+            btnDashboard.BackColor = Color.FromArgb(10, 30, 50);
             btnDashboard.Cursor = Cursors.Hand;
-            btnDashboard.FlatAppearance.BorderColor = Color.FromArgb(220, 226, 235);
+            btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatAppearance.MouseOverBackColor = Color.FromArgb(27, 62, 93);
             btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Font = new Font("Segoe UI", 9.5F);
-            btnDashboard.ForeColor = Color.FromArgb(45, 55, 70);
-            btnDashboard.Location = new Point(15, 218);
+            btnDashboard.Font = new System.Drawing.Font("Segoe UI", 10F);
+            btnDashboard.ForeColor = Color.White;
+            btnDashboard.Location = new Point(18, 210);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(190, 44);
+            btnDashboard.Padding = new Padding(20, 0, 0, 0);
+            btnDashboard.Size = new Size(209, 45);
             btnDashboard.TabIndex = 3;
-            btnDashboard.Text = "Dashboard";
+            btnDashboard.Text = "⌂   Dashboard";
+            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
             btnDashboard.UseVisualStyleBackColor = false;
             // 
             // btnFuncionarios
             // 
-            btnFuncionarios.BackColor = Color.White;
+            btnFuncionarios.BackColor = Color.FromArgb(10, 30, 50);
             btnFuncionarios.Cursor = Cursors.Hand;
-            btnFuncionarios.FlatAppearance.BorderColor = Color.FromArgb(220, 226, 235);
+            btnFuncionarios.FlatAppearance.BorderSize = 0;
+            btnFuncionarios.FlatAppearance.MouseOverBackColor = Color.FromArgb(27, 62, 93);
             btnFuncionarios.FlatStyle = FlatStyle.Flat;
-            btnFuncionarios.Font = new Font("Segoe UI", 9.5F);
-            btnFuncionarios.ForeColor = Color.FromArgb(45, 55, 70);
-            btnFuncionarios.Location = new Point(15, 270);
+            btnFuncionarios.Font = new System.Drawing.Font("Segoe UI", 10F);
+            btnFuncionarios.ForeColor = Color.White;
+            btnFuncionarios.Location = new Point(18, 263);
             btnFuncionarios.Name = "btnFuncionarios";
-            btnFuncionarios.Size = new Size(190, 44);
+            btnFuncionarios.Padding = new Padding(20, 0, 0, 0);
+            btnFuncionarios.Size = new Size(209, 45);
             btnFuncionarios.TabIndex = 4;
-            btnFuncionarios.Text = "Funcionários";
+            btnFuncionarios.Text = "●   Funcionários";
+            btnFuncionarios.TextAlign = ContentAlignment.MiddleLeft;
             btnFuncionarios.UseVisualStyleBackColor = false;
             // 
             // btnJornada
             // 
-            btnJornada.BackColor = Color.FromArgb(21, 101, 192);
+            btnJornada.BackColor = Color.FromArgb(18, 126, 255);
             btnJornada.Cursor = Cursors.Hand;
-            btnJornada.FlatAppearance.BorderColor = Color.FromArgb(21, 101, 192);
+            btnJornada.FlatAppearance.BorderSize = 0;
+            btnJornada.FlatAppearance.MouseOverBackColor = Color.FromArgb(35, 145, 255);
             btnJornada.FlatStyle = FlatStyle.Flat;
-            btnJornada.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnJornada.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             btnJornada.ForeColor = Color.White;
-            btnJornada.Location = new Point(15, 322);
+            btnJornada.Location = new Point(18, 316);
             btnJornada.Name = "btnJornada";
-            btnJornada.Size = new Size(190, 44);
+            btnJornada.Padding = new Padding(20, 0, 0, 0);
+            btnJornada.Size = new Size(209, 45);
             btnJornada.TabIndex = 5;
-            btnJornada.Text = "Jornada / Calendário";
+            btnJornada.Text = "▣   Jornada / Calendário";
+            btnJornada.TextAlign = ContentAlignment.MiddleLeft;
             btnJornada.UseVisualStyleBackColor = false;
             // 
             // btnFolha
             // 
-            btnFolha.BackColor = Color.White;
+            btnFolha.BackColor = Color.FromArgb(10, 30, 50);
             btnFolha.Cursor = Cursors.Hand;
-            btnFolha.FlatAppearance.BorderColor = Color.FromArgb(220, 226, 235);
+            btnFolha.FlatAppearance.BorderSize = 0;
+            btnFolha.FlatAppearance.MouseOverBackColor = Color.FromArgb(27, 62, 93);
             btnFolha.FlatStyle = FlatStyle.Flat;
-            btnFolha.Font = new Font("Segoe UI", 9.5F);
-            btnFolha.ForeColor = Color.FromArgb(45, 55, 70);
-            btnFolha.Location = new Point(15, 374);
+            btnFolha.Font = new System.Drawing.Font("Segoe UI", 10F);
+            btnFolha.ForeColor = Color.White;
+            btnFolha.Location = new Point(18, 369);
             btnFolha.Name = "btnFolha";
-            btnFolha.Size = new Size(190, 44);
+            btnFolha.Padding = new Padding(20, 0, 0, 0);
+            btnFolha.Size = new Size(209, 45);
             btnFolha.TabIndex = 6;
-            btnFolha.Text = "Folha / Relatórios";
+            btnFolha.Text = "$   Folha / Relatórios";
+            btnFolha.TextAlign = ContentAlignment.MiddleLeft;
             btnFolha.UseVisualStyleBackColor = false;
             // 
             // btnConfiguracoes
             // 
-            btnConfiguracoes.BackColor = Color.White;
+            btnConfiguracoes.BackColor = Color.FromArgb(10, 30, 50);
             btnConfiguracoes.Cursor = Cursors.Hand;
-            btnConfiguracoes.FlatAppearance.BorderColor = Color.FromArgb(220, 226, 235);
+            btnConfiguracoes.FlatAppearance.BorderSize = 0;
+            btnConfiguracoes.FlatAppearance.MouseOverBackColor = Color.FromArgb(27, 62, 93);
             btnConfiguracoes.FlatStyle = FlatStyle.Flat;
-            btnConfiguracoes.Font = new Font("Segoe UI", 9.5F);
-            btnConfiguracoes.ForeColor = Color.FromArgb(45, 55, 70);
-            btnConfiguracoes.Location = new Point(15, 426);
+            btnConfiguracoes.Font = new System.Drawing.Font("Segoe UI", 10F);
+            btnConfiguracoes.ForeColor = Color.White;
+            btnConfiguracoes.Location = new Point(18, 422);
             btnConfiguracoes.Name = "btnConfiguracoes";
-            btnConfiguracoes.Size = new Size(190, 44);
+            btnConfiguracoes.Padding = new Padding(20, 0, 0, 0);
+            btnConfiguracoes.Size = new Size(209, 45);
             btnConfiguracoes.TabIndex = 7;
-            btnConfiguracoes.Text = "Configurações";
+            btnConfiguracoes.Text = "⚙   Configurações";
+            btnConfiguracoes.TextAlign = ContentAlignment.MiddleLeft;
             btnConfiguracoes.UseVisualStyleBackColor = false;
             // 
             // lblVersao
             // 
             lblVersao.AutoSize = true;
-            lblVersao.Font = new Font("Segoe UI", 8.5F);
-            lblVersao.ForeColor = Color.FromArgb(105, 115, 130);
-            lblVersao.Location = new Point(30, 735);
+            lblVersao.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            lblVersao.ForeColor = Color.FromArgb(145, 180, 210);
+            lblVersao.Location = new Point(20, 718);
             lblVersao.Name = "lblVersao";
             lblVersao.Size = new Size(98, 15);
             lblVersao.TabIndex = 8;
             lblVersao.Text = "RH Control • v1.0";
+            // 
+            // btnSair
+            // 
+            btnSair.BackColor = Color.FromArgb(10, 30, 50);
+            btnSair.Cursor = Cursors.Hand;
+            btnSair.FlatAppearance.BorderSize = 0;
+            btnSair.FlatAppearance.MouseOverBackColor = Color.FromArgb(27, 62, 93);
+            btnSair.FlatStyle = FlatStyle.Flat;
+            btnSair.Font = new System.Drawing.Font("Segoe UI", 10F);
+            btnSair.ForeColor = Color.White;
+            btnSair.Location = new Point(18, 650);
+            btnSair.Name = "btnSair";
+            btnSair.Padding = new Padding(20, 0, 0, 0);
+            btnSair.Size = new Size(209, 45);
+            btnSair.TabIndex = 9;
+            btnSair.Text = "↪   Sair";
+            btnSair.TextAlign = ContentAlignment.MiddleLeft;
+            btnSair.UseVisualStyleBackColor = false;
             // 
             // pnlTopo
             // 
@@ -346,9 +385,9 @@
             pnlTopo.Controls.Add(lblTitulo);
             pnlTopo.Controls.Add(lblSubtitulo);
             pnlTopo.Controls.Add(lblAdministrador);
-            pnlTopo.Location = new Point(220, 0);
+            pnlTopo.Location = new Point(245, 0);
             pnlTopo.Name = "pnlTopo";
-            pnlTopo.Size = new Size(960, 120);
+            pnlTopo.Size = new Size(955, 120);
             pnlTopo.TabIndex = 1;
             // 
             // lblTitulo
@@ -395,7 +434,7 @@
             pnlFiltros.Controls.Add(cmbMes);
             pnlFiltros.Controls.Add(cmbAno);
             pnlFiltros.Controls.Add(btnAtualizar);
-            pnlFiltros.Location = new Point(235, 135);
+            pnlFiltros.Location = new Point(260, 135);
             pnlFiltros.Name = "pnlFiltros";
             pnlFiltros.Size = new Size(930, 72);
             pnlFiltros.TabIndex = 2;
@@ -488,7 +527,7 @@
             pnlCalendario.Controls.Add(lblMesAno);
             pnlCalendario.Controls.Add(tblCalendario);
             pnlCalendario.Controls.Add(pnlLegenda);
-            pnlCalendario.Location = new Point(235, 220);
+            pnlCalendario.Location = new Point(260, 220);
             pnlCalendario.Name = "pnlCalendario";
             pnlCalendario.Size = new Size(555, 405);
             pnlCalendario.TabIndex = 3;
@@ -689,7 +728,7 @@
             pnlResumo.Controls.Add(lblFaltas);
             pnlResumo.Controls.Add(lblHoras);
             pnlResumo.Controls.Add(lblDataSelecionada);
-            pnlResumo.Location = new Point(805, 220);
+            pnlResumo.Location = new Point(830, 220);
             pnlResumo.Name = "pnlResumo";
             pnlResumo.Size = new Size(360, 405);
             pnlResumo.TabIndex = 4;
@@ -826,7 +865,7 @@
             pnlEventos.Controls.Add(pnlEvento3);
             pnlEventos.Controls.Add(pnlEvento4);
             pnlEventos.Controls.Add(pnlEvento5);
-            pnlEventos.Location = new Point(235, 640);
+            pnlEventos.Location = new Point(260, 640);
             pnlEventos.Name = "pnlEventos";
             pnlEventos.Size = new Size(930, 115);
             pnlEventos.TabIndex = 5;
@@ -1107,7 +1146,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 248, 252);
-            ClientSize = new Size(1180, 780);
+            ClientSize = new Size(1200, 760);
             Controls.Add(pnlMenu);
             Controls.Add(pnlTopo);
             Controls.Add(pnlFiltros);

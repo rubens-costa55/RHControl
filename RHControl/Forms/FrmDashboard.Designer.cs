@@ -1,4 +1,4 @@
-﻿namespace RHControl
+namespace RHControl
 {
     partial class FrmDashboard
     {
@@ -209,7 +209,7 @@
             this.btnDashboard.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnDashboard.UseVisualStyleBackColor = false;
 
-            this.btnFuncionarios.BackColor = System.Drawing.Color.FromArgb(20, 48, 75);
+            this.btnFuncionarios.BackColor = System.Drawing.Color.FromArgb(10, 30, 50);
             this.btnFuncionarios.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFuncionarios.FlatAppearance.BorderSize = 0;
             this.btnFuncionarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 62, 93);
@@ -225,7 +225,7 @@
             this.btnFuncionarios.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnFuncionarios.UseVisualStyleBackColor = false;
 
-            this.btnJornada.BackColor = System.Drawing.Color.FromArgb(20, 48, 75);
+            this.btnJornada.BackColor = System.Drawing.Color.FromArgb(10, 30, 50);
             this.btnJornada.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnJornada.FlatAppearance.BorderSize = 0;
             this.btnJornada.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 62, 93);
@@ -241,7 +241,7 @@
             this.btnJornada.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnJornada.UseVisualStyleBackColor = false;
 
-            this.btnFolha.BackColor = System.Drawing.Color.FromArgb(20, 48, 75);
+            this.btnFolha.BackColor = System.Drawing.Color.FromArgb(10, 30, 50);
             this.btnFolha.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFolha.FlatAppearance.BorderSize = 0;
             this.btnFolha.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 62, 93);
@@ -257,7 +257,7 @@
             this.btnFolha.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnFolha.UseVisualStyleBackColor = false;
 
-            this.btnConfiguracoes.BackColor = System.Drawing.Color.FromArgb(20, 48, 75);
+            this.btnConfiguracoes.BackColor = System.Drawing.Color.FromArgb(10, 30, 50);
             this.btnConfiguracoes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfiguracoes.FlatAppearance.BorderSize = 0;
             this.btnConfiguracoes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 62, 93);

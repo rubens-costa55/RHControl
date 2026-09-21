@@ -1,16 +1,20 @@
 ﻿using Microsoft.Data.Sqlite;
 using RHControl.Data;
+using RHControl.Forms;
 using RHControl.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RHControl
 {
     public partial class FrmJornada : Form
     {
+        private bool encerrandoSessao;
+
         private long? funcionarioSelecionadoId;
         private string tipoJornada = "Jornada fixa";
         private string escala = "";
@@ -32,6 +36,7 @@ namespace RHControl
         private readonly Color corFeriado = Color.FromArgb(255, 235, 238);
         private readonly Color corHoje = Color.FromArgb(21, 101, 192);
         private readonly Color corFerias = Color.FromArgb(255, 243, 224);
+        private readonly Color corDireitoFerias = Color.FromArgb(255, 248, 225);
 
         public FrmJornada()
         {
@@ -40,6 +45,21 @@ namespace RHControl
             AplicarPermissoes();
 
             ConfigurarEventos();
+
+            btnSair.Click -= BtnSair_Click;
+            btnSair.Click += BtnSair_Click;
+
+            btnDashboard.Click -= BtnDashboard_Click;
+            btnDashboard.Click += BtnDashboard_Click;
+
+            btnFuncionarios.Click -= BtnFuncionarios_Click;
+            btnFuncionarios.Click += BtnFuncionarios_Click;
+
+            btnFolha.Click -= BtnFolha_Click;
+            btnFolha.Click += BtnFolha_Click;
+
+            btnConfiguracoes.Click -= BtnConfiguracoes_Click;
+            btnConfiguracoes.Click += BtnConfiguracoes_Click;
 
             // Garante que os períodos de férias sejam criados/atualizados
             // automaticamente a partir da data de admissão.
@@ -54,6 +74,108 @@ namespace RHControl
 
             AtualizarDadosFuncionario();
             AtualizarCalendario();
+        }
+
+        // =========================================================
+        // NAVEGAÇÃO
+        // =========================================================
+        private void BtnDashboard_Click(object sender, EventArgs e)
+        {
+            FrmDashboard dashboard = Application.OpenForms
+                .OfType<FrmDashboard>()
+                .FirstOrDefault();
+
+            if (dashboard == null || dashboard.IsDisposed)
+                dashboard = new FrmDashboard();
+
+            dashboard.Show();
+            dashboard.BringToFront();
+            Hide();
+        }
+
+        private void BtnFuncionarios_Click(object sender, EventArgs e)
+        {
+            AbrirMenuForm(new FrmFuncionarios());
+        }
+
+        private void BtnFolha_Click(object sender, EventArgs e)
+        {
+            AbrirMenuForm(new FrmFolhaPagamento());
+        }
+
+        private void BtnConfiguracoes_Click(object sender, EventArgs e)
+        {
+            if (!SessaoUsuario.PodeConfigurar)
+            {
+                MessageBox.Show(
+                    "O acesso às Configurações é exclusivo do Administrador.",
+                    "Acesso restrito",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            AbrirMenuForm(new FrmConfiguracoes());
+        }
+
+        private void AbrirMenuForm(Form form)
+        {
+            form.FormClosed += (s, args) =>
+            {
+                if (!encerrandoSessao && SessaoUsuario.Id > 0 && !IsDisposed)
+                {
+                    Show();
+                    BringToFront();
+                }
+            };
+
+            Hide();
+            form.Show();
+        }
+
+        private void BtnSair_Click(object sender, EventArgs e)
+        {
+            DialogResult resposta = MessageBox.Show(
+                "Deseja realmente sair do RH Control?",
+                "Sair",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (resposta != DialogResult.Yes)
+                return;
+
+            SessaoUsuario.Encerrar();
+            encerrandoSessao = true;
+
+            FrmLogin login = Application.OpenForms
+                .OfType<FrmLogin>()
+                .FirstOrDefault();
+
+            if (login == null || login.IsDisposed)
+                login = new FrmLogin();
+
+            login.Show();
+            login.BringToFront();
+
+            foreach (Form form in Application.OpenForms.Cast<Form>().ToArray())
+            {
+                if (form == login || form == this)
+                    continue;
+
+                if (form is FrmDashboard ||
+                    form is FrmFuncionarios ||
+                    form is FrmJornada ||
+                    form is FrmFolhaPagamento ||
+                    form is FrmConfiguracoes)
+                {
+                    if (form is FrmDashboard dashboard)
+                        dashboard.Close();
+                    else
+                        form.Close();
+                }
+            }
+
+            Close();
         }
 
         // =========================================================
@@ -588,9 +710,10 @@ namespace RHControl
         private Button CriarBotaoDia(DateTime data)
         {
             bool ferias = EhFerias(data);
+            bool direitoFerias = EhDataDireitoFerias(data);
             bool feriado = EhFeriado(data);
             bool folga = EhFolga(data);
-            bool trabalho = !folga && !feriado && !ferias;
+            bool trabalho = !folga && !feriado && !ferias && !direitoFerias;
             bool hoje = data.Date == DateTime.Today;
 
             Button botao = new Button
@@ -616,6 +739,14 @@ namespace RHControl
                 botao.FlatAppearance.BorderColor =
                     Color.FromArgb(255, 204, 128);
             }
+            else if (direitoFerias)
+            {
+                // Direito a férias usa uma única cor própria no dia.
+                botao.BackColor = corDireitoFerias;
+                botao.ForeColor = Color.FromArgb(156, 101, 0);
+                botao.FlatAppearance.BorderColor =
+                    Color.FromArgb(245, 196, 80);
+            }
             else if (feriado)
             {
                 botao.BackColor = corFeriado;
@@ -638,13 +769,13 @@ namespace RHControl
                     Color.FromArgb(187, 222, 251);
             }
 
-            if (!ferias && EhAdiantamento(data))
+            if (!ferias && !direitoFerias && EhAdiantamento(data))
             {
                 botao.BackColor = corAdiantamento;
                 botao.ForeColor = Color.FromArgb(106, 27, 154);
             }
 
-            if (!ferias && EhPagamento(data))
+            if (!ferias && !direitoFerias && EhPagamento(data))
             {
                 botao.BackColor = corPagamento;
                 botao.ForeColor = Color.FromArgb(46, 125, 50);
@@ -1008,7 +1139,17 @@ namespace RHControl
             }
 
             eventos.Sort((a, b) =>
-                a.Data.CompareTo(b.Data));
+            {
+                int comparacaoData = a.Data.CompareTo(b.Data);
+
+                if (comparacaoData != 0)
+                    return comparacaoData;
+
+                int prioridadeA = ObterPrioridadeEvento(a.Titulo);
+                int prioridadeB = ObterPrioridadeEvento(b.Titulo);
+
+                return prioridadeA.CompareTo(prioridadeB);
+            });
 
             for (int i = 0; i < Math.Min(5, eventos.Count); i++)
             {
@@ -1021,6 +1162,20 @@ namespace RHControl
                 infos[i].Text =
                     eventos[i].Info;
             }
+        }
+
+        private int ObterPrioridadeEvento(string titulo)
+        {
+            return titulo switch
+            {
+                "Data-base da escala" => 1,
+                "Admissão" => 2,
+                "Direito a férias" => 3,
+                "Início das férias" => 4,
+                "Pagamento" => 5,
+                "Adiantamento" => 6,
+                _ => 99
+            };
         }
 
         private void MostrarDetalhesDia(DateTime data)

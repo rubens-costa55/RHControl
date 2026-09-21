@@ -14,6 +14,7 @@ namespace RHControl.Forms
         private System.Windows.Forms.Button btnFolha;
         private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.Label lblVersao;
+        private System.Windows.Forms.Button btnSair;
 
         private System.Windows.Forms.Panel pnlConteudo;
         private System.Windows.Forms.Panel pnlCabecalho;
@@ -170,6 +171,7 @@ namespace RHControl.Forms
             this.btnFolha = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.lblVersao = new System.Windows.Forms.Label();
+            this.btnSair = new System.Windows.Forms.Button();
 
             this.pnlConteudo = new System.Windows.Forms.Panel();
             this.pnlCabecalho = new System.Windows.Forms.Panel();
@@ -352,6 +354,7 @@ namespace RHControl.Forms
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(248, 760);
             this.pnlSidebar.TabIndex = 0;
+            this.pnlSidebar.Controls.Add(this.btnSair);
             this.pnlSidebar.Controls.Add(this.lblVersao);
             this.pnlSidebar.Controls.Add(this.btnConfiguracoes);
             this.pnlSidebar.Controls.Add(this.btnFolha);
@@ -440,7 +443,7 @@ namespace RHControl.Forms
             this.btnFolha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFolha.UseVisualStyleBackColor = false;
 
-            this.btnConfiguracoes.BackColor = System.Drawing.Color.FromArgb(30, 130, 215);
+            this.btnConfiguracoes.BackColor = System.Drawing.Color.FromArgb(18, 126, 255);
             this.btnConfiguracoes.FlatAppearance.BorderSize = 0;
             this.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfiguracoes.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -451,6 +454,21 @@ namespace RHControl.Forms
             this.btnConfiguracoes.Text = "⚙   Configurações";
             this.btnConfiguracoes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfiguracoes.UseVisualStyleBackColor = false;
+
+            // btnSair
+            this.btnSair.BackColor = System.Drawing.Color.FromArgb(10, 30, 50);
+            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(27, 62, 93);
+            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSair.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnSair.ForeColor = System.Drawing.Color.White;
+            this.btnSair.Location = new System.Drawing.Point(12, 650);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(224, 42);
+            this.btnSair.Text = "↪   Sair";
+            this.btnSair.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSair.UseVisualStyleBackColor = false;
 
             // lblVersao
             this.lblVersao.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -529,7 +547,7 @@ namespace RHControl.Forms
             this.pnlAbas.Controls.Add(this.btnAbaEmpresa);
 
             // Aba Empresa
-            this.btnAbaEmpresa.BackColor = System.Drawing.Color.FromArgb(30, 130, 215);
+            this.btnAbaEmpresa.BackColor = System.Drawing.Color.FromArgb(18, 126, 255);
             this.btnAbaEmpresa.FlatAppearance.BorderSize = 0;
             this.btnAbaEmpresa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAbaEmpresa.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
@@ -644,7 +662,7 @@ namespace RHControl.Forms
             this.lblDescricaoUsuario.Location = new System.Drawing.Point(84, 47);
             this.lblDescricaoUsuario.Text = "Gerencie usuários e níveis de acesso ao RH Control.";
 
-            this.btnNovaConta.BackColor = System.Drawing.Color.FromArgb(30, 130, 215);
+            this.btnNovaConta.BackColor = System.Drawing.Color.FromArgb(18, 126, 255);
             this.btnNovaConta.FlatAppearance.BorderSize = 0;
             this.btnNovaConta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNovaConta.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -944,7 +962,7 @@ namespace RHControl.Forms
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picLogo.TabStop = false;
 
-            this.btnSelecionarLogo.BackColor = System.Drawing.Color.FromArgb(30, 130, 215);
+            this.btnSelecionarLogo.BackColor = System.Drawing.Color.FromArgb(18, 126, 255);
             this.btnSelecionarLogo.FlatAppearance.BorderSize = 0;
             this.btnSelecionarLogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelecionarLogo.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
@@ -1448,7 +1466,7 @@ namespace RHControl.Forms
             this.btnCancelar.UseVisualStyleBackColor = false;
 
             this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
-            this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(30, 130, 215);
+            this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(18, 126, 255);
             this.btnSalvar.FlatAppearance.BorderSize = 0;
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);

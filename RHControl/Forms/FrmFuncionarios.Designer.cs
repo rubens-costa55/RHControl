@@ -1,4 +1,4 @@
-﻿namespace RHControl
+namespace RHControl
 {
     partial class FrmFuncionarios
     {
@@ -380,7 +380,7 @@
             dgvFuncionarios.ReadOnly = true;
             dgvFuncionarios.RowHeadersVisible = false;
             dgvFuncionarios.RowTemplate.Height = 43;
-            dgvFuncionarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFuncionarios.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dgvFuncionarios.Size = new Size(875, 260);
             dgvFuncionarios.TabIndex = 1;
             // 

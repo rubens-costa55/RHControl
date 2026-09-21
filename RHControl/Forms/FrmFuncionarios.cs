@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 using RHControl.Data;
 using RHControl.Forms;
 using RHControl.Services;
@@ -47,6 +47,9 @@ namespace RHControl
 
             dgvFuncionarios.CellContentClick -= DgvFuncionarios_CellContentClick;
             dgvFuncionarios.CellContentClick += DgvFuncionarios_CellContentClick;
+
+            dgvFuncionarios.CellMouseUp -= DgvFuncionarios_CellMouseUp;
+            dgvFuncionarios.CellMouseUp += DgvFuncionarios_CellMouseUp;
 
             dgvFuncionarios.CellFormatting -= DgvFuncionarios_CellFormatting;
             dgvFuncionarios.CellFormatting += DgvFuncionarios_CellFormatting;
@@ -767,11 +770,35 @@ namespace RHControl
 
                 string nome =
                     linha.Cells[colNome.Index]
+                        .Value?.ToString() ?? "Funcionário";
+
+                string status =
+                    linha.Cells[colStatus.Index]
                         .Value?.ToString() ?? "";
+
+                if (string.Equals(
+                    status,
+                    "Desligado",
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show(
+                        "Este funcionário está desligado.\n\n" +
+                        "Não é possível programar ou alterar férias para um funcionário desligado.",
+                        "Funcionário desligado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    dgvFuncionarios.ClearSelection();
+                    dgvFuncionarios.CurrentCell = null;
+                    return;
+                }
 
                 ProgramarFeriasFuncionario(
                     funcionarioId,
                     nome);
+
+                dgvFuncionarios.ClearSelection();
+                dgvFuncionarios.CurrentCell = null;
 
                 return;
             }
@@ -1381,6 +1408,25 @@ namespace RHControl
         // =========================================================
         // CORES DO STATUS
         // =========================================================
+
+        private void DgvFuncionarios_CellMouseUp(
+            object sender,
+            DataGridViewCellMouseEventArgs e)
+        {
+            // A grade não deve permanecer com uma linha inteira selecionada
+            // depois de clicar em uma ação ou em um funcionário.
+            if (e.RowIndex >= 0)
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    if (!IsDisposed && dgvFuncionarios != null)
+                    {
+                        dgvFuncionarios.ClearSelection();
+                        dgvFuncionarios.CurrentCell = null;
+                    }
+                }));
+            }
+        }
 
         private void DgvFuncionarios_CellFormatting(
             object sender,
