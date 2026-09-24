@@ -250,6 +250,116 @@ namespace RHControl.Services
             }
         }
 
+        public static bool AtualizarUsuario(
+            int id,
+            string nome,
+            string email,
+            string senha,
+            string tipoUsuario,
+            out string mensagem)
+        {
+            mensagem = string.Empty;
+
+            if (!SessaoUsuario.EhAdministradorPrincipal)
+            {
+                mensagem = "Somente o Administrador principal pode editar contas existentes.";
+                return false;
+            }
+
+            if (id <= 0)
+            {
+                mensagem = "Conta inválida.";
+                return false;
+            }
+
+            if (id == SessaoUsuario.Id)
+            {
+                mensagem = "A própria conta não pode ser alterada por esta ação.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(nome))
+            {
+                mensagem = "Informe o nome.";
+                return false;
+            }
+
+            if (tipoUsuario != "Administrador" && tipoUsuario != "Usuario")
+                tipoUsuario = "Usuario";
+
+            try
+            {
+                using var connection = Database.GetConnection();
+                connection.Open();
+
+                using var verificar = connection.CreateCommand();
+                verificar.CommandText = @"SELECT Usuario FROM Usuarios WHERE Id = $id LIMIT 1;";
+                verificar.Parameters.AddWithValue("$id", id);
+
+                string? usuarioAlvo = verificar.ExecuteScalar()?.ToString();
+
+                if (string.IsNullOrWhiteSpace(usuarioAlvo))
+                {
+                    mensagem = "A conta selecionada não foi encontrada.";
+                    return false;
+                }
+
+                if (string.Equals(usuarioAlvo, "admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    mensagem = "A conta administradora principal (admin) é protegida e não pode ser editada.";
+                    return false;
+                }
+
+                string agora = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                using var command = connection.CreateCommand();
+
+                if (string.IsNullOrWhiteSpace(senha))
+                {
+                    command.CommandText = @"
+                        UPDATE Usuarios
+                        SET Nome = $nome,
+                            Email = $email,
+                            TipoUsuario = $tipo,
+                            AtualizadoEm = $atualizado
+                        WHERE Id = $id;";
+                }
+                else
+                {
+                    if (senha.Length < 6)
+                    {
+                        mensagem = "A senha deve ter pelo menos 6 caracteres.";
+                        return false;
+                    }
+
+                    command.CommandText = @"
+                        UPDATE Usuarios
+                        SET Nome = $nome,
+                            Email = $email,
+                            Senha = $senha,
+                            TipoUsuario = $tipo,
+                            AtualizadoEm = $atualizado
+                        WHERE Id = $id;";
+
+                    command.Parameters.AddWithValue("$senha", CriarHash(senha));
+                }
+
+                command.Parameters.AddWithValue("$nome", nome.Trim());
+                command.Parameters.AddWithValue("$email", email?.Trim() ?? string.Empty);
+                command.Parameters.AddWithValue("$tipo", tipoUsuario);
+                command.Parameters.AddWithValue("$atualizado", agora);
+                command.Parameters.AddWithValue("$id", id);
+                command.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                mensagem = "Não foi possível atualizar a conta.\n\n" + ex.Message;
+                return false;
+            }
+        }
+
         public static bool PodeGerenciarConta(int idConta, bool exigeExclusao, out string mensagem)
         {
             mensagem = string.Empty;

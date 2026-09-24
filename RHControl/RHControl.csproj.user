@@ -10,6 +10,9 @@
     <Compile Update="Forms\FrmDetalhesFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FrmEditarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\FrmFolhaPagamento.cs">
       <SubType>Form</SubType>
     </Compile>

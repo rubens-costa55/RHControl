@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Data.Sqlite;
 using RHControl.Data;
+using RHControl.Services;
 
 namespace RHControl.Forms
 {
@@ -70,6 +71,8 @@ namespace RHControl.Forms
             btnInativarUsuario.Click += BtnInativarUsuario_Click;
             btnExcluirUsuario.Click += BtnExcluirUsuario_Click;
             dgvUsuarios.SelectionChanged += (s, e) => AtualizarEstadoBotoesUsuarios();
+
+            ConfigurarBackupInterface();
         }
 
         private void FrmConfiguracoes_Load(object? sender, EventArgs e)
@@ -125,6 +128,315 @@ namespace RHControl.Forms
             }
 
             Close();
+        }
+
+        private void ConfigurarBackupInterface()
+        {
+            if (pnlBackup == null)
+                return;
+
+            // O Designer atual não adiciona o pnlBackup ao painel de conteúdo.
+            // Fazemos isso aqui para garantir que a aba seja realmente exibida.
+            if (pnlBackup.Parent != pnlAreaConteudo)
+            {
+                pnlAreaConteudo.Controls.Add(pnlBackup);
+            }
+
+            pnlBackup.Dock = DockStyle.None;
+            pnlBackup.Location = new Point(0, 0);
+            pnlBackup.Size = new Size(pnlAreaConteudo.ClientSize.Width, pnlAreaConteudo.ClientSize.Height);
+            pnlBackup.Controls.Clear();
+            pnlBackup.BackColor = Color.FromArgb(244, 247, 251);
+
+            Panel card = new Panel
+            {
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle,
+                Location = new Point(42, 18),
+                Size = new Size(868, 340)
+            };
+
+            Label icone = new Label
+            {
+                BackColor = Color.FromArgb(232, 241, 251),
+                Font = new Font("Segoe UI Symbol", 20F),
+                ForeColor = Color.FromArgb(25, 125, 210),
+                Location = new Point(18, 18),
+                Size = new Size(52, 52),
+                Text = "▣",
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+
+            Label titulo = new Label
+            {
+                AutoSize = true,
+                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(8, 42, 78),
+                Location = new Point(84, 19),
+                Text = "Backup do sistema"
+            };
+
+            Label descricao = new Label
+            {
+                AutoSize = true,
+                Font = new Font("Segoe UI", 8.5F),
+                ForeColor = Color.FromArgb(75, 110, 145),
+                Location = new Point(84, 43),
+                Text = "Proteja os dados do RH Control e restaure uma cópia quando necessário."
+            };
+
+            Label aviso = new Label
+            {
+                BackColor = Color.FromArgb(232, 242, 253),
+                Font = new Font("Segoe UI", 8.5F),
+                ForeColor = Color.FromArgb(50, 80, 110),
+                Location = new Point(24, 88),
+                Size = new Size(818, 58),
+                Text = "Recomendação: faça um backup antes de alterações importantes. O arquivo gerado contém os dados locais do sistema."
+            };
+            aviso.Padding = new Padding(14, 8, 14, 8);
+
+            Button btnFazerBackup = CriarBotaoBackup("▣  Fazer Backup", Color.FromArgb(18, 126, 255), Color.White);
+            btnFazerBackup.Location = new Point(24, 174);
+            btnFazerBackup.Size = new Size(180, 42);
+            btnFazerBackup.Click += BtnFazerBackup_Click;
+
+            Button btnRestaurar = CriarBotaoBackup("↻  Restaurar Backup", Color.White, Color.FromArgb(8, 42, 78));
+            btnRestaurar.Location = new Point(216, 174);
+            btnRestaurar.Size = new Size(180, 42);
+            btnRestaurar.Click += BtnRestaurarBackup_Click;
+
+            Button btnAbrirPasta = CriarBotaoBackup("▤  Abrir Pasta", Color.White, Color.FromArgb(8, 42, 78));
+            btnAbrirPasta.Location = new Point(408, 174);
+            btnAbrirPasta.Size = new Size(150, 42);
+            btnAbrirPasta.Click += BtnAbrirPastaBackup_Click;
+
+            Label lblStatus = new Label
+            {
+                AutoSize = false,
+                Font = new Font("Segoe UI", 8.5F),
+                ForeColor = Color.FromArgb(75, 110, 145),
+                Location = new Point(24, 238),
+                Size = new Size(818, 62),
+                Name = "lblStatusBackup",
+                Text = ObterTextoStatusBackup(),
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+
+            card.Controls.Add(icone);
+            card.Controls.Add(titulo);
+            card.Controls.Add(descricao);
+            card.Controls.Add(aviso);
+            card.Controls.Add(btnFazerBackup);
+            card.Controls.Add(btnRestaurar);
+            card.Controls.Add(btnAbrirPasta);
+            card.Controls.Add(lblStatus);
+            pnlBackup.Controls.Add(card);
+        }
+
+        private static Button CriarBotaoBackup(string texto, Color fundo, Color textoCor)
+        {
+            Button botao = new Button
+            {
+                BackColor = fundo,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
+                ForeColor = textoCor,
+                Text = texto,
+                UseVisualStyleBackColor = false
+            };
+            botao.FlatAppearance.BorderColor = fundo == Color.White
+                ? Color.FromArgb(205, 218, 232)
+                : fundo;
+            botao.FlatAppearance.BorderSize = fundo == Color.White ? 1 : 0;
+            return botao;
+        }
+
+        private static string CaminhoBancoBackup =>
+            Path.Combine(AppContext.BaseDirectory, "Data", "rhcontrol.db");
+
+        private string ObterTextoStatusBackup()
+        {
+            string pasta = Path.Combine(AppContext.BaseDirectory, "Data");
+            if (!Directory.Exists(pasta))
+                return "Nenhum backup encontrado nesta instalação.";
+
+            string[] arquivos = Directory.GetFiles(pasta, "rhcontrol_backup_*.db")
+                .OrderByDescending(File.GetLastWriteTime)
+                .ToArray();
+
+            if (arquivos.Length == 0)
+                return "Nenhum backup encontrado nesta instalação.";
+
+            FileInfo info = new FileInfo(arquivos[0]);
+            return $"Último backup local: {info.Name} — {info.LastWriteTime:dd/MM/yyyy HH:mm} — {info.Length / 1024.0:N1} KB";
+        }
+
+        private void AtualizarStatusBackup()
+        {
+            foreach (Control controle in pnlBackup.Controls)
+            {
+                Control? status = controle.Controls["lblStatusBackup"];
+                if (status != null)
+                    status.Text = ObterTextoStatusBackup();
+            }
+        }
+
+        private void BtnFazerBackup_Click(object? sender, EventArgs e)
+        {
+            try
+            {
+                if (!File.Exists(CaminhoBancoBackup))
+                {
+                    MessageBox.Show("O banco de dados ainda não foi encontrado.", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                using SaveFileDialog dialogo = new SaveFileDialog
+                {
+                    Title = "Salvar backup do RH Control",
+                    Filter = "Banco de dados (*.db)|*.db|Todos os arquivos (*.*)|*.*",
+                    FileName = $"rhcontrol_backup_{DateTime.Now:yyyyMMdd_HHmmss}.db",
+                    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    OverwritePrompt = true
+                };
+
+                if (dialogo.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                using (SqliteConnection conexao = Database.GetConnection())
+                {
+                    conexao.Open();
+                    using SqliteCommand checkpoint = conexao.CreateCommand();
+                    checkpoint.CommandText = "PRAGMA wal_checkpoint(TRUNCATE);";
+                    checkpoint.ExecuteNonQuery();
+                }
+
+                File.Copy(CaminhoBancoBackup, dialogo.FileName, true);
+
+                MessageBox.Show(
+                    "Backup realizado com sucesso!\n\nArquivo salvo em:\n" + dialogo.FileName,
+                    "Backup",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Não foi possível realizar o backup.\n\n" + ex.Message,
+                    "Backup", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnRestaurarBackup_Click(object? sender, EventArgs e)
+        {
+            try
+            {
+                using OpenFileDialog dialogo = new OpenFileDialog
+                {
+                    Title = "Selecionar backup do RH Control",
+                    Filter = "Banco de dados (*.db)|*.db|Todos os arquivos (*.*)|*.*",
+                    CheckFileExists = true,
+                    Multiselect = false
+                };
+
+                if (dialogo.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                DialogResult confirmacao = MessageBox.Show(
+                    "A restauração substituirá os dados atuais pelo conteúdo do backup selecionado.\n\nDeseja continuar?",
+                    "Restaurar Backup",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirmacao != DialogResult.Yes)
+                    return;
+
+                if (string.Equals(Path.GetFullPath(dialogo.FileName), Path.GetFullPath(CaminhoBancoBackup), StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("Selecione um arquivo de backup diferente do banco atual.", "Restaurar Backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string backupSeguranca = Path.Combine(
+                    Path.GetDirectoryName(CaminhoBancoBackup)!,
+                    $"rhcontrol_backup_antes_restauracao_{DateTime.Now:yyyyMMdd_HHmmss}.db");
+
+                Directory.CreateDirectory(Path.GetDirectoryName(CaminhoBancoBackup)!);
+
+                if (File.Exists(CaminhoBancoBackup))
+                {
+                    using (SqliteConnection conexao = Database.GetConnection())
+                    {
+                        conexao.Open();
+                        using SqliteCommand checkpoint = conexao.CreateCommand();
+                        checkpoint.CommandText = "PRAGMA wal_checkpoint(TRUNCATE);";
+                        checkpoint.ExecuteNonQuery();
+                    }
+                    File.Copy(CaminhoBancoBackup, backupSeguranca, true);
+                }
+
+                File.Copy(dialogo.FileName, CaminhoBancoBackup, true);
+
+                MessageBox.Show(
+                    "Backup restaurado com sucesso!\n\nO RH Control será reiniciado para aplicar os dados restaurados.",
+                    "Restaurar Backup",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                // Encerra a sessão atual e retorna para a tela de login.
+                // Assim o sistema não fica simplesmente fechado após a restauração.
+                SessaoUsuario.Encerrar();
+
+                FrmLogin? login = Application.OpenForms
+                    .OfType<FrmLogin>()
+                    .FirstOrDefault();
+
+                if (login == null || login.IsDisposed)
+                    login = new FrmLogin();
+
+                login.Show();
+                login.BringToFront();
+
+                foreach (Form form in Application.OpenForms.Cast<Form>().ToArray())
+                {
+                    if (form == login || form == this)
+                        continue;
+
+                    if (form is FrmDashboard ||
+                        form is FrmFuncionarios ||
+                        form is FrmJornada ||
+                        form is FrmFolhaPagamento)
+                    {
+                        form.Close();
+                    }
+                }
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Não foi possível restaurar o backup.\n\n" + ex.Message,
+                    "Restaurar Backup", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnAbrirPastaBackup_Click(object? sender, EventArgs e)
+        {
+            try
+            {
+                string pasta = Path.GetDirectoryName(CaminhoBancoBackup)!;
+                Directory.CreateDirectory(pasta);
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = pasta,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Não foi possível abrir a pasta.\n\n" + ex.Message,
+                    "Backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void SelecionarAba(int indice)
@@ -718,11 +1030,23 @@ namespace RHControl.Forms
                 return;
             }
 
-            MessageBox.Show(
-                "A edição de conta será adicionada na próxima parte desta etapa.",
-                "Usuários",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            int? id = ObterIdUsuarioSelecionado();
+            if (!id.HasValue)
+                return;
+
+            if (!UsuarioService.PodeGerenciarConta(id.Value, false, out string mensagem))
+            {
+                MessageBox.Show(
+                    mensagem,
+                    "Usuários",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            using var tela = new FrmEditarUsuario(id.Value);
+            if (tela.ShowDialog(this) == DialogResult.OK)
+                CarregarUsuarios();
         }
 
         private void BtnInativarUsuario_Click(object? sender, EventArgs e)
