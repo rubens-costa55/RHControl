@@ -250,6 +250,125 @@ namespace RHControl.Services
             }
         }
 
+        public static bool AtualizarProprioEmail(
+            int id,
+            string email,
+            string senhaAtual,
+            out string mensagem)
+        {
+            mensagem = string.Empty;
+
+            if (!SessaoUsuario.EhAdministradorPrincipal)
+            {
+                mensagem = "Somente o Administrador principal pode alterar o próprio e-mail.";
+                return false;
+            }
+
+            if (id != SessaoUsuario.Id)
+            {
+                mensagem = "A conta informada não corresponde ao administrador conectado.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                mensagem = "Informe o e-mail.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(senhaAtual))
+            {
+                mensagem = "Informe sua senha atual para confirmar a alteração.";
+                return false;
+            }
+
+            try
+            {
+                using var connection = Database.GetConnection();
+                connection.Open();
+
+                string senhaBanco;
+
+                using (var buscar = connection.CreateCommand())
+                {
+                    buscar.CommandText = @"
+                        SELECT Senha
+                        FROM Usuarios
+                        WHERE Id = $id
+                          AND Usuario = 'admin'
+                          AND Status = 'Ativo'
+                        LIMIT 1;";
+
+                    buscar.Parameters.AddWithValue("$id", id);
+                    object? resultado = buscar.ExecuteScalar();
+
+                    if (resultado == null)
+                    {
+                        mensagem = "Administrador principal não encontrado.";
+                        return false;
+                    }
+
+                    senhaBanco = resultado.ToString() ?? string.Empty;
+                }
+
+                bool senhaValida = VerificarSenha(
+                    senhaAtual,
+                    senhaBanco,
+                    out bool senhaLegada);
+
+                if (!senhaValida)
+                {
+                    mensagem = "A senha atual está incorreta.";
+                    return false;
+                }
+
+                using var verificarEmail = connection.CreateCommand();
+                verificarEmail.CommandText = @"
+                    SELECT Id
+                    FROM Usuarios
+                    WHERE lower(trim(Email)) = lower(trim($email))
+                      AND Id <> $id
+                    LIMIT 1;";
+                verificarEmail.Parameters.AddWithValue("$email", email.Trim());
+                verificarEmail.Parameters.AddWithValue("$id", id);
+
+                if (verificarEmail.ExecuteScalar() != null)
+                {
+                    mensagem = "Este e-mail já está cadastrado em outra conta.";
+                    return false;
+                }
+
+                using var atualizar = connection.CreateCommand();
+                atualizar.CommandText = @"
+                    UPDATE Usuarios
+                    SET Email = $email,
+                        AtualizadoEm = $atualizado
+                    WHERE Id = $id
+                      AND Usuario = 'admin';";
+
+                atualizar.Parameters.AddWithValue("$email", email.Trim());
+                atualizar.Parameters.AddWithValue(
+                    "$atualizado",
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                atualizar.Parameters.AddWithValue("$id", id);
+
+                int linhas = atualizar.ExecuteNonQuery();
+
+                if (linhas == 0)
+                {
+                    mensagem = "Não foi possível salvar o e-mail.";
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                mensagem = "Não foi possível atualizar o e-mail.\n\n" + ex.Message;
+                return false;
+            }
+        }
+
         public static bool AtualizarUsuario(
             int id,
             string nome,
@@ -402,6 +521,307 @@ namespace RHControl.Services
                 mensagem = "Não foi possível validar a conta.\n\n" + ex.Message;
                 return false;
             }
+        }
+
+        public static bool CriarSolicitacaoRecuperacao(
+            string email,
+            out int solicitacaoId,
+            out string codigo,
+            out DateTime expiraEm,
+            out string mensagem)
+        {
+            solicitacaoId = 0;
+            codigo = string.Empty;
+            expiraEm = DateTime.MinValue;
+            mensagem = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(email) || !email.Contains('@'))
+            {
+                mensagem = "Informe um e-mail válido.";
+                return false;
+            }
+
+            try
+            {
+                using var connection = Database.GetConnection();
+                connection.Open();
+
+                using var buscar = connection.CreateCommand();
+                buscar.CommandText = @"
+                    SELECT Id
+                    FROM Usuarios
+                    WHERE lower(trim(COALESCE(Email, ''))) = lower(trim($email))
+                      AND lower(COALESCE(Status, 'Ativo')) = 'ativo'
+                    LIMIT 1;";
+                buscar.Parameters.AddWithValue("$email", email.Trim());
+
+                object? resultado = buscar.ExecuteScalar();
+
+                if (resultado == null || resultado == DBNull.Value)
+                {
+                    mensagem = "Não encontramos uma conta ativa com esse e-mail.";
+                    return false;
+                }
+
+                int usuarioId = Convert.ToInt32(resultado);
+                codigo = RandomNumberGenerator.GetInt32(1000, 10000).ToString();
+                expiraEm = DateTime.Now.AddMinutes(10);
+                string agora = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                // Somente o código mais recente permanece válido.
+                using (var invalidar = connection.CreateCommand())
+                {
+                    invalidar.CommandText = @"
+                        UPDATE RecuperacaoSenha
+                        SET Usado = 1
+                        WHERE UsuarioId = $usuarioId
+                          AND Usado = 0;";
+                    invalidar.Parameters.AddWithValue("$usuarioId", usuarioId);
+                    invalidar.ExecuteNonQuery();
+                }
+
+                using var inserir = connection.CreateCommand();
+                inserir.CommandText = @"
+                    INSERT INTO RecuperacaoSenha
+                    (
+                        UsuarioId,
+                        CodigoHash,
+                        ExpiraEm,
+                        Tentativas,
+                        Validado,
+                        Usado,
+                        CriadoEm
+                    )
+                    VALUES
+                    (
+                        $usuarioId,
+                        $codigoHash,
+                        $expiraEm,
+                        0,
+                        0,
+                        0,
+                        $criadoEm
+                    );
+                    SELECT last_insert_rowid();";
+
+                inserir.Parameters.AddWithValue("$usuarioId", usuarioId);
+                inserir.Parameters.AddWithValue("$codigoHash", CriarHash(codigo));
+                inserir.Parameters.AddWithValue("$expiraEm", expiraEm.ToString("yyyy-MM-dd HH:mm:ss"));
+                inserir.Parameters.AddWithValue("$criadoEm", agora);
+
+                solicitacaoId = Convert.ToInt32(inserir.ExecuteScalar());
+                return true;
+            }
+            catch (Exception ex)
+            {
+                mensagem = "Não foi possível criar a solicitação de recuperação.\r\n\r\n" + ex.Message;
+                return false;
+            }
+        }
+
+        public static bool ValidarCodigoRecuperacao(
+            string email,
+            string codigo,
+            out string mensagem)
+        {
+            mensagem = string.Empty;
+
+            try
+            {
+                using var connection = Database.GetConnection();
+                connection.Open();
+
+                using var command = connection.CreateCommand();
+                command.CommandText = @"
+                    SELECT
+                        r.Id,
+                        r.CodigoHash,
+                        r.ExpiraEm,
+                        r.Tentativas,
+                        r.Validado,
+                        u.Id
+                    FROM RecuperacaoSenha r
+                    INNER JOIN Usuarios u ON u.Id = r.UsuarioId
+                    WHERE lower(trim(COALESCE(u.Email, ''))) = lower(trim($email))
+                      AND lower(COALESCE(u.Status, 'Ativo')) = 'ativo'
+                      AND r.Usado = 0
+                    ORDER BY r.Id DESC
+                    LIMIT 1;";
+                command.Parameters.AddWithValue("$email", email.Trim());
+
+                using var reader = command.ExecuteReader();
+
+                if (!reader.Read())
+                {
+                    mensagem = "Nenhum código de recuperação válido foi encontrado. Solicite um novo código.";
+                    return false;
+                }
+
+                int solicitacaoId = reader.GetInt32(0);
+                string codigoHash = reader.GetString(1);
+                DateTime expiraEm = DateTime.Parse(reader.GetString(2));
+                int tentativas = reader.GetInt32(3);
+
+                if (reader.GetInt32(4) == 1)
+                {
+                    mensagem = "Este código já foi validado. Continue para criar a nova senha.";
+                    return true;
+                }
+
+                if (DateTime.Now > expiraEm)
+                {
+                    reader.Close();
+                    MarcarSolicitacaoComoUsada(connection, solicitacaoId);
+                    mensagem = "O código expirou. Solicite um novo código.";
+                    return false;
+                }
+
+                if (tentativas >= 5)
+                {
+                    reader.Close();
+                    MarcarSolicitacaoComoUsada(connection, solicitacaoId);
+                    mensagem = "O limite de tentativas foi atingido. Solicite um novo código.";
+                    return false;
+                }
+
+                bool valido = VerificarSenha(codigo.Trim(), codigoHash, out _);
+                reader.Close();
+
+                if (!valido)
+                {
+                    using var tentativa = connection.CreateCommand();
+                    tentativa.CommandText = @"
+                        UPDATE RecuperacaoSenha
+                        SET Tentativas = Tentativas + 1
+                        WHERE Id = $id;";
+                    tentativa.Parameters.AddWithValue("$id", solicitacaoId);
+                    tentativa.ExecuteNonQuery();
+
+                    int restante = Math.Max(0, 4 - tentativas);
+                    mensagem = restante == 0
+                        ? "Código inválido. O limite de tentativas foi atingido."
+                        : $"Código inválido. Você ainda pode tentar {restante} vez(es).";
+                    return false;
+                }
+
+                using var validar = connection.CreateCommand();
+                validar.CommandText = @"
+                    UPDATE RecuperacaoSenha
+                    SET Validado = 1
+                    WHERE Id = $id AND Usado = 0;";
+                validar.Parameters.AddWithValue("$id", solicitacaoId);
+                validar.ExecuteNonQuery();
+
+                mensagem = "Código validado com sucesso.";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                mensagem = "Não foi possível validar o código.\r\n\r\n" + ex.Message;
+                return false;
+            }
+        }
+
+        public static bool RedefinirSenhaPorRecuperacao(
+            string email,
+            string novaSenha,
+            out string mensagem)
+        {
+            mensagem = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(novaSenha) || novaSenha.Length < 6)
+            {
+                mensagem = "A nova senha deve ter pelo menos 6 caracteres.";
+                return false;
+            }
+
+            try
+            {
+                using var connection = Database.GetConnection();
+                connection.Open();
+
+                using var buscar = connection.CreateCommand();
+                buscar.CommandText = @"
+                    SELECT r.Id, u.Id
+                    FROM RecuperacaoSenha r
+                    INNER JOIN Usuarios u ON u.Id = r.UsuarioId
+                    WHERE lower(trim(COALESCE(u.Email, ''))) = lower(trim($email))
+                      AND lower(COALESCE(u.Status, 'Ativo')) = 'ativo'
+                      AND r.Validado = 1
+                      AND r.Usado = 0
+                      AND datetime(r.ExpiraEm) >= datetime('now', 'localtime')
+                    ORDER BY r.Id DESC
+                    LIMIT 1;";
+                buscar.Parameters.AddWithValue("$email", email.Trim());
+
+                using var reader = buscar.ExecuteReader();
+                if (!reader.Read())
+                {
+                    mensagem = "A validação não está mais disponível. Solicite um novo código.";
+                    return false;
+                }
+
+                int solicitacaoId = reader.GetInt32(0);
+                int usuarioId = reader.GetInt32(1);
+                reader.Close();
+
+                using var atualizar = connection.CreateCommand();
+                atualizar.CommandText = @"
+                    UPDATE Usuarios
+                    SET Senha = $senha,
+                        AtualizadoEm = $atualizado
+                    WHERE Id = $usuarioId;";
+                atualizar.Parameters.AddWithValue("$senha", CriarHash(novaSenha));
+                atualizar.Parameters.AddWithValue("$atualizado", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                atualizar.Parameters.AddWithValue("$usuarioId", usuarioId);
+                atualizar.ExecuteNonQuery();
+
+                using var invalidar = connection.CreateCommand();
+                invalidar.CommandText = @"
+                    UPDATE RecuperacaoSenha
+                    SET Usado = 1
+                    WHERE Id = $id;";
+                invalidar.Parameters.AddWithValue("$id", solicitacaoId);
+                invalidar.ExecuteNonQuery();
+
+                mensagem = "Senha redefinida com sucesso.";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                mensagem = "Não foi possível redefinir a senha.\r\n\r\n" + ex.Message;
+                return false;
+            }
+        }
+
+        public static void CancelarSolicitacaoRecuperacao(int solicitacaoId)
+        {
+            if (solicitacaoId <= 0)
+                return;
+
+            try
+            {
+                using var connection = Database.GetConnection();
+                connection.Open();
+                MarcarSolicitacaoComoUsada(connection, solicitacaoId);
+            }
+            catch
+            {
+                // Falha no cancelamento não deve interromper o fluxo da tela.
+            }
+        }
+
+        private static void MarcarSolicitacaoComoUsada(
+            SqliteConnection connection,
+            int solicitacaoId)
+        {
+            using var command = connection.CreateCommand();
+            command.CommandText = @"
+                UPDATE RecuperacaoSenha
+                SET Usado = 1
+                WHERE Id = $id;";
+            command.Parameters.AddWithValue("$id", solicitacaoId);
+            command.ExecuteNonQuery();
         }
 
         public static string CriarHash(string senha)

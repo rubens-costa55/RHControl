@@ -47,6 +47,11 @@ namespace RHControl
             UltimoAcesso = ultimoAcesso ?? string.Empty;
         }
 
+        public static void AtualizarEmail(string email)
+        {
+            Email = email ?? string.Empty;
+        }
+
         public static void Encerrar()
         {
             Id = 0;

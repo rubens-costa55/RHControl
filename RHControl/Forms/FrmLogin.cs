@@ -160,11 +160,11 @@ namespace RHControl
 
         private void BtnEsqueciSenha_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "A recuperação de senha será disponibilizada na etapa de gerenciamento de usuários.\r\n\r\nPor enquanto, solicite a redefinição ao administrador do sistema.",
-                "Recuperação de senha",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            using (FrmRecuperarSenha recuperarSenha =
+                   new FrmRecuperarSenha())
+            {
+                recuperarSenha.ShowDialog(this);
+            }
         }
     }
 }

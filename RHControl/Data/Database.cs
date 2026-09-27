@@ -141,6 +141,38 @@ namespace RHControl.Data
             CriarIndiceSeNaoExistir(connection, "IX_Usuarios_TipoUsuario", "Usuarios", "TipoUsuario");
             CriarIndiceSeNaoExistir(connection, "IX_Usuarios_Status", "Usuarios", "Status");
 
+            // ============================================================
+            // RECUPERAÇÃO DE SENHA
+            // ============================================================
+            // Esta tabela é adicionada somente se ainda não existir.
+            // Nenhum dado existente de Usuarios é apagado ou alterado.
+            string sqlRecuperacaoSenha = @"
+                CREATE TABLE IF NOT EXISTS RecuperacaoSenha
+                (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    UsuarioId INTEGER NOT NULL,
+                    CodigoHash TEXT NOT NULL,
+                    CriadoEm TEXT NOT NULL,
+                    ExpiraEm TEXT NOT NULL,
+                    Tentativas INTEGER NOT NULL DEFAULT 0,
+                    Utilizado INTEGER NOT NULL DEFAULT 0,
+                    FOREIGN KEY (UsuarioId)
+                        REFERENCES Usuarios(Id)
+                        ON DELETE CASCADE
+                );";
+
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = sqlRecuperacaoSenha;
+                command.ExecuteNonQuery();
+            }
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_RecuperacaoSenha_UsuarioId",
+                "RecuperacaoSenha",
+                "UsuarioId");
+
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = @"

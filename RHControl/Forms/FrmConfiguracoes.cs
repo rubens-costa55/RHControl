@@ -969,26 +969,36 @@ namespace RHControl.Forms
             bool selecionado = dgvUsuarios.CurrentRow != null &&
                                 !dgvUsuarios.CurrentRow.IsNewRow;
 
-            // Apenas o administrador principal pode alterar/inativar/excluir
-            // contas. A própria conta e a conta "admin" nunca podem ser alvo
-            // dessas ações.
+            btnEditarUsuario.Enabled = false;
+            btnInativarUsuario.Enabled = false;
+            btnExcluirUsuario.Enabled = false;
+
             if (!SessaoUsuario.EhAdministradorPrincipal || !selecionado)
+                return;
+
+            int? id = ObterIdUsuarioSelecionado();
+
+            if (!id.HasValue)
+                return;
+
+            // O Administrador principal pode editar APENAS o e-mail da própria conta.
+            if (id.Value == SessaoUsuario.Id)
             {
-                btnEditarUsuario.Enabled = false;
-                btnInativarUsuario.Enabled = false;
-                btnExcluirUsuario.Enabled = false;
+                btnEditarUsuario.Enabled = true;
                 return;
             }
 
-            int? id = ObterIdUsuarioSelecionado();
-            bool ehPropriaConta = id.HasValue && id.Value == SessaoUsuario.Id;
-            string usuarioSelecionado = dgvUsuarios.CurrentRow?.Cells["Usuario"].Value?.ToString() ?? "";
-            bool ehAdminPrincipal = string.Equals(usuarioSelecionado, "admin", StringComparison.OrdinalIgnoreCase);
+            // A conta admin principal não pode ser editada por outra conta.
+            string usuarioSelecionado =
+                dgvUsuarios.CurrentRow?.Cells["Usuario"].Value?.ToString() ?? string.Empty;
 
-            bool podeAlterar = !ehPropriaConta && !ehAdminPrincipal;
-            btnEditarUsuario.Enabled = podeAlterar;
-            btnInativarUsuario.Enabled = podeAlterar;
-            btnExcluirUsuario.Enabled = podeAlterar;
+            if (string.Equals(usuarioSelecionado, "admin", StringComparison.OrdinalIgnoreCase))
+                return;
+
+            // Outras contas continuam seguindo o comportamento existente.
+            btnEditarUsuario.Enabled = true;
+            btnInativarUsuario.Enabled = true;
+            btnExcluirUsuario.Enabled = true;
         }
 
         private int? ObterIdUsuarioSelecionado()
@@ -1023,7 +1033,7 @@ namespace RHControl.Forms
             if (!SessaoUsuario.EhAdministradorPrincipal)
             {
                 MessageBox.Show(
-                    "Somente o Administrador principal pode editar contas existentes.",
+                    "Somente o Administrador principal pode editar contas.",
                     "Acesso restrito",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -1034,6 +1044,19 @@ namespace RHControl.Forms
             if (!id.HasValue)
                 return;
 
+            // Se o admin estiver editando a própria conta, abre uma tela
+            // exclusiva para alterar SOMENTE o e-mail.
+            if (id.Value == SessaoUsuario.Id)
+            {
+                using var telaEmail = new FrmEditarEmailAdmin(id.Value);
+
+                if (telaEmail.ShowDialog(this) == DialogResult.OK)
+                    CarregarUsuarios();
+
+                return;
+            }
+
+            // Para outras contas, mantém o fluxo existente.
             if (!UsuarioService.PodeGerenciarConta(id.Value, false, out string mensagem))
             {
                 MessageBox.Show(

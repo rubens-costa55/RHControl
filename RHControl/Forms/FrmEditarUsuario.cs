@@ -262,6 +262,36 @@ namespace RHControl.Forms
                 string tipo = reader.IsDBNull(3) ? "Usuario" : reader.GetString(3);
                 int indice = cmbTipoUsuario.Items.IndexOf(tipo);
                 cmbTipoUsuario.SelectedIndex = indice >= 0 ? indice : 1;
+
+                bool propriaConta =
+                    idUsuario == SessaoUsuario.Id &&
+                    SessaoUsuario.EhAdministradorPrincipal &&
+                    string.Equals(txtUsuario.Text, "admin", StringComparison.OrdinalIgnoreCase);
+
+                if (propriaConta)
+                {
+                    // O administrador principal só pode alterar o próprio e-mail.
+                    lblTitulo.Text = "Meu e-mail";
+                    lblSubtitulo.Text = "Cadastre ou altere o e-mail usado para recuperação de senha";
+
+                    txtNome.ReadOnly = true;
+                    txtNome.BackColor = Color.FromArgb(235, 239, 244);
+
+                    txtUsuario.ReadOnly = true;
+                    txtUsuario.BackColor = Color.FromArgb(235, 239, 244);
+
+                    cmbTipoUsuario.Enabled = false;
+
+                    txtSenha.Enabled = false;
+                    txtSenha.BackColor = Color.FromArgb(235, 239, 244);
+                    btnMostrarSenha.Enabled = false;
+
+                    txtConfirmarSenha.Enabled = false;
+                    txtConfirmarSenha.BackColor = Color.FromArgb(235, 239, 244);
+                    btnMostrarConfirmacao.Enabled = false;
+
+                    lblInfo.Text = "Somente o e-mail pode ser alterado. Para salvar, sua senha atual será solicitada.";
+                }
             }
             catch (Exception ex)
             {
@@ -283,11 +313,84 @@ namespace RHControl.Forms
                 return;
             }
 
+            bool propriaConta =
+                idUsuario == SessaoUsuario.Id &&
+                SessaoUsuario.EhAdministradorPrincipal &&
+                string.Equals(txtUsuario.Text, "admin", StringComparison.OrdinalIgnoreCase);
+
             string nome = txtNome.Text.Trim();
             string email = txtEmail.Text.Trim();
             string senha = txtSenha.Text;
             string confirmacao = txtConfirmarSenha.Text;
             string tipo = cmbTipoUsuario.SelectedItem?.ToString() ?? "Usuario";
+
+            if (propriaConta)
+            {
+                if (string.IsNullOrWhiteSpace(email))
+                {
+                    MessageBox.Show(
+                        "Informe o e-mail que será usado para recuperar a senha do administrador.",
+                        "E-mail do administrador",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    txtEmail.Focus();
+                    return;
+                }
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(
+                        email,
+                        @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
+                {
+                    MessageBox.Show(
+                        "Informe um e-mail válido.",
+                        "E-mail do administrador",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    txtEmail.Focus();
+                    return;
+                }
+
+                using var confirmarSenha = new FrmConfirmarSenha();
+
+                if (confirmarSenha.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                Cursor = Cursors.WaitCursor;
+
+                try
+                {
+                    if (!UsuarioService.AtualizarProprioEmail(
+                            idUsuario,
+                            email,
+                            confirmarSenha.SenhaDigitada,
+                            out string mensagem))
+                    {
+                        MessageBox.Show(
+                            mensagem,
+                            "E-mail do administrador",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    SessaoUsuario.AtualizarEmail(email);
+
+                    MessageBox.Show(
+                        "E-mail do administrador atualizado com sucesso!",
+                        "RH Control",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    DialogResult = DialogResult.OK;
+                    return;
+                }
+                finally
+                {
+                    Cursor = Cursors.Default;
+                }
+            }
 
             if (string.IsNullOrWhiteSpace(nome))
             {

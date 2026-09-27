@@ -7,7 +7,13 @@
     <Compile Update="Forms\FrmConfiguracoes.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FrmConfirmarSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\FrmDetalhesFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmEditarEmailAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FrmEditarUsuario.cs">
@@ -32,6 +38,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FrmCadastroFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmNovaSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmRecuperarSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmValidarCodigo.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
