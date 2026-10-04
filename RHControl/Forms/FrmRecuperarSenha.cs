@@ -1,147 +1,113 @@
-using System.Drawing;
+﻿using System;
 using System.Windows.Forms;
-using RHControl.Services;
+using Microsoft.Data.Sqlite;
+using RHControl.Data;
 
-namespace RHControl
+namespace RHControl.Forms
 {
-    public class FrmRecuperarSenha : Form
+    public partial class FrmRecuperarSenha : Form
     {
-        private Label lblTitulo = null!;
-        private Label lblDescricao = null!;
-        private Label lblEmail = null!;
-        private TextBox txtEmail = null!;
-        private Button btnEnviar = null!;
-        private Button btnVoltar = null!;
-
         public FrmRecuperarSenha()
         {
-            ConfigurarTela();
+            InitializeComponent();
+
+            txtEmail.Focus();
         }
 
-        private void ConfigurarTela()
-        {
-            Text = "RH Control - Recuperar senha";
-            StartPosition = FormStartPosition.CenterParent;
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            ClientSize = new Size(430, 280);
-            BackColor = Color.White;
-
-            lblTitulo = new Label
-            {
-                Text = "Recuperar senha",
-                Font = new Font("Segoe UI", 18, FontStyle.Bold),
-                AutoSize = true,
-                Location = new Point(40, 30)
-            };
-
-            lblDescricao = new Label
-            {
-                Text = "Informe o e-mail cadastrado no RH Control.\r\nEnviaremos um código de 4 dígitos.",
-                Font = new Font("Segoe UI", 10),
-                AutoSize = true,
-                Location = new Point(40, 75)
-            };
-
-            lblEmail = new Label
-            {
-                Text = "E-mail",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                AutoSize = true,
-                Location = new Point(40, 135)
-            };
-
-            txtEmail = new TextBox
-            {
-                Location = new Point(40, 160),
-                Width = 350,
-                Height = 30,
-                Font = new Font("Segoe UI", 11)
-            };
-
-            btnEnviar = new Button
-            {
-                Text = "ENVIAR CÓDIGO",
-                Location = new Point(40, 210),
-                Width = 170,
-                Height = 38,
-                BackColor = Color.FromArgb(31, 78, 121),
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat
-            };
-
-            btnVoltar = new Button
-            {
-                Text = "VOLTAR",
-                Location = new Point(220, 210),
-                Width = 170,
-                Height = 38,
-                FlatStyle = FlatStyle.Flat
-            };
-
-            btnEnviar.Click += BtnEnviar_Click;
-            btnVoltar.Click += (_, _) => Close();
-
-            Controls.AddRange(new Control[]
-            {
-                lblTitulo, lblDescricao, lblEmail,
-                txtEmail, btnEnviar, btnVoltar
-            });
-
-            AcceptButton = btnEnviar;
-            CancelButton = btnVoltar;
-        }
-
-        private void BtnEnviar_Click(object? sender, System.EventArgs e)
+        private void BtnContinuar_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(email))
             {
-                MessageBox.Show("Informe seu e-mail.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Digite o e-mail cadastrado.",
+                    "Recuperação de senha",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 txtEmail.Focus();
                 return;
             }
 
             try
             {
-                btnEnviar.Enabled = false;
-                Cursor = Cursors.WaitCursor;
+                using var connection = Database.GetConnection();
+                connection.Open();
 
-                var resultado = RecuperacaoSenhaService.SolicitarCodigo(email);
+                using var command = connection.CreateCommand();
 
-                if (!resultado.Sucesso)
+                command.CommandText = @"
+                    SELECT Id
+                    FROM Usuarios
+                    WHERE lower(trim(COALESCE(Email, ''))) =
+                          lower(trim($email))
+                      AND Status = 'Ativo'
+                    LIMIT 1;
+                ";
+
+                command.Parameters.AddWithValue("$email", email);
+
+                object? resultado = command.ExecuteScalar();
+
+                if (resultado == null ||
+                    resultado == DBNull.Value)
                 {
-                    MessageBox.Show(resultado.Mensagem, "Recuperação de senha", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "O e-mail informado não está cadastrado no RH Control.",
+                        "Recuperação de senha",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    txtEmail.SelectAll();
+                    txtEmail.Focus();
+
                     return;
                 }
 
-                MessageBox.Show(
-                    "Enviamos um código de 4 dígitos para o seu e-mail.\r\n\r\nO código é válido por 10 minutos.",
-                    "Código enviado",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                int usuarioId = Convert.ToInt32(resultado);
 
-                using (var validar = new FrmValidarCodigo(resultado.UsuarioId, resultado.Email))
+                using (var novaSenha = new FrmNovaSenha(usuarioId))
                 {
-                    validar.ShowDialog(this);
-                }
+                    Hide();
 
-                Close();
+                    DialogResult resultadoNovaSenha =
+                        novaSenha.ShowDialog(this);
+
+                    if (resultadoNovaSenha == DialogResult.OK)
+                    {
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                    else
+                    {
+                        Show();
+                        txtEmail.Focus();
+                    }
+                }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Não foi possível iniciar a recuperação.\r\n\r\n" + ex.Message,
+                    "Não foi possível verificar o e-mail.\r\n\r\n" +
+                    "Detalhes: " + ex.Message,
                     "Erro",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            finally
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void TxtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
             {
-                btnEnviar.Enabled = true;
-                Cursor = Cursors.Default;
+                e.SuppressKeyPress = true;
+                BtnContinuar_Click(btnContinuar, EventArgs.Empty);
             }
         }
     }

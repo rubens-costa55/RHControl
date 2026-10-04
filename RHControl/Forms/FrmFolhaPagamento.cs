@@ -164,8 +164,28 @@ namespace RHControl.Forms
 
         private void AplicarPermissoes()
         {
-            // Usuário pode consultar, filtrar e exportar.
-            // Apenas Administrador pode executar a ação de gerar/processar a folha.
+            // Cabeçalho: mostra somente o nível de acesso
+            if (lblUsuario != null)
+            {
+                lblUsuario.AutoSize = true;
+                lblUsuario.Font = new Font("Segoe UI Semibold", 9F);
+                lblUsuario.ForeColor = Color.FromArgb(18, 103, 181);
+
+                lblUsuario.Text =
+                    SessaoUsuario.EhAdministrador
+                        ? "♙  Administrador"
+                        : "♙  Usuário";
+
+                lblUsuario.TextAlign = ContentAlignment.MiddleRight;
+                lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+
+                // Mantém o texto encostado à direita do cabeçalho
+                lblUsuario.Location = new Point(
+                    lblUsuario.Parent.ClientSize.Width - lblUsuario.PreferredWidth - 25,
+                    34);
+            }
+
+            // Permissões da folha
             btnGerarFolha.Enabled = SessaoUsuario.PodeEditar;
             btnRegistrarPagamento.Enabled = SessaoUsuario.PodeEditar;
 

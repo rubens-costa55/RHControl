@@ -134,7 +134,40 @@ namespace RHControl
             dtpDataAdmissao.ValueChanged -= DtpDataAdmissao_ValueChanged;
             dtpDataAdmissao.ValueChanged += DtpDataAdmissao_ValueChanged;
 
+            dtpDataNascimento.ValueChanged -= DtpDataNascimento_ValueChanged;
+            dtpDataNascimento.ValueChanged += DtpDataNascimento_ValueChanged;
+
+            ConfigurarIdadeMinima();
+
             AtualizarInterfaceJornada();
+        }
+
+        private void DtpDataNascimento_ValueChanged(
+            object sender,
+            EventArgs e)
+        {
+            // O calendário não possui bloqueio de idade.
+            // A validação de menor de 16 anos acontece somente
+            // no momento em que o funcionário é salvo.
+        }
+
+        private void ConfigurarIdadeMinima()
+        {
+            // Mantém o calendário completo e sem bloqueio
+            // de idade. A validação acontece somente ao salvar.
+            dtpDataNascimento.MinDate =
+                DateTimePicker.MinimumDateTime;
+
+            dtpDataNascimento.MaxDate =
+                DateTimePicker.MaximumDateTime;
+
+            // Novo funcionário começa com a data atual.
+            // Na edição, a data será carregada do banco.
+            if (!funcionarioIdEdicao.HasValue)
+            {
+                dtpDataNascimento.Value =
+                    DateTime.Today;
+            }
         }
 
         // ============================================================
@@ -935,6 +968,29 @@ namespace RHControl
                 return;
             }
 
+            // --------------------------------------------------------
+            // VERIFICA A IDADE
+            // --------------------------------------------------------
+            // Apenas calcula a idade.
+            // NÃO bloqueia o cadastro.
+            // NÃO altera o calendário.
+            // --------------------------------------------------------
+
+            DateTime hoje = DateTime.Today;
+            DateTime dataNascimento =
+                dtpDataNascimento.Value.Date;
+
+            int idade =
+                hoje.Year - dataNascimento.Year;
+
+            if (dataNascimento >
+                hoje.AddYears(-idade))
+            {
+                idade--;
+            }
+
+            bool menorDe16 = idade < 16;
+
             try
             {
                 using (SqliteConnection connection =
@@ -954,57 +1010,57 @@ namespace RHControl
                         if (!funcionarioIdEdicao.HasValue)
                         {
                             string sqlFuncionario = @"
-                                INSERT INTO Funcionarios
-                                (
-                                    Nome,
-                                    CPF,
-                                    DataNascimento,
-                                    Telefone,
-                                    Email,
-                                    Cargo,
-                                    Setor,
-                                    DataAdmissao,
-                                    Salario,
-                                    TipoJornada,
-                                    Escala,
-                                    DiaFolga,
-                                    DiaFolga2,
-                                    DataBaseEscala,
-                                    CargaHorariaSemanal,
-                                    HorarioEntrada,
-                                    HorarioSaida,
-                                    InicioIntervalo,
-                                    FimIntervalo,
-                                    Status,
-                                    Observacoes,
-                                    CriadoEm
-                                )
-                                VALUES
-                                (
-                                    $Nome,
-                                    $CPF,
-                                    $DataNascimento,
-                                    $Telefone,
-                                    $Email,
-                                    $Cargo,
-                                    $Setor,
-                                    $DataAdmissao,
-                                    $Salario,
-                                    $TipoJornada,
-                                    $Escala,
-                                    $DiaFolga,
-                                    $DiaFolga2,
-                                    $DataBaseEscala,
-                                    $CargaHorariaSemanal,
-                                    $HorarioEntrada,
-                                    $HorarioSaida,
-                                    $InicioIntervalo,
-                                    $FimIntervalo,
-                                    $Status,
-                                    $Observacoes,
-                                    $CriadoEm
-                                );
-                            ";
+                        INSERT INTO Funcionarios
+                        (
+                            Nome,
+                            CPF,
+                            DataNascimento,
+                            Telefone,
+                            Email,
+                            Cargo,
+                            Setor,
+                            DataAdmissao,
+                            Salario,
+                            TipoJornada,
+                            Escala,
+                            DiaFolga,
+                            DiaFolga2,
+                            DataBaseEscala,
+                            CargaHorariaSemanal,
+                            HorarioEntrada,
+                            HorarioSaida,
+                            InicioIntervalo,
+                            FimIntervalo,
+                            Status,
+                            Observacoes,
+                            CriadoEm
+                        )
+                        VALUES
+                        (
+                            $Nome,
+                            $CPF,
+                            $DataNascimento,
+                            $Telefone,
+                            $Email,
+                            $Cargo,
+                            $Setor,
+                            $DataAdmissao,
+                            $Salario,
+                            $TipoJornada,
+                            $Escala,
+                            $DiaFolga,
+                            $DiaFolga2,
+                            $DataBaseEscala,
+                            $CargaHorariaSemanal,
+                            $HorarioEntrada,
+                            $HorarioSaida,
+                            $InicioIntervalo,
+                            $FimIntervalo,
+                            $Status,
+                            $Observacoes,
+                            $CriadoEm
+                        );
+                    ";
 
                             using (SqliteCommand command =
                                    connection.CreateCommand())
@@ -1056,31 +1112,31 @@ namespace RHControl
                                 funcionarioIdEdicao.Value;
 
                             string sqlFuncionario = @"
-                                UPDATE Funcionarios
-                                SET
-                                    Nome = $Nome,
-                                    CPF = $CPF,
-                                    DataNascimento = $DataNascimento,
-                                    Telefone = $Telefone,
-                                    Email = $Email,
-                                    Cargo = $Cargo,
-                                    Setor = $Setor,
-                                    DataAdmissao = $DataAdmissao,
-                                    Salario = $Salario,
-                                    TipoJornada = $TipoJornada,
-                                    Escala = $Escala,
-                                    DiaFolga = $DiaFolga,
-                                    DiaFolga2 = $DiaFolga2,
-                                    DataBaseEscala = $DataBaseEscala,
-                                    CargaHorariaSemanal = $CargaHorariaSemanal,
-                                    HorarioEntrada = $HorarioEntrada,
-                                    HorarioSaida = $HorarioSaida,
-                                    InicioIntervalo = $InicioIntervalo,
-                                    FimIntervalo = $FimIntervalo,
-                                    Status = $Status,
-                                    Observacoes = $Observacoes
-                                WHERE Id = $Id;
-                            ";
+                        UPDATE Funcionarios
+                        SET
+                            Nome = $Nome,
+                            CPF = $CPF,
+                            DataNascimento = $DataNascimento,
+                            Telefone = $Telefone,
+                            Email = $Email,
+                            Cargo = $Cargo,
+                            Setor = $Setor,
+                            DataAdmissao = $DataAdmissao,
+                            Salario = $Salario,
+                            TipoJornada = $TipoJornada,
+                            Escala = $Escala,
+                            DiaFolga = $DiaFolga,
+                            DiaFolga2 = $DiaFolga2,
+                            DataBaseEscala = $DataBaseEscala,
+                            CargaHorariaSemanal = $CargaHorariaSemanal,
+                            HorarioEntrada = $HorarioEntrada,
+                            HorarioSaida = $HorarioSaida,
+                            InicioIntervalo = $InicioIntervalo,
+                            FimIntervalo = $FimIntervalo,
+                            Status = $Status,
+                            Observacoes = $Observacoes
+                        WHERE Id = $Id;
+                    ";
 
                             using (SqliteCommand command =
                                    connection.CreateCommand())
@@ -1104,12 +1160,10 @@ namespace RHControl
                             }
 
                             // Remove os benefícios antigos
-                            // para gravar a versão atualizada.
-
                             string sqlExcluirBeneficios = @"
-                                DELETE FROM BeneficiosFuncionario
-                                WHERE FuncionarioId = $FuncionarioId;
-                            ";
+                        DELETE FROM BeneficiosFuncionario
+                        WHERE FuncionarioId = $FuncionarioId;
+                    ";
 
                             using (SqliteCommand command =
                                    connection.CreateCommand())
@@ -1136,21 +1190,21 @@ namespace RHControl
                                  in beneficios)
                         {
                             string sqlBeneficio = @"
-                                INSERT INTO BeneficiosFuncionario
-                                (
-                                    FuncionarioId,
-                                    NomeBeneficio,
-                                    PercentualDesconto,
-                                    ValorDesconto
-                                )
-                                VALUES
-                                (
-                                    $FuncionarioId,
-                                    $NomeBeneficio,
-                                    $PercentualDesconto,
-                                    $ValorDesconto
-                                );
-                            ";
+                        INSERT INTO BeneficiosFuncionario
+                        (
+                            FuncionarioId,
+                            NomeBeneficio,
+                            PercentualDesconto,
+                            ValorDesconto
+                        )
+                        VALUES
+                        (
+                            $FuncionarioId,
+                            $NomeBeneficio,
+                            $PercentualDesconto,
+                            $ValorDesconto
+                        );
+                    ";
 
                             using (SqliteCommand command =
                                    connection.CreateCommand())
@@ -1196,6 +1250,10 @@ namespace RHControl
                     }
                 }
 
+                // ========================================================
+                // CADASTRO SALVO
+                // ========================================================
+
                 MessageBox.Show(
                     funcionarioIdEdicao.HasValue
                         ? "Funcionário atualizado com sucesso!"
@@ -1203,6 +1261,27 @@ namespace RHControl
                     "RH Control",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+
+                // ========================================================
+                // AVISO DE IDADE
+                // ========================================================
+                // O funcionário JÁ FOI SALVO.
+                // Agora apenas avisamos que a idade está abaixo de 16.
+                // ========================================================
+
+                if (menorDe16)
+                {
+                    MessageBox.Show(
+                        "Atenção!\n\n" +
+                        "A data de nascimento cadastrada indica que " +
+                        "o funcionário possui menos de 16 anos.\n\n" +
+                        "O cadastro foi realizado normalmente. " +
+                        "Verifique e, se necessário, corrija a data " +
+                        "de nascimento posteriormente pela opção de editar funcionário.",
+                        "Atenção — Data de nascimento",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
 
                 Close();
             }

@@ -19,6 +19,9 @@ namespace RHControl
         {
             progresso += 2;
 
+            if (progresso > 100)
+                progresso = 100;
+
             progressBar.Value = progresso;
             lblPorcentagem.Text = progresso + "%";
 
@@ -49,12 +52,15 @@ namespace RHControl
 
                 FrmLogin login = new FrmLogin();
 
+                // Quando o Login fechar pelo X,
+                // o Loading também será fechado.
                 login.FormClosed += (s, args) =>
                 {
                     this.Close();
                 };
 
                 login.Show();
+
                 this.Hide();
             }
         }

@@ -80,8 +80,45 @@ namespace RHControl
         {
             bool administrador = SessaoUsuario.EhAdministrador;
 
-            // Usuário comum pode apenas consultar os funcionários.
-            // Administradores continuam com todas as ações disponíveis.
+            // Corrige a largura do cabeçalho para acompanhar
+            // exatamente a área disponível da tela.
+            if (pnlCabecalho != null && pnlConteudo != null)
+            {
+                pnlCabecalho.Size =
+                    new Size(pnlConteudo.ClientSize.Width, 112);
+            }
+
+            if (lblUsuario != null)
+            {
+                lblUsuario.AutoSize = false;
+
+                lblUsuario.Font =
+                    new Font("Segoe UI Semibold", 9F);
+
+                lblUsuario.ForeColor =
+                    Color.FromArgb(18, 103, 181);
+
+                lblUsuario.Text =
+                    administrador
+                        ? "♙  Administrador"
+                        : "♙  Usuário";
+
+                lblUsuario.TextAlign =
+                    ContentAlignment.MiddleRight;
+
+                lblUsuario.Anchor =
+                    AnchorStyles.Top |
+                    AnchorStyles.Right;
+
+                lblUsuario.Size =
+                    new Size(180, 24);
+
+                lblUsuario.Location =
+                    new Point(
+                        pnlCabecalho.ClientSize.Width - 205,
+                        34);
+            }
+
             btnNovoFuncionario.Visible = administrador;
             btnNovoFuncionario.Enabled = administrador;
 
@@ -90,7 +127,6 @@ namespace RHControl
             colFerias.Visible = administrador;
             colDesligar.Visible = administrador;
 
-            // A única ação disponível na lista para Usuário é Detalhes.
             colDetalhes.Visible = true;
         }
 

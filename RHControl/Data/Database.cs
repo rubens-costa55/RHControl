@@ -28,6 +28,10 @@ namespace RHControl.Data
             using var connection = GetConnection();
             connection.Open();
 
+            // ============================================================
+            // FUNCIONÁRIOS
+            // ============================================================
+
             string sqlFuncionarios = @"
                 CREATE TABLE IF NOT EXISTS Funcionarios
                 (
@@ -65,10 +69,33 @@ namespace RHControl.Data
                 command.ExecuteNonQuery();
             }
 
-            AdicionarColunaSeNaoExistir(connection, "Funcionarios", "TipoJornada", "TEXT");
-            AdicionarColunaSeNaoExistir(connection, "Funcionarios", "DiaFolga", "TEXT");
-            AdicionarColunaSeNaoExistir(connection, "Funcionarios", "DiaFolga2", "TEXT");
-            AdicionarColunaSeNaoExistir(connection, "Funcionarios", "DataBaseEscala", "TEXT");
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "Funcionarios",
+                "TipoJornada",
+                "TEXT");
+
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "Funcionarios",
+                "DiaFolga",
+                "TEXT");
+
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "Funcionarios",
+                "DiaFolga2",
+                "TEXT");
+
+            AdicionarColunaSeNaoExistir(
+                connection,
+                "Funcionarios",
+                "DataBaseEscala",
+                "TEXT");
+
+            // ============================================================
+            // FÉRIAS
+            // ============================================================
 
             string sqlFerias = @"
                 CREATE TABLE IF NOT EXISTS Ferias
@@ -98,9 +125,61 @@ namespace RHControl.Data
                 command.ExecuteNonQuery();
             }
 
-            CriarIndiceSeNaoExistir(connection, "IX_Ferias_FuncionarioId", "Ferias", "FuncionarioId");
-            CriarIndiceSeNaoExistir(connection, "IX_Ferias_DataDireito", "Ferias", "DataDireito");
-            CriarIndiceSeNaoExistir(connection, "IX_Ferias_FimConcessivo", "Ferias", "FimConcessivo");
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_Ferias_FuncionarioId",
+                "Ferias",
+                "FuncionarioId");
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_Ferias_DataDireito",
+                "Ferias",
+                "DataDireito");
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_Ferias_FimConcessivo",
+                "Ferias",
+                "FimConcessivo");
+
+            // ============================================================
+            // BENEFÍCIOS DOS FUNCIONÁRIOS
+            // ============================================================
+
+            string sqlBeneficios = @"
+                CREATE TABLE IF NOT EXISTS BeneficiosFuncionario
+                (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+                    FuncionarioId INTEGER NOT NULL,
+
+                    NomeBeneficio TEXT NOT NULL,
+
+                    PercentualDesconto REAL NOT NULL DEFAULT 0,
+
+                    ValorDesconto REAL NOT NULL DEFAULT 0,
+
+                    FOREIGN KEY (FuncionarioId)
+                        REFERENCES Funcionarios(Id)
+                        ON DELETE CASCADE
+                );";
+
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = sqlBeneficios;
+                command.ExecuteNonQuery();
+            }
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_BeneficiosFuncionario_FuncionarioId",
+                "BeneficiosFuncionario",
+                "FuncionarioId");
+
+            // ============================================================
+            // CONFIGURAÇÕES
+            // ============================================================
 
             string sqlConfiguracoes = @"
                 CREATE TABLE IF NOT EXISTS Configuracoes
@@ -116,6 +195,10 @@ namespace RHControl.Data
                 command.CommandText = sqlConfiguracoes;
                 command.ExecuteNonQuery();
             }
+
+            // ============================================================
+            // USUÁRIOS
+            // ============================================================
 
             string sqlUsuarios = @"
                 CREATE TABLE IF NOT EXISTS Usuarios
@@ -138,14 +221,22 @@ namespace RHControl.Data
                 command.ExecuteNonQuery();
             }
 
-            CriarIndiceSeNaoExistir(connection, "IX_Usuarios_TipoUsuario", "Usuarios", "TipoUsuario");
-            CriarIndiceSeNaoExistir(connection, "IX_Usuarios_Status", "Usuarios", "Status");
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_Usuarios_TipoUsuario",
+                "Usuarios",
+                "TipoUsuario");
+
+            CriarIndiceSeNaoExistir(
+                connection,
+                "IX_Usuarios_Status",
+                "Usuarios",
+                "Status");
 
             // ============================================================
             // RECUPERAÇÃO DE SENHA
             // ============================================================
-            // Esta tabela é adicionada somente se ainda não existir.
-            // Nenhum dado existente de Usuarios é apagado ou alterado.
+
             string sqlRecuperacaoSenha = @"
                 CREATE TABLE IF NOT EXISTS RecuperacaoSenha
                 (
@@ -172,6 +263,10 @@ namespace RHControl.Data
                 "IX_RecuperacaoSenha_UsuarioId",
                 "RecuperacaoSenha",
                 "UsuarioId");
+
+            // ============================================================
+            // ADMINISTRADOR INICIAL
+            // ============================================================
 
             using (var command = connection.CreateCommand())
             {
@@ -209,9 +304,7 @@ namespace RHControl.Data
             // ============================================================
             // PAGAMENTOS DA FOLHA
             // ============================================================
-            // A versão atual usa Ano/Mes + RegistradoEm.
-            // A compatibilidade abaixo mantém funcionando também versões
-            // anteriores que usavam CompetenciaAno/CompetenciaMes + CriadoEm.
+
             string sqlPagamentos = @"
                 CREATE TABLE IF NOT EXISTS PagamentosFolha
                 (
@@ -236,7 +329,7 @@ namespace RHControl.Data
                 command.ExecuteNonQuery();
             }
 
-            // Colunas usadas pela versão atual.
+            // Colunas utilizadas pela versão atual.
             AdicionarColunaSeNaoExistir(
                 connection,
                 "PagamentosFolha",
@@ -255,9 +348,7 @@ namespace RHControl.Data
                 "RegistradoEm",
                 "TEXT");
 
-            // Colunas usadas por versões anteriores do projeto.
-            // Elas permanecem para que Jornada/Folha de versões anteriores
-            // não quebrem o banco existente.
+            // Colunas utilizadas por versões anteriores.
             AdicionarColunaSeNaoExistir(
                 connection,
                 "PagamentosFolha",
@@ -282,8 +373,10 @@ namespace RHControl.Data
                 "AtualizadoEm",
                 "TEXT");
 
-            // Sincroniza a nomenclatura antiga com a atual.
-            // Não apaga nem substitui registros existentes.
+            // ============================================================
+            // COMPATIBILIDADE DA FOLHA
+            // ============================================================
+
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = @"
@@ -353,13 +446,17 @@ namespace RHControl.Data
                 FROM pragma_table_info('{tabela}')
                 WHERE name = $coluna;";
 
-            command.Parameters.AddWithValue("$coluna", coluna);
+            command.Parameters.AddWithValue(
+                "$coluna",
+                coluna);
 
-            long existe = Convert.ToInt64(command.ExecuteScalar());
+            long existe =
+                Convert.ToInt64(command.ExecuteScalar());
 
             if (existe == 0)
             {
                 command.Parameters.Clear();
+
                 command.CommandText =
                     $"ALTER TABLE {tabela} ADD COLUMN {coluna} {tipo};";
 

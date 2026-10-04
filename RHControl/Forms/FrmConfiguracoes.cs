@@ -17,6 +17,8 @@ namespace RHControl.Forms
         {
             InitializeComponent();
 
+            AplicarPermissoes();
+
             if (!SessaoUsuario.EhAdministrador)
             {
                 MessageBox.Show(
@@ -38,6 +40,41 @@ namespace RHControl.Forms
 
             ConfigurarEventos();
         }
+
+        private void AplicarPermissoes()
+        {
+            bool administrador = SessaoUsuario.EhAdministrador;
+
+            if (lblAdministrador != null)
+            {
+                lblAdministrador.AutoSize = true;
+                lblAdministrador.Font =
+                    new Font("Segoe UI Semibold", 9F);
+
+                lblAdministrador.ForeColor =
+                    Color.FromArgb(18, 103, 181);
+
+                lblAdministrador.Text =
+                    administrador
+                        ? "♙  Administrador"
+                        : "♙  Usuário";
+
+                lblAdministrador.TextAlign =
+                    ContentAlignment.MiddleRight;
+
+                lblAdministrador.Anchor =
+                    AnchorStyles.Top |
+                    AnchorStyles.Right;
+
+                lblAdministrador.Location =
+                    new Point(
+                        lblAdministrador.Parent.ClientSize.Width -
+                        lblAdministrador.PreferredWidth -
+                        25,
+                        34);
+            }
+        }
+
 
         private void ConfigurarEventos()
         {
