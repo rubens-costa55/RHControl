@@ -1,5 +1,9 @@
 ## 📸 Telas do sistema
 
+### ⏳ Tela de carregamento
+
+![Tela de carregamento](docs/screenshots/loading.png)
+
 ### 🔐 Login
 
 ![Tela de Login](docs/screenshots/login.png)
@@ -32,10 +36,10 @@
 
 ![Configurações](docs/screenshots/config.png)
 
-### 🔐 Backup e Configurações
-
-![Backup e Configurações](docs/screenshots/backupconf.png)
-
-### 📄 Configuração da Folha
+### 🔧 Configurações da Folha
 
 ![Configuração da Folha](docs/screenshots/configfolha.png)
+
+### 💾 Backup e Configurações
+
+![Backup e Configurações](docs/screenshots/backupconf.png)
